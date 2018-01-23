@@ -1,0 +1,398 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>试验记录</title>
+    <link rel="stylesheet" href="~/Content/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/Content/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="~/Content/css/ace-fonts.css" />
+    <link rel="stylesheet" href="~/Content/css/ace.min.css" id="main-ace-style" />
+
+    <!--[if lte IE 9]>
+        <link rel="stylesheet" href="~/Content/css/ace-part2.min.css" />
+    <![endif]-->
+    <!--[if lte IE 9]>
+      <link rel="stylesheet" href="~/Content/css/ace-ie.min.css" />
+    <![endif]-->
+    <script src="~/Content/js/ace-extra.min.js"></script>
+    <!--[if lte IE 8]>
+    <script src="~/Content/js/html5shiv.min.js"></script>
+    <script src="~/Content/js/respond.min.js"></script>
+    <![endif]-->
+    <style type="text/css">
+        .CSSearchTbl {
+            border: 1px #008CD4 solid;
+        }
+
+            .CSSearchTbl thead {
+            }
+
+                .CSSearchTbl thead tr {
+                }
+
+                    .CSSearchTbl thead tr th {
+                        text-align: left;
+                        padding-left: 10px;
+                    }
+
+            .CSSearchTbl tbody {
+            }
+
+                .CSSearchTbl tbody tr {
+                }
+
+                    .CSSearchTbl tbody tr td {
+                        padding: 10px;
+                    }
+
+                        .CSSearchTbl tbody tr td.right {
+                            text-align: left;
+                        }
+
+                        .CSSearchTbl tbody tr td.left {
+                            text-align: right;
+                        }
+
+        .table-responsive {
+            display: none;
+        }
+
+        td {
+            text-align: center;
+            vertical-align: middle !important; /*设置垂直居中*/
+        }
+
+        th {
+            text-align: center;
+            vertical-align: middle !important; /*设置垂直居中*/
+        }
+    </style>
+</head>
+<body class="no-skin">
+    <!-- #section:basics/navbar.layout -->
+    <!-- /section:basics/navbar.layout -->
+    <div class="main-container" id="main-container">
+
+
+        <div class="main-content">
+
+            <div class="page-content">
+
+                <!-- /section:settings.box -->
+                <div class="page-content-area">
+
+                    <div class="row">
+                        <div class="col-xs-12">
+
+                            <div class="row">
+                                <div class="col-xs-12">
+
+                                    <div class="table-header">
+                                        新增试验记录
+                                    </div>
+
+                                    <table width="100%" class="CSSearchTbl" cellpadding="0" cellspacing="0">
+                                        <tr>
+                                            <td width="10%" class="left">试验厂商：</td>
+                                            <td width="20%" class="right">
+                                                <select style="width:100%">
+                                                    <option>《--未选择--》</option>
+                                                    <option>厂商一</option>
+                                                    <option>厂商二</option>
+                                                    <option>厂商三</option>
+                                                </select>
+                                            </td>
+                                            <td width="10%" class="left">试验日期：</td>
+                                            <td width="20%" class="right"><input type="text" size="16" style="width:100%" /></td>
+
+
+                                            <td class="right" colspan="2">
+                                                <a href="/Experiment/InserttestTecord" class="btn btn-primary pull-left col-sm-12 tbl-search"><span>添加实验记录</span></a>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+
+                                            <td width="10%" class="left">任务号：</td>
+                                            <td width="20%" class="right"><input type="text" size="16" style="width:100%" /></td>
+                                            <td width="10%" class="left">状态：</td>
+                                            <td width="20%" class="right">
+                                                <select style="width:100%">
+                                                    <option>《--未选择--》</option>
+                                                    <option>成功</option>
+                                                    <option>失败</option>
+                                                    
+                                                </select>
+                                            </td>
+
+                                            <td class="right" colspan="2">
+                                                <button class="btn btn-primary pull-left col-sm-12 tbl-search" data-dismiss="modal" onclick="search()">
+                                                    开始搜索
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </table>
+
+                                    <table id="sample-table-2" class="table table-striped table-bordered table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th width="5%">NO</th>
+                                                <th width="10%">试验日期</th>
+                                                <th width="10%">送样单位</th>
+                                                <th width="13%">试验项目</th>
+                                                <th width="10%">任务号</th>
+                                                <th width="10%">样车型号</th>
+                                                <th width="10%">主检</th>
+                                                <th width="10%">报告出具人</th>
+                                                <th width="7%">是否合格</th>
+                                                <th width="15%">操作</th>
+                                                @*<th width="10%">送样人</th>
+                                                <th width="10%">手机号码</th>*@
+                                                @*<th width="10%">检验类型</th>*@
+                                                @*<th width="10%">试验具体时间</th>
+                                                <th width="10%">试验费用</th>*@
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+                                            <tr>
+                                                <td>1</td>
+
+                                                <td>2017/12/12</td>
+                                                <td class="hidden-480">东风日产</td>
+                                                <td class="hidden-480"><span class="label label-sm label-warning">项目一</span></td>
+                                                <td>2017111701</td>
+                                                <td>XH-1</td>
+                                                <td>王杰</td>
+                                                <td>王杰</td>
+                                                <td>合格</td>
+                                                <td>
+                                                    <div class="btn-group">
+
+                                                        <button class="btn btn-xs btn-info" onclick="edit(0)">
+                                                            <i class="ace-icon fa fa-pencil bigger-120"></i>
+                                                            编辑
+                                                        </button>
+
+                                                        <button class="btn btn-xs btn-danger" onclick="deleteRow(0)">
+                                                            <i class="ace-icon fa fa-trash-o bigger-120"></i>
+                                                            删除
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>2</td>
+
+                                                <td>2017/12/11</td>
+                                                <td class="hidden-480">奇瑞汽车</td>
+                                                <td class="hidden-480"><span class="label label-sm label-warning">项目二</span></td>
+                                                <td>2017111701</td>
+                                                <td>XH-1</td>
+                                                <td>林琳</td>
+                                                <td>林琳</td>
+                                                <td>合格</td>
+                                                <td>
+                                                    <div class="btn-group">
+
+                                                        <button class="btn btn-xs btn-info" onclick="edit(1)">
+                                                            <i class="ace-icon fa fa-pencil bigger-120"></i>
+                                                            编辑
+                                                        </button>
+
+                                                        <button class="btn btn-xs btn-danger" onclick="deleteRow(1)">
+                                                            <i class="ace-icon fa fa-trash-o bigger-120"></i>
+                                                            删除
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>3</td>
+                                                <td>2017/12/10</td>
+                                                <td class="hidden-480">广汽本田</td>
+                                                <td class="hidden-480"><span class="label label-sm label-warning">项目三</span></td>
+                                                <td>2017111701</td>
+                                                <td>XH-1</td>
+                                                <td>赵静 </td>
+                                                <td>赵静 </td>
+                                                <td>合格</td>
+                                                <td>
+                                                    <div class="btn-group">
+
+                                                        <button class="btn btn-xs btn-info" onclick="edit(2)">
+                                                            <i class="ace-icon fa fa-pencil bigger-120"></i>
+                                                            编辑
+                                                        </button>
+
+                                                        <button class="btn btn-xs btn-danger" onclick="deleteRow(2)">
+                                                            <i class="ace-icon fa fa-trash-o bigger-120"></i>
+                                                            删除
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>4</td>
+
+                                                <td>2017/12/09</td>
+                                              
+                                                <td class="hidden-480">高尔夫</td>
+                                                <td class="hidden-480"><span class="label label-sm label-warning">项目四</span></td>
+                                                <td>2017111701</td>
+                                                <td>XH-1</td>
+                                                <td>汪峰</td>
+                                                <td>汪峰</td>
+                                                <td>合格</td>
+                                                <td>
+                                                    <div class="btn-group">
+
+                                                        <button class="btn btn-xs btn-info" onclick="edit(3)">
+                                                            <i class="ace-icon fa fa-pencil bigger-120"></i>
+                                                            编辑
+                                                        </button>
+
+                                                        <button class="btn btn-xs btn-danger" onclick="deleteRow(3)">
+                                                            <i class="ace-icon fa fa-trash-o bigger-120"></i>
+                                                            删除
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>5</td>
+
+                                                <td>2017/12/08</td>
+                                             
+                                                <td class="hidden-480">奇瑞出口</td>
+                                                <td class="hidden-480"><span class="label label-sm label-warning">项目五</span></td>
+                                                <td>2017111701</td>
+                                                <td>XH-1</td>
+                                                <td>孙凯</td>
+                                                <td>孙凯</td>
+                                                <td>合格</td>
+                                                <td>
+                                                    <div class="btn-group">
+
+                                                        <button class="btn btn-xs btn-info" onclick="edit(4)">
+                                                            <i class="ace-icon fa fa-pencil bigger-120"></i>
+                                                            编辑
+                                                        </button>
+
+                                                        <button class="btn btn-xs btn-danger" onclick="deleteRow(4)">
+                                                            <i class="ace-icon fa fa-trash-o bigger-120"></i>
+                                                            删除
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>6</td>
+
+                                                <td>2017/12/07</td>
+                                              
+                                                <td class="hidden-480">北汽</td>
+                                                <td class="hidden-480"><span class="label label-sm label-warning">项目六</span></td>
+                                                <td>2017111701</td>
+                                                <td>XH-1</td>
+                                                <td>小叶</td>
+                                                <td>小叶</td>
+                                                <td>合格</td>
+                                                <td>
+                                                    <div class="btn-group">
+
+                                                        <button class="btn btn-xs btn-info" onclick="edit(5)">
+                                                            <i class="ace-icon fa fa-pencil bigger-120"></i>
+                                                            编辑
+                                                        </button>
+
+                                                        <button class="btn btn-xs btn-danger" onclick="deleteRow(5)">
+                                                            <i class="ace-icon fa fa-trash-o bigger-120"></i>
+                                                            删除
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                    <div class="modal-footer no-margin-top">
+
+                                        <ul class="pagination pull-right no-margin">
+                                            <li class="prev disabled">
+                                                <a href="#">
+                                                    <i class="ace-icon fa fa-angle-double-left"></i>
+                                                </a>
+                                            </li>
+
+                                            <li class="active">
+                                                <a href="#">1</a>
+                                            </li>
+
+                                            <li>
+                                                <a href="#">2</a>
+                                            </li>
+
+                                            <li>
+                                                <a href="#">3</a>
+                                            </li>
+
+                                            <li class="next">
+                                                <a href="#">
+                                                    <i class="ace-icon fa fa-angle-double-right"></i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div><!-- /.col -->
+                    </div><!-- /.row -->
+                </div><!-- /.page-content-area -->
+            </div><!-- /.page-content -->
+        </div><!-- /.main-content -->
+
+
+
+        <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+            <i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
+        </a>
+    </div><!-- /.main-container -->
+    <script src="~/Content/js/jquery-1.8.3.min.js"></script>
+    <script src="~/Content/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript">
+
+        function edit(t) {
+            //var tab = document.getElementById("sample-table-2");
+            alert("编辑了第"+(t+1)+"行，但是还并不能显示！  ~(￣▽￣)~")
+        }
+        function search() {
+            alert("你点击了搜索 ~(￣▽￣)~")
+        }
+        function deleteRow(t) {
+            if (window.confirm('是否确定删除？'))
+            {
+                var tab = document.getElementById("sample-table-2");
+               // tab.children[1].children.removeChild(t);
+                alert("删除了第" + (t + 1) + "行，这只是个演示的效果！  ~(￣▽￣)~");
+
+            } else {
+                alert("取消的删除！！");
+            }
+
+        }
+    </script>
+</body>
+</html>

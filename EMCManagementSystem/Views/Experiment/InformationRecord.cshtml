@@ -1,0 +1,419 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>实验信息记录 </title>
+    <meta name="description" content="Restyling jQuery UI Widgets and Elements" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <link rel="stylesheet" href="~/Content/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/Content/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="~/Content/css/ace-fonts.css" />
+    <link rel="stylesheet" href="~/Content/css/ace.min.css" id="main-ace-style" />
+
+    <!--[if lte IE 9]>
+        <link rel="stylesheet" href="~/Content/css/ace-part2.min.css" />
+    <![endif]-->
+    <!--[if lte IE 9]>
+      <link rel="stylesheet" href="~/Content/css/ace-ie.min.css" />
+    <![endif]-->
+    <script src="~/Content/js/ace-extra.min.js"></script>
+    <!--[if lte IE 8]>
+    <script src="~/Content/js/html5shiv.min.js"></script>
+    <script src="~/Content/js/respond.min.js"></script>
+    <![endif]-->
+    <style type="text/css">
+        .CSSearchTbl {
+            border: 1px #008CD4 solid;
+        }
+
+            .CSSearchTbl thead {
+            }
+
+                .CSSearchTbl thead tr {
+                }
+
+                    .CSSearchTbl thead tr th {
+                        text-align: left;
+                        padding-left: 10px;
+                    }
+
+            .CSSearchTbl tbody {
+            }
+
+                .CSSearchTbl tbody tr {
+                }
+
+                    .CSSearchTbl tbody tr td {
+                        padding: 10px;
+                    }
+
+                        .CSSearchTbl tbody tr td.right {
+                            text-align: left;
+                        }
+
+                        .CSSearchTbl tbody tr td.left {
+                            text-align: right;
+                        }
+
+        .table-responsive {
+            display: none;
+        }
+        
+           td  
+    {  
+        text-align:center;  
+       vertical-align: middle!important;/*设置垂直居中*/
+    }  
+           
+          th {  
+        text-align:center;  
+       vertical-align: middle!important;/*设置垂直居中*/
+    }  
+    </style>
+</head>
+<body class="no-skin">
+    <!-- #section:basics/navbar.layout -->
+    <!-- /section:basics/navbar.layout -->
+    <div class="main-container" id="main-container">
+
+
+        <div class="main-content">
+
+            <div class="page-content">
+
+                <!-- /section:settings.box -->
+                <div class="page-content-area">
+
+                    <div class="row">
+                        <div class="col-xs-12">
+
+                            <div class="row">
+                                <div class="col-xs-12">
+
+                                    <div class="table-header">
+                                        实验信息记录
+                                    </div>
+                                    
+                                    <table width="100%" class="CSSearchTbl" cellpadding="0" cellspacing="0">
+                                        <tr>
+                                            <td width="13%" class="left">起始时间：</td>
+                                            <td width="20%" class="right">
+                                                <input type="text" size="16" />
+                                            </td>
+                                            <td width="13%" class="left">结束时间：</td>
+                                            <td width="20%" class="right"><input type="text" size="16" /></td>
+                                            <td width="13%" class="left">送样单位：</td>
+                                            <td width="20%" class="right">
+                                                <input type="text" size="16" />
+                                            </td>
+                                            <td class="right" colspan="2">
+                                                <a href="/Experiment/InsertInformationRecord" class="btn btn-primary pull-left col-sm-12 tbl-search"><span>新增实验记录</span></a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+
+
+                                            <td width="10%" class="left">实验项目：</td>
+                                            <td width="20%" class="right"><input type="text" size="16" /></td>
+                                            <td width="10%" class="left">送样人：</td>
+                                            <td width="20%" class="right"><input type="text" size="16" /></td>
+                                            <td width="10%" class="left">委托单号：</td>
+                                            <td width="20%" class="right">
+                                                <input type="text" size="16" />
+                                            </td>
+                                            <td class="right" colspan="2">
+
+                                                <button class="btn btn-primary pull-left col-sm-12 tbl-search" data-dismiss="modal">
+                                                    开始搜索
+
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </table>
+
+                                    <table id="sample-table-2" class="table table-striped table-bordered table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th width="5%">NO</th>
+                                                <th width="8%">日期</th>
+                                                <th width="8%">送样人</th>
+                                                <th width="5%">手机号码</th>
+                                                <th width="10%">送样单位</th>
+                                                <th width="15%">样车型号</th>
+                                                <th width="10%">实验项目</th>
+                                                <th width="10%">委托单号</th>
+                                                <th width="8%">检验类型</th>
+                                                <th width="5%">VIN</th>
+                                                <th width="16%">操作</th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+                                            <tr>
+                                                <td>1</td>
+
+                                                <td>2017/10/27</td>
+                                                <td>张三</td>
+                                                <td class="hidden-480">13715425647</td>
+                                                <td>单位1</td>
+                                                <td>MM-1</td>
+                                                <td class="hidden-480"><span class="label label-sm label-warning">项目1</span></td>
+                                                <td>2017102701</td>
+                                                <td>类型1</td>
+                                                <td>1234</td>
+                                                <td>
+                                                    <div class="btn-group">
+                                                        <button class="btn btn-xs btn-success">
+                                                            查看
+                                                        </button>
+
+                                                        <button class="btn btn-xs btn-info">
+                                                            编辑
+                                                        </button>
+
+                                                        <button class="btn btn-xs btn-danger">
+                                                            删除
+                                                        </button>
+
+
+
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>2</td>
+
+                                                <td>2017/10/27</td>
+                                                <td>黄小白</td>
+                                                <td class="hidden-480">13715425647</td>
+                                                <td>单位2</td>
+                                                <td>MM-2</td>
+                                                <td class="hidden-480"><span class="label label-sm label-warning">项目1</span></td>
+                                                <td>2017102701</td>
+                                                <td>类型2</td>
+                                                <td>1234</td>
+                                                <td>
+                                                    <div class="btn-group">
+                                                        <button class="btn btn-xs btn-success" title="">
+                                                            查看
+                                                        </button>
+
+                                                        <button class="btn btn-xs btn-info">
+                                                            编辑
+                                                        </button>
+
+                                                        <button class="btn btn-xs btn-danger">
+                                                            删除
+                                                        </button>
+
+
+
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>3</td>
+
+                                                <td>2017/10/27</td>
+                                                <td>张琳</td>
+                                                <td class="hidden-480">13715425647</td>
+                                                <td>单位3</td>
+                                                <td>MM-3</td>
+                                                <td class="hidden-480"><span class="label label-sm label-warning">项目1</span></td>
+                                                <td>2017102701</td>
+                                                <td>类型3</td>
+                                                <td>1234</td>
+                                                <td>
+                                                    <div class=" btn-group">
+                                                        <button class="btn btn-xs btn-success" title="">
+                                                            查看
+                                                        </button>
+
+                                                        <button class="btn btn-xs btn-info">
+                                                            编辑
+                                                        </button>
+
+                                                        <button class="btn btn-xs btn-danger">
+                                                            删除
+                                                        </button>
+
+
+
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>4</td>
+
+                                                <td>2017/10/27</td>
+                                                <td>张静</td>
+                                                <td class="hidden-480">13715425647</td>
+                                                <td>单位4</td>
+                                                <td>MM-4</td>
+                                                <td class="hidden-480"><span class="label label-sm label-warning">项目1</span></td>
+                                                <td>2017102701</td>
+                                                <td>类型4</td>
+                                                <td>1234</td>
+                                                <td>
+                                                    <div class=" btn-group">
+                                                        <button class="btn btn-xs btn-success" title="">
+                                                            查看
+                                                        </button>
+
+                                                        <button class="btn btn-xs btn-info">
+                                                            编辑
+                                                        </button>
+
+                                                        <button class="btn btn-xs btn-danger">
+                                                            删除
+                                                        </button>
+
+
+
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>5</td>
+
+                                                <td>2017/10/27</td>
+                                                <td>李逍遥</td>
+                                                <td class="hidden-480">13715425647</td>
+                                                <td>单位5</td>
+                                                <td>MM-5</td>
+                                                <td class="hidden-480"><span class="label label-sm label-warning">项目1</span></td>
+                                                <td>2017102701</td>
+                                                <td>类型5</td>
+                                                <td>1234</td>
+                                                <td>
+                                                    <div class="btn-group">
+                                                        <button class="btn btn-xs btn-success" title="">
+                                                            查看
+                                                        </button>
+
+                                                        <button class="btn btn-xs btn-info">
+                                                            编辑
+                                                        </button>
+
+                                                        <button class="btn btn-xs btn-danger">
+                                                            删除
+                                                        </button>
+
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>6</td>
+
+                                                <td>2017/10/27</td>
+                                                <td>李斯</td>
+                                                <td class="hidden-480">13715425647</td>
+                                                <td>单位6</td>
+                                                <td>MM-6</td>
+                                                <td class="hidden-480"><span class="label label-sm label-warning">项目1</span></td>
+                                                <td>2017102701</td>
+                                                <td>类型6</td>
+                                                <td>1234</td>
+                                                <td>
+                                                    <div class="btn-group">
+                                                        <button class="btn btn-xs btn-success" title="">
+                                                            查看
+                                                        </button>
+
+                                                        <button class="btn btn-xs btn-info">
+                                                            编辑
+                                                        </button>
+
+                                                        <button class="btn btn-xs btn-danger">
+                                                            删除
+                                                        </button>
+
+
+
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                    <div class="modal-footer no-margin-top">
+
+                                        <ul class="pagination pull-right no-margin">
+                                            <li class="prev disabled">
+                                                <a href="#">
+                                                    <i class="ace-icon fa fa-angle-double-left"></i>
+                                                </a>
+                                            </li>
+
+                                            <li class="active">
+                                                <a href="#">1</a>
+                                            </li>
+
+                                            <li>
+                                                <a href="#">2</a>
+                                            </li>
+
+                                            <li>
+                                                <a href="#">3</a>
+                                            </li>
+
+                                            <li class="next">
+                                                <a href="#">
+                                                    <i class="ace-icon fa fa-angle-double-right"></i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+                        </div><!-- /.col -->
+                    </div><!-- /.row -->
+                </div><!-- /.page-content-area -->
+            </div><!-- /.page-content -->
+        </div><!-- /.main-content -->
+
+
+
+        <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+            <i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
+        </a>
+    </div><!-- /.main-container -->
+    <!-- basic scripts -->
+    <!--[if !IE]> -->
+    <script type="text/javascript">
+			window.jQuery || document.write("<script src='~/Content/js/jquery.min.js'>"+"<"+"/script>");
+    </script>
+
+    <!-- <![endif]-->
+    <!--[if IE]>
+    <script type="text/javascript">
+     window.jQuery || document.write("<script src='~/Content/js/jquery1x.min.js'>"+"<"+"/script>");
+    </script>
+    <![endif]-->
+
+    <script src="~/Content/js/bootstrap.min.js"></script>
+
+    <script src="~/Content/js/jquery.dataTables.min.js"></script>
+    <script src="~/Content/js/jquery.dataTables.bootstrap.js"></script>
+
+    <!-- ace scripts -->
+    <script src="~/Content/js/ace-elements.min.js"></script>
+    <script src="~/Content/js/ace.min.js"></script>
+
+
+</body>
+</html>

@@ -1,0 +1,88 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>排行榜详情界面</title>
+    <style type="text/css">
+         .highcharts-credits {
+            display: none;
+        }
+    </style>
+</head>
+<body style="height:500px">
+    <script src="~/Highcharts/js/highcharts.js"></script>
+
+    <script src="~/Highcharts/js/exporting.js"></script>
+
+    <script src="~/Highcharts/js/highcharts-zh_CN.js"></script>
+    <div id="container" style="min-width: 300px; height: 400px; margin: 0 auto"></div>
+
+    <script type="text/javascript">
+
+Highcharts.chart('container', {
+    chart: {
+        type: 'column'
+    },
+    title: {
+        text: '合格率详情'
+    },
+    subtitle: {
+        text: 'Source: <a href="http://en.wikipedia.org/wiki/List_of_cities_proper_by_population">Wikipedia</a>'
+    },
+    xAxis: {
+        type: 'category',
+        labels: {
+            rotation: -45,
+            style: {
+                fontSize: '13px',
+                fontFamily: 'Verdana, sans-serif'
+            }
+        }
+    },
+    yAxis: {
+        min: 0,
+        title: {
+            text: '百分比'
+        }
+    },
+    legend: {
+        enabled: false
+    },
+    tooltip: {
+        pointFormat: '{point.y:.2f} millions</b>'
+    },
+    series: [{
+        name: 'Population',
+        data: [
+            ['朗逸', 0.8],
+            ['途观', 0.78],
+            ['帕萨特', 0.76],
+            ['途观L', 0.73],
+            ['桑塔纳', 0.71],
+            ['途昂', 0.68],
+            ['凌渡', 0.66],
+            ['途安L', 0.64],
+            ['辉昂', 0.62],
+            ['朗行', 0.6],
+            ['朗境', 0.58],
+            ['途安', 0.56],
+            ['高尔', 0.54],
+            ['POLO', 0.52],
+        ],
+        dataLabels: {
+            enabled: true,
+            rotation: -90,
+            color: '#FFFFFF',
+            align: 'right',
+            format: '{point.y:.2f}', // one decimal
+            y: 10, // 10 pixels down from the top
+            style: {
+                fontSize: '13px',
+                fontFamily: 'Verdana, sans-serif'
+            }
+        }
+    }]
+});
+    </script>
+</body>
+</html>

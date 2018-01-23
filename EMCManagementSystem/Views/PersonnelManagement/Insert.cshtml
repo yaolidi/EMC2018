@@ -1,0 +1,347 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>新增员工</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="renderer" content="webkit" />
+    <meta name="author" content="http://www.dotnetcms.org" />
+    <script src="~/Content/js/jquery-1.8.3.min.js"></script>
+    <link href="~/Content/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Content/js/bootstrap.min.js"></script>
+
+    <style>
+
+    </style>
+</head>
+<body >
+   
+    
+    
+    <form name="aspnetForm" method="post" action="./staff_staff_addeditprofile.aspx?staffid=0" onsubmit="javascript:return WebForm_OnSubmit();" id="aspnetForm">
+      <div>
+            <input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="054AE315" />
+        </div>
+        <div style="margin-right:20px;">
+            <link href="../style/staff.css" rel="stylesheet" />
+            <table width="100%">
+                <tbody>
+                    <tr valign="top">
+                        <td width="100%">
+                            
+                            <style>
+                                .img-thumbnail {
+                                    width: 90px;
+                                    height: 100px;
+                                }
+
+                                .stafftable th {
+                                    text-align: right;
+                                    vertical-align: central;
+                                }
+
+                                .table > thead > tr > th,
+                                .table > tbody > tr > th,
+                                .table > tfoot > tr > th,
+                                .table > thead > tr > td,
+                                .table > tbody > tr > td,
+                                .table > tfoot > tr > td {
+                                    vertical-align: middle;
+                                }
+                            </style>
+                            <table width="100%">
+                                <tbody>
+                                    <tr valign="top">
+                                        <td>
+                                            <div id="ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder2_pnl">
+                                                <!-- 1. basic -->
+                                                <div class="panel panel-default">
+                                                    <div class="panel-heading" id="basic">
+                                                        1.基本信息
+                                                    </div>
+                                                    <div class="panel-body">
+                                                        <table class="table table-condensed  stafftable">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <th >中文姓名</th>
+                                                                    <td > <input name="ctl00$ctl00$ContentPlaceHolder1$ContentPlaceHolder2$displayname" type="text" id="displayname" class="form-control btn-flat" /> <span id="ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder2_RequiredFieldValidator2" style="color:Red;display:none;">不能为空</span> </td>
+                                                                    <th >英文名 </th>
+                                                                    <td > <input name="ctl00$ctl00$ContentPlaceHolder1$ContentPlaceHolder2$enname" type="text" id="enname" class="form-control btn-flat" /> </td>
+                                                                    <th rowspan="2" >员工照片</th>
+                                                                    <td rowspan="2" > <span id="ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder2_lbl_avtor"><a target="_blank" href="../uploads/staff/nopic.jpg"><img id="avtor" class="img-thumbnail" src="../uploads/staff/nopic.jpg" /></a></span> <a href="#" onclick="uploadpic(); return false;" tabindex="0">上传照片</a> </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th>员工号</th>
+                                                                    <td> <input name="ctl00$ctl00$ContentPlaceHolder1$ContentPlaceHolder2$staffcode" type="text" id="staffcode" class="form-control btn-flat" /> <span id="ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder2_RequiredFieldValidator3" style="color:Red;display:none;">不能为空</span> </td>
+                                                                    <th> 行政职务 </th>
+                                                                    <td> <select name="ctl00$ctl00$ContentPlaceHolder1$ContentPlaceHolder2$ddl_title" id="ddl_title" class="form-control btn-flat"> <option value="普通员工">普通员工</option> <option value="主任">主任</option> <option value="主管">主管</option> <option value="经理">经理</option> <option value="副主管">副主管</option> <option value="副经理">副经理</option> <option value="总经理">总经理</option> </select> </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th>员工部门</th>
+                                                                    <td> <select name="ctl00$ctl00$ContentPlaceHolder1$ContentPlaceHolder2$ddl_deptid" id="ddl_deptid" class="form-control"> <option value="">==所有部门==</option> <option value="2">/安徽总部</option> <option value="3">/安徽总部/人事部</option> <option value="4">/安徽总部/财务部</option> <option value="5">/安徽总部/IT部门</option> <option value="10">/安徽总部/IT部门/.NET部门</option> <option value="6">/上海分公司</option> <option value="7">/上海分公司/制造部</option> <option value="8">/上海分公司/品质部</option> <option value="9">/上海分公司/环境部</option> </select> <span id="ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder2_rf_dept" style="color:Red;display:none;">必须选择部门</span> </td>
+                                                                    <th>系统登录名</th>
+                                                                    <td> <input name="ctl00$ctl00$ContentPlaceHolder1$ContentPlaceHolder2$username" type="text" id="username" class="form-control btn-flat" /> </td>
+                                                                    <th>性 别</th>
+                                                                    <td>
+                                                                        <table id="rbl_sex" class="form-control btn-flat" border="0" style="border-width:0px;width:150px;">
+                                                                            <tbody>
+                                                                                <tr>
+                                                                                    <td><input id="rbl_sex_0" type="radio" name="ctl00$ctl00$ContentPlaceHolder1$ContentPlaceHolder2$rbl_sex" value="--" checked="checked" /><label for="rbl_sex_0">--</label></td>
+                                                                                    <td><input id="rbl_sex_1" type="radio" name="ctl00$ctl00$ContentPlaceHolder1$ContentPlaceHolder2$rbl_sex" value="男" /><label for="rbl_sex_1">男</label></td>
+                                                                                    <td><input id="rbl_sex_2" type="radio" name="ctl00$ctl00$ContentPlaceHolder1$ContentPlaceHolder2$rbl_sex" value="女" /><label for="rbl_sex_2">女</label></td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th>办公地点</th>
+                                                                    <td> <select name="ctl00$ctl00$ContentPlaceHolder1$ContentPlaceHolder2$ddl_office" id="ddl_office" class="form-control btn-flat"> <option value="总部">总部</option> <option value="北京">北京</option> <option value="上海">上海</option> </select> </td>
+                                                                    <th>邮 件</th>
+                                                                    <td> <input name="ctl00$ctl00$ContentPlaceHolder1$ContentPlaceHolder2$email" type="text" id="email" class="form-control btn-flat" /> </td>
+                                                                    <th>手机 </th>
+                                                                    <td> <input name="ctl00$ctl00$ContentPlaceHolder1$ContentPlaceHolder2$mobile" type="text" id="mobile" class="form-control btn-flat" /> </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th>办公电话</th>
+                                                                    <td> <input name="ctl00$ctl00$ContentPlaceHolder1$ContentPlaceHolder2$tel" type="text" id="tel" class="form-control btn-flat" /> </td>
+                                                                    <th>传 真</th>
+                                                                    <td> <input name="ctl00$ctl00$ContentPlaceHolder1$ContentPlaceHolder2$fax" type="text" id="fax" class="form-control btn-flat" /> </td>
+                                                                    <th>上级主管</th>
+                                                                    <td> <input name="ctl00$ctl00$ContentPlaceHolder1$ContentPlaceHolder2$supermgr" type="text" id="supermgr" class="form-control" /> </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th>证件类型</th>
+                                                                    <td> <select name="ctl00$ctl00$ContentPlaceHolder1$ContentPlaceHolder2$ddl_idcardtype" id="ddl_idcardtype" class="form-control btn-flat"> <option value="身份证">身份证</option> <option value="护照">护照</option> <option value="港澳台通行证">港澳台通行证</option> <option value="军人证">军人证</option> <option value="其它">其它</option> </select> </td>
+                                                                    <th>证件号</th>
+                                                                    <td> <input name="ctl00$ctl00$ContentPlaceHolder1$ContentPlaceHolder2$idcard" type="text" id="idcard" class="form-control btn-flat" /> </td>
+                                                                    <th>年龄（自动）</th>
+                                                                    <td> <span id="ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder2_age" disabled="disabled" class="form-control"></span> </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                                <!-- 2. status -->
+                                                <div class="panel panel-default">
+                                                    <div class="panel-heading" id="prop">
+                                                        2.员工属性
+                                                    </div>
+                                                    <div class="panel-body">
+                                                        <table class="table table-condensed  stafftable">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <th>员工状态 </th>
+                                                                    <td> 
+                                                                        <select name="ctl00$ctl00$ContentPlaceHolder1$ContentPlaceHolder2$ddl_position" id="ddl_position" class="form-control btn-flat"> 
+                                                                        <option value="--">--</option> 
+                                                                        <option value="在职">在职</option> 
+                                                                        <option value="离职">离职</option> 
+                                                                        <option value="退休">退休</option> 
+                                                                         </select>
+                                                                     </td>
+                                                                    <th>用工性质 </th>
+                                                                    <td>
+                                                                        <select name="ctl00$ctl00$ContentPlaceHolder1$ContentPlaceHolder2$ddl_politics" id="ddl_politics" class="form-control btn-flat">
+                                                                            <option value="--">--</option>
+                                                                            <option value="党员">全职</option>
+                                                                            <option value="团员">试用</option>
+                                                                            <option value="无党派人士">实习</option>
+
+                                                                        </select>
+                                                                    </td>
+                                                                    <th></th>
+                                                                    <td> </td>
+                                                                   
+
+                                                                </tr>
+                                                                <tr>
+                                                                    <th >岗位等级 </th>
+                                                                    <td > <select name="ctl00$ctl00$ContentPlaceHolder1$ContentPlaceHolder2$ddl_position" id="ddl_position" class="form-control btn-flat"> <option value="--">--</option> <option value="高级技师">高级技师</option> <option value="技师">技师</option> <option value="中级技工">中级技工</option> <option value="初级技工">初级技工</option> <option value="一般工人">一般工人</option> <option value="高级程序员">高级程序员</option> <option value="中级程序员">中级程序员</option> <option value="初级程序员">初级程序员</option> </select> </td>
+                                                                    <th >员工职级</th>
+                                                                    <td > <select name="ctl00$ctl00$ContentPlaceHolder1$ContentPlaceHolder2$ddl_rank" id="ddl_rank" class="form-control btn-flat"> <option value="--">--</option> <option value="A">A</option> <option value="B">B</option> <option value="C">C</option> <option value="D">D</option> <option value="E">E</option> <option value="O">O</option> <option value="H">H</option> <option value="G">G</option> </select> </td>
+                                                                    <th >政治面貌 </th>
+                                                                    <td > <select name="ctl00$ctl00$ContentPlaceHolder1$ContentPlaceHolder2$ddl_politics" id="ddl_politics" class="form-control btn-flat"> <option value="--">--</option> <option value="党员">党员</option> <option value="团员">团员</option> <option value="无党派人士">无党派人士</option> <option value="民族党派">民族党派</option> <option value="政协委员">政协委员</option> <option value="人大代表">人大代表</option> </select> </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th> 出生日期 </th>
+                                                                    <td> <input name="ctl00$ctl00$ContentPlaceHolder1$ContentPlaceHolder2$dt_birthday" type="text" id="dt_birthday" class="form-control btn-flat" onclick="javascript:ShowCalendar(this)" /> </td>
+                                                                    <th>入职日期 </th>
+                                                                    <td> <input name="ctl00$ctl00$ContentPlaceHolder1$ContentPlaceHolder2$dt_joinin" type="text" id="dt_joinin" class="form-control btn-flat" onclick="javascript:ShowCalendar(this)" /> </td>
+                                                                    <th>离职日期</th>
+                                                                    <td> <input name="ctl00$ctl00$ContentPlaceHolder1$ContentPlaceHolder2$dt_leavedate" type="text" id="dt_leavedate" class="form-control btn-flat" onclick="javascript:ShowCalendar(this)" /> </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th>试用开始日期 </th>
+                                                                    <td> <input name="ctl00$ctl00$ContentPlaceHolder1$ContentPlaceHolder2$dt_shiyongstart" type="text" id="dt_shiyongstart" class="form-control btn-flat" onclick="javascript:ShowCalendar(this)" /> </td>
+                                                                    <th>试用结束日期</th>
+                                                                    <td> <input name="ctl00$ctl00$ContentPlaceHolder1$ContentPlaceHolder2$dt_shiyongend" type="text" id="dt_shiyongend" class="form-control btn-flat" onclick="javascript:ShowCalendar(this)" /> </td>
+                                                                    <th>转正日期 </th>
+                                                                    <td> <input name="ctl00$ctl00$ContentPlaceHolder1$ContentPlaceHolder2$dt_zzdate" type="text" id="dt_zzdate" class="form-control btn-flat" onclick="javascript:ShowCalendar(this)" /> </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th>合同开始日期 </th>
+                                                                    <td> <input name="ctl00$ctl00$ContentPlaceHolder1$ContentPlaceHolder2$dt_htstart" type="text" id="dt_htstart" class="form-control btn-flat" onclick="javascript:ShowCalendar(this)" /> </td>
+                                                                    <th>合同结束日期</th>
+                                                                    <td> <input name="ctl00$ctl00$ContentPlaceHolder1$ContentPlaceHolder2$dt_htend" type="text" id="dt_htend" class="form-control btn-flat" onclick="javascript:ShowCalendar(this)" /> </td>
+                                                                    <th>首次工作日期 </th>
+                                                                    <td> <input name="ctl00$ctl00$ContentPlaceHolder1$ContentPlaceHolder2$dt_firstworkdate" type="text" id="dt_firstworkdate" class="form-control btn-flat" onclick="javascript:ShowCalendar(this)" /> </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th>毕业院校</th>
+                                                                    <td> <input name="ctl00$ctl00$ContentPlaceHolder1$ContentPlaceHolder2$graduate" type="text" id="graduate" class="form-control btn-flat" /> </td>
+                                                                    <th>专业</th>
+                                                                    <td> <input name="ctl00$ctl00$ContentPlaceHolder1$ContentPlaceHolder2$majorin" type="text" id="majorin" class="form-control btn-flat" /> </td>
+                                                                    <th>学 历</th>
+                                                                    <td> <select name="ctl00$ctl00$ContentPlaceHolder1$ContentPlaceHolder2$ddl_study" id="ddl_study" class="form-control btn-flat"> <option value="--">--</option> <option value="本科">本科</option> <option value="大专">大专</option> <option value="高中">高中</option> <option value="初中">初中</option> <option value="技校">技校</option> <option value="硕士">硕士</option> <option value="博士">博士</option> </select> </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th>班制</th>
+                                                                    <td> <input name="ctl00$ctl00$ContentPlaceHolder1$ContentPlaceHolder2$worktype" type="text" id="worktype" class="form-control btn-flat" /> </td>
+                                                                    <th>简历来源</th>
+                                                                    <td> <select name="ctl00$ctl00$ContentPlaceHolder1$ContentPlaceHolder2$ddl_jianlisource" id="ddl_jianlisource" class="form-control btn-flat"> <option value="--">--</option> <option value="未知">未知</option> <option value="前途无忧">前途无忧</option> <option value="智联招聘">智联招聘</option> <option value="现场招聘会">现场招聘会</option> <option value="网站投递">网站投递</option> </select> </td>
+                                                                    <th> 离职原因 (<a href="###" onclick="Pop('ajax_profile/leavereason.aspx?from=pop',500,400,'离职原因');">R</a>) </th>
+                                                                    <td>
+                                                                        <input name="ctl00$ctl00$ContentPlaceHolder1$ContentPlaceHolder2$leavereason" type="text" id="leavereason" class="form-control btn-flat" />
+                                                                        <script>
+        function SetOther(k) {
+            $("#leavereason").val(k);
+        }
+
+                                                                        </script>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                                <div class="panel panel-default">
+                                                    <div class="panel-heading" id="private">
+                                                        3.私人信息
+                                                    </div>
+                                                    <div class="panel-body">
+                                                        <table class="table table-condensed  stafftable">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <th >国籍</th>
+                                                                    <td > <input name="ctl00$ctl00$ContentPlaceHolder1$ContentPlaceHolder2$country" type="text" id="country" class="form-control" /> </td>
+                                                                    <th >籍贯</th>
+                                                                    <td > <input name="ctl00$ctl00$ContentPlaceHolder1$ContentPlaceHolder2$province2" type="text" id="province2" class="form-control" /> </td>
+                                                                    <th>民族</th>
+                                                                    <td > <input name="ctl00$ctl00$ContentPlaceHolder1$ContentPlaceHolder2$nation" type="text" id="nation" class="form-control" /> </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th>婚姻</th>
+                                                                    <td>
+                                                                        <table id="rbl_marry" class="form-control btn-flat" border="0" style="border-width:0px;width:150px;">
+                                                                            <tbody>
+                                                                                <tr>
+                                                                                    <td><input id="rbl_marry_0" type="radio" name="ctl00$ctl00$ContentPlaceHolder1$ContentPlaceHolder2$rbl_marry" value="--" checked="checked" /><label for="rbl_marry_0">--</label></td>
+                                                                                    <td><input id="rbl_marry_1" type="radio" name="ctl00$ctl00$ContentPlaceHolder1$ContentPlaceHolder2$rbl_marry" value="未婚" /><label for="rbl_marry_1">未婚</label></td>
+                                                                                    <td><input id="rbl_marry_2" type="radio" name="ctl00$ctl00$ContentPlaceHolder1$ContentPlaceHolder2$rbl_marry" value="已婚" /><label for="rbl_marry_2">已婚</label></td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </td>
+                                                                    <th>是否已育</th>
+                                                                    <td>
+                                                                        <table id="rbl_haschild" class="form-control btn-flat" border="0" style="border-width:0px;width:150px;">
+                                                                            <tbody>
+                                                                                <tr>
+                                                                                    <td><input id="rbl_haschild_0" type="radio" name="ctl00$ctl00$ContentPlaceHolder1$ContentPlaceHolder2$rbl_haschild" value="--" checked="checked" /><label for="rbl_haschild_0">--</label></td>
+                                                                                    <td><input id="rbl_haschild_1" type="radio" name="ctl00$ctl00$ContentPlaceHolder1$ContentPlaceHolder2$rbl_haschild" value="已育" /><label for="rbl_haschild_1">已育</label></td>
+                                                                                    <td><input id="rbl_haschild_2" type="radio" name="ctl00$ctl00$ContentPlaceHolder1$ContentPlaceHolder2$rbl_haschild" value="未育" /><label for="rbl_haschild_2">未育</label></td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </td>
+                                                                    <th> </th>
+                                                                    <td class="td_right"></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th>血型</th>
+                                                                    <td> <input name="ctl00$ctl00$ContentPlaceHolder1$ContentPlaceHolder2$blood" type="text" id="blood" class="form-control btn-flat" /> </td>
+                                                                    <th>私人手机</th>
+                                                                    <td> <input name="ctl00$ctl00$ContentPlaceHolder1$ContentPlaceHolder2$privatemobile" type="text" id="privatemobile" class="form-control btn-flat" /> </td>
+                                                                    <th>私人邮件</th>
+                                                                    <td> <input name="ctl00$ctl00$ContentPlaceHolder1$ContentPlaceHolder2$privateemail" type="text" id="privateemail" class="form-control btn-flat" /> </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th>QQ</th>
+                                                                    <td> <input name="ctl00$ctl00$ContentPlaceHolder1$ContentPlaceHolder2$qq" type="text" id="qq" class="form-control btn-flat" /> </td>
+                                                                    <th>微信</th>
+                                                                    <td> <input name="ctl00$ctl00$ContentPlaceHolder1$ContentPlaceHolder2$weixin" type="text" id="weixin" class="form-control btn-flat" /> </td>
+                                                                    <th></th>
+                                                                    <td></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th>现居址</th>
+                                                                    <td> <input name="ctl00$ctl00$ContentPlaceHolder1$ContentPlaceHolder2$address" type="text" id="address" class="form-control btn-flat" /> </td>
+                                                                    <th>籍贯地址</th>
+                                                                    <td> <input name="ctl00$ctl00$ContentPlaceHolder1$ContentPlaceHolder2$address2" type="text" id="address2" class="form-control btn-flat" /> </td>
+                                                                    <th></th>
+                                                                    <td></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th>紧急联系人1</th>
+                                                                    <td> <input name="ctl00$ctl00$ContentPlaceHolder1$ContentPlaceHolder2$urgentcontactpeople" type="text" id="urgentcontactpeople" class="form-control btn-flat" /> </td>
+                                                                    <th>紧急联系电话1</th>
+                                                                    <td> <input name="ctl00$ctl00$ContentPlaceHolder1$ContentPlaceHolder2$urgentcontacttel" type="text" id="urgentcontacttel" class="form-control btn-flat" /> </td>
+                                                                    <th>预留1</th>
+                                                                    <td> <input name="ctl00$ctl00$ContentPlaceHolder1$ContentPlaceHolder2$prev1" type="text" id="prev1" class="form-control btn-flat" /> </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th>紧急联系人2</th>
+                                                                    <td> <input name="ctl00$ctl00$ContentPlaceHolder1$ContentPlaceHolder2$urgentcontactpeople2" type="text" id="urgentcontactpeople2" class="form-control btn-flat" /> </td>
+                                                                    <th>紧急联系电话2</th>
+                                                                    <td> <input name="ctl00$ctl00$ContentPlaceHolder1$ContentPlaceHolder2$urgentcontacttel2" type="text" id="urgentcontacttel2" class="form-control btn-flat" /> </td>
+                                                                    <th>预留2</th>
+                                                                    <td> <input name="ctl00$ctl00$ContentPlaceHolder1$ContentPlaceHolder2$prev2" type="text" id="prev2" class="form-control btn-flat" /> </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                             
+                                                <div class="panel panel-default">
+                                                    <div class="panel-heading" id="other">
+                                                        5.其他信息
+                                                    </div>
+                                                    <div class="panel-body">
+                                                        <table class="table table-condensed  stafftable">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <th width="100">添加人/时间</th>
+                                                                    <td width="350" colspan="2"> <span id="ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder2_adduser" disabled="disabled" class="form-control"></span> </td>
+                                                                    <th width="100">最后更新/时间</th>
+                                                                    <td width="350" colspan="2"> <span id="ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder2_updateuser" disabled="disabled" class="form-control"></span> </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th>备注</th>
+                                                                    <td colspan="5"> <textarea name="ctl00$ctl00$ContentPlaceHolder1$ContentPlaceHolder2$note" rows="2" cols="20" id="note" class="form-control btn-flat" style="height:80px;"></textarea> </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                               
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                          
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </form>
+
+</body>
+</html>

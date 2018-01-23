@@ -1,0 +1,190 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>设备使用记录</title>
+    <style type="text/css">
+        .tg {
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+
+            .tg td {
+                font-family: Arial, sans-serif;
+                font-size: 14px;
+                padding: 10px 0px;
+                border-style: solid;
+                border-width: 1px;
+                overflow: hidden;
+                word-break: normal;
+            }
+
+            .tg th {
+                font-family: Arial, sans-serif;
+                font-size: 14px;
+                font-weight: normal;
+                padding: 10px 0px;
+                border-style: solid;
+                border-width: 1px;
+                overflow: hidden;
+                word-break: normal;
+            }
+
+            .tg .tg-1d7g {
+                font-weight: bold;
+                font-size: 16px;
+                vertical-align: top;
+            }
+
+            .tg .tg-28r4 {
+                font-size: 13px;
+                vertical-align: top;
+            }
+
+            .tg .tg-yw4l {
+                vertical-align: top;
+            }
+             td {
+            text-align: center;
+            vertical-align: middle !important; /*设置垂直居中*/
+        }
+
+        th {
+            text-align: center;
+            vertical-align: middle !important; /*设置垂直居中*/
+        }
+    </style>
+    <link rel="stylesheet" href="~/assets/css/fonts/fontawesome/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="~/assets/css/bootstrap.css">
+    <link rel="stylesheet" href="~/assets/css/xenon-core.css">
+    <link rel="stylesheet" href="~/assets/css/xenon-forms.css">
+
+    <script src="~/assets/js/jquery-1.11.1.min.js"></script>
+</head>
+
+
+   
+
+
+<body class="page-body">
+
+
+    <div class="page-container">
+
+
+        <div class="main-content">
+            <div class="page-title">
+
+                <div class="title-env">
+                    <h1 class="title">添加设备使用记录</h1>
+
+                </div>
+                <a onclick="back()" style="float: right;" href="#" class="btn btn-gray btn-icon"><span style="color:#000">返回</span><i class="fa-reply-all"></i></a>
+                <button style="float: right;" type="button" class="btn btn-primary" onclick="save()">保存</button>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12">
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">填写基本信息</h3>
+
+                        </div>
+                        <div class="tab-content" style="overflow-x: scroll;">
+
+                            <table class="tg table" style="undefined;table-layout: fixed; width: 1197px">
+                                <colgroup>
+                                    <col style="width: 76px">
+                                    <col style="width: 50px">
+                                    <col style="width: 62px">
+                                    <col style="width: 271px">
+                                    <col style="width: 42px">
+                                    <col style="width: 225px">
+                                    <col style="width: 51px">
+                                    <col style="width: 111px">
+                                    <col style="width: 104px">
+                                    <col style="width: 205px">
+                                </colgroup>
+                                <tr>
+                                    <th class="tg-1d7g" colspan="4">天津汽车检测中心使用记录</th>
+                                    <th class="tg-1d7g" colspan="6">编号：QSOE-035</th>
+                                </tr>
+                                <tr>
+                                    <td class="tg-1d7g" colspan="4">名称：仪器设备和测量参考标准使用记录</td>
+                                    <td class="tg-1d7g" colspan="6">第&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;页&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;共&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;页</td>
+                                </tr>
+                                <tr>
+                                    <td class="tg-28r4" colspan="2">仪器设备，<br>标准物质名称</td>
+                                    <td class="tg-yw4l" colspan="2"></td>
+                                    <td class="tg-yw4l">型号</td>
+                                    <td class="tg-yw4l"></td>
+                                    <td class="tg-yw4l">编号</td>
+                                    <td class="tg-yw4l" colspan="3"></td>
+                                </tr>
+                                <tr>
+                                    <td class="tg-yw4l" rowspan="2">使用日期</td>
+                                    <td class="tg-yw4l" colspan="2">使用前检查</td>
+                                    <td class="tg-yw4l" rowspan="2">主要检测项目（参量）或用途</td>
+                                    <td class="tg-yw4l" colspan="2" rowspan="2">使用状况</td>
+                                    <td class="tg-yw4l" colspan="2">使用后检查</td>
+                                    <td class="tg-yw4l" rowspan="2">使用人</td>
+                                    <td class="tg-yw4l" rowspan="2">备注</td>
+                                </tr>
+                                <tr>
+                                    <td class="tg-yw4l">正常</td>
+                                    <td class="tg-yw4l">不正常</td>
+                                    <td class="tg-yw4l">正常</td>
+                                    <td class="tg-yw4l">问题登记</td>
+                                </tr>
+                                <tr>
+                                    <td style="height:300px" class="tg-yw4l" rowspan="7"></td>
+                                    <td class="tg-yw4l" rowspan="7"></td>
+                                    <td class="tg-yw4l" rowspan="7"></td>
+                                    <td class="tg-yw4l" rowspan="7"></td>
+                                    <td class="tg-yw4l" colspan="2" rowspan="7"></td>
+                                    <td class="tg-yw4l" rowspan="7"></td>
+                                    <td class="tg-yw4l" rowspan="7"></td>
+                                    <td class="tg-yw4l" rowspan="7"></td>
+                                    <td class="tg-yw4l" rowspan="7"></td>
+                                </tr>
+                                <tr></tr>
+                                <tr></tr>
+                                <tr></tr>
+                                <tr></tr>
+                                <tr></tr>
+                                <tr></tr>
+                            </table>
+                            
+                        </div>
+                 
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Imported styles on this page -->
+
+    <link rel="stylesheet" href="~/assets/js/multiselect/css/multi-select.css">
+
+    <!-- Bottom Scripts -->
+    <script src="~/assets/js/bootstrap.min.js"></script>
+    <script src="~/assets/js/joinable.js"></script>
+    <script src="~/assets/js/multiselect/js/jquery.multi-select.js"></script>
+    <script type="text/javascript">
+
+        function back() {
+            window.history.back();  //返回上一页
+        }
+    </script>
+</body>
+</html>

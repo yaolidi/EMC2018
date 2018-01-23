@@ -1,0 +1,137 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+
+    <meta name="description" content="Xenon Boostrap Admin Panel" />
+    <meta name="author" content="" />
+    <meta name="viewport" content="width=device-width" />
+    <title>新增设备故障记录</title>
+    <link rel="stylesheet" href="~/assets/css/bootstrap.css">
+    <link rel="stylesheet" href="~/assets/css/xenon-core.css">
+    <link rel="stylesheet" href="~/assets/css/xenon-forms.css">
+
+
+    <script src="~/assets/js/jquery-1.11.1.min.js"></script>
+</head>
+<body class="page-body">
+
+
+    <div class="page-container">
+
+
+        <div class="main-content">
+            <div class="page-title">
+
+                <div class="title-env">
+                    <h1 class="title">设备问题记录</h1>
+
+                </div>
+
+
+
+            </div>
+
+
+
+            <div class="row">
+                <div class="col-sm-12">
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">填写基本信息</h3>
+
+                        </div>
+
+
+
+                        <div class="tab-content">
+
+                            <!-- Tabs Content -->
+                            <div class="tab-pane active" id="tab1">
+                                <form role="form" class="form-horizontal">
+                                    <div class="row">
+
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label" for="field-1">设备名称</label>
+
+                                            <div class="col-sm-4">
+                                                <input type="text" class="form-control" id="field-1">
+                                            </div>
+
+                                            <label class="col-sm-2 control-label" for="field-1">报告人</label>
+                                            <div class="col-sm-4">
+                                                <input type="text" class="form-control" id="field-1">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label" for="field-1">报告时间</label>
+
+                                            <div class="col-sm-4">
+                                                <input type="text" class="form-control" id="field-1">
+                                            </div>
+
+                                            <label class="col-sm-2 control-label" for="field-1">故障部位</label>
+                                            <div class="col-sm-4">
+                                                <input type="text" class="form-control" id="field-1">
+                                            </div>
+                                        </div>
+
+
+
+                                    </div>
+                                </form>
+
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+  
+
+            <div class="row">
+                <div class="col-sm-12">
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">其他信息</h3>
+
+                        </div>
+                        <div class="panel-body">
+
+                            <div class="form-group">
+                                <label class="control-label" for="about">故障原因</label>
+                                <textarea class="form-control autogrow" name="about" id="about" data-validate="minlength[10]" rows="5" placeholder="请输入实验简介信息" style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 104px;"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="about">故障/异常情况描述</label>
+                                <textarea class="form-control autogrow" name="about" id="about" data-validate="minlength[10]" rows="5" placeholder="请输入备注信息" style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 104px;"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Imported styles on this page -->
+
+    <link rel="stylesheet" href="~/assets/js/multiselect/css/multi-select.css">
+
+    <!-- Bottom Scripts -->
+    <script src="~/assets/js/bootstrap.min.js"></script>
+    <script src="~/assets/js/joinable.js"></script>
+    <script src="~/assets/js/multiselect/js/jquery.multi-select.js"></script>
+</body>
+</html>

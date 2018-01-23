@@ -1,0 +1,208 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>技能指标</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+    <link rel="stylesheet" href="~/Content/css/bootstrap.min.css" />
+    <link href="~/Content/css/select2.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="~/Content/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="~/Content/css/ace-fonts.css" />
+    <link rel="stylesheet" href="~/Content/css/ace.min.css" id="main-ace-style" />
+    <style>
+        tr td{
+            width:25%
+        }
+           td  
+    {  
+        text-align:center;  
+       vertical-align: middle!important;/*设置垂直居中*/
+    }  
+    </style>
+</head>
+<body class="no-skin" style="background-color:#fff">
+    <div class="center">
+      <h3>实验人员技能矩阵图</h3>
+      
+      <h3>Tester Skill Matrix Diagram</h3> 
+    </div>
+    <div class="form-group" style="margin-left:40%">
+        <label class="control-label" for="platform">员工:</label>
+        <select class="input-medium" id="platform" name="platform">
+            <option value="">------------------</option>
+            <option value="linux">张静</option>
+            <option value="windows">林琳</option>
+            <option value="mac">钟燕</option>
+            <option value="ios">徐小明</option>
+        </select>
+     
+    </div>
+    <table style="margin-bottom: 0px;" class="table table-striped table-bordered table-hover" width="100%">
+        <tbody>
+            <tr>
+                <td>姓名</td>
+                <td>GB 14023</td>
+                <td>GB/T 18387</td>
+                <td>GB/T 18655</td>
+                <td>
+                    GB 33012.2
+                    <br />
+                    ISO 11451.2
+                </td>
+                <td>
+                    GB 33012.3
+                    <br />
+                    ISO 11451.3
+                </td>
+                <td>
+                    GB 33012.4
+                    <br />
+                    ISO 11451.4
+                </td>
+                <td>GB 17625.1</td>
+                <td>
+                    GB 17625.2
+                </td>
+                <td>
+                    GB/T 17626.4
+                </td>
+                <td> GB/T 17626.5</td>
+                <td>
+                    GB/T 19951
+                    <br />
+                    ISO 10605
+                </td>
+                <td>
+                    SAE J551-17
+                </td>
+                <td>ECE R10.05</td>
+                <td>车辆人体保护</td>
+                <td>EV-TEST</td>
+                <td>
+                    PHEV-rating
+                </td>
+            </tr>
+            <tr>
+                <td>张静</td>
+                <td><div style="background-color:#432c7c;width:30px;height:30px;margin-left:10%"></div></td>
+                <td><div style="background-color:#68b828;width:30px;height:30px;margin-left:10%"></div></td>
+                <td><div style="background-color:#432c7c;width:30px;height:30px;margin-left:10%"></div></td>
+                <td><div style="background-color:#68b828;width:30px;height:30px;margin-left:10%"></div></td>
+                <td><div style="background-color:#ffd800;width:30px;height:30px;margin-left:10%"></div></td>
+                <td><div style="background-color:#432c7c;width:30px;height:30px;margin-left:10%"></div></td>
+                <td><div style="background-color:red;width:30px;height:30px;margin-left:10%"></div></td>
+                <td><div style="background-color:#68b828;width:30px;height:30px;margin-left:10%"></div></td>
+                <td><div style="background-color:#68b828;width:30px;height:30px;margin-left:10%"></div></td>
+                <td><div style="background-color:red;width:30px;height:30px;margin-left:10%"></div></td>
+                <td><div style="background-color:#ffd800;width:30px;height:30px;margin-left:10%"></div></td>
+                <td><div style="background-color:#432c7c;width:30px;height:30px;margin-left:10%"></div></td>
+                <td><div style="background-color:#68b828;width:30px;height:30px;margin-left:10%"></div></td>
+                <td><div style="background-color:#68b828;width:30px;height:30px;margin-left:10%"></div></td>
+                <td><div style="background-color:#68b828;width:30px;height:30px;margin-left:10%"></div></td>
+                <td><div style="background-color:#68b828;width:30px;height:30px;margin-left:10%"></div></td>
+              </tr>
+            <tr>
+                <td>张静</td>
+                <td><div style="background-color:#432c7c;width:30px;height:30px;margin-left:10%"></div></td>
+                <td><div style="background-color:#68b828;width:30px;height:30px;margin-left:10%"></div></td>
+                <td><div style="background-color:#432c7c;width:30px;height:30px;margin-left:10%"></div></td>
+                <td><div style="background-color:#68b828;width:30px;height:30px;margin-left:10%"></div></td>
+                <td><div style="background-color:#ffd800;width:30px;height:30px;margin-left:10%"></div></td>
+                <td><div style="background-color:#432c7c;width:30px;height:30px;margin-left:10%"></div></td>
+                <td><div style="background-color:red;width:30px;height:30px;margin-left:10%"></div></td>
+                <td><div style="background-color:#68b828;width:30px;height:30px;margin-left:10%"></div></td>
+                <td><div style="background-color:#68b828;width:30px;height:30px;margin-left:10%"></div></td>
+                <td><div style="background-color:red;width:30px;height:30px;margin-left:10%"></div></td>
+                <td><div style="background-color:#ffd800;width:30px;height:30px;margin-left:10%"></div></td>
+                <td><div style="background-color:#432c7c;width:30px;height:30px;margin-left:10%"></div></td>
+                <td><div style="background-color:#68b828;width:30px;height:30px;margin-left:10%"></div></td>
+                <td><div style="background-color:#68b828;width:30px;height:30px;margin-left:10%"></div></td>
+                <td><div style="background-color:#68b828;width:30px;height:30px;margin-left:10%"></div></td>
+                <td><div style="background-color:#68b828;width:30px;height:30px;margin-left:10%"></div></td>
+            </tr>
+            <tr>
+                <td>张静</td>
+                <td><div style="background-color:#432c7c;width:30px;height:30px;margin-left:10%"></div></td>
+                <td><div style="background-color:#68b828;width:30px;height:30px;margin-left:10%"></div></td>
+                <td><div style="background-color:#432c7c;width:30px;height:30px;margin-left:10%"></div></td>
+                <td><div style="background-color:#68b828;width:30px;height:30px;margin-left:10%"></div></td>
+                <td><div style="background-color:#ffd800;width:30px;height:30px;margin-left:10%"></div></td>
+                <td><div style="background-color:#432c7c;width:30px;height:30px;margin-left:10%"></div></td>
+                <td><div style="background-color:red;width:30px;height:30px;margin-left:10%"></div></td>
+                <td><div style="background-color:#68b828;width:30px;height:30px;margin-left:10%"></div></td>
+                <td><div style="background-color:#68b828;width:30px;height:30px;margin-left:10%"></div></td>
+                <td><div style="background-color:red;width:30px;height:30px;margin-left:10%"></div></td>
+                <td><div style="background-color:#ffd800;width:30px;height:30px;margin-left:10%"></div></td>
+                <td><div style="background-color:#432c7c;width:30px;height:30px;margin-left:10%"></div></td>
+                <td><div style="background-color:#68b828;width:30px;height:30px;margin-left:10%"></div></td>
+                <td><div style="background-color:#68b828;width:30px;height:30px;margin-left:10%"></div></td>
+                <td><div style="background-color:#68b828;width:30px;height:30px;margin-left:10%"></div></td>
+                <td><div style="background-color:#68b828;width:30px;height:30px;margin-left:10%"></div></td>
+            </tr>
+            <tr>
+                <td>张静</td>
+                <td><div style="background-color:#432c7c;width:30px;height:30px;margin-left:10%"></div></td>
+                <td><div style="background-color:#68b828;width:30px;height:30px;margin-left:10%"></div></td>
+                <td><div style="background-color:#432c7c;width:30px;height:30px;margin-left:10%"></div></td>
+                <td><div style="background-color:#68b828;width:30px;height:30px;margin-left:10%"></div></td>
+                <td><div style="background-color:#ffd800;width:30px;height:30px;margin-left:10%"></div></td>
+                <td><div style="background-color:#432c7c;width:30px;height:30px;margin-left:10%"></div></td>
+                <td><div style="background-color:red;width:30px;height:30px;margin-left:10%"></div></td>
+                <td><div style="background-color:#68b828;width:30px;height:30px;margin-left:10%"></div></td>
+                <td><div style="background-color:#68b828;width:30px;height:30px;margin-left:10%"></div></td>
+                <td><div style="background-color:red;width:30px;height:30px;margin-left:10%"></div></td>
+                <td><div style="background-color:#ffd800;width:30px;height:30px;margin-left:10%"></div></td>
+                <td><div style="background-color:#432c7c;width:30px;height:30px;margin-left:10%"></div></td>
+                <td><div style="background-color:#68b828;width:30px;height:30px;margin-left:10%"></div></td>
+                <td><div style="background-color:#68b828;width:30px;height:30px;margin-left:10%"></div></td>
+                <td><div style="background-color:#68b828;width:30px;height:30px;margin-left:10%"></div></td>
+                <td><div style="background-color:#68b828;width:30px;height:30px;margin-left:10%"></div></td>
+            </tr>
+
+        </tbody>
+    </table>
+
+    <table style="position: relative;top: 20px;" class="table " width="100%">
+        <tbody>
+            <tr>
+                <td>
+                     <div style="background-color:red;width:50px;height:50px;margin-left:40%">
+
+                     </div>
+                    <label>阶段一:培训中</label>
+                </td>
+                <td> 
+                    <div style="background-color:#68b828;width:50px;height:50px;margin-left:40%"></div>
+                    <label>阶段三:具备独立上岗资格且熟练操作</label>
+                </td>
+               
+            </tr>
+            <tr>
+                <td>
+                    <div style="background-color:#ffd800;width:50px;height:50px;margin-left:40%">
+
+                    </div>
+                    <label>阶段二:具备独立上岗资格</label>
+                </td>
+                <td>
+                    <div style="background-color:#432c7c;width:50px;height:50px;margin-left:40%"></div>
+                    <label>阶段四:具备独立上岗资格且具备指导他人工作能力</label>
+                  </td>
+
+            </tr>
+
+
+        </tbody>
+    </table>
+   
+   
+</body>
+</html>

@@ -1,0 +1,339 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="EMCModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CarQualification">
+          <Key>
+            <PropertyRef Name="CarID" />
+          </Key>
+          <Property Name="CarID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CarName" Type="nchar" MaxLength="15" />
+          <Property Name="qualificationNumber" Type="int" />
+          <Property Name="UnqualifiedTimes" Type="int" />
+          <Property Name="Qualification" Type="float" />
+        </EntityType>
+        <EntityType Name="OriginalRecord">
+          <Key>
+            <PropertyRef Name="OriginalRecordID" />
+          </Key>
+          <Property Name="OriginalRecordID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="brand" Type="nchar" MaxLength="15" />
+          <Property Name="BrandModel" Type="nchar" MaxLength="25" />
+          <Property Name="configure" Type="nchar" MaxLength="15" />
+          <Property Name="taskAllName" Type="nchar" MaxLength="50" />
+          <Property Name="ModelCarModel" Type="nchar" MaxLength="20" />
+          <Property Name="VIN" Type="nchar" MaxLength="20" />
+          <Property Name="ResultID" Type="nchar" MaxLength="10" />
+          <Property Name="introduce" Type="nchar" MaxLength="500" />
+          <Property Name="Remarks" Type="nchar" MaxLength="300" />
+          <Property Name="time" Type="date" />
+          <Property Name="taskNumber" Type="nchar" MaxLength="25" />
+        </EntityType>
+        <EntityType Name="OriginalRecordPath">
+          <Key>
+            <PropertyRef Name="OriginalRouteID" />
+          </Key>
+          <Property Name="OriginalRouteID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nchar" MaxLength="30" />
+          <Property Name="Route" Type="nchar" MaxLength="100" />
+          <Property Name="OriginalRecordID" Type="int" />
+        </EntityType>
+        <EntityType Name="path">
+          <Key>
+            <PropertyRef Name="pathID" />
+          </Key>
+          <Property Name="pathID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AV_LH" Type="nchar" MaxLength="100" />
+          <Property Name="AV_LH_img" Type="nchar" MaxLength="100" />
+          <Property Name="AV_LH_qualified" Type="nchar" MaxLength="10" />
+          <Property Name="AV_LV" Type="nchar" MaxLength="100" />
+          <Property Name="AV_LV_img" Type="nchar" MaxLength="100" />
+          <Property Name="AV_LV_qualified" Type="nchar" MaxLength="10" />
+          <Property Name="AV_RH" Type="nchar" MaxLength="100" />
+          <Property Name="AV_RH_img" Type="nchar" MaxLength="100" />
+          <Property Name="AV_RH_qualified" Type="nchar" MaxLength="10" />
+          <Property Name="AV_RV" Type="nchar" MaxLength="100" />
+          <Property Name="AV_RV_img" Type="nchar" MaxLength="100" />
+          <Property Name="AV_RV_qualified" Type="nchar" MaxLength="10" />
+          <Property Name="AK_LH" Type="nchar" MaxLength="100" />
+          <Property Name="AK_LH_img" Type="nchar" MaxLength="100" />
+          <Property Name="AK_LH_qualified" Type="nchar" MaxLength="10" />
+          <Property Name="AK_LV" Type="nchar" MaxLength="100" />
+          <Property Name="AK_LV_img" Type="nchar" MaxLength="100" />
+          <Property Name="AK_LV_qualified" Type="nchar" MaxLength="10" />
+          <Property Name="AK_RH" Type="nchar" MaxLength="100" />
+          <Property Name="AK_RH_img" Type="nchar" MaxLength="100" />
+          <Property Name="AK_RH_qualified" Type="nchar" MaxLength="10" />
+          <Property Name="AK_RV" Type="nchar" MaxLength="100" />
+          <Property Name="AK_RV_img" Type="nchar" MaxLength="100" />
+          <Property Name="AK_RV_qualified" Type="nchar" MaxLength="10" />
+          <Property Name="OriginalRecordID" Type="int" />
+        </EntityType>
+        <EntityType Name="RegistrationPath">
+          <Key>
+            <PropertyRef Name="RegistrationRouteID" />
+          </Key>
+          <Property Name="RegistrationRouteID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nchar" MaxLength="30" />
+          <Property Name="Route" Type="nchar" MaxLength="100" />
+          <Property Name="OriginalRecordID" Type="int" />
+        </EntityType>
+        <EntityType Name="task">
+          <Key>
+            <PropertyRef Name="taskID" />
+          </Key>
+          <Property Name="taskID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="taskName" Type="nchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="taskDetails">
+          <Key>
+            <PropertyRef Name="taskDetailsID" />
+          </Key>
+          <Property Name="taskDetailsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="taskDetailsName" Type="nchar" MaxLength="300" />
+          <Property Name="taskID" Type="int" />
+        </EntityType>
+        <EntityContainer Name="EMCModelStoreContainer">
+          <EntitySet Name="CarQualification" EntityType="Self.CarQualification" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OriginalRecord" EntityType="Self.OriginalRecord" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OriginalRecordPath" EntityType="Self.OriginalRecordPath" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="path" EntityType="Self.path" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RegistrationPath" EntityType="Self.RegistrationPath" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="task" EntityType="Self.task" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="taskDetails" EntityType="Self.taskDetails" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="EMCModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="EMCEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CarQualification" EntityType="EMCModel.CarQualification" />
+          <EntitySet Name="OriginalRecord" EntityType="EMCModel.OriginalRecord" />
+          <EntitySet Name="OriginalRecordPath" EntityType="EMCModel.OriginalRecordPath" />
+          <EntitySet Name="path" EntityType="EMCModel.path" />
+          <EntitySet Name="RegistrationPath" EntityType="EMCModel.RegistrationPath" />
+          <EntitySet Name="task" EntityType="EMCModel.task" />
+          <EntitySet Name="taskDetails" EntityType="EMCModel.taskDetails" />
+        </EntityContainer>
+        <EntityType Name="CarQualification">
+          <Key>
+            <PropertyRef Name="CarID" />
+          </Key>
+          <Property Name="CarID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CarName" Type="String" MaxLength="15" FixedLength="true" Unicode="true" />
+          <Property Name="qualificationNumber" Type="Int32" />
+          <Property Name="UnqualifiedTimes" Type="Int32" />
+          <Property Name="Qualification" Type="Double" />
+        </EntityType>
+        <EntityType Name="OriginalRecord">
+          <Key>
+            <PropertyRef Name="OriginalRecordID" />
+          </Key>
+          <Property Name="OriginalRecordID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="brand" Type="String" MaxLength="15" FixedLength="true" Unicode="true" />
+          <Property Name="BrandModel" Type="String" MaxLength="25" FixedLength="true" Unicode="true" />
+          <Property Name="configure" Type="String" MaxLength="15" FixedLength="true" Unicode="true" />
+          <Property Name="taskAllName" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="ModelCarModel" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="VIN" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="ResultID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="introduce" Type="String" MaxLength="500" FixedLength="true" Unicode="true" />
+          <Property Name="Remarks" Type="String" MaxLength="300" FixedLength="true" Unicode="true" />
+          <Property Name="time" Type="DateTime" Precision="0" />
+          <Property Name="taskNumber" Type="String" MaxLength="25" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="OriginalRecordPath">
+          <Key>
+            <PropertyRef Name="OriginalRouteID" />
+          </Key>
+          <Property Name="OriginalRouteID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+          <Property Name="Route" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="OriginalRecordID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="path">
+          <Key>
+            <PropertyRef Name="pathID" />
+          </Key>
+          <Property Name="pathID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AV_LH" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="AV_LH_img" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="AV_LH_qualified" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="AV_LV" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="AV_LV_img" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="AV_LV_qualified" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="AV_RH" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="AV_RH_img" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="AV_RH_qualified" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="AV_RV" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="AV_RV_img" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="AV_RV_qualified" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="AK_LH" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="AK_LH_img" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="AK_LH_qualified" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="AK_LV" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="AK_LV_img" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="AK_LV_qualified" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="AK_RH" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="AK_RH_img" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="AK_RH_qualified" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="AK_RV" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="AK_RV_img" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="AK_RV_qualified" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="OriginalRecordID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="RegistrationPath">
+          <Key>
+            <PropertyRef Name="RegistrationRouteID" />
+          </Key>
+          <Property Name="RegistrationRouteID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+          <Property Name="Route" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="OriginalRecordID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="task">
+          <Key>
+            <PropertyRef Name="taskID" />
+          </Key>
+          <Property Name="taskID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="taskName" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="taskDetails">
+          <Key>
+            <PropertyRef Name="taskDetailsID" />
+          </Key>
+          <Property Name="taskDetailsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="taskDetailsName" Type="String" MaxLength="300" FixedLength="true" Unicode="true" />
+          <Property Name="taskID" Type="Int32" />
+        </EntityType>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="EMCModelStoreContainer" CdmEntityContainer="EMCEntities">
+          <EntitySetMapping Name="CarQualification">
+            <EntityTypeMapping TypeName="EMCModel.CarQualification">
+              <MappingFragment StoreEntitySet="CarQualification">
+                <ScalarProperty Name="Qualification" ColumnName="Qualification" />
+                <ScalarProperty Name="UnqualifiedTimes" ColumnName="UnqualifiedTimes" />
+                <ScalarProperty Name="qualificationNumber" ColumnName="qualificationNumber" />
+                <ScalarProperty Name="CarName" ColumnName="CarName" />
+                <ScalarProperty Name="CarID" ColumnName="CarID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OriginalRecord">
+            <EntityTypeMapping TypeName="EMCModel.OriginalRecord">
+              <MappingFragment StoreEntitySet="OriginalRecord">
+                <ScalarProperty Name="taskNumber" ColumnName="taskNumber" />
+                <ScalarProperty Name="time" ColumnName="time" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="introduce" ColumnName="introduce" />
+                <ScalarProperty Name="ResultID" ColumnName="ResultID" />
+                <ScalarProperty Name="VIN" ColumnName="VIN" />
+                <ScalarProperty Name="ModelCarModel" ColumnName="ModelCarModel" />
+                <ScalarProperty Name="taskAllName" ColumnName="taskAllName" />
+                <ScalarProperty Name="configure" ColumnName="configure" />
+                <ScalarProperty Name="BrandModel" ColumnName="BrandModel" />
+                <ScalarProperty Name="brand" ColumnName="brand" />
+                <ScalarProperty Name="OriginalRecordID" ColumnName="OriginalRecordID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OriginalRecordPath">
+            <EntityTypeMapping TypeName="EMCModel.OriginalRecordPath">
+              <MappingFragment StoreEntitySet="OriginalRecordPath">
+                <ScalarProperty Name="OriginalRecordID" ColumnName="OriginalRecordID" />
+                <ScalarProperty Name="Route" ColumnName="Route" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="OriginalRouteID" ColumnName="OriginalRouteID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="path">
+            <EntityTypeMapping TypeName="EMCModel.path">
+              <MappingFragment StoreEntitySet="path">
+                <ScalarProperty Name="OriginalRecordID" ColumnName="OriginalRecordID" />
+                <ScalarProperty Name="AK_RV_qualified" ColumnName="AK_RV_qualified" />
+                <ScalarProperty Name="AK_RV_img" ColumnName="AK_RV_img" />
+                <ScalarProperty Name="AK_RV" ColumnName="AK_RV" />
+                <ScalarProperty Name="AK_RH_qualified" ColumnName="AK_RH_qualified" />
+                <ScalarProperty Name="AK_RH_img" ColumnName="AK_RH_img" />
+                <ScalarProperty Name="AK_RH" ColumnName="AK_RH" />
+                <ScalarProperty Name="AK_LV_qualified" ColumnName="AK_LV_qualified" />
+                <ScalarProperty Name="AK_LV_img" ColumnName="AK_LV_img" />
+                <ScalarProperty Name="AK_LV" ColumnName="AK_LV" />
+                <ScalarProperty Name="AK_LH_qualified" ColumnName="AK_LH_qualified" />
+                <ScalarProperty Name="AK_LH_img" ColumnName="AK_LH_img" />
+                <ScalarProperty Name="AK_LH" ColumnName="AK_LH" />
+                <ScalarProperty Name="AV_RV_qualified" ColumnName="AV_RV_qualified" />
+                <ScalarProperty Name="AV_RV_img" ColumnName="AV_RV_img" />
+                <ScalarProperty Name="AV_RV" ColumnName="AV_RV" />
+                <ScalarProperty Name="AV_RH_qualified" ColumnName="AV_RH_qualified" />
+                <ScalarProperty Name="AV_RH_img" ColumnName="AV_RH_img" />
+                <ScalarProperty Name="AV_RH" ColumnName="AV_RH" />
+                <ScalarProperty Name="AV_LV_qualified" ColumnName="AV_LV_qualified" />
+                <ScalarProperty Name="AV_LV_img" ColumnName="AV_LV_img" />
+                <ScalarProperty Name="AV_LV" ColumnName="AV_LV" />
+                <ScalarProperty Name="AV_LH_qualified" ColumnName="AV_LH_qualified" />
+                <ScalarProperty Name="AV_LH_img" ColumnName="AV_LH_img" />
+                <ScalarProperty Name="AV_LH" ColumnName="AV_LH" />
+                <ScalarProperty Name="pathID" ColumnName="pathID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RegistrationPath">
+            <EntityTypeMapping TypeName="EMCModel.RegistrationPath">
+              <MappingFragment StoreEntitySet="RegistrationPath">
+                <ScalarProperty Name="OriginalRecordID" ColumnName="OriginalRecordID" />
+                <ScalarProperty Name="Route" ColumnName="Route" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="RegistrationRouteID" ColumnName="RegistrationRouteID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="task">
+            <EntityTypeMapping TypeName="EMCModel.task">
+              <MappingFragment StoreEntitySet="task">
+                <ScalarProperty Name="taskName" ColumnName="taskName" />
+                <ScalarProperty Name="taskID" ColumnName="taskID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="taskDetails">
+            <EntityTypeMapping TypeName="EMCModel.taskDetails">
+              <MappingFragment StoreEntitySet="taskDetails">
+                <ScalarProperty Name="taskID" ColumnName="taskID" />
+                <ScalarProperty Name="taskDetailsName" ColumnName="taskDetailsName" />
+                <ScalarProperty Name="taskDetailsID" ColumnName="taskDetailsID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,303 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Xenon Boostrap Admin Panel" />
+    <meta name="author" content="" />
+    <meta name="viewport" content="width=device-width" />
+    <title>实验安排</title>
+   <link rel="stylesheet" href="~/assets/css/bootstrap.css">
+    <link rel="stylesheet" href="~/assets/css/xenon-core.css">
+    <link rel="stylesheet" href="~/assets/css/xenon-forms.css">
+    <link href="~/control/css/styles.css" rel="stylesheet" />
+
+    <script src="~/assets/js/jquery-1.11.1.min.js"></script>
+  
+</head>
+
+<body class="page-body">
+
+
+    <div class="page-container">
+  
+
+        <div class="main-content">
+            <div class="page-title">
+
+                <div class="title-env">
+                    <h1 class="title">实验安排</h1>
+                   
+                </div>
+
+             
+
+            </div>
+         
+
+
+            <div class="row">
+                <div class="col-sm-12">
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">填写基本信息</h3>
+                            <a style="float: right;" href="/Experiment/selectExperimentalArrangement" class="btn btn-sm btn-info"><span style="color:#000">返回</span></a>
+                        </div>
+                        <div class="tab-content">
+                            <!-- Tabs Content -->
+                            <div class="tab-pane active" id="tab1">
+                                <form role="form" class="form-horizontal">
+                                    <div class="row">
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label" for="field-1">试验时间:</label>
+
+                                            <div class="col-sm-4 ">
+                                                <div class="iDate date ">
+                                                    <input type="text" class="form-control">
+                                                    <button type="button" class="addOn "></button>
+                                                </div>
+                                                @*<input type="text" class="form-control" id="field-1">*@
+                                            </div>
+
+                                            <label class="col-sm-2 control-label" for="field-1">试验地点:</label>
+                                            <div class="col-sm-4">
+                                                <input type="text" class="form-control" id="field-1">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label" for="field-1">试验项目:</label>
+                                            <div class="col-sm-4">
+                                                <input type="text" class="form-control" id="field-1">
+                                            </div>
+                                            <label class="col-sm-2 control-label" for="field-1">试验厂商:</label>
+                                            <div class="col-sm-4">
+                                                <select class="form-control" id="s2example-1">
+                                                    <option>请选择</option>
+                                                    <option>厂商1</option>
+                                                    <option>厂商2</option>
+                                                    <option>厂商3</option>
+                                                    <option>厂商4</option>
+                                                    <option>厂商5</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label" for="field-1">试验联系人:</label>
+                                            <div class="col-sm-4">
+                                                <input type="text" class="form-control" id="field-1">
+                                            </div>
+                                            <label class="col-sm-2 control-label" for="field-1">联系方式:</label>
+                                            <div class="col-sm-4">
+                                                <input type="text" class="form-control" id="field-1">
+                                            </div>
+                                        </div>
+                                        
+                                        
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            @*<div class="row">
+                <div class="col-sm-12">
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">选择人员</h3>
+
+                        </div>
+                        <div class="panel-body">
+
+                            <form role="form" class="form-horizontal">
+
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label" for="tagsinput-1">人员列表</label>
+
+                                    <div class="col-sm-9">
+
+                                        <script type="text/javascript">
+											jQuery(document).ready(function($)
+											{
+												$("#multi-select2").multiSelect({
+													afterInit: function()
+													{
+														// Add alternative scrollbar to list
+														this.$selectableContainer.add(this.$selectionContainer).find('.ms-list').perfectScrollbar();
+													},
+													afterSelect: function()
+													{
+														// Update scrollbar size
+														this.$selectableContainer.add(this.$selectionContainer).find('.ms-list').perfectScrollbar('update');
+													}
+												});
+											});
+                                        </script>
+                                        <select class="form-control" multiple="multiple" id="multi-select2" name="my-select[]">
+                                            <option value="1">张静</option>
+                                            <option value="2">林琳</option>
+                                            <option value="3">朱桢</option>
+                                            <option value="4">姚明</option>
+                                            <option value="5">赵氏</option>
+                                            <option value="6">刘蓓</option>
+                                            <option value="7">孙倩</option>
+                                            <option value="8">刘福</option>
+                                                
+                                        </select>
+                                    </div>
+                                </div>
+
+                            </form>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12">
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">选择设备</h3>
+                           
+                        </div>
+                        <div class="panel-body">
+
+                            <form role="form" class="form-horizontal">
+
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label" for="tagsinput-1">设备列表</label>
+
+                                    <div class="col-sm-9">
+
+                                        <script type="text/javascript">
+											jQuery(document).ready(function($)
+											{
+												$("#multi-select").multiSelect({
+													afterInit: function()
+													{
+														// Add alternative scrollbar to list
+														this.$selectableContainer.add(this.$selectionContainer).find('.ms-list').perfectScrollbar();
+													},
+													afterSelect: function()
+													{
+														// Update scrollbar size
+														this.$selectableContainer.add(this.$selectionContainer).find('.ms-list').perfectScrollbar('update');
+													}
+												});
+											});
+                                        </script>
+                                        <select class="form-control" multiple="multiple" id="multi-select" name="my-select[]">
+                                            <option value="1">设备1</option>
+                                            <option value="2">设备2</option>
+                                            <option value="3">设备3</option>
+                                            <option value="4">设备4</option>
+                                            <option value="5">设备5</option>
+                                            <option value="6">设备6</option>
+                                            <option value="7">设备7</option>
+                                            <option value="8">设备8</option>
+                                            <option value="9">设备9</option>
+                                            <option value="10">设备10</option>
+                                            <option value="11">设备11</option>
+                                            <option value="12">设备12</option>
+                                            <option value="13">设备13</option>
+                                            <option value="14">设备14</option>
+                                            <option value="15">设备15</option>
+                                            <option value="16" selected>设备16</option>
+                                            <option value="17">设备17</option>
+                                            <option value="18" selected>设备18</option>
+                                            <option value="19" selected>设备19</option>
+                                            <option value="20">设备20</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                            </form>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>*@
+
+            <div class="row">
+                <div class="col-sm-12">
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">其他信息</h3>
+
+                        </div>
+                        <div class="panel-body">
+
+                            <div class="form-group">
+                                <label class="control-label" for="about">实验简介</label>
+                                <textarea class="form-control autogrow" name="about" id="about" data-validate="minlength[10]" rows="5" placeholder="请输入实验简介信息" style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 104px;"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="about">备注</label>
+                                <textarea class="form-control autogrow" name="about" id="about" data-validate="minlength[10]" rows="5" placeholder="请输入备注信息" style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 104px;"></textarea>
+                            </div>
+                            <button class="btn btn-sm btn-info" style="float:right" onclick="save()">
+                              
+                                保存编辑器内容
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    <!-- Imported styles on this page -->
+
+    <link rel="stylesheet" href="~/assets/js/multiselect/css/multi-select.css">
+
+    <!-- Bottom Scripts -->
+    <script src="~/assets/js/bootstrap.min.js"></script>
+    <script src="~/assets/js/joinable.js"></script>
+    <script src="~/assets/js/multiselect/js/jquery.multi-select.js"></script>
+
+    <script src="~/assets/js/moment.js"></script>
+    <script src="~/assets/js/bootstrap-datetimepicker.js"></script>
+
+    <script type="text/javascript">
+$(document).ready(function(){
+    // date time picker
+    if($(".iDate.full").length>0){
+        $(".iDate.full").datetimepicker({
+            locale: "zh-cn",
+            format: "YYYY-MM-DD a hh:mm",
+            dayViewHeaderFormat: "YYYY年 MMMM"
+        });
+    }
+    if($(".iDate.date").length>0){
+        $(".iDate.date").datetimepicker({
+            locale:"zh-cn",
+            format:"YYYY-MM-DD",
+            dayViewHeaderFormat:"YYYY年 MMMM"
+        });
+    }
+})
+function save() {
+    alert("这只是个演示！(｡◕ฺˇε ˇ◕ฺ｡）")
+    window.history.back(-1);
+}
+    </script>
+</body>
+</html>

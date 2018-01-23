@@ -1,0 +1,379 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>合格率排行榜</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link rel="shortcut icon" href="favicon.ico">
+    <link href="~/Content/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Content/css/font-awesome.css" rel="stylesheet">
+    <link href="~/Content/css/animate.css" rel="stylesheet">
+
+    <link href="~/Content/style.css" rel="stylesheet" />
+
+</head>
+<body class="gray-bg">
+    <div class="wrapper wrapper-content animated fadeInUp">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="ibox">
+                    <div class="ibox-title">
+                        <h5>所有项目</h5>
+                        <div class="ibox-tools">
+                            <a href="projects.html" class="btn btn-primary btn-xs">创建新项目</a>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="row m-b-sm m-t-sm">
+                            <div class="col-md-1">
+                                <button type="button" id="loading-example-btn" class="btn btn-white btn-sm"><i class="fa fa-refresh"></i> 刷新</button>
+                            </div>
+                            <div class="col-md-11">
+                                <div class="input-group">
+                                    <input type="text" placeholder="请输入项目名称" class="input-sm form-control"> <span class="input-group-btn">
+                                        <button type="button" class="btn btn-sm btn-primary"> 搜索</button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-list">
+                            <table class="table table-hover">
+                                <tbody>
+                                    <tr>
+                                        <td class="project-status">
+                                            <span class="label label-primary">TOP1
+                                        </td>
+                                        <td class="project-title">
+                                            <a href="project_detail.html">大众</a>
+                                            <br />
+                                            <small>创建于 2014.08.15</small>
+                                        </td>
+                                        <td class="project-completion">
+                                            <small>合格率： 90%</small>
+                                            <div class="progress progress-mini">
+                                                <div style="width:90%;" class="progress-bar"></div>
+                                            </div>
+                                        </td>
+                                    
+                                        <td class="project-actions">
+                                            <a href="/Data/RankingLisDetails" class="btn btn-white btn-sm"><i class="fa fa-folder"></i> 查看 </a>  
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="project-status">
+                                            <span class="label label-primary">TOP2
+                                        </td>
+                                        <td class="project-title">
+                                            <a href="project_detail.html">日产</a>
+                                            <br />
+                                            <small>创建于 2014.08.15</small>
+                                        </td>
+                                        <td class="project-completion">
+                                            <small>合格率： 85%</small>
+                                            <div class="progress progress-mini">
+                                                <div style="width:85%;" class="progress-bar"></div>
+                                            </div>
+                                        </td>
+                                       
+                                        <td class="project-actions">
+                                            <a href="/Data/RankingLisDetails" class="btn btn-white btn-sm"><i class="fa fa-folder"></i> 查看 </a>
+                                            
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="project-status">
+                                            <span class="label label-primary">TOP3
+                                        </td>
+                                        <td class="project-title">
+                                            <a href="project_detail.html">别克</a>
+                                            <br />
+                                            <small>创建于 2014.08.15</small>
+                                        </td>
+                                        <td class="project-completion">
+                                            <small>合格率： 80%</small>
+                                            <div class="progress progress-mini">
+                                                <div style="width: 80%;" class="progress-bar"></div>
+                                            </div>
+                                        </td>
+                                     
+                                        <td class="project-actions">
+                                            <a href="/Data/RankingLisDetails" class="btn btn-white btn-sm"><i class="fa fa-folder"></i> 查看 </a>
+                                            
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="project-status">
+                                            <span class="label label-primary">TOP4
+                                        </td>
+                                        <td class="project-title">
+                                            <a href="project_detail.html">丰田</a>
+                                            <br />
+                                            <small>创建于 2014.08.15</small>
+                                        </td>
+                                        <td class="project-completion">
+                                            <small>合格率： 77%</small>
+                                            <div class="progress progress-mini">
+                                                <div style="width: 77%;" class="progress-bar"></div>
+                                            </div>
+                                        </td>
+                                 
+                                        <td class="project-actions">
+                                            <a href="/Data/RankingLisDetails" class="btn btn-white btn-sm"><i class="fa fa-folder"></i> 查看 </a>
+                                            
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="project-status">
+                                            <span class="label label-primary">TOP5
+                                        </td>
+                                        <td class="project-title">
+                                            <a href="project_detail.html">五菱</a>
+                                            <br />
+                                            <small>创建于 2014.08.15</small>
+                                        </td>
+                                        <td class="project-completion">
+                                            <small>合格率： 75%</small>
+                                            <div class="progress progress-mini">
+                                                <div style="width: 75%;" class="progress-bar"></div>
+                                            </div>
+                                        </td>
+                                      
+                                        <td class="project-actions">
+                                            <a href="/Data/RankingLisDetails" class="btn btn-white btn-sm"><i class="fa fa-folder"></i> 查看 </a>
+                                            
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="project-status">
+                                            <span class="label label-primary">TOP6
+                                        </td>
+                                        <td class="project-title">
+                                            <a href="project_detail.html">福特</a>
+                                            <br />
+                                            <small>创建于 2014.08.15</small>
+                                        </td>
+                                        <td class="project-completion">
+                                            <small>合格率： 73%</small>
+                                            <div class="progress progress-mini">
+                                                <div style="width: 73%;" class="progress-bar"></div>
+                                            </div>
+                                        </td>
+                                   
+                                        <td class="project-actions">
+                                            <a href="/Data/RankingLisDetails" class="btn btn-white btn-sm"><i class="fa fa-folder"></i> 查看 </a>
+                                            
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="project-status">
+                                            <span class="label label-primary">TOP7
+                                        </td>
+                                        <td class="project-title">
+                                            <a href="project_detail.html">吉利</a>
+                                            <br />
+                                            <small>创建于 2014.08.15</small>
+                                        </td>
+                                        <td class="project-completion">
+                                            <small>当前进度： 70%</small>
+                                            <div class="progress progress-mini">
+                                                <div style="width:70%;" class="progress-bar"></div>
+                                            </div>
+                                        </td>
+                                    
+                                        <td class="project-actions">
+                                            <a href="/Data/RankingLisDetails" class="btn btn-white btn-sm"><i class="fa fa-folder"></i> 查看 </a>
+                                            
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="project-status">
+                                            <span class="label label-primary">TOP8
+                                        </td>
+                                        <td class="project-title">
+                                            <a href="project_detail.html">雪佛兰</a>
+                                            <br />
+                                            <small>创建于 2014.08.15</small>
+                                        </td>
+                                        <td class="project-completion">
+                                            <small>合格率：68%</small>
+                                            <div class="progress progress-mini">
+                                                <div style="width: 68%;" class="progress-bar"></div>
+                                            </div>
+                                        </td>
+                                    
+                                        <td class="project-actions">
+                                            <a href="/Data/RankingLisDetails" class="btn btn-white btn-sm"><i class="fa fa-folder"></i> 查看 </a>
+                                            
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="project-status">
+                                            <span class="label label-primary">TOP9
+                                        </td>
+                                        <td class="project-title">
+                                            <a href="project_detail.html">现代</a>
+                                            <br />
+                                            <small>创建于 2014.08.15</small>
+                                        </td>
+                                        <td class="project-completion">
+                                            <small>合格率： 65%</small>
+                                            <div class="progress progress-mini">
+                                                <div style="width: 65%;" class="progress-bar"></div>
+                                            </div>
+                                        </td>
+                                      
+                                        <td class="project-actions">
+                                            <a href="/Data/RankingLisDetails" class="btn btn-white btn-sm"><i class="fa fa-folder"></i> 查看 </a>
+                                            
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="project-status">
+                                            <span class="label label-primary">TOP10
+                                        </td>
+                                        <td class="project-title">
+                                            <a href="project_detail.html">起亚</a>
+                                            <br />
+                                            <small>创建于 2014.08.15</small>
+                                        </td>
+                                        <td class="project-completion">
+                                            <small>合格率： 64%</small>
+                                            <div class="progress progress-mini">
+                                                <div style="width: 64%;" class="progress-bar"></div>
+                                            </div>
+                                        </td>
+                                      
+                                        <td class="project-actions">
+                                            <a href="/Data/RankingLisDetails" class="btn btn-white btn-sm"><i class="fa fa-folder"></i> 查看 </a>
+                                            
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="project-status">
+                                            <span class="label label-primary">TOP11
+                                        </td>
+                                        <td class="project-title">
+                                            <a href="project_detail.html">本田</a>
+                                            <br />
+                                            <small>创建于 2014.08.15</small>
+                                        </td>
+                                        <td class="project-completion">
+                                            <small>合格率： 65%</small>
+                                            <div class="progress progress-mini">
+                                                <div style="width: 65%;" class="progress-bar"></div>
+                                            </div>
+                                        </td>
+                                      
+                                        <td class="project-actions">
+                                            <a href="/Data/RankingLisDetails" class="btn btn-white btn-sm"><i class="fa fa-folder"></i> 查看 </a>
+                                            
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal inmodal" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content animated bounceInRight">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span><span class="sr-only">关闭</span>
+                    </button>
+                    <h4 class="modal-title">原始记录生成</h4>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>NO.</th>
+                                <th>设备编号</th>
+                                <th>设备型号</th>
+                                <th>设备名称</th>
+                                <th>授权签字人</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>NJ.18.91.204-1</td>
+                                <td>FSA-S12014/5X</td>
+                                <td>EMS天线</td>
+                                <td>丁一夫、柳海明、张广玉、马俊杰、张旭、陈磊、邱振宇</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>NJ.18.91.205</td>
+                                <td>AIP-CDM <br />37.5L-4mot EMC</td>
+                                <td>底盘测功机</td>
+                                <td>丁一夫、柳海明、马俊杰、张旭、陈磊、邱振宇、张广玉</td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                    <div class="form-group"><label>编写人姓名</label> <input type="text" placeholder="请输入编写人姓名" class="form-control"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-white" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" onclick="save()">保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 全局js -->
+    <!-- 全局js -->
+    <script src="~/Content/js/jquery.min.js"></script>
+    <script src="~/Content/js/bootstrap.min.js"></script>
+    <script src="~/Content/js/jquery-ui-1.10.4.min.js"></script>
+    <!-- 自定义js -->
+    <script src="~/Content/js/content.js"></script>
+
+    <script>
+        $(document).ready(function(){
+
+            $('#loading-example-btn').click(function () {
+                btn = $(this);
+                simpleLoad(btn, true)
+
+                // Ajax example
+//                $.ajax().always(function () {
+//                    simpleLoad($(this), false)
+//                });
+
+                simpleLoad(btn, false)
+            });
+        });
+
+        function simpleLoad(btn, state) {
+            if (state) {
+                btn.children().addClass('fa-spin');
+                btn.contents().last().replaceWith(" Loading");
+            } else {
+                setTimeout(function () {
+                    btn.children().removeClass('fa-spin');
+                    btn.contents().last().replaceWith(" Refresh");
+                }, 2000);
+            }
+        }
+    </script>
+
+
+   
+
+   
+
+
+
+</body>
+</html>

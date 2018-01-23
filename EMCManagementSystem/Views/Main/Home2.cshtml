@@ -1,0 +1,350 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Home2</title>
+    <meta name="description" content="Restyling jQuery UI Widgets and Elements" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <!-- basic styles -->
+
+    <link href="~/Content/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/Content/css/font-awesome.min.css" />
+
+    <!--[if IE 7]>
+      <link rel="stylesheet" href="assets/css/font-awesome-ie7.min.css" />
+    <![endif]-->
+    <!-- page specific plugin styles -->
+
+    <link rel="stylesheet" href="~/Content/css/fullcalendar.css" />
+
+    <!-- fonts -->
+
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300" />
+
+    <!-- ace styles -->
+
+    <link rel="stylesheet" href="~/Content/css/ace.min.css" />
+   
+    <link rel="stylesheet" href="~/Content/css/ace-skins.min.css" />
+
+    <script src="~/Content/js/ace-extra.min.js"></script>
+</head>
+<body class="no-skin">
+    <!-- #section:basics/navbar.layout -->
+  
+
+    <!-- /section:basics/navbar.layout -->
+    <div class="main-container" id="main-container">
+
+     
+
+        <!-- /section:basics/sidebar -->
+        <div class="main-content">
+          
+
+            <!-- /section:basics/content.breadcrumbs -->
+            <div class="page-content">
+
+                <!-- /section:settings.box -->
+                <div class="page-content-area">
+                    <div class="row">
+                        <h1>日程安排</h1>
+                        <div class="col-xs-12">
+                            <div class="row">
+                                <div class="col-sm-9">
+                                    <div class="space"></div>
+
+                                    <div id="calendar"></div>
+                                </div>
+
+                                <div class="col-sm-3">
+                                    <div class="widget-box transparent">
+                                        <div class="widget-header">
+                                            <h4>自定义可拖拽事件</h4>
+                                        </div>
+
+                                        <div class="widget-body">
+                                            <div class="widget-main no-padding">
+                                                <div id="external-events">
+                                                    <div class="external-event label-grey" data-class="label-grey">
+                                                        <i class="icon-move"></i>
+                                                        自定义可拖拽事件 1
+                                                    </div>
+
+                                                    <div class="external-event label-success" data-class="label-success">
+                                                        <i class="icon-move"></i>
+                                                        自定义可拖拽事件 2
+                                                    </div>
+
+                                                    <div class="external-event label-danger" data-class="label-danger">
+                                                        <i class="icon-move"></i>
+                                                        自定义可拖拽事件 3
+                                                    </div>
+
+                                                    <div class="external-event label-purple" data-class="label-purple">
+                                                        <i class="icon-move"></i>
+                                                        自定义可拖拽事件 4
+                                                    </div>
+
+                                                    <div class="external-event label-yellow" data-class="label-yellow">
+                                                        <i class="icon-move"></i>
+                                                        自定义可拖拽事件 5
+                                                    </div>
+
+                                                    <div class="external-event label-pink" data-class="label-pink">
+                                                        <i class="icon-move"></i>
+                                                        自定义可拖拽事件 6
+                                                    </div>
+
+                                                    <div class="external-event label-info" data-class="label-info">
+                                                        <i class="icon-move"></i>
+                                                        自定义可拖拽事件 7
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- /.col -->
+                    </div><!-- /.row -->
+                </div><!-- /.page-content-area -->
+            </div><!-- /.page-content -->
+        </div><!-- /.main-content -->
+
+
+
+        <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+            <i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
+        </a>
+    </div><!-- /.main-container -->
+
+    <script src="~/assets/js/jquery-1.11.1.min.js"></script>
+
+    <script src="~/Content/js/bootstrap.min.js"></script>
+    <script src="~/Content/js/typeahead-bs2.min.js"></script>
+
+    <!-- page specific plugin scripts -->
+
+    <script src="~/Content/js/jquery-ui-1.10.3.custom.min.js"></script>
+    <script src="~/Content/js/jquery.ui.touch-punch.min.js"></script>
+    <script src="~/Content/js/fullcalendar.min.js"></script>
+    <script src="~/Content/js/bootbox.min.js"></script>
+
+    <!-- ace scripts -->
+
+    <script src="~/Content/js/ace-elements.min.js"></script>
+
+
+    <!-- inline scripts related to this page -->
+
+    <script type="text/javascript">
+			jQuery(function($) {
+
+/* initialize the external events
+	-----------------------------------------------------------------*/
+
+	$('#external-events div.external-event').each(function() {
+
+		// create an Event Object (http://arshaw.com/fullcalendar/docs/event_data/Event_Object/)
+		// it doesn't need to have a start or end
+		var eventObject = {
+			title: $.trim($(this).text()) // use the element's text as the event title
+		};
+
+		// store the Event Object in the DOM element so we can get to it later
+		$(this).data('eventObject', eventObject);
+
+		// make the event draggable using jQuery UI
+		$(this).draggable({
+			zIndex: 999,
+			revert: true,      // will cause the event to go back to its
+			revertDuration: 0  //  original position after the drag
+		});
+
+	});
+
+
+	/* initialize the calendar
+	-----------------------------------------------------------------*/
+
+	var date = new Date();
+	var d = date.getDate();
+	var m = date.getMonth();
+	var y = date.getFullYear();
+
+
+	var calendar = $('#calendar').fullCalendar({
+		 buttonText: {
+			prev: '<i class="icon-chevron-left"></i>',
+			next: '<i class="icon-chevron-right"></i>'
+		},
+
+		header: {
+			left: 'prev,next today',
+			center: 'title',
+			right: 'month,agendaWeek,agendaDay'
+		},
+		events: [
+                {
+                    title: '测试MM-i105实验',
+                    start: new Date(y, m, 1),
+                    end: new Date(y, m, 2),
+                    className: 'label-important'
+                },
+                {
+                    title: 'MM-i105要出报告',
+                    start: new Date(y, m, 10),
+                    allDay: true,
+                    className: 'label-success'
+                },
+                {
+                    title: '出差',
+                    start: new Date(y, m, 18),
+                    allDay: true,
+                    className: 'label-important'
+                },
+                {
+                    title: '丰田汽车 柯斯达 HIACE 测试',
+                    start: new Date(y, m, 20),
+                    end: new Date(y, m, 23),
+                    className: 'label-important'
+                },
+                {
+                    title: '奇瑞 H5 实验',
+                    start: new Date(y, m, 5),
+                    end: new Date(y, m, 6),
+                    className: 'label-success'
+                },
+                {
+                    title: '传奇GS8 测试实验',
+                    start: new Date(y, m, 21),
+                    className: 'label-important'
+                    
+                },
+                {
+                    title: '休息',
+                    start: new Date(y, m, 5),
+                    className: 'label-success'
+                }
+		],
+		//events: [
+		//{
+		//	title: '测试MM-i105实验',
+		//	start: new Date(y, m, 1),
+		//	className: 'label-important'
+		//},
+		//{
+		//	title: 'Long Event',
+		//	start: new Date(y, m, d-5),
+		//	end: new Date(y, m, d-2),
+		//	className: 'label-success'
+		//},
+		//{
+		//	title: 'Some Event',
+		//	start: new Date(y, m, d-3, 16, 0),
+		//	allDay: false
+		//}]
+		//,
+		editable: true,
+		droppable: true, // this allows things to be dropped onto the calendar !!!
+		drop: function(date, allDay) { // this function is called when something is dropped
+
+			// retrieve the dropped element's stored Event Object
+			var originalEventObject = $(this).data('eventObject');
+			var $extraEventClass = $(this).attr('data-class');
+
+
+			// we need to copy it, so that multiple events don't have a reference to the same object
+			var copiedEventObject = $.extend({}, originalEventObject);
+
+			// assign it the date that was reported
+			copiedEventObject.start = date;
+			copiedEventObject.allDay = allDay;
+			if($extraEventClass) copiedEventObject['className'] = [$extraEventClass];
+
+			// render the event on the calendar
+			// the last `true` argument determines if the event "sticks" (http://arshaw.com/fullcalendar/docs/event_rendering/renderEvent/)
+			$('#calendar').fullCalendar('renderEvent', copiedEventObject, true);
+
+			// is the "remove after drop" checkbox checked?
+			if ($('#drop-remove').is(':checked')) {
+				// if so, remove the element from the "Draggable Events" list
+				$(this).remove();
+			}
+
+		}
+		,
+		selectable: true,
+		selectHelper: true,
+		select: function(start, end, allDay) {
+
+			bootbox.prompt("新标题:", function(title) {
+				if (title !== null) {
+					calendar.fullCalendar('renderEvent',
+						{
+							title: title,
+							start: start,
+							end: end,
+							allDay: allDay
+						},
+						true // make the event "stick"
+					);
+				}
+			});
+
+
+			calendar.fullCalendar('unselect');
+
+		}
+		,
+		eventClick: function(calEvent, jsEvent, view) {
+
+			var form = $("<form class='form-inline'><label>更改名字&nbsp;</label></form>");
+			form.append("<input class='middle' autocomplete=off type=text value='" + calEvent.title + "' /> ");
+			form.append("<button type='submit' class='btn btn-sm btn-success'><i class='icon-ok'></i> 保存</button>");
+
+			var div = bootbox.dialog({
+				message: form,
+
+				buttons: {
+					"delete" : {
+						"label" : "<i class='icon-trash'></i> 删除",
+						"className" : "btn-sm btn-danger",
+						"callback": function() {
+							calendar.fullCalendar('removeEvents' , function(ev){
+								return (ev._id == calEvent._id);
+							})
+						}
+					} ,
+					"close" : {
+						"label" : "<i class='icon-remove'></i> 关闭",
+						"className" : "btn-sm"
+					}
+				}
+
+			});
+
+			form.on('submit', function(){
+				calEvent.title = form.find("input[type=text]").val();
+				calendar.fullCalendar('updateEvent', calEvent);
+				div.modal("hide");
+				return false;
+			});
+
+		}
+
+	});
+
+
+})
+    </script>
+
+</body>
+</html>

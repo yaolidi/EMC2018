@@ -1,0 +1,661 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>员工评分</title>
+  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+   
+    <link rel="stylesheet" href="~/Content/css/bootstrap.min.css" />
+    <link href="~/Content/css/select2.css" rel="stylesheet" />
+    
+    <link rel="stylesheet" href="~/Content/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="~/Content/css/ace-fonts.css" />
+    <link rel="stylesheet" href="~/Content/css/ace.min.css" id="main-ace-style" />
+    <!--[if lte IE 9]>
+        <link rel="stylesheet" href="assets/css/ace-part2.min.css" />
+    <![endif]-->
+    <!--[if lte IE 9]>
+      <link rel="stylesheet" href="assets/css/ace-ie.min.css" />
+    <![endif]-->
+    <script src="~/Content/js/ace-extra.min.js"></script>
+  
+    <!--[if lte IE 8]>
+    <script src="assets/js/html5shiv.min.js"></script>
+    <script src="assets/js/respond.min.js"></script>
+    <![endif]-->
+    <style>
+            td  
+    {  
+        text-align:center;  
+       vertical-align: middle!important;/*设置垂直居中*/
+    }  
+    </style>
+</head>
+<body class="no-skin">
+    <!-- #section:basics/navbar.layout -->
+  
+
+    <!-- /section:basics/navbar.layout -->
+    <div class="main-container" id="main-container">
+
+        <!-- /section:basics/sidebar -->
+        <div class="main-content">
+            <!-- /section:basics/content.breadcrumbs -->
+            <div class="page-content">
+
+                <!-- /section:settings.box -->
+                <div class="page-content-area">
+
+                    <div class="row">
+                        <div class="col-xs-12">
+
+                            <div class="widget-box">
+                                <div class="widget-header widget-header-blue widget-header-flat">
+                                    <h4 class="widget-title lighter">试验人员能力评估方案</h4>
+                                </div>
+
+                                <div class="widget-body">
+                                    <div class="widget-main">
+                                        <!-- #section:plugins/fuelux.wizard -->
+                                        <div id="fuelux-wizard" data-target="#step-container">
+                                            <!-- #section:plugins/fuelux.wizard.steps -->
+                                            <ul class="wizard-steps">
+                                                <li data-target="#step1" class="active">
+                                                    <span class="step">1</span>
+                                                    <span class="title">评估方案</span>
+                                                </li>
+
+                                                <li data-target="#step2">
+                                                    <span class="step">2</span>
+                                                    <span class="title">实施方法</span>
+                                                </li>
+
+                                                <li data-target="#step3">
+                                                    <span class="step">3</span>
+                                                    <span class="title">员工试验能力评估表</span>
+                                                </li>
+
+                                                <li data-target="#step4">
+                                                    <span class="step">4</span>
+                                                    <span class="title">完成</span>
+                                                </li>
+                                            </ul>
+
+                                            <!-- /section:plugins/fuelux.wizard.steps -->
+                                        </div>
+
+                                        <hr />
+
+                                        <!-- #section:plugins/fuelux.wizard.container -->
+                                        <div class="step-content pos-rel" id="step-container">
+                                            <div class="step-pane active" id="step1">
+                                               
+                                                    <h4 class="lighter block blue">请输阅读以下信息</h4>
+
+                                                    <h4>一、目的</h4>
+                                                    <p>
+                                                        &nbsp;&nbsp;&nbsp;该能力评估方案为确定试验人员是否具备独立完成试验的能力评估。
+                                                    </p>
+                                                    <h4>二、范围</h4>
+                                                    <p>
+                                                        &nbsp;&nbsp;&nbsp;评估方案适用与所有具有试验操作职责的人员。
+                                                    </p>
+                                                    <h4>三、评估方法</h4>
+                                                    <p>
+                                                        &nbsp;&nbsp;&nbsp;1，试验操作：试验布置、试验软件的操作
+                                                    </p>
+                                                    <p>
+                                                        &nbsp;&nbsp;&nbsp;2，理论考核：对相关知识的理解
+                                                    </p>
+                                                    <p>
+                                                        &nbsp;&nbsp;&nbsp;3，规范化考核：是不是按照作业指导书进行
+                                                    </p>
+                                                    <p>
+                                                        &nbsp;&nbsp;&nbsp;4，解决问题的能力：对提出问题的反应
+                                                    </p>
+                                                    <p>
+                                                        &nbsp;&nbsp;&nbsp;5，记录：相应的记录完全
+                                                    </p>
+                                                    <p>
+                                                        &nbsp;&nbsp;&nbsp;6，仪器熟悉程度：对相关仪器可以知道基本用途
+                                                    </p>
+                                                    <h4>四、评估周期</h4>
+                                                    <p>
+                                                        &nbsp;&nbsp;&nbsp;1，员工入职三个月后进行认证试验项目的评估
+                                                    </p>
+                                                    <p>
+                                                        &nbsp;&nbsp;&nbsp;2，员工入职一年后每半年进行一个项目的评估
+                                                    </p>
+                                                </div>
+
+                                            <div class="step-pane" id="step2">
+                                                @*<div class="center">
+                                                    
+                                                </div>*@
+                                                <h4>1，考评组及考评人数</h4>
+                                                <p>
+                                                    &nbsp;&nbsp;&nbsp;考评组成员由王传琪、丁一夫、刘欣、柳海明、张广玉、邱振宇、吴在园、陈阳组成，其他考核A类的员工，可以加入其考核项目的考评组。
+每人次考评时至少其中三人参加，其中丁一夫、刘欣、柳海明中至少一人参加。
+                                                </p>
+                                                <h4>2，考评项目</h4>
+                                                <p>
+                                                    &nbsp;&nbsp;&nbsp;按照试验项目列表和人员入职时间、岗位选择试验项目进行考评。
+                                                </p>
+                                                <table class="table table-striped table-bordered table-hover" width="100%">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td colspan="3">项目</td>
+                                                            
+                                                            <td colspan="3">入职时间</td>
+                                                          
+                                                            <td colspan="3">备注</td>
+                                                           
+                                                        </tr>
+                                                        <tr>
+                                                            <td rowspan="7">整车试验</td>
+                                                            <td colspan="2">14023</td>
+                                                            
+
+                                                            <td colspan="3">三个月</td>
+                                                           
+
+                                                            <td colspan="3">国内认证</td>
+                                                           
+                                                        </tr>
+                                                        <tr>
+                                                          
+                                                            <td colspan="2">18387</td>
+
+
+                                                            <td colspan="3">三个月</td>
+
+
+                                                            <td colspan="3">国内认证</td>
+
+                                                        </tr>
+                                                        <tr>
+                                                         
+                                                            <td colspan="2">ECE R10</td>
+
+
+                                                            <td colspan="3">六个月</td>
+
+
+                                                            <td colspan="3">出口认证</td>
+
+                                                        </tr>
+                                                        <tr>
+                                                           
+                                                            <td colspan="2">11451-2</td>
+
+
+                                                            <td colspan="3">六个月</td>
+
+
+                                                            <td colspan="3">委托</td>
+
+                                                        </tr>
+                                                        <tr>
+                                                            
+                                                            <td colspan="2">11451-3</td>
+
+
+                                                            <td colspan="3">六个月</td>
+
+
+                                                            <td colspan="3">委托</td>
+
+                                                        </tr>
+                                                        <tr>
+                                                            
+                                                            <td colspan="2">11451-4</td>
+
+
+                                                            <td colspan="3">六个月</td>
+
+
+                                                            <td colspan="3">委托</td>
+
+                                                        </tr>
+                                                        <tr>
+                                                            
+                                                            <td colspan="2">18655</td>
+
+
+                                                            <td colspan="3">六个月</td>
+
+
+                                                            <td colspan="3">委托</td>
+
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td rowspan="13">零部件试验</td>
+                                                            <td colspan="2">18655</td>
+                                                            <td colspan="3">三个月</td>
+                                                            <td colspan="3">常用试验项目</td>
+
+                                                        </tr>
+                                                        <tr>
+
+                                                            <td colspan="2">7637-2</td>
+
+
+                                                            <td colspan="3">三个月</td>
+
+
+                                                            <td colspan="3">常用试验项目</td>
+
+                                                        </tr>
+                                                        <tr>
+
+                                                            <td colspan="2">7637-3</td>
+
+
+                                                            <td colspan="3">三个月</td>
+
+
+                                                            <td colspan="3">常用试验项目</td>
+
+                                                        </tr>
+                                                        <tr>
+
+                                                            <td colspan="2">11452-2</td>
+
+
+                                                            <td colspan="3">三个月</td>
+
+
+                                                            <td colspan="3">常用试验项目</td>
+
+                                                        </tr>
+                                                        <tr>
+
+                                                            <td colspan="2">11452-4</td>
+
+
+                                                            <td colspan="3">三个月</td>
+
+
+                                                            <td colspan="3">常用试验项目</td>
+
+                                                        </tr>
+                                                        <tr>
+
+                                                            <td colspan="2">电机电控</td>
+
+
+                                                            <td colspan="3">六个月</td>
+
+
+                                                            <td colspan="3">高压部件</td>
+
+                                                        </tr>
+                                                        <tr>
+
+                                                            <td colspan="2">电池包</td>
+
+
+                                                            <td colspan="3">六个月</td>
+
+
+                                                            <td colspan="3">高压部件</td>
+
+                                                        </tr>
+                                                        <tr>
+
+                                                            <td colspan="2">车载充电机</td>
+
+
+                                                            <td colspan="3">六个月</td>
+
+
+                                                            <td colspan="3">高压部件</td>
+
+                                                        </tr>
+                                                        <tr>
+
+                                                            <td colspan="2">DC/DC</td>
+
+
+                                                            <td colspan="3">六个月</td>
+
+
+                                                            <td colspan="3">高压部件</td>
+
+                                                        </tr>
+                                                        <tr>
+
+                                                            <td colspan="2">11452-5</td>
+
+
+                                                            <td colspan="3">六个月</td>
+
+
+                                                            <td colspan="3">委托测试</td>
+
+                                                        </tr>
+                                                        <tr>
+
+                                                            <td colspan="2">11452-7</td>
+
+
+                                                            <td colspan="3">六个月</td>
+
+
+                                                            <td colspan="3">委托测试</td>
+
+                                                        </tr>
+                                                        <tr>
+
+                                                            <td colspan="2">11452-8</td>
+
+
+                                                            <td colspan="3">六个月</td>
+
+
+                                                            <td colspan="3">委托测试</td>
+
+                                                        </tr>
+                                                        <tr>
+
+                                                            <td colspan="2">11452-9</td>
+
+
+                                                            <td colspan="3">六个月</td>
+
+
+                                                            <td colspan="3">委托测试</td>
+
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                <h4>3，考评方式</h4>
+                                                <p>
+                                                    &nbsp;&nbsp;&nbsp;考评组三人考评实施前指定测试项目，并现场进行监督试验，试验实施过程中提出问题，根据被考评人员的情况填写《员工试验能力评估表》并打分，汇总后取平均分。得分级别为：
+全部类型的考核结果按员工考核总分，划分为 “A”、“B”、“C”、“ D” 四等级，并作如下界定：
+                                                </p>
+                                                <table class="table table-striped table-bordered table-hover" width="100%">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td >考核成绩</td>
+                                                            <td >90分以上</td>
+                                                            <td >75-89分</td>
+                                                            <td>60-74分</td>
+                                                            <td>60分以下</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>等级</td>
+                                                            <td>A</td>
+                                                            <td>B</td>
+                                                            <td>C</td>
+                                                            <td>D</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>处置方式</td>
+                                                            <td>进入固定项目考评组</td>
+                                                            <td>可自行申请复评</td>
+                                                            <td>一个月后复评（一个月的绩效低)</td>
+                                                            <td>三个月后复评（三个月的绩效低）</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
+                                            <div class="step-pane" id="step3">
+                                               
+                                                    <div class="form-group">
+                                                        <label class="col-sm-1 control-label no-padding-right" for="form-field-1">员工姓名:</label>
+
+                                                        <div class="col-sm-4">
+                                                            <input style="width:100%" type="text" id="form-field-1" placeholder="输入员工姓名" class="col-xs-10 col-sm-5">
+                                                        </div>
+                                                        <label style="width:12%" class="col-sm-2 control-label no-padding-right" for="form-field-1">评估试验项目:</label>
+
+                                                        <div class="col-sm-5">
+                                                            <input style="width:100%" type="text" id="form-field-1" placeholder="输入评估试验项目" class="col-xs-10 col-sm-5">
+                                                        </div>
+                                                </div>
+                                                <table style="position: relative;top: 20px;" class="table table-striped table-bordered table-hover" width="100%">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>考评内容</td>
+                                                            <td>分值</td>
+                                                            <td>过程中问题记录</td>
+                                                            <td>得分</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>试验前样品检查</td>
+                                                            <td>5分</td>
+                                                            <td></td>
+                                                            <td></td>
+                                                           
+                                                        </tr>
+                                                        <tr>
+                                                            <td>试验前设备准备</td>
+                                                            <td>5分</td>
+                                                            <td></td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>试验布置过程</td>
+                                                            <td>10分</td>
+                                                            <td></td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>操作测试软件前检查</td>
+                                                            <td>5分</td>
+                                                            <td></td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>操作测试软件过程</td>
+                                                            <td>20分</td>
+                                                            <td></td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>试验中转换天线或样件过程</td>
+                                                            <td>5分</td>
+                                                            <td></td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>试验中记录</td>
+                                                            <td>5分</td>
+                                                            <td></td>
+                                                            <td></td>
+                                                        </tr>   
+                                                        <tr>
+                                                            <td>标准理解的问答</td>
+                                                            <td>10分</td>
+                                                            <td></td>
+                                                            <td></td>
+                                                        </tr>   
+                                                        <tr>
+                                                            <td>安全相关内容的问答</td>
+                                                            <td>10分</td>
+                                                            <td></td>
+                                                            <td></td>
+                                                        </tr>  
+                                                        <tr>
+                                                            <td>常见问题的解决能力问答</td>
+                                                            <td>10分</td>
+                                                            <td></td>
+                                                            <td></td>
+                                                        </tr>  
+                                                        <tr>
+                                                            <td>仪器熟悉程度问答</td>
+                                                            <td>10分</td>
+                                                            <td></td>
+                                                            <td></td>
+                                                        </tr>   
+                                                        <tr>
+                                                            <td>试验后的归位</td>
+                                                            <td>5分</td>
+                                                            <td></td>
+                                                            <td></td>
+                                                        </tr>   
+                                                        <tr>
+                                                            <td colspan="3">总分</td>
+                                                          
+                                                            <td></td>
+                                                        </tr>    
+                                                    </tbody>
+                                                </table>
+                                                <div class="center">
+                                                    <p>
+                                                        注：每个考评内容中遗漏一项，视重要性，可扣一分或全扣。
+                                                        <br />
+                                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;未按照作业指导书操作的，视重要性，可扣一分或全扣。
+                                                    </p>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-1 control-label no-padding-right" for="form-field-1">评估人:</label>
+
+                                                    <div class="col-sm-4">
+                                                        <input style="width:100%" type="text" id="form-field-1" placeholder="输入评估人" class="col-xs-10 col-sm-5">
+                                                    </div>
+                                                    <label style="width:12%" class="col-sm-2 control-label no-padding-right" for="form-field-1">受评人:</label>
+
+                                                    <div class="col-sm-5">
+                                                        <input style="width:100%" type="text" id="form-field-1" placeholder="输入受评人" class="col-xs-10 col-sm-5">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group" style="position: relative;top: 10px;padding-top: 10px;">
+                                                    <label class="col-sm-1 control-label no-padding-right" for="form-field-1">评估日期:</label>
+
+                                                    <div class="col-sm-4">
+                                                        <input style="width:100%" type="text" id="form-field-1" placeholder="输入评估日期" class="col-xs-10 col-sm-5">
+                                                    </div>
+                                                    <label style="width:12%" class="col-sm-2 control-label no-padding-right" for="form-field-1">评估地点:</label>
+
+                                                    <div class="col-sm-5">
+                                                        <input style="width:100%" type="text" id="form-field-1" placeholder="输入评估地点" class="col-xs-10 col-sm-5">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="step-pane" id="step4">
+                                                <div class="center">
+                                                    <h4 class="green">恭喜你!</h4>
+                                                    哈哈，你来到这里，证明你已经支付了，剩下的事情就随意了！~
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- /section:plugins/fuelux.wizard.container -->
+                                        <hr />
+                                        <div class="wizard-actions">
+                                            <!-- #section:plugins/fuelux.wizard.buttons -->
+                                            <button class="btn btn-prev">
+                                                <i class="ace-icon fa fa-arrow-left"></i>
+                                                上一步
+                                            </button>
+
+                                            <button class="btn btn-success btn-next" data-last="完成">
+                                                下一步
+                                                <i class="ace-icon fa fa-arrow-right icon-on-right"></i>
+                                            </button>
+
+                                            <!-- /section:plugins/fuelux.wizard.buttons -->
+                                        </div>
+
+                                        <!-- /section:plugins/fuelux.wizard -->
+                                    </div><!-- /.widget-main -->
+                                </div><!-- /.widget-body -->
+                            </div>
+
+
+                        </div><!-- /.col -->
+                    </div><!-- /.row -->
+                </div><!-- /.page-content-area -->
+            </div><!-- /.page-content -->
+        </div><!-- /.main-content -->
+
+
+       
+    </div><!-- /.main-container -->
+    <!-- basic scripts -->
+    <!--[if !IE]> -->
+    <script src="~/Content/js/jquery-1.8.3.min.js"></script>
+
+    <!-- <![endif]-->
+    <!--[if IE]>
+    <script type="text/javascript">
+     window.jQuery || document.write("<script src='assets/js/jquery1x.min.js'>"+"<"+"/script>");
+    </script>
+    <![endif]-->
+
+    <script src="~/Content/js/bootstrap.min.js"></script>
+  
+    <!-- page specific plugin scripts -->
+    <script src="~/Content/js/fuelux.wizard.min.js"></script>
+
+    <script src="~/Content/js/select2.min.js"></script>
+   
+    <!-- ace scripts -->
+    <script src="~/Content/js/ace-elements.min.js"></script>
+
+    <script src="~/Content/js/ace.min.js"></script>
+  
+
+    <!-- inline scripts related to this page -->
+    <script type="text/javascript">
+			jQuery(function($) {
+
+				$('[data-rel=tooltip]').tooltip();
+
+				$(".select2").css('width','200px').select2({allowClear:true})
+				.on('change', function(){
+					$(this).closest('form').validate().element($(this));
+				});
+
+
+				var $validation = false;
+				$('#fuelux-wizard')
+				.ace_wizard({
+					//step: 2 //optional argument. wizard will jump to step "2" at first
+				})
+				.on('change' , function(e, info){
+					if(info.step == 1 && $validation) {
+						if(!$('#validation-form').valid()) return false;
+					}
+				})
+				.on('finished', function(e) {
+					bootbox.dialog({
+						message: "你的订单已经生成，请注意出票和登机时间。",
+						buttons: {
+							"success" : {
+								"label" : "确定并关闭",
+								"className" : "btn-sm btn-primary"
+							}
+						}
+					});
+				}).on('stepclick', function(e){
+					//e.preventDefault();//this will prevent clicking and selecting steps
+				});
+
+
+		
+				//determine selected step
+				//wizard.selectedItem().step
+
+
+
+				//hide or show the other form which requires validation
+				//this is for demo only, you usullay want just one form in your application
+			
+
+			})
+    </script>
+</body>
+</html>

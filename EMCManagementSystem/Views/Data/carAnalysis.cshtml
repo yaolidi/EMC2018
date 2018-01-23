@@ -1,0 +1,95 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+   
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>carAnalysis</title>
+    <style type="text/css">
+        #container {
+            min-width: 310px;
+            max-width: 800px;
+            height: 400px;
+            margin: 0 auto;
+        }
+
+        .highcharts-credits {
+            display: none;
+        }
+    </style>
+</head>
+<body style="height:500px">
+    <script src="~/Content/js/jquery.min.js"></script>
+    <script src="~/Highcharts/js/highcharts.js"></script>
+  
+    <script src="~/Highcharts/js/exporting.js"></script>
+    <script src="~/Highcharts/js/highcharts-zh_CN.js"></script>
+   
+    <div id="container"></div>
+
+    <script type="text/javascript">
+
+        $(function () {
+            $.ajax({
+
+                type: "post",
+
+                url: "/Data/selectCarQualification",
+
+                cache: false,
+
+                async: false,
+
+                success: function (data) {
+                    Highcharts.chart('container', {
+                        chart: {
+                            type: 'column'
+                        },
+                        title: {
+                            text: '车型合格率'
+                        },
+                        
+                        xAxis: {
+                            type: 'category'
+                        },
+                        yAxis: {
+                            title: {
+                                text: '百分比'
+                            }
+                        },
+                        legend: {
+                            enabled: false
+                        },
+                        plotOptions: {
+                            series: {
+                                borderWidth: 0,
+                                dataLabels: {
+                                    enabled: true,
+                                    format: '{point.y:.1f}%'
+                                }
+                            }
+                        },
+                        tooltip: {
+                            headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                            pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
+                        },
+                        series: [{
+                            name: '车型合格率',
+                            colorByPoint: true,
+                            data: data
+                        }],
+                    });
+                }
+            });
+          
+        });
+
+
+    </script>
+</body>
+</html>

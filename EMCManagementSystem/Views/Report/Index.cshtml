@@ -1,0 +1,380 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>原始记录</title>
+    <link rel="stylesheet" href="~/Content/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/Content/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="~/Content/css/ace-fonts.css" />
+    <link rel="stylesheet" href="~/Content/css/ace.min.css" id="main-ace-style" />
+
+    <!--[if lte IE 9]>
+        <link rel="stylesheet" href="~/Content/css/ace-part2.min.css" />
+    <![endif]-->
+    <!--[if lte IE 9]>
+      <link rel="stylesheet" href="~/Content/css/ace-ie.min.css" />
+    <![endif]-->
+    <script src="~/Content/js/ace-extra.min.js"></script>
+    <!--[if lte IE 8]>
+    <script src="~/Content/js/html5shiv.min.js"></script>
+    <script src="~/Content/js/respond.min.js"></script>
+    <![endif]-->
+    <style type="text/css">
+        .CSSearchTbl {
+            border: 1px #008CD4 solid;
+        }
+
+            .CSSearchTbl thead {
+            }
+
+                .CSSearchTbl thead tr {
+                }
+
+                    .CSSearchTbl thead tr th {
+                        text-align: left;
+                        padding-left: 10px;
+                    }
+
+            .CSSearchTbl tbody {
+            }
+
+                .CSSearchTbl tbody tr {
+                }
+
+                    .CSSearchTbl tbody tr td {
+                        padding: 10px;
+                    }
+
+                        .CSSearchTbl tbody tr td.right {
+                            text-align: left;
+                        }
+
+                        .CSSearchTbl tbody tr td.left {
+                            text-align: right;
+                        }
+
+        .table-responsive {
+            display: none;
+        }
+
+        td {
+            text-align: center;
+            vertical-align: middle !important; /*设置垂直居中*/
+        }
+
+        th {
+            text-align: center;
+            vertical-align: middle !important; /*设置垂直居中*/
+        }
+    </style>
+</head>
+<body class="no-skin">
+    <!-- #section:basics/navbar.layout -->
+    <!-- /section:basics/navbar.layout -->
+    <div class="main-container" id="main-container">
+
+
+        <div class="main-content">
+
+            <div class="page-content">
+
+                <!-- /section:settings.box -->
+                <div class="page-content-area">
+
+                    <div class="row">
+                        <div class="col-xs-12">
+
+                            <div class="row">
+                                <div class="col-xs-12">
+
+                                    <div class="table-header">
+                                        新增数据信息记录
+                                    </div>
+
+                                    <table width="100%" class="CSSearchTbl" cellpadding="0" cellspacing="0">
+                                        <tr>
+                                            <td width="10%" class="left">汽车品牌：</td>
+                                            <td width="20%" class="right">
+                                                <input type="text" size="16" style="width:100%" />
+                                            </td>
+                                   
+                                            <td class="right" colspan="2">
+                                                <button class="btn btn-primary pull-left col-sm-12 tbl-search" data-dismiss="modal" onclick="search()">
+                                                    开始搜索
+                                                </button>
+                                            </td>
+                                            <td class="right" colspan="2">
+                                                <a href="/Report/InsertReport" class="btn btn-primary pull-left col-sm-12 tbl-search"><span>添加数据信息记录</span></a>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                        </tr>
+                                    </table>
+
+                                    <table id="sample-table-2" class="table table-striped table-bordered table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th width="5%">NO</th>
+                                                <th width="10%">创建时间</th>
+                                                <th width="10%">汽车品牌</th>
+                                                <th width="10%">任务号</th>
+                                                
+                                                <th width="10%">测试任务</th>
+                                                <th width="10%">检验结果</th>
+                                                <th width="15%">操作</th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+                                            @*<tr>
+                                                <td>1</td>
+                                                <td class="hidden-480"><span class="label label-sm label-warning">吉利</span></td>
+                                               
+                                                <td class="hidden-480">型号1</td>
+                                               
+                                                <td>高配</td>
+                                                <td>任务一、任务二</td>
+                                                <td>合格</td>
+                                                <td>
+                                                    <div class="btn-group">
+
+                                                        <button class="btn btn-xs btn-info" onclick="edit(0)">
+                                                            <i class="ace-icon fa fa-pencil bigger-120"></i>
+                                                            编辑
+                                                        </button>
+
+                                                        <button class="btn btn-xs btn-danger" onclick="deleteRow(0)">
+                                                            <i class="ace-icon fa fa-trash-o bigger-120"></i>
+                                                            删除
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>2</td>
+
+                                                <td class="hidden-480"><span class="label label-sm label-warning">五菱</span></td>
+
+                                                <td class="hidden-480">型号2</td>
+
+                                                <td>高配</td>
+                                                <td>任务一、任务二、任务三</td>
+                                                <td>合格</td>
+                                                <td>
+                                                    <div class="btn-group">
+
+                                                        <button class="btn btn-xs btn-info" onclick="edit(0)">
+                                                            <i class="ace-icon fa fa-pencil bigger-120"></i>
+                                                            编辑
+                                                        </button>
+
+                                                        <button class="btn btn-xs btn-danger" onclick="deleteRow(0)">
+                                                            <i class="ace-icon fa fa-trash-o bigger-120"></i>
+                                                            删除
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>3</td>
+                                                <td class="hidden-480"><span class="label label-sm label-warning">五菱</span></td>
+
+                                                <td class="hidden-480">型号3</td>
+                                                
+                                                <td>高配</td>
+                                                <td>任务一、任务二、任务三、任务四</td>
+                                                <td>合格</td>
+                                                <td>
+                                                    <div class="btn-group">
+
+                                                        <button class="btn btn-xs btn-info" onclick="edit(0)">
+                                                            <i class="ace-icon fa fa-pencil bigger-120"></i>
+                                                            编辑
+                                                        </button>
+
+                                                        <button class="btn btn-xs btn-danger" onclick="deleteRow(0)">
+                                                            <i class="ace-icon fa fa-trash-o bigger-120"></i>
+                                                            删除
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>4</td>
+
+
+                                                <td class="hidden-480"><span class="label label-sm label-warning">五菱</span></td>
+
+                                                <td class="hidden-480">型号4</td>
+
+                                                <td>高配</td>
+                                                <td>任务一、任务二、任务三</td>
+                                                <td>合格</td>
+                                                <td>
+                                                    <div class="btn-group">
+
+                                                        <button class="btn btn-xs btn-info" onclick="edit(0)">
+                                                            <i class="ace-icon fa fa-pencil bigger-120"></i>
+                                                            编辑
+                                                        </button>
+
+                                                        <button class="btn btn-xs btn-danger" onclick="deleteRow(0)">
+                                                            <i class="ace-icon fa fa-trash-o bigger-120"></i>
+                                                            删除
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>5</td>
+
+
+                                                <td class="hidden-480"><span class="label label-sm label-warning">五菱</span></td>
+
+                                                <td class="hidden-480">型号5</td>
+
+                                                <td>高配</td>
+                                                <td>任务一、任务二</td>
+                                                <td>合格</td>
+                                                <td>
+                                                    <div class="btn-group">
+
+                                                        <button class="btn btn-xs btn-info" onclick="edit(0)">
+                                                            <i class="ace-icon fa fa-pencil bigger-120"></i>
+                                                            编辑
+                                                        </button>
+
+                                                        <button class="btn btn-xs btn-danger" onclick="deleteRow(0)">
+                                                            <i class="ace-icon fa fa-trash-o bigger-120"></i>
+                                                            删除
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>6</td>
+
+
+                                                <td class="hidden-480"><span class="label label-sm label-warning">五菱</span></td>
+
+                                                <td class="hidden-480">型号6</td>
+
+                                                <td>高配</td>
+                                                <td>任务一、任务二、任务三</td>
+                                                <td>合格</td>
+                                                <td>
+                                                    <div class="btn-group">
+
+                                                        <button class="btn btn-xs btn-info" onclick="edit(0)">
+                                                            <i class="ace-icon fa fa-pencil bigger-120"></i>
+                                                            编辑
+                                                        </button>
+
+                                                        <button class="btn btn-xs btn-danger" onclick="deleteRow(0)">
+                                                            <i class="ace-icon fa fa-trash-o bigger-120"></i>
+                                                            删除
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>*@
+                                        </tbody>
+                                    </table>
+
+                                    <div class="modal-footer no-margin-top">
+
+                                        <ul class="pagination pull-right no-margin">
+                                            <li class="prev disabled">
+                                                <a href="#">
+                                                    <i class="ace-icon fa fa-angle-double-left"></i>
+                                                </a>
+                                            </li>
+
+                                            <li class="active">
+                                                <a href="#">1</a>
+                                            </li>
+
+                                            <li>
+                                                <a href="#">2</a>
+                                            </li>
+
+                                            <li>
+                                                <a href="#">3</a>
+                                            </li>
+
+                                            <li class="next">
+                                                <a href="#">
+                                                    <i class="ace-icon fa fa-angle-double-right"></i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div><!-- /.col -->
+                    </div><!-- /.row -->
+                </div><!-- /.page-content-area -->
+            </div><!-- /.page-content -->
+        </div><!-- /.main-content -->
+
+
+
+        <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+            <i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
+        </a>
+    </div><!-- /.main-container -->
+    <script src="~/Content/js/jquery-1.8.3.min.js"></script>
+    <script src="~/Content/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $.getJSON("/Report/SelectReport" , function (data) {
+                $("#sample-table-2 tr:gt(0)").remove();//清空当前查询的数据
+                var table;
+                for (i = 0; i < data.length ; i++) {
+                    
+                    table += '<tr><td>' + (i + 1) + '</td><td class="hidden-480">' + data[i].time + '<td class="hidden-480"><span class="label label-sm label-warning">' + data[i].brand + '</span></td><td class="hidden-480">' + data[i].taskNumber + '</td><td>' + data[i].taskAllName + '</td><td>' + data[i].ResultID + '</td><td><div class="btn-group"><button class="btn btn-xs btn-info" onclick="edit(' + data[i].OriginalRecordID + ')"><i class="ace-icon fa fa-pencil bigger-120"></i>查看</button><button class="btn btn-xs btn-danger" onclick="deleteRow(' + data[i].OriginalRecordID + ')"><i class="ace-icon fa fa-trash-o bigger-120"></i>删除</button></div></td></tr>'
+                }
+                $("#sample-table-2").append(table);
+            })
+            //var oTable1 = $('#sample-table-2').dataTable({
+            //    "aoColumns": [
+			//      { "bSortable": false },
+			//      null, null, null, null, null,
+			//	  { "bSortable": false }
+            //    ]
+            //});
+        })
+        function edit(t) {
+            window.location.href = "/Report/updateReport?id=" + t;
+          //  alert("编辑了第"+(t+1)+"行，但是还并不能显示！  ~(￣▽￣)~")
+        }
+        function search() {
+            alert("你点击了搜索 ~(￣▽￣)~")
+        }
+        function deleteRow(t) {
+            if (window.confirm('是否确定删除？'))
+            {
+                $.getJSON("/Report/DelectReport?OriginalRecordID=" + t, function (data) {
+                    window.location.reload();
+                })
+
+            } else {
+                alert("取消的删除！！");
+            }
+
+        }
+    </script>
+</body>
+</html>

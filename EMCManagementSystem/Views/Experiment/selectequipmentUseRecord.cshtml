@@ -1,0 +1,382 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>查看设备使用记录</title>
+    <link rel="stylesheet" href="~/Content/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/Content/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="~/Content/css/ace-fonts.css" />
+    <link rel="stylesheet" href="~/Content/css/ace.min.css" id="main-ace-style" />
+
+    <!--[if lte IE 9]>
+        <link rel="stylesheet" href="~/Content/css/ace-part2.min.css" />
+    <![endif]-->
+    <!--[if lte IE 9]>
+      <link rel="stylesheet" href="~/Content/css/ace-ie.min.css" />
+    <![endif]-->
+    <script src="~/Content/js/ace-extra.min.js"></script>
+    <!--[if lte IE 8]>
+    <script src="~/Content/js/html5shiv.min.js"></script>
+    <script src="~/Content/js/respond.min.js"></script>
+    <![endif]-->
+    <style type="text/css">
+        .CSSearchTbl {
+            border: 1px #008CD4 solid;
+        }
+
+            .CSSearchTbl thead {
+            }
+
+                .CSSearchTbl thead tr {
+                }
+
+                    .CSSearchTbl thead tr th {
+                        text-align: left;
+                        padding-left: 10px;
+                    }
+
+            .CSSearchTbl tbody {
+            }
+
+                .CSSearchTbl tbody tr {
+                }
+
+                    .CSSearchTbl tbody tr td {
+                        padding: 10px;
+                    }
+
+                        .CSSearchTbl tbody tr td.right {
+                            text-align: left;
+                        }
+
+                        .CSSearchTbl tbody tr td.left {
+                            text-align: right;
+                        }
+
+        .table-responsive {
+            display: none;
+        }
+
+        td {
+            text-align: center;
+            vertical-align: middle !important; /*设置垂直居中*/
+        }
+
+        th {
+            text-align: center;
+            vertical-align: middle !important; /*设置垂直居中*/
+        }
+    </style>
+</head>
+<body class="no-skin">
+    <!-- #section:basics/navbar.layout -->
+    <!-- /section:basics/navbar.layout -->
+
+    <div class="main-container" id="main-container" style="height:800px">
+
+
+        <div class="main-content">
+
+            <div class="page-content">
+
+                <!-- /section:settings.box -->
+                <div class="page-content-area">
+
+                    <div class="row">
+                        <div class="col-xs-12">
+
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <a href="#" id="btn_a" style="display:none" class="pull-right btn btn-xs btn-success" data-toggle="modal" data-target="#myModal">生成</a>
+                                    <div class="table-header">
+                                        设备待审核
+                                    </div>
+                                    <table id="sample-table-2" class="table table-striped table-bordered table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th width="5%">NO</th>
+                                                <th width="10%">编写人</th>
+                                                <th width="10%">文档号</th>
+                                                <th width="13%">文档名称</th>
+                                                <th width="10%">处理否</th>
+                                                <th width="15%">操作</th>
+                                       
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+                                            <tr>
+                                                <td>1</td>
+
+                                                <td>张三</td>
+                                                <td class="hidden-480">GB 14023-2011</td>
+                                                <td class="hidden-480"><span class="label label-sm label-warning">汽车无线电骚扰特性检验记录</span></td>
+                                                <td>未处理</td>
+                                                <td>
+                                                    <div class="btn-group">
+
+                                                        <button class="btn btn-xs btn-info" onclick="edit(0)">
+                                                            <i class="ace-icon fa fa-search-plus bigger-120"></i>
+                                                            查看
+                                                        </button>
+
+                                                        <button class="btn btn-xs btn-danger" onclick="deleteRow(0)">
+                                                            <i class="ace-icon fa fa-trash-o bigger-120"></i>
+                                                            删除
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>2</td>
+
+                                                <td>张三</td>
+                                                <td class="hidden-480">GB 14023-2012</td>
+                                                <td class="hidden-480"><span class="label label-sm label-warning">汽车无线电骚扰特性检验记录2</span></td>
+                                                <td>未处理</td>
+                                                <td>
+                                                    <div class="btn-group">
+
+                                                        <button class="btn btn-xs btn-info" onclick="edit(0)">
+                                                            <i class="ace-icon fa fa-search-plus bigger-120"></i>
+                                                            查看
+                                                        </button>
+
+                                                        <button class="btn btn-xs btn-danger" onclick="deleteRow(0)">
+                                                            <i class="ace-icon fa fa-trash-o bigger-120"></i>
+                                                            删除
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>3</td>
+
+                                                <td>张三</td>
+                                                <td class="hidden-480">GB 14023-2013</td>
+                                                <td class="hidden-480"><span class="label label-sm label-warning">汽车无线电骚扰特性检验记录3</span></td>
+                                                <td>未处理</td>
+                                                <td>
+                                                    <div class="btn-group">
+
+                                                        <button class="btn btn-xs btn-info" onclick="edit(0)">
+                                                            <i class="ace-icon fa fa-search-plus bigger-120"></i>
+                                                            查看
+                                                        </button>
+
+                                                        <button class="btn btn-xs btn-danger" onclick="deleteRow(0)">
+                                                            <i class="ace-icon fa fa-trash-o bigger-120"></i>
+                                                            删除
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>4</td>
+
+                                                <td>张三</td>
+                                                <td class="hidden-480">GB 14023-2014</td>
+                                                <td class="hidden-480"><span class="label label-sm label-warning">汽车无线电骚扰特性检验记录4</span></td>
+                                                <td>未处理</td>
+                                                <td>
+                                                    <div class="btn-group">
+
+                                                        <button class="btn btn-xs btn-info" onclick="edit(0)">
+                                                            <i class="ace-icon fa fa-search-plus bigger-120"></i>
+                                                            查看
+                                                        </button>
+
+                                                        <button class="btn btn-xs btn-danger" onclick="deleteRow(0)">
+                                                            <i class="ace-icon fa fa-trash-o bigger-120"></i>
+                                                            删除
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>5</td>
+
+                                                <td>张三</td>
+                                                <td class="hidden-480">GB 14023-2015</td>
+                                                <td class="hidden-480"><span class="label label-sm label-warning">汽车无线电骚扰特性检验记录5</span></td>
+                                                <td>未处理</td>
+                                                <td>
+                                                    <div class="btn-group">
+
+                                                        <button class="btn btn-xs btn-info" onclick="edit(0)">
+                                                            <i class="ace-icon fa fa-search-plus bigger-120"></i>
+                                                            查看
+                                                        </button>
+
+                                                        <button class="btn btn-xs btn-danger" onclick="deleteRow(0)">
+                                                            <i class="ace-icon fa fa-trash-o bigger-120"></i>
+                                                            删除
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>6</td>
+
+                                                <td>张三</td>
+                                                <td class="hidden-480">GB 14023-2016</td>
+                                                <td class="hidden-480"><span class="label label-sm label-warning">汽车无线电骚扰特性检验记录6</span></td>
+                                                <td>未处理</td>
+                                                <td>
+                                                    <div class="btn-group">
+
+                                                        <button class="btn btn-xs btn-info" onclick="edit(0)">
+                                                            <i class="ace-icon fa fa-search-plus bigger-120"></i>
+                                                            查看
+                                                        </button>
+
+                                                        <button class="btn btn-xs btn-danger" onclick="deleteRow(0)">
+                                                            <i class="ace-icon fa fa-trash-o bigger-120"></i>
+                                                            删除
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                           
+                                    <div class="modal-footer no-margin-top">
+
+                                        <ul class="pagination pull-right no-margin">
+                                            <li class="prev disabled">
+                                                <a href="#">
+                                                    <i class="ace-icon fa fa-angle-double-left"></i>
+                                                </a>
+                                            </li>
+
+                                            <li class="active">
+                                                <a href="#">1</a>
+                                            </li>
+
+                                            <li>
+                                                <a href="#">2</a>
+                                            </li>
+
+                                            <li>
+                                                <a href="#">3</a>
+                                            </li>
+
+                                            <li class="next">
+                                                <a href="#">
+                                                    <i class="ace-icon fa fa-angle-double-right"></i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div><!-- /.col -->
+                    </div><!-- /.row -->
+                </div><!-- /.page-content-area -->
+            </div><!-- /.page-content -->
+        </div><!-- /.main-content -->
+
+
+
+        <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+            <i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
+        </a>
+    </div><!-- /.main-container -->
+    
+    <div class="modal inmodal" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" style="width:95%">
+            <div class="modal-content animated bounceInRight">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span><span class="sr-only">关闭</span>
+                    </button>
+                    <h4 class="modal-title">原始记录生成</h4>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>NO.</th>
+                                <th>设备编号</th>
+                                <th>设备型号</th>
+                                <th>设备名称</th>
+                                <th>维护否</th>
+                                <th>授权签字人</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>NJ.18.91.204-1</td>
+                                <td>FSA-S12014/5X</td>
+                                <td>EMS天线</td>
+                                <td>否</td>
+                                <td>丁一夫、柳海明、张广玉、马俊杰、张旭、陈磊、邱振宇</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>NJ.18.91.205</td>
+                                <td>AIP-CDM <br />37.5L-4mot EMC</td>
+                                <td>底盘测功机</td>
+                                <td>否</td>
+                                <td>丁一夫、柳海明、马俊杰、张旭、陈磊、邱振宇、张广玉</td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                    
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-white" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" onclick="save()">通过审核</button>
+                </div>
+            </div>
+        </div>
+    </div>
+  
+    <script src="~/Content/js/jquery-1.8.3.min.js"></script>
+    <script src="~/Content/js/bootstrap.min.js"></script>
+    <script src="~/Content/js/jquery-ui-1.10.4.min.js"></script>
+    <script src="~/Content/js/jquery.dataTables.min.js"></script>
+    
+   
+    <script type="text/javascript">
+
+        function edit(t) {
+             document.getElementById("btn_a").click();
+            //var tab = document.getElementById("sample-table-2");
+           /// alert("编辑了第"+(t+1)+"行，但是还并不能显示！  ~(￣▽￣)~")
+        }
+        function search() {
+            alert("你点击了搜索 ~(￣▽￣)~")
+        }
+        function deleteRow(t) {
+            if (window.confirm('是否确定删除？'))
+            {
+                var tab = document.getElementById("sample-table-2");
+               // tab.children[1].children.removeChild(t);
+                alert("删除了第" + (t + 1) + "行，这只是个演示的效果！  ~(￣▽￣)~");
+
+            } else {
+                alert("取消的删除！！");
+            }
+
+        }
+        function save() {
+            alert("审核通过！！");
+        }
+    </script>
+</body>
+</html>

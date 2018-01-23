@@ -1,0 +1,288 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>新增试验记录</title>
+    <link rel="stylesheet" href="~/assets/css/bootstrap.css">
+    <link rel="stylesheet" href="~/assets/css/xenon-core.css">
+    <link rel="stylesheet" href="~/assets/css/xenon-forms.css">
+    <link href="~/control/css/styles.css" rel="stylesheet" />
+
+    <script src="~/assets/js/jquery-1.11.1.min.js"></script>
+</head>
+<body class="page-body">
+
+
+    <div class="page-container">
+
+
+        <div class="main-content">
+            <div class="page-title">
+
+                <div class="title-env">
+                    <h1 class="title">新增试验记录</h1>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">填写基本信息</h3>
+                            <a style="float: right;" href="/Experiment/testTecord" class="btn btn-sm btn-info"><span style="color:#000">返回</span></a>
+                        </div>
+                        <div class="tab-content">
+                            <!-- Tabs Content -->
+                            <div class="tab-pane active" id="tab1">
+                                <form role="form" class="form-horizontal">
+                                    <div class="row">
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label"  >试验日期:</label>
+
+                                            <div class="col-sm-4 ">
+                                                <div class="iDate date ">
+                                                    <input type="text" class="form-control">
+                                                    <button type="button" class="addOn "></button>
+                                                </div>
+                                                @*<input type="text" class="form-control"  >*@
+                                            </div>
+
+                                            <label class="col-sm-2 control-label"  >送样人:</label>
+                                            <div class="col-sm-4">
+                                                <input type="text" class="form-control"  >
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label"  >手机号码:</label>
+                                            <div class="col-sm-4">
+                                                <input type="text" class="form-control"  >
+                                            </div>
+                                            <label class="col-sm-2 control-label"  >送样单位:</label>
+                                            <div class="col-sm-4">
+                                                <select class="form-control" id="s2example-1">
+                                                    <option>请选择</option>
+                                                    <option>厂商1</option>
+                                                    <option>厂商2</option>
+                                                    <option>厂商3</option>
+                                                    <option>厂商4</option>
+                                                    <option>厂商5</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label"  >样车型号:</label>
+                                            <div class="col-sm-4">
+                                                <input type="text" class="form-control"  >
+                                            </div>
+                                            <label class="col-sm-2 control-label"  >试验项目:</label>
+                                            <div class="col-sm-4">
+                                                <input type="text" class="form-control"  >
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label"  >任务号:</label>
+                                            <div class="col-sm-4">
+                                                <input type="text" class="form-control"  >
+                                            </div>
+                                            <label class="col-sm-2 control-label"  >检验类型:</label>
+                                            <div class="col-sm-4">
+                                                <input type="text" class="form-control"  >
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label"  >车辆VIN:</label>
+                                            <div class="col-sm-4">
+                                                <input type="text" class="form-control"  >
+                                            </div>
+                                            <label class="col-sm-2 control-label"  >主检:</label>
+                                            <div class="col-sm-4">
+                                                <input type="text" class="form-control"  >
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label"  >报告出具人:</label>
+                                            <div class="col-sm-4">
+                                                <input type="text" class="form-control"  >
+                                            </div>
+                                            <label class="col-sm-2 control-label"  >是否合格:</label>
+                                            <div class="col-sm-4">
+                                                <input type="text" class="form-control"  >
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label"  >试验具体时间:</label>
+                                            <div class="col-sm-4">
+                                                <input type="text" class="form-control"  >
+                                            </div>
+                                            <label class="col-sm-2 control-label"  >强检类型:</label>
+                                            <div class="col-sm-4">
+                                                <input type="text" class="form-control"  >
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">费用信息</h3>
+
+                        </div>
+                        <div class="panel-body">
+
+                            <div class="form-group">
+                                <strong> <label class="control-label" for="about" style="font-size:14px;color:red">直接输入费用:</label></strong>
+                               
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-1 control-label"  >费用:</label>
+                                <div class="col-sm-11">
+                                    <input type="text" class="form-control"  >
+                                </div>
+                            </div>
+                         
+                            <div class="form-group">
+        
+                                <strong> <label class="control-label" for="about" style="font-size:14px;color:red">计算费用:</label></strong>
+                              
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-1 control-label">费用:</label>
+                                <div class="col-sm-3">
+                                    
+                                    <input type="text" class="form-control" onchange="Thousands()"id="Price" placeholder="单价">
+                                </div>
+                                <div class="col-sm-1">
+                                    <label class="control-label" for="about" style="color:red">x</label>
+                                </div>
+                                <div class="col-sm-3">
+                                    <input type="text" class="form-control" id="timeLong" onchange="timeThousands()"  placeholder="时长">
+                                </div>
+                                <div class="col-sm-1">
+                                    <label class="control-label" for="about" style="color:red">=</label>
+                                </div>
+                                <div class="col-sm-3">
+                                    <input type="text" class="form-control" id="Total" placeholder="总价" disabled="disabled">
+                                </div>
+                            </div>
+                           
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">其他信息</h3>
+
+                        </div>
+                        <div class="panel-body">
+
+                            <div class="form-group">
+                                <label class="control-label" for="about">实验简介</label>
+                                <textarea class="form-control autogrow" name="about" id="about" data-validate="minlength[10]" rows="5" placeholder="请输入实验简介信息" style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 104px;"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="about">备注</label>
+                                <textarea class="form-control autogrow" name="about" id="about" data-validate="minlength[10]" rows="5" placeholder="请输入备注信息" style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 104px;"></textarea>
+                            </div>
+                            <button class="btn btn-sm btn-info" style="float:right" onclick="save()">
+
+                                保存编辑器内容
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Imported styles on this page -->
+
+    <link rel="stylesheet" href="~/assets/js/multiselect/css/multi-select.css">
+
+    <!-- Bottom Scripts -->
+    <script src="~/assets/js/bootstrap.min.js"></script>
+    <script src="~/assets/js/joinable.js"></script>
+    <script src="~/assets/js/multiselect/js/jquery.multi-select.js"></script>
+
+    <script src="~/assets/js/moment.js"></script>
+    <script src="~/assets/js/bootstrap-datetimepicker.js"></script>
+
+    <script type="text/javascript">
+$(document).ready(function(){
+    // date time picker
+    if($(".iDate.full").length>0){
+        $(".iDate.full").datetimepicker({
+            locale: "zh-cn",
+            format: "YYYY-MM-DD a hh:mm",
+            dayViewHeaderFormat: "YYYY年 MMMM"
+        });
+    }
+    if($(".iDate.date").length>0){
+        $(".iDate.date").datetimepicker({
+            locale:"zh-cn",
+            format:"YYYY-MM-DD",
+            dayViewHeaderFormat:"YYYY年 MMMM"
+        });
+    }
+})
+function save() {
+    alert("这只是个演示！(｡◕ฺˇε ˇ◕ฺ｡）")
+    window.history.back(-1);
+}
+
+function Thousands() {
+    var Price = document.getElementById("Price").value;
+    
+    document.getElementById("Price").value = toThousands(Price);
+    var timeLong = document.getElementById("timeLong").value;
+    if (timeLong != "") {
+        document.getElementById("Total").value = toThousands(Number(timeLong) * Number(Price.replace(/,/g, '')).toString());
+    }
+}
+function timeThousands() {
+    var timeLong = document.getElementById("timeLong").value;
+    
+    var Price = document.getElementById("Price").value;
+    if (Price != "") {
+        document.getElementById("Total").value = toThousands( Number(timeLong) * Number(Price.replace(/,/g, '')).toString());
+    }
+}
+function toThousands(num1) {
+  
+    var num = (num1 || 0).toString(), result = '';
+    while (num.length > 3) {
+        result = ',' + num.slice(-3) + result;
+        num = num.slice(0, num.length - 3);
+    }
+    if (num) { result = num + result; }
+    return result;
+}
+    </script>
+</body>
+</html>

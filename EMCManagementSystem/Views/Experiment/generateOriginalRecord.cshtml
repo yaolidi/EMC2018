@@ -1,0 +1,441 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>generateOriginalRecord</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link rel="shortcut icon" href="favicon.ico">
+    <link href="~/Content/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Content/css/font-awesome.css" rel="stylesheet">
+    <link href="~/Content/css/animate.css" rel="stylesheet">
+  
+    <link href="~/Content/style.css" rel="stylesheet" />
+
+</head>
+<body class="gray-bg">
+    <div class="wrapper wrapper-content  animated fadeInRight">
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="ibox">
+                    <div class="ibox-content">
+                        <h3>原始记录</h3>
+                        <p class="small"><i class="fa fa-hand-o-up"></i> 输入你想到的</p>
+                        <div class="input-group">
+                            <input type="text" placeholder="查找原始记录" class="input input-sm form-control">
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-sm btn-success"> <i class="glyphicon glyphicon-search"></i>查找</button>
+                            </span>
+                        </div>
+                        <ul class="sortable-list connectList agile-list">
+                            <li class="warning-element">
+                                文档编号：GB 14023-2011
+                                <br />
+                                文档名称：汽车无线电骚扰特性检验记录
+                                <div class="agile-detail">
+
+                                    <a href="#" class="pull-right btn btn-xs btn-success" data-toggle="modal" data-target="#myModal" onclick="Model(1)">生成</a>
+                                    <i class="fa fa-clock-o"></i> 2015.09.01
+                                </div>
+                            </li>
+                            <li class="success-element">
+                                文档编号：GB 14023-2012
+                                <br />
+                                文档名称：汽车无线电骚扰特性检验记录2
+                                <div class="agile-detail">
+                                    <a href="#" class="pull-right btn btn-xs btn-danger" data-toggle="modal" data-target="#myModal" onclick="Model(2)">维护</a>
+                                    <i class="fa fa-clock-o"></i> 2015.05.12
+                                </div>
+                            </li>
+                            <li class="info-element">
+                                文档编号：GB 14023-2013
+                                <br />
+                                文档名称：汽车无线电骚扰特性检验记录3
+                                <div class="agile-detail">
+                                    <a href="#" class="pull-right btn btn-xs btn-success" data-toggle="modal" data-target="#myModal" onclick="Model(1)">生成</a>
+                                    <i class="fa fa-clock-o"></i> 2015.09.10
+                                </div>
+                            </li>
+                            <li class="danger-element">
+                                文档编号：GB 14023-2014
+                                <br />
+                                文档名称：汽车无线电骚扰特性检验记录4
+                                <div class="agile-detail">
+                                    <a href="#" class="pull-right btn btn-xs btn-success" data-toggle="modal" data-target="#myModal" onclick="Model(1)">生成</a>
+                                    <i class="fa fa-clock-o"></i> 2015.06.10
+                                </div>
+                            </li>
+                            <li class="warning-element">
+                                文档编号：GB 14023-2015
+                                <br />
+                                文档名称：汽车无线电骚扰特性检验记录5
+                                <div class="agile-detail">
+                                    <a href="#" class="pull-right btn btn-xs btn-success" data-toggle="modal" data-target="#myModal" onclick="Model(1)">生成</a>
+                                    <i class="fa fa-clock-o"></i> 2015.09.09
+                                </div>
+                            </li>
+                            <li class="warning-element">
+                                文档编号：GB 14023-2016
+                                <br />
+                                文档名称：汽车无线电骚扰特性检验记录6
+                                <div class="agile-detail">
+                                    <a href="#" class="pull-right btn btn-xs btn-success" data-toggle="modal" data-target="#myModal" onclick="Model(1)">生成</a>
+                                    <i class="fa fa-clock-o"></i> 2015.08.04
+                                </div>
+                            </li>
+                            <li class="success-element">
+                                文档编号：GB 14023-2017
+                                <br />
+                                文档名称：汽车无线电骚扰特性检验记录7
+                                <div class="agile-detail">
+                                    <a href="#" class="pull-right btn btn-xs btn-success" data-toggle="modal" data-target="#myModal" onclick="Model(1)">生成</a>
+                                    <i class="fa fa-clock-o"></i> 2015.05.12
+                                </div>
+                            </li>
+                            <li class="info-element">
+                                文档编号：GB 14023-2018
+                                <br />
+                                文档名称：汽车无线电骚扰特性检验记录8
+                                <div class="agile-detail">
+                                    <a href="#" class="pull-right btn btn-xs btn-success" data-toggle="modal" data-target="#myModal" onclick="Model(1)">生成</a>
+                                    <i class="fa fa-clock-o"></i> 2015.09.10
+                                </div>
+                            </li>
+                        </ul>
+                        
+                    </div>
+                </div>
+            </div>
+            <form class="form-horizontal m-t" id="commentForm" novalidate="novalidate">
+                <div class="col-sm-8">
+                    <div class="ibox float-e-margins" style="height: 900px">
+                        <div class="ibox-title">
+                            <h5>已填写原始记录列表</h5>
+
+                        </div>
+                        <div class="ibox-content">
+
+                            <div class="col-sm-6">
+                                <div class="ibox">
+                                    <div class="ibox-title">
+                                        <span class="label label-primary pull-right">NEW</span>
+                                        <h5>编写人:张杰</h5>
+                                    </div>
+                                    <div class="ibox-content">
+
+
+                                        <div class="form-group">
+                                            <label class="col-sm-4 control-label">文档编号：</label>
+                                            <div class="col-sm-8">
+                                                <input id="cname" name="name" minlength="2" type="text" class="form-control" required="" aria-required="true" disabled="disabled" value="GB 14023-2011">
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-group">
+                                            <label class="col-sm-4 control-label">文档名称：</label>
+                                            <div class="col-sm-8">
+                                                <input id="cemail" type="text" class="form-control" name="email" required="" aria-required="true" disabled="disabled" value="汽车无线电骚扰特性检验记录">
+                                            </div>
+                                        </div>
+
+
+
+                                        <p>
+                                            <a style="width:31%" class="btn btn-success btn-rounded">查看</a>
+                                            <a style="width:31%" class="btn btn-info btn-rounded">下载</a>
+                                            <a style="width:31%" class="btn btn-danger btn-rounded">删除</a>
+                                        </p>
+                                        <div class="agile-detail">
+
+                                            创建时间：<i class="fa fa-clock-o"></i> 2015.09.01
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-sm-6">
+
+                                <div class="ibox">
+                                    <div class="ibox-title">
+
+                                        <h5>编写人:林琳</h5>
+                                    </div>
+                                    <div class="ibox-content">
+
+                                        <div class="form-group">
+                                            <label class="col-sm-4 control-label">文档编号：</label>
+                                            <div class="col-sm-8">
+                                                <input id="lastname" name="lastname" class="form-control" type="text" aria-required="true" aria-invalid="false" disabled="disabled" value="GB 14023-2012">
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="form-group">
+                                            <label class="col-sm-4 control-label">文档名称：</label>
+                                            <div class="col-sm-8">
+                                                <input id="lastname" name="lastname" class="form-control" type="text" aria-required="true" aria-invalid="false" disabled="disabled" value="汽车无线电骚扰特性检验记录2">
+                                            </div>
+                                        </div>
+
+
+                                        <p>
+                                            <a style="width:31%" class="btn btn-success btn-rounded">查看</a>
+                                            <a style="width:31%" class="btn btn-info btn-rounded">下载</a>
+                                            <a style="width:31%" class="btn btn-danger btn-rounded">删除</a>
+                                        </p>
+                                        <div class="agile-detail">
+
+                                            创建时间：<i class="fa fa-clock-o"></i> 2015.09.01
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-sm-6">
+
+                                <div class="ibox">
+                                    <div class="ibox-title">
+
+                                        <h5>编写人:钟晓</h5>
+                                    </div>
+                                    <div class="ibox-content">
+
+                                        <div class="form-group">
+                                            <label class="col-sm-4 control-label">文档编号：</label>
+                                            <div class="col-sm-8">
+                                                <input id="lastname" name="lastname" class="form-control" type="text" aria-required="true" aria-invalid="false" disabled="disabled" value="GB 14023-2013">
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="form-group">
+                                            <label class="col-sm-4 control-label">文档名称：</label>
+                                            <div class="col-sm-8">
+                                                <input id="lastname" name="lastname" class="form-control" type="text" aria-required="true" aria-invalid="false" disabled="disabled" value="汽车无线电骚扰特性检验记录3">
+                                            </div>
+                                        </div>
+
+
+                                        <p>
+                                            <a style="width:31%" class="btn btn-success btn-rounded">查看</a>
+                                            <a style="width:31%" class="btn btn-info btn-rounded">下载</a>
+                                            <a style="width:31%" class="btn btn-danger btn-rounded">删除</a>
+                                        </p>
+                                        <div class="agile-detail">
+
+                                            创建时间：<i class="fa fa-clock-o"></i> 2015.09.01
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="ibox">
+                                    <div class="ibox-title">
+
+                                        <h5>编写人:李斯</h5>
+                                    </div>
+                                    <div class="ibox-content">
+
+                                        <div class="form-group">
+                                            <label class="col-sm-4 control-label">文档编号：</label>
+                                            <div class="col-sm-8">
+                                                <input id="lastname" name="lastname" class="form-control" type="text" aria-required="true" aria-invalid="false" disabled="disabled" value="GB 14023-2014">
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="form-group">
+                                            <label class="col-sm-4 control-label">文档名称：</label>
+                                            <div class="col-sm-8">
+                                                <input id="lastname" name="lastname" class="form-control" type="text" aria-required="true" aria-invalid="false" disabled="disabled" value="汽车无线电骚扰特性检验记录4">
+                                            </div>
+                                        </div>
+
+
+                                        <p>
+                                            <a style="width:31%" class="btn btn-success btn-rounded">查看</a>
+                                            <a style="width:31%" class="btn btn-info btn-rounded">下载</a>
+                                            <a style="width:31%" class="btn btn-danger btn-rounded">删除</a>
+                                        </p>
+                                        <div class="agile-detail">
+
+                                            创建时间：<i class="fa fa-clock-o"></i> 2015.09.01
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-sm-6">
+
+                                <div class="ibox">
+                                    <div class="ibox-title">
+
+                                        <h5>编写人:孙泉</h5>
+                                    </div>
+                                    <div class="ibox-content">
+
+                                        <div class="form-group">
+                                            <label class="col-sm-4 control-label">文档编号：</label>
+                                            <div class="col-sm-8">
+                                                <input id="lastname" name="lastname" class="form-control" type="text" aria-required="true" aria-invalid="false" disabled="disabled" value="GB 14023-2015">
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="form-group">
+                                            <label class="col-sm-4 control-label">文档名称：</label>
+                                            <div class="col-sm-8">
+                                                <input id="lastname" name="lastname" class="form-control" type="text" aria-required="true" aria-invalid="false" disabled="disabled" value="汽车无线电骚扰特性检验记录5">
+                                            </div>
+                                        </div>
+
+
+                                        <p>
+                                            <a style="width:31%" class="btn btn-success btn-rounded">查看</a>
+                                            <a style="width:31%" class="btn btn-info btn-rounded">下载</a>
+                                            <a style="width:31%" class="btn btn-danger btn-rounded">删除</a>
+                                        </p>
+                                        <div class="agile-detail">
+
+                                            创建时间：<i class="fa fa-clock-o"></i> 2015.09.01
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-sm-6">
+
+                                <div class="ibox">
+                                    <div class="ibox-title">
+
+                                        <h5>编写人:何晓</h5>
+                                    </div>
+                                    <div class="ibox-content">
+
+                                        <div class="form-group">
+                                            <label class="col-sm-4 control-label">文档编号：</label>
+                                            <div class="col-sm-8">
+                                                <input id="lastname" name="lastname" class="form-control" type="text" aria-required="true" aria-invalid="false" disabled="disabled" value="GB 14023-2016">
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="form-group">
+                                            <label class="col-sm-4 control-label">文档名称：</label>
+                                            <div class="col-sm-8">
+                                                <input id="lastname" name="lastname" class="form-control" type="text" aria-required="true" aria-invalid="false" disabled="disabled" value="汽车无线电骚扰特性检验记录6">
+                                            </div>
+                                        </div>
+
+
+                                        <p>
+                                            <a style="width:31%" class="btn btn-success btn-rounded">查看</a>
+                                            <a style="width:31%" class="btn btn-info btn-rounded">下载</a>
+                                            <a style="width:31%" class="btn btn-danger btn-rounded">删除</a>
+                                        </p>
+                                        <div class="agile-detail">
+
+                                            创建时间：<i class="fa fa-clock-o"></i> 2015.09.01
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </form>
+        </div>
+
+       
+    </div>
+    <div class="modal inmodal" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content animated bounceInRight">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span><span class="sr-only">关闭</span>
+                    </button>
+                    <h4 class="modal-title">原始记录生成</h4>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>NO.</th>
+                                <th>设备编号</th>
+                                <th>设备型号</th>
+                                <th>设备名称</th>
+                                <th>授权签字人</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>NJ.18.91.204-1</td>
+                                <td>FSA-S12014/5X</td>
+                                <td>EMS天线</td>
+                                <td>丁一夫、柳海明、张广玉、马俊杰、张旭、陈磊、邱振宇</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>NJ.18.91.205</td>
+                                <td>AIP-CDM <br />37.5L-4mot EMC</td>
+                                <td>底盘测功机</td>
+                                <td>丁一夫、柳海明、马俊杰、张旭、陈磊、邱振宇、张广玉</td>
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                    <div class="form-group"><label>编写人姓名</label> <input type="text" placeholder="请输入编写人姓名" class="form-control"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-white" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" onclick="save()">保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+ 
+    <!-- 全局js -->
+    <script src="~/Content/js/jquery.min.js"></script>
+    <script src="~/Content/js/bootstrap.min.js"></script>
+    <script src="~/Content/js/jquery-ui-1.10.4.min.js"></script>
+    <!-- 自定义js -->
+    <script src="~/Content/js/content.js"></script>
+    <script>
+        $(document).ready(function () {
+            //$(".sortable-list").sortable({
+            //    connectWith: ".connectList"
+            //}).disableSelection();
+
+        });
+        function save() {
+            alert("保存");
+        }
+        function Model(t) {
+            if (t == 2)
+            {
+                alert("维护中");
+                return;
+            }
+        }
+    </script>
+
+
+</body>
+
+</html>
