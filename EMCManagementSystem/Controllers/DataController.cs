@@ -8,7 +8,7 @@ namespace EMCManagementSystem.Controllers
     
     public class DataController : Controller
     {
-        // Token: 0x060000DA RID: 218 RVA: 0x00003FD5 File Offset: 0x000021D5
+       //数据
         public ActionResult Index()
         {
             return base.View();
