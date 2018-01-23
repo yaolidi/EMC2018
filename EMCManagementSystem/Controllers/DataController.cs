@@ -8,7 +8,7 @@ namespace EMCManagementSystem.Controllers
     
     public class DataController : Controller
     {
-       //数据
+       //数据2
         public ActionResult Index()
         {
             return base.View();
