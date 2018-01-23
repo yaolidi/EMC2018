@@ -417,9 +417,28 @@ namespace EMCManagementSystem.Controllers
             {
                 OriginalRecord entity = (from tbR in this.dbEMCEntities.OriginalRecord
                                          where tbR.OriginalRecordID == OriginalRecordID
-                                         select tbR).ToList<OriginalRecord>().Single<OriginalRecord>();
-                this.dbEMCEntities.OriginalRecord.Remove(entity);
-                this.dbEMCEntities.SaveChanges();
+                                         select tbR).ToList().Single();
+               
+                string name = entity.brand.ToString().Trim();
+                var entity2 = (from tbR in dbEMCEntities.CarQualification
+                                         where tbR.CarName == name
+                              select tbR).ToList().Single();
+                if (entity.ResultID.ToString().Trim() == "合格")
+                {
+                    entity2.qualificationNumber=entity2.qualificationNumber - 1;
+                    double num = Convert.ToDouble(entity2.qualificationNumber -1);
+                    double num2 = Convert.ToDouble(entity2.UnqualifiedTimes);
+                    entity2.Qualification = Math.Round(num / (num + num2) * 100.0, 2);
+                }
+                else {
+                    entity2.UnqualifiedTimes = entity2.UnqualifiedTimes - 1;
+                    double num = Convert.ToDouble(entity2.UnqualifiedTimes - 1);
+                    double num2 = Convert.ToDouble(entity2.qualificationNumber);
+                    entity2.Qualification = Math.Round(num2 / (num + num2) * 100.0, 2);
+                }
+                dbEMCEntities.SaveChanges();
+                dbEMCEntities.OriginalRecord.Remove(entity);
+                dbEMCEntities.SaveChanges();
                 result = base.Json("Yes", JsonRequestBehavior.AllowGet);
             }
             catch
