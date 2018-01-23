@@ -413,40 +413,41 @@ namespace EMCManagementSystem.Controllers
         public ActionResult DelectReport(int OriginalRecordID)
         {
             ActionResult result;
-            try
-            {
-                OriginalRecord entity = (from tbR in this.dbEMCEntities.OriginalRecord
+           
+                var entity = (from tbR in this.dbEMCEntities.OriginalRecord
                                          where tbR.OriginalRecordID == OriginalRecordID
                                          select tbR).ToList().Single();
                
+               
                 string name = entity.brand.ToString().Trim();
-                var entity2 = (from tbR in dbEMCEntities.CarQualification
-                                         where tbR.CarName == name
-                              select tbR).ToList().Single();
-                if (entity.ResultID.ToString().Trim() == "合格")
+            var entity2 = dbEMCEntities.CarQualification.First(c => c.CarName == name);
+
+           
+            if (entity.ResultID.ToString().Trim() == "合格")
                 {
-                    entity2.qualificationNumber=entity2.qualificationNumber - 1;
+                   
                     double num = Convert.ToDouble(entity2.qualificationNumber -1);
                     double num2 = Convert.ToDouble(entity2.UnqualifiedTimes);
-                    entity2.Qualification = Math.Round(num / (num + num2) * 100.0, 2);
-                }
+                entity2.qualificationNumber = entity2.qualificationNumber - 1;
+                entity2.Qualification = Math.Round(num / (num + num2) * 100.0, 2);
+                dbEMCEntities.SaveChanges();
+            }
                 else {
-                    entity2.UnqualifiedTimes = entity2.UnqualifiedTimes - 1;
+                   
                     double num = Convert.ToDouble(entity2.UnqualifiedTimes - 1);
                     double num2 = Convert.ToDouble(entity2.qualificationNumber);
-                    entity2.Qualification = Math.Round(num2 / (num + num2) * 100.0, 2);
-                }
+                entity2.UnqualifiedTimes = entity2.UnqualifiedTimes - 1;
+                entity2.Qualification = Math.Round(num2 / (num + num2) * 100.0, 2);
                 dbEMCEntities.SaveChanges();
+            }
                 dbEMCEntities.OriginalRecord.Remove(entity);
                 dbEMCEntities.SaveChanges();
                 result = base.Json("Yes", JsonRequestBehavior.AllowGet);
-            }
-            catch
-            {
-                result = base.Json("No", JsonRequestBehavior.AllowGet);
-            }
-            return result;
+              return result;
         }
+            
+          
+   
 
         // Token: 0x06000119 RID: 281 RVA: 0x00006C38 File Offset: 0x00004E38
         public ActionResult UpdataReport(OriginalRecord tbOriginalRecord, string RegistrationName, string OriginalRecordName)
