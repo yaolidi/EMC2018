@@ -1133,45 +1133,45 @@
                     document.getElementById(id).innerHTML = data[data.length - 2];
                     data.pop();
                     data.pop();
-                    Highcharts.chart('container', {
-                        chart: {
-                            zoomType: 'x'
-                        },
+                //    Highcharts.chart('container', {
+                //        chart: {
+                //            zoomType: 'x'
+                //        },
                       
-                        boost: {
-                            useGPUTranslations: true
-                        },
-                        //title: {
-                        //    text: 'Highcharts drawing ' + n + ' points'
-                        //},
-                        subtitle: {
-                            text: 'Using the Boost module'
-                        },
-                        tooltip: {
-                            crosshairs: true,
-                            shared: true,
-                            valueDecimals: 2
-                        },
-                        series: [{
-                            data: data,
-                            lineWidth: 0.6
-                        },
-                {
-                    data: [[75, 53], [400, 63]]
-                    , lineWidth: 0.6
-                },
-                {
+                //        boost: {
+                //            useGPUTranslations: true
+                //        },
+                //        //title: {
+                //        //    text: 'Highcharts drawing ' + n + ' points'
+                //        //},
+                //        subtitle: {
+                //            text: 'Using the Boost module'
+                //        },
+                //        tooltip: {
+                //            crosshairs: true,
+                //            shared: true,
+                //            valueDecimals: 2
+                //        },
+                //        series: [{
+                //            data: data,
+                //            lineWidth: 0.6
+                //        },
+                //{
+                //    data: [[75, 53], [400, 63]]
+                //    , lineWidth: 0.6
+                //},
+                //{
 
-                    data: [
-                        [30, 53],
-                        [75, 53],
-                        [400, 63],
-                        [1000, 63],
+                //    data: [
+                //        [30, 53],
+                //        [75, 53],
+                //        [400, 63],
+                //        [1000, 63],
 
-                    ], lineWidth: 0.6
-                }]
-                    });
-                    document.getElementById("hide_sample2").click();
+                //    ], lineWidth: 0.6
+                //}]
+                //    });
+                //    document.getElementById("hide_sample2").click();
                 },
 
                 //上传失败后回调
@@ -1241,40 +1241,40 @@
                         document.getElementById(id).innerHTML = data[data.length - 2];
                         data.pop();
                         data.pop();
-                        Highcharts.chart('container', {
-                            chart: {
-                                zoomType: 'x'
-                            },
-                            boost: {
-                                useGPUTranslations: true
-                            },
-                            //title: {
-                            //    text: 'Highcharts drawing ' + n + ' points'
-                            //},
-                            subtitle: {
-                                text: 'Using the Boost module'
-                            },
-                            tooltip: {
-                                crosshairs: true,
-                                shared: true,
-                                valueDecimals: 2
-                            },
-                            series: [{
-                                data: data,
-                                lineWidth: 0.6
-                            },
-                            {
+                        //Highcharts.chart('container', {
+                        //    chart: {
+                        //        zoomType: 'x'
+                        //    },
+                        //    boost: {
+                        //        useGPUTranslations: true
+                        //    },
+                        //    //title: {
+                        //    //    text: 'Highcharts drawing ' + n + ' points'
+                        //    //},
+                        //    subtitle: {
+                        //        text: 'Using the Boost module'
+                        //    },
+                        //    tooltip: {
+                        //        crosshairs: true,
+                        //        shared: true,
+                        //        valueDecimals: 2
+                        //    },
+                        //    series: [{
+                        //        data: data,
+                        //        lineWidth: 0.6
+                        //    },
+                        //    {
 
-                                data: [
-                                    [30, 28],
-                                    [230, 28],
-                                    [230, 35],
-                                    [1000, 35],
+                        //        data: [
+                        //            [30, 28],
+                        //            [230, 28],
+                        //            [230, 35],
+                        //            [1000, 35],
 
-                                ], lineWidth: 0.6
-                            }]
-                        });
-                        document.getElementById("hide_sample2").click();
+                        //        ], lineWidth: 0.6
+                        //    }]
+                        //});
+                        //document.getElementById("hide_sample2").click();
                 },
 
                 //上传失败后回调
