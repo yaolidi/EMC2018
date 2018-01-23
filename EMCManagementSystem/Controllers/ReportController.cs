@@ -554,7 +554,7 @@ namespace EMCManagementSystem.Controllers
                     ViewBag.error = "上传文件超过4M，不能上传";
                     return View();
                 }
-                string path = AppDomain.CurrentDomain.BaseDirectory + "uploads/excel/";
+                string path = AppDomain.CurrentDomain.BaseDirectory + "file/";
                 savePath = Path.Combine(path, FileName);
                 file.SaveAs(savePath);
             }
