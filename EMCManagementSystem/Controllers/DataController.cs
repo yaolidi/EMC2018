@@ -5,7 +5,7 @@ using EMCManagementSystem.Models;
 
 namespace EMCManagementSystem.Controllers
 {
-    // Token: 0x02000013 RID: 19
+    
     public class DataController : Controller
     {
         // Token: 0x060000DA RID: 218 RVA: 0x00003FD5 File Offset: 0x000021D5
