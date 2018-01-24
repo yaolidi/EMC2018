@@ -59,21 +59,21 @@ function dTree(objName) {
 		closeSameLevel	: false,
 		inOrder					: false
 	}
-	this.icon = {
-		root				: '../img/base.gif',
-		folder			: '../img/folder.gif',
-		folderOpen	: '../img/folderopen.gif',
-		node				: '../img/page.gif',
-		empty				: '../img/empty.gif',
-		line				: '../img/line.gif',
-		join				: '../img/join.gif',
-		joinBottom	: '../img/joinbottom.gif',
-		plus				: '../img/plus.gif',
-		plusBottom	: '../img/plusbottom.gif',
-		minus				: '../img/minus.gif',
-		minusBottom	: '../img/minusbottom.gif',
-		nlPlus			: '../img/nolines_plus.gif',
-		nlMinus			: '../img/nolines_minus.gif'
+	this.icon = {//http://localhost:13802/empty.gif
+		root				: '/base.gif',
+		folder			: '/folder.gif',
+		folderOpen	: '/folderopen.gif',
+		node				: '/page.gif',
+		empty				: '/empty.gif',
+		line				: '/line.gif',
+		join				: '/join.gif',
+		joinBottom	: '/joinbottom.gif',
+		plus				: '/plus.gif',
+		plusBottom	: '/plusbottom.gif',
+		minus				: '/minus.gif',
+		minusBottom	: '/minusbottom.gif',
+		nlPlus			: '/nolines_plus.gif',
+		nlMinus			: '/nolines_minus.gif'
 	};
 	this.obj = objName;
 	this.aNodes = [];
