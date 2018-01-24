@@ -59,21 +59,21 @@ function dTree(objName) {
 		closeSameLevel	: false,
 		inOrder					: false
 	}
-	this.icon = {//http://localhost:13802/empty.gif
-		root				: '/base.gif',
-		folder			: '/folder.gif',
-		folderOpen	: '/folderopen.gif',
-		node				: '/page.gif',
-		empty				: '/empty.gif',
-		line				: '/line.gif',
-		join				: '/join.gif',
-		joinBottom	: '/joinbottom.gif',
-		plus				: '/plus.gif',
-		plusBottom	: '/plusbottom.gif',
-		minus				: '/minus.gif',
-		minusBottom	: '/minusbottom.gif',
-		nlPlus			: '/nolines_plus.gif',
-		nlMinus			: '/nolines_minus.gif'
+	this.icon = {// http://localhost:13802/../images/empty.gif
+	    root: '/control/images/base.gif',
+	    folder: '/control/images/folder.gif',
+	    folderOpen: '/control/images/folderopen.gif',
+	    node: '/control/images/page.gif',
+	    empty: '/control/images/empty.gif',
+	    line: '/control/images/line.gif',
+	    join: '/control/images/join.gif',
+	    joinBottom: '/control/images/joinbottom.gif',
+	    plus: '/control/images/plus.gif',
+	    plusBottom: '/control/images/plusbottom.gif',
+	    minus: '/control/images/empty.gif',
+	    minusBottom: '/control/images/empty.gif',
+	    nlPlus: '/control/images/nolines_plus.gif',
+	    nlMinus: '/control./images/nolines_minus.gif'
 	};
 	this.obj = objName;
 	this.aNodes = [];
