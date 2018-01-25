@@ -21,6 +21,7 @@
 
     @*<link href="~/control/css/foundation.min.css" rel="stylesheet" />*@
     <link href="~/control/css/foundation-datepicker.css" rel="stylesheet" />
+
     <style>
         .fileBox {
             margin: 50px;
@@ -234,11 +235,23 @@
         .highcharts-credits {
             display: none;
         }
+        i {
+        position:relative;
+        top:20px !important
+        }
+
     </style>
 
+    <link href="~/control/css/demo.css" rel="stylesheet" />
 
+    <link href="~/control/css/zTreeStyle.css" rel="stylesheet" />
 
     <script src="~/assets/js/jquery.min.js"></script>
+
+    <script src="~/control/js/fileUpload.js"></script>
+    <script src="~/control/js/jquery.ztree.core.js"></script>
+
+    <script src="~/control/js/jquery.ztree.excheck.js"></script>
     <script src="~/assets/js/bootstrap.min.js"></script>
     <script src="~/easyui/js/bootstrap-select.js"></script>
     <script src="~/easyui/js/bootstrap-select.min.js"></script>
@@ -360,6 +373,37 @@
 
                     <div class="panel panel-default">
                         <div class="panel-heading">
+                            <h3 class="panel-title">任务列表</h3>
+
+                        </div>
+                        <div class="tab-content">
+                            <ul id="treeDemo" style="width:100%" class="ztree"></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <link href="~/control/css/iconfont.css" rel="stylesheet" />
+
+            <link href="~/control/css/fileUpload.css" rel="stylesheet" />
+            <div class="row">
+                <div class="col-sm-12">
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">任务列表</h3>
+
+                        </div>
+                        <div class="tab-content">
+                            <div id="fileUploadContent" class="fileUploadContent"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
                             <h3 class="panel-title">测试结果</h3>
 
                         </div>
@@ -411,13 +455,12 @@
                         <div class="panel-body">
 
 
-
                             <div class="form-group">
                                 <label class="col-sm-1 control-label" for="field-1">LH：</label>
                                 <div class="col-sm-6">
 
 
-                                    <div class="uploader white" style="width:55%">
+                                    <div class="uploader white" style="width:62%">
                                         <input type="text" class="filename" readonly />
                                         <input type="button" name="file" class="button" value="选择excel" />
                                         <input type="file" size="30" name="file" id="fileCSJB" style="width:50%" />
@@ -430,7 +473,7 @@
                                 <div class="col-sm-5">
 
 
-                                    <div class="uploader white" style="width: 65%;">
+                                    <div class="uploader white" style="width: 70%;">
                                         <input type="text" class="filename" readonly />
                                         <input type="button" name="file" class="button" value="选择图片" />
                                         <input type="file" size="30" name="file" id="fileCSJB2" style="width:60%" />
@@ -445,7 +488,7 @@
                                 <div class="col-sm-6">
 
 
-                                    <div class="uploader white" style="width:55%">
+                                    <div class="uploader white" style="width:62%">
                                         <input type="text" class="filename" readonly />
                                         <input type="button" name="file" class="button" value="选择excel" />
                                         <input type="file" size="30" name="file" id="file_LV" style="width:50%" />
@@ -457,7 +500,7 @@
                                 <div class="col-sm-5">
 
 
-                                    <div class="uploader white" style="width:65%">
+                                    <div class="uploader white" style="width:70%">
                                         <input type="text" class="filename" readonly />
                                         <input type="button" name="file" class="button" value="选择图片" />
                                         <input type="file" size="30" name="file" id="file_LV2" style="width:60%" />
@@ -473,7 +516,7 @@
                                 <div class="col-sm-6">
 
 
-                                    <div class="uploader white" style="width:55%">
+                                    <div class="uploader white" style="width:62%">
                                         <input type="text" class="filename" readonly />
                                         <input type="button" name="file" class="button" value="选择excel" />
                                         <input type="file" size="30" name="file" id="file_RH" style="width:50%" />
@@ -485,7 +528,7 @@
                                 <div class="col-sm-5">
 
 
-                                    <div class="uploader white" style="width:65%">
+                                    <div class="uploader white" style="width:70%">
                                         <input type="text" class="filename" readonly />
                                         <input type="button" name="file" class="button" value="选择图片" />
                                         <input type="file" size="30" name="file" id="file_RH2" style="width:60%" />
@@ -501,7 +544,7 @@
                                 <div class="col-sm-6">
 
 
-                                    <div class="uploader white" style="width:55%">
+                                    <div class="uploader white" style="width:62%">
                                         <input type="text" class="filename" readonly />
                                         <input type="button" name="file" class="button" value="选择excel" />
                                         <input type="file" size="30" name="file" id="file_RV" style="width:50%" />
@@ -513,7 +556,7 @@
                                 <div class="col-sm-5">
 
 
-                                    <div class="uploader white" style="width:65%">
+                                    <div class="uploader white" style="width:70%">
                                         <input type="text" class="filename" readonly />
                                         <input type="button" name="file" class="button" value="选择图片" />
                                         <input type="file" size="30" name="file" id="file_RV2" style="width:60%" />
@@ -523,6 +566,9 @@
                                 </div>
 
                             </div>
+
+
+
                         </div>
 
                         <div class="panel-heading">
@@ -535,7 +581,7 @@
                                 <div class="col-sm-6">
 
 
-                                    <div class="uploader white" style="width:55%">
+                                    <div class="uploader white" style="width:62%">
                                         <input type="text" class="filename" readonly />
                                         <input type="button" name="file" class="button" value="选择excel" />
                                         <input type="file" size="30" name="file" id="PK_file_LH" style="width:50%" />
@@ -547,7 +593,7 @@
                                 <div class="col-sm-5">
 
 
-                                    <div class="uploader white" style="width:65%">
+                                    <div class="uploader white" style="width:70%">
                                         <input type="text" class="filename" readonly />
                                         <input type="button" name="file" class="button" value="选择图片" />
                                         <input type="file" size="30" name="file" id="PK_file_LH2" style="width:60%" />
@@ -562,7 +608,7 @@
                                 <div class="col-sm-6">
 
 
-                                    <div class="uploader white" style="width:55%">
+                                    <div class="uploader white" style="width:62%">
                                         <input type="text" class="filename" readonly />
                                         <input type="button" name="file" class="button" value="选择excel" />
                                         <input type="file" size="30" name="file" id="PK_file_LV" style="width:50%" />
@@ -574,7 +620,7 @@
                                 <div class="col-sm-5">
 
 
-                                    <div class="uploader white" style="width:65%">
+                                    <div class="uploader white" style="width:70%">
                                         <input type="text" class="filename" readonly />
                                         <input type="button" name="file" class="button" value="选择图片" />
                                         <input type="file" size="30" name="file" id="PK_file_LV2" style="width:60%" />
@@ -590,7 +636,7 @@
                                 <div class="col-sm-6">
 
 
-                                    <div class="uploader white" style="width:55%">
+                                    <div class="uploader white" style="width:62%">
                                         <input type="text" class="filename" readonly />
                                         <input type="button" name="file" class="button" value="选择excel" />
                                         <input type="file" size="30" name="file" id="PK_file_RH" style="width:50%" />
@@ -602,7 +648,7 @@
                                 <div class="col-sm-5">
 
 
-                                    <div class="uploader white" style="width:65%">
+                                    <div class="uploader white" style="width:70%">
                                         <input type="text" class="filename" readonly />
                                         <input type="button" name="file" class="button" value="选择图片" />
                                         <input type="file" size="30" name="file" id="PK_file_RH2" style="width:60%" />
@@ -617,7 +663,7 @@
                                 <div class="col-sm-6">
 
 
-                                    <div class="uploader white" style="width:55%">
+                                    <div class="uploader white" style="width:62%">
                                         <input type="text" class="filename" readonly />
                                         <input type="button" name="file" class="button" value="选择excel" />
                                         <input type="file" size="30" name="file" id="PK_file_RV" style="width:50%" />
@@ -629,7 +675,7 @@
                                 <div class="col-sm-5">
 
 
-                                    <div class="uploader white" style="width:65%">
+                                    <div class="uploader white" style="width:70%">
                                         <input type="text" class="filename" readonly />
                                         <input type="button" name="file" class="button" value="选择图片" />
                                         <input type="file" size="30" name="file" id="PK_file_RV2" style="width:60%" />
@@ -760,6 +806,78 @@
    
 
     <script type="text/javascript">
+        $("#fileUploadContent").initUpload({
+            "uploadUrl": "#",//上传文件信息地址
+            "progressUrl": "#",//获取进度信息地址，可选，注意需要返回的data格式如下（{bytesRead: 102516060, contentLength: 102516060, items: 1, percent: 100, startTime: 1489223136317, useTime: 2767}）
+            "selfUploadBtId": "selfUploadBt",//自定义文件上传按钮id
+            "isHiddenUploadBt": false,//是否隐藏上传按钮
+            "isHiddenCleanBt": false,//是否隐藏清除按钮
+            "isAutoClean": false,//是否上传完成后自动清除
+            "velocity": 10,//模拟进度上传数据
+            //"rememberUpload":true,//记住文件上传
+            // "showFileItemProgress":false,
+            //"showSummerProgress":false,//总进度条，默认限制
+            //"scheduleStandard":true,//模拟进度的方式，设置为true是按总进度，用于控制上传时间，如果设置为false,按照文件数据的总量,默认为false
+            //"size":350,//文件大小限制，单位kb,默认不限制
+            //"maxFileNumber":3,//文件个数限制，为整数
+            //"filelSavePath":"",//文件上传地址，后台设置的根目录
+            //"beforeUpload":beforeUploadFun,//在上传前执行的函数
+            "onUpload": onUploadFun,//在上传后执行的函数
+            //autoCommit:true,//文件是否自动上传
+            //"fileType":['png','jpg','docx','doc']，//文件类型限制，默认不限制，注意写的是文件后缀
+
+        });
+
+        function beforeUploadFun(opt) {
+            opt.otherData = [{ "name": "你要上传的参数", "value": "你要上传的值" }];
+        }
+        function onUploadFun(opt, data) {
+            alert(data);
+            uploadTools.uploadError(opt);//显示上传错误
+        }
+        function testUpload() {
+            var opt = uploadTools.getOpt("fileUploadContent");
+            uploadEvent.uploadFileEvent(opt);
+        }
+        function tt() {
+            var opt = uploadTools.getOpt("fileUploadContent");
+            uploadTools.uploadError(opt);//显示上传错误
+        }
+
+        var setting = {
+            check: {
+                enable: true
+            },
+            data: {
+                simpleData: {
+                    enable: true
+                }
+            },
+            callback: {
+
+                onCheck: onCheck
+            }
+        };
+        Array.prototype.remove = function (val) {
+            var index = this.indexOf(val);
+            if (index > -1) {
+                this.splice(index, 1);
+            }
+        };
+        function onCheck(e, treeId, treeNode) {
+            if (task_arr.length > 0) {
+                if (task_arr.indexOf(treeNode.id + "," + treeNode.pId) > -1) {
+                    task_arr.remove(treeNode.id + "," + treeNode.pId)
+                } else {
+                    task_arr.push(treeNode.id + "," + treeNode.pId);
+                }
+            } else {
+                task_arr.push(treeNode.id + "," + treeNode.pId + "");
+
+            }
+
+        }
+        var code;
         $('#demo-1').fdatepicker();
         function back() {
             window.history.go(-1);  //返回上一页
@@ -770,7 +888,7 @@
                 document.getElementById("brand").value = data[0].brand;
                 document.getElementById("taskNumber").value = data[0].taskNumber;
                 document.getElementById("ResultID").value = data[0].ResultID;
-                document.getElementById("span_id").innerText = data[0].taskAllName;
+               // document.getElementById("span_id").innerText = data[0].taskAllName;
                 document.getElementById("ModelCarModel").value = data[0].ModelCarModel;
                 document.getElementById("VIN").value = data[0].VIN;
                 document.getElementById("demo-1").value = data[0].time;
@@ -780,10 +898,22 @@
                 
                 document.getElementById("introduce").value = data[0].introduce;
                 document.getElementById("Remarks").value = data[0].Remarks;
+                $.ajax({
 
-              
-                
-                
+                    type: "post",
+
+                    url: "/Report/selectTree_update",
+                    data: { allId: data[0].taskAllName },
+                    cache: false,
+
+                    async: true,
+
+                    success: function (data) {
+                        var zNodes = data
+                        $.fn.zTree.init($("#treeDemo"), setting, zNodes);
+                    }
+                });
+
                 $("input[type=file]").change(function () { $(this).parents(".uploader").find(".filename").val($(this).val()); });
                 $("input[type=file]").each(function () {
                     if ($(this).val() == "") {

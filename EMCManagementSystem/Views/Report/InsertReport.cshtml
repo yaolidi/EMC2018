@@ -15,10 +15,13 @@
     <link rel="stylesheet" href="~/assets/css/xenon-core.css">
     <link rel="stylesheet" href="~/assets/css/xenon-forms.css">
 
-
-    
     @*<link href="~/control/css/foundation.min.css" rel="stylesheet" />*@
     <link href="~/control/css/foundation-datepicker.css" rel="stylesheet" />
+ 
+    
+    <link href="~/control/css/demo.css" rel="stylesheet" />
+
+    <link href="~/control/css/zTreeStyle.css" rel="stylesheet" />
     <style>
         .fileBox {
             margin: 50px;
@@ -235,18 +238,11 @@
   
 
     <script src="~/assets/js/jquery.min.js"></script>
-   
-    <script src="~/assets/js/bootstrap.min.js"></script>
-    <script src="~/easyui/js/bootstrap-select.js"></script>
-    <script src="~/easyui/js/bootstrap-select.min.js"></script>
+    <script src="~/control/js/jquery.ztree.core.js"></script>
+
+    <script src="~/control/js/jquery.ztree.excheck.js"></script>
 
 
-    <script src="~/control/js/foundation-datepicker.js"></script>>		
-    <script src="~/control/js/foundation-datepicker.zh-CN.js"></script>
-    <script src="~/Highcharts/js/highcharts.js"></script>
-
-    <script src="~/Highcharts/js/exporting.js"></script>
-    <script src="~/Highcharts/js/highcharts-zh_CN.js"></script>
 </head>
 <body class="page-body">
 
@@ -296,11 +292,11 @@
                                             <div class="col-sm-4">
                                                 <input type="text" id="taskNumber" class="form-control">
                                             </div>
-                                            <label for="id_select" class="col-sm-2 control-label">测试任务:</label>
+                                            @*<label for="fid_select" class="col-sm-2 control-label">测试任务:</label>
                                             <div class="col-sm-4">
-                                                @*<input type="tel" name="phone" id="area_btn_y2" onClick="show_lay(2)" lay-verify="phone" autocomplete="off" class="form-control">
-                                                <div class="fade_layer"></div>*@
-                                                <select id="id_select" class="selectpicker  form-control" multiple data-live-search="true">
+                                                <input type="tel" name="phone" id="area_btn_y2" onClick="show_lay()" lay-verify="phone" autocomplete="off" class="form-control">
+                                                <div class="fade_layer"></div>
+                                                @*<select id="id_select" class="selectpicker  form-control" multiple data-live-search="true">
                                                     <option>整车辐射发射测试</option>
                                                     <option>保护车载接收机测试</option>
                                                     <option>整车大电流注入抗干扰</option>
@@ -319,7 +315,7 @@
                                                     <option>整车低频磁场抗扰</option>
                                                     <option>车内低频电磁场发射（人体防护测试）</option>
                                                 </select>
-                                            </div>
+                                            </div>*@
 
                                         </div>
                                         <div class="form-group">
@@ -352,6 +348,21 @@
                     </div>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-sm-12">
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">任务列表</h3>
+                           
+                        </div>
+                        <div class="tab-content">
+                            <ul id="treeDemo" style="width:100%" class="ztree"></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="row">
                 <div class="col-sm-12">
 
@@ -651,8 +662,6 @@
 
             </div>
 
-
-
             <div class="row">
                 <div class="col-sm-12">
 
@@ -765,265 +774,77 @@
                     <h4 class="modal-title">选择任务</h4>
                 </div>
 
-                <div class="modal-body detail_layer">
-                    <div class="select_peo_con">
-                        <div class="left">
-                            <div class="areas_list">
-                                <ul class="yiji">
-                                    <li class="areas_list_one">
-                                        <a>委领导</a>
-                                        <dl>
-                                            <dd>
-                                                <a>领导二级</a>
-                                                <dl>
-                                                    <dd><a>领导三级</a></dd>
-                                                    <ul class="areas_list_two">
-                                                        <li><span id="99">张三3</span></li>
-                                                        <li><span id="100">梁四3</span></li>
-                                                        <li><span id="101">王王3</span></li>
-                                                        <li><span id="102">董73</span></li>
-                                                        <li><span id="103">陈四3</span></li>
-                                                        <li><span id="104">杨过3</span></li>
-                                                    </ul>
-                                                    <dd>
-                                                        <a>领导三级2</a>
-                                                      
-                                                    </dd>
-
-                                                </dl>
-                                            </dd>
-                                     
-                                            <dd><a>委领导二级3</a></dd>
-                                            <ul class="areas_list_two">
-                                                <li><span id="637">隋志</span></li>
-                                                <li><span id="730">杨过</span></li>
-                                                <li><span id="731">王泽涛</span></li>
-                                                <li><span id="103">陈广</span></li>
-                                                <li><span id="104">杨勇</span></li>
-                                                <li><span id="637">隋文</span></li>
-                                                <li><span id="730">杨治国</span></li>
-                                                <li><span id="731">王民</span></li>
-                                            </ul>
-                                        </dl>
-                                    </li>
-                                    <li class="areas_list_one"><a>本地领导</a></li>
-                                    <ul class="areas_list_two">
-                                        <li><span id="105">武华</span></li>
-                                        <li><span id="106">李文</span></li>
-                                        <li><span id="107">田俊</span></li>
-                                        <li><span id="108">陈菲</span></li>
-                                    </ul>
-                                    <li class="areas_list_one"><a>北京领导</a></li>
-                                    <ul class="areas_list_two">
-                                        <li><span id="109">田军</span></li>
-                                        <li><span id="110">侯涛</span></li>
-                                        <li><span id="111">李国</span></li>
-                                        <li><span id="112">王诺</span></li>
-                                        <li><span id="113">孙婷</span></li>
-                                        <li><span id="114">李安健</span></li>
-                                        <li><span id="115">王卢欣</span></li>
-                                        <li><span id="116">李曹静</span></li>
-                                        <li><span id="117">张吴剑</span></li>
-                                        <li><span id="118">陈佟庆</span></li>
-                                        <li><span id="119">李唐琪</span></li>
-                                    </ul>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="center">
-
-                            <a id="list_add"><img src="~/control/images/addicon.jpg" /></a>
-                        </div>
-                        <div class="right">
-                            <ul class="send_to"></ul>
-                        </div>
-                        <div class="clear"></div>
-                        
-                    </div>
+                <div class="modal-body">
+                   
                 </div>
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-white" data-dismiss="modal">关闭</button>
-                    <button type="button" class="btn btn-info" onClick="do_add(this)" data-dismiss="modal">确定</button>
+                    <button type="button" class="btn btn-info"  data-dismiss="modal">确定</button>
                 </div>
             </div>
         </div>
     </div>
-  
+    <script src="~/assets/js/bootstrap.min.js"></script>
+    <script src="~/easyui/js/bootstrap-select.js"></script>
+    <script src="~/easyui/js/bootstrap-select.min.js"></script>
+
+
+    <script src="~/control/js/foundation-datepicker.js"></script>>
+    <script src="~/control/js/foundation-datepicker.zh-CN.js"></script>
+
+    <script src="~/Highcharts/js/highcharts.js"></script>
+    <script src="~/Highcharts/js/exporting.js"></script>
+    <script src="~/Highcharts/js/highcharts-zh_CN.js"></script>
+    
     <script type="text/javascript">
-        ///
-        //点击下拉人员效果
-        $('.detail_layer').find('.left .areas_list .areas_list_one > a').click(function () {
-            if ($(this).parent().hasClass('on')) {
-                $(this).parent().removeClass('on');
-                $(this).parent().next('.areas_list_two').css('height', '0');
-                //隐藏下一级目录
-                $(this).siblings('dl').hide();
-
-                //初始化
-                $(this).siblings('dl').find('dl').hide();
-                $(this).siblings('dl').find('a').removeClass('on');
-                //console.log($(this).siblings('dl').find('ul.areas_list_two').length);
-                $(this).siblings('dl').find('ul.areas_list_two').css('height', '0');
-            } else {
-                //解绑子级分类点击事件
-                $(this).siblings('dl').children('dd').children('a').unbind('click');
-
-                $(this).parent().addClass('on');
-                //如果下面还有下一级
-                if ($(this).siblings('dl').length > 0) {
-                    //显示子类
-                    $(this).siblings('dl').show();
-                    //子级分类点击事件
-                    $(this).siblings('dl').children('dd').children('a').click(function () {
-                        //解绑子级分类点击事件
-                        $(this).siblings('dl').children('dd').children('a').unbind('click');
-                        //切换隐藏
-                        if ($(this).hasClass('on')) {
-                            $(this).removeClass('on');
-                            $(this).parent().next('.areas_list_two').css('height', '0');
-                            //隐藏下一级目录
-                            $(this).siblings('dl').hide();
-                        } else {
-
-                            $(this).addClass('on');
-                            $(this).parent().next('.areas_list_two').css('height', 'auto');
-                            //如果还有下一级
-                            if ($(this).siblings('dl').length > 0) {
-                                $(this).siblings('dl').show().css('padding-left', '30px');
-                                $(this).siblings('dl').children('dd').children('a').click(function () {
-                                    //解绑子级分类点击事件
-                                    $(this).siblings('dl').children('dd').children('a').unbind('click');
-                                    if ($(this).hasClass('on')) {
-                                        $(this).removeClass('on');
-                                        $(this).parent().next('.areas_list_two').css('height', '0');
-                                        //隐藏下一级目录
-                                        $(this).siblings('dl').hide();
-                                    } else {
-                                        $(this).addClass('on');
-                                        $(this).parent().next('.areas_list_two').css('height', 'auto');
-                                        //如果还有下一级
-                                        if ($(this).siblings('dl').length > 0) {
-                                            $(this).siblings('dl').show().css('padding-left', '30px');
-                                            $(this).siblings('dl').children('dd').children('a').click(function () {
-                                                console.log(1233);
-                                                if ($(this).hasClass('on')) {
-                                                    $(this).removeClass('on');
-                                                    $(this).parent().next('.areas_list_two').css('height', '0');
-                                                    //隐藏下一级目录
-                                                    $(this).siblings('dl').hide();
-                                                } else {
-                                                    $(this).addClass('on');
-                                                    $(this).parent().next('.areas_list_two').css('height', 'auto');
-                                                }
-                                            });
-                                        } else {
-                                            //console.log($(this).parent().next('.areas_list_two').html());
-
-                                            $(this).parent().next('.areas_list_two').css('height', 'auto');
-                                        }
-                                    }
-                                });
-                            } else {
-                                //console.log($(this).parent().next('.areas_list_two').html());
-
-                                $(this).parent().next('.areas_list_two').css('height', 'auto');
-                            }
-                        }
-
-
-
-                    });
-                } else {
-                    $(this).parent().next('.areas_list_two').css('height', 'auto');
-                }
-
+        var task_str = "";
+        var task_arr = [];
+        var task_arr2 = [];
+    var setting = {
+        check: {
+            enable: true
+        },
+        data: {
+            simpleData: {
+                enable: true
             }
-
-        });
-        //显示弹窗效果
-        function show_lay(id) {
-             alert(id);
-            $('.detail_layer').show();
-            $('.detail_layer').attr('id', 'y' + id);
-            $('.fade_layer').fadeIn();
-            document.getElementById("hide_sample3").click();
-            
-
+        },
+        callback: {
+           
+            onCheck: onCheck
         }
-        //插入元素
-        $('.detail_layer').find('.areas_list_two li').click(function () {
-            //对勾切换效果
-            if (!$(this).find('span').hasClass('hover')) {
-                $(this).find('span').addClass('hover');
+    };
+    Array.prototype.remove = function (val) {
+        var index = this.indexOf(val);
+        if (index > -1) {
+            this.splice(index, 1);
+        }
+    };
+    function onCheck(e, treeId, treeNode) {
+        if (task_arr.length > 0) {
+            if (task_arr.indexOf(treeNode.id + "," + treeNode.pId) > -1) {
+                task_arr.remove(treeNode.id + "," + treeNode.pId)
             } else {
-                $(this).find('span').removeClass('hover');
+                task_arr.push(treeNode.id + "," + treeNode.pId);
             }
-            //获取选中元素html
-            var val_prev = $(this).find('span').attr('id');
-            $message_peo = $(this).html();
+        } else {
+            task_arr.push(treeNode.id + "," + treeNode.pId + "");
+         
+        }
 
-            //获取添加后的数组
-            var attrid = $(this).parents('.select_peo_con').find('.right ul.send_to li').map(function () {
-                return $(this).find('span').attr('id');
-            });
-            //判断数字是否存在数组里
-            if (jQuery.inArray(val_prev, attrid) == -1) {
-                $(this).parents('.select_peo_con').find('.right ul.send_to').append("<li>" + $message_peo + "</li>");
-            } else {
-                // alert('已存在列表中');
-                while ($(this).parents('.select_peo_con').find('.right ul.send_to').find("#" + val_prev).length > 0) {
-                    $(this).parents('.select_peo_con').find('.right ul.send_to').find("#" + val_prev).parent().remove();
-                }
-            }
-
-        });
-
-        //选择人员插入当前点击的input里面
-        function do_add(elm) {
-            var id = $(elm).parents('div.detail_layer').attr('id');
-            var temp = '';
-            var nruid = '';
-            var temp1 = '';
-            var eid = '';
-            $(elm).parents('#' + id).find('ul.send_to li').each(function (i, e) {
-                text = $(e).find('span');
-                for (var i = 0; i < text.length; i++) {
-                    var val = $(text[i]).html();
-                    if (val != '') {
-                        temp += val + ',';
-                    }
-                    var id = $(text[i]).attr('id');
-                    if (id != '') {
-                        nruid += id + ',';
-                    }
-                };
-            });
-
-            var temps = temp.substring(0, temp.length - 1);
-            $('#area_btn_' + id).val(temps);
-            $('#nruid_' + id).val(nruid);
-            $('#eid').val(eid);
-            $(elm).parents('.detail_layer').fadeOut();
-            //清空选择人员
-            $('.detail_layer .right ul li').remove();
-            $(elm).parents('.select_peo_con').find('ul.areas_list_two').css('height', '0');
-            $(elm).parents('.select_peo_con').find('.areas_list_one').removeClass('on');
-            $(elm).parents('.select_peo_con').find('.areas_list_two li span').removeClass('hover');
-            $('.fade_layer').fadeOut();
-        };
-        //取消按钮关闭事件
-        $('a.close_btn').click(function () {
-            $(this).parents('.detail_layer').fadeOut();
-            //清空选择人员
-            $('.detail_layer .right ul li').remove();
-            $(this).parents('.select_peo_con').find('ul.areas_list_two').css('height', '0');
-            $(this).parents('.select_peo_con').find('.areas_list_one').removeClass('on');
-            $(this).parents('.select_peo_con').find('.areas_list_two li span').removeClass('hover');
-            $('.fade_layer').fadeOut();
-        });
-        ///
-        $('#demo-1').fdatepicker();
+    }
+        var code;
+		
+       
+        function showCode(str) {
+            if (!code) code = $("#code");
+            code.empty();
+            code.append("<li>"+str+"</li>");
+        }
+        function show_lay() {
+            document.getElementById("hide_sample3").click();
+        }
         //清空所有的Cookie
         function clearCookie() {
             var keys = document.cookie.match(/[^ =;]+(?=\=)/g);
@@ -1339,6 +1160,23 @@
             window.history.go(-1);  //返回上一页
         }
         $(document).ready(function () {
+            $.ajax({
+
+                type: "post",
+
+                url: "/Report/selectTree",
+
+                cache: false,
+
+                async: true,
+
+                success: function (data) {
+                    var zNodes =data
+                    $.fn.zTree.init($("#treeDemo"), setting, zNodes);
+                }
+            });
+
+            $('#demo-1').fdatepicker();
             clearCookie();//清空所有的Cookie
             $("input[type=file]").change(function () { $(this).parents(".uploader").find(".filename").val($(this).val()); });
             $("input[type=file]").each(function () {
@@ -1349,23 +1187,38 @@
             $('.selectpicker').selectpicker({
                 'selectedText': 'cat'
             });
-
-
 })
 function save() {
 
     var brand = document.getElementById("brand").value;
     var taskNumber = document.getElementById("taskNumber").value;
-   // var configure = document.getElementById("configure").value;
-    var taskAllName = document.getElementById("id_select");//.value
+    // var configure = document.getElementById("configure").value;
+    var taskAllid = "";
+    for (var i = 0; i < task_arr.length; i++)
+    {
+        if (task_arr2.length > 0) {
+          
+            var arr_str = task_arr[i].split(",");
+            if(task_arr2.indexOf(arr_str[1])>-1)
+            {
+                taskAllid += arr_str[0] + ",";
+            } else {
+                taskAllid += arr_str[0] + "," + arr_str[1] + ",";
+            }
+        } else {
+         
+            var arr_str = task_arr[i].split(",");
+            task_arr2.push(arr_str[1]);
+            taskAllid += arr_str[0] + "," + arr_str[1]+",";
+        }
+      
+    }
+    
+   // var taskAllName = document.getElementById("id_select");//.value
     var time_date = document.getElementById("demo-1").value;
 
-    var taskAllNameall = "";
-    for (var k = 0; k < taskAllName.selectedOptions.length; k++)
-    {
-        taskAllNameall += taskAllName.selectedOptions[k].value+"、"
-    }
-    if (taskAllNameall == "") {
+ 
+    if (taskAllid == "") {
         alert("测试任务不能为空");
         return;
     }
@@ -1410,7 +1263,7 @@ function save() {
 
         async: true,
 
-        data: { brand: brand, taskNumber:taskNumber, taskAllName: taskAllNameall, ModelCarModel: ModelCarModel, VIN: VIN, ResultID: ResultID, RegistrationName: RegistrationName, OriginalRecordName: OriginalRecordName, introduce: introduce, Remarks: Remarks, time: time_date },
+        data: { brand: brand, taskNumber: taskNumber, taskAllName: taskAllid, ModelCarModel: ModelCarModel, VIN: VIN, ResultID: ResultID, RegistrationName: RegistrationName, OriginalRecordName: OriginalRecordName, introduce: introduce, Remarks: Remarks, time: time_date },
 
         success: function (data) {
             alert(data);
