@@ -140,7 +140,7 @@
 
                                             <div class="col-sm-4 ">
                                                 <div class="iDate date ">
-                                                    <input type="text" class="form-control">
+                                                    <input id="inputExamTime" type="text" class="form-control">
                                                     <button type="button" class="addOn "></button>
                                                 </div>
                                                 @*<input type="text" class="form-control"  >*@
@@ -148,23 +148,23 @@
 
                                             <label class="col-sm-2 control-label">文档编号:</label>
                                             <div class="col-sm-4">
-                                                <input type="text" class="form-control">
+                                                <input id="inputDocNumber" type="text" class="form-control">
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">文档名称:</label>
                                             <div class="col-sm-4">
-                                                <input type="text" class="form-control">
+                                                <input id="inputDocName" type="text" class="form-control">
                                             </div>
                                             <label class="col-sm-2 control-label">依据标准:</label>
                                             <div class="col-sm-4">
-                                                <input type="text" class="form-control">
+                                                <input id="inputStandard" type="text" class="form-control" onblur="validateStandard()">
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">状态:</label>
                                             <div class="col-sm-4">
-                                                <input type="text" class="form-control" disabled="disabled" value="现行">
+                                                <input id="inputState" type="text" class="form-control" disabled="disabled" value="现行">
                                             </div>
 
                                         </div>
@@ -217,11 +217,11 @@
 
                             <div class="form-group">
                                 <label class="control-label" for="about">模板简介</label>
-                                <textarea class="form-control autogrow" name="about" id="about" data-validate="minlength[10]" rows="5" placeholder="请输入模板简介信息" style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 104px;"></textarea>
+                                <textarea id="inputIntroduction" class="form-control autogrow" name="about" data-validate="minlength[10]" rows="5" placeholder="请输入模板简介信息" style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 104px;"></textarea>
                             </div>
                             <div class="form-group">
-                                <label class="control-label" for="about">备注</label>
-                                <textarea class="form-control autogrow" name="about" id="about" data-validate="minlength[10]" rows="5" placeholder="请输入备注信息" style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 104px;"></textarea>
+                                <label class="control-label" for="about2">备注</label>
+                                <textarea id="inputLastThing" class="form-control autogrow" name="about2" data-validate="minlength[10]" rows="5" placeholder="请输入备注信息" style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 104px;"></textarea>
                             </div>
                             <button class="btn btn-sm btn-info" style="float:right" onclick="save()">
 
@@ -310,6 +310,8 @@
 
             var flieList = [];								//数据，为一个复合数组
             var sizeObj = [];								//存放每个文件大小的数组，用来比较去重
+
+            var flagValidate = false;                       //用于判断输入是否全部合法
 
 
             //拖拽外部文件，进入目标元素触发
@@ -546,10 +548,43 @@
             return nameArr[nameArr.length - 1].toLowerCase();
         }
 
-function save() {
-    alert("这只是个演示！(｡◕ฺˇε ˇ◕ฺ｡）")
-    window.history.back(-1);
-}
+        
+        //验证输入框依据标准是否符合要求
+        function validateStandard() {
+            //+validate
+            //var reg = /^(\(\d{3,4}\)|\d{3,4}-|\s)?\d{7,14}$/;
+            //var result = reg.test(inputStandard.value);
+
+            $.getJSON("/System/validateStandardExists", {}, function (data) {
+                if (data != "NotExist") {
+                    alert("该标准已申请报告模板");
+
+                    //+window
+                }
+            });
+        }
+
+        //保存编辑器内容
+        function save() {
+            var ExamTime = inputExamTime.value;
+            var DocNumber = inputDocNumber.value;
+            var DocName = inputDocName.value;
+            var BaseOnStandard = inputStandard.value;
+            var State = inputState.value;
+            var ModuleIntroduction = inputIntroduction.value;
+            var LastThing = inputLastThing.value;
+
+            //+flagValidate
+            $.getJSON("/System/addReport", { ExamTime: ExamTime, DocNumber: DocNumber, DocName: DocName, BaseOnStandard: BaseOnStandard, State: State, ModuleIntroduction: ModuleIntroduction, LastThing: LastThing }, function (data) {
+                if (data == "success") {
+                    alert("添加报告完成");
+                    window.history.back(-1);
+                }
+                else {
+                    alert("服务器繁忙，请稍后重试。");
+                }
+            });
+        }
 
 
     </script>
