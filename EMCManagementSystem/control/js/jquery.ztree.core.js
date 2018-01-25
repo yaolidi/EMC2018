@@ -1,5 +1,5 @@
 /*
- * JQuery zTree core v3.5.29
+ * JQuery zTree core v3.5.28
  * http://treejs.cn/
  *
  * Copyright (c) 2010 Hunter.z
@@ -8,7 +8,7 @@
  * http://www.opensource.org/licenses/mit-license.php
  *
  * email: hunter.z@263.net
- * Date: 2017-06-19
+ * Date: 2017-01-20
  */
 (function ($) {
     var settings = {}, roots = {}, caches = {},
@@ -1807,19 +1807,7 @@
                 isSelectedNode: function (node) {
                     return data.isSelectedNode(setting, node);
                 },
-                reAsyncChildNodesPromise: function (parentNode, reloadType, isSilent) {
-                    var promise = new Promise(function(resolve, reject) {
-                        try {
-                            zTreeTools.reAsyncChildNodes(parentNode, reloadType, isSilent, function() {
-                                resolve(parentNode);
-                            });
-                        } catch(e) {
-                            reject(e);
-                        }
-                    });
-                    return promise;
-                },
-                reAsyncChildNodes: function (parentNode, reloadType, isSilent, callback) {
+                reAsyncChildNodes: function (parentNode, reloadType, isSilent) {
                     if (!this.setting.async.enable) return;
                     var isRoot = !parentNode;
                     if (isRoot) {
@@ -1839,7 +1827,7 @@
                             ulObj.empty();
                         }
                     }
-                    view.asyncNode(this.setting, isRoot ? null : parentNode, !!isSilent, callback);
+                    view.asyncNode(this.setting, isRoot ? null : parentNode, !!isSilent);
                 },
                 refresh: function () {
                     this.setting.treeObj.empty();
