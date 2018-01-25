@@ -395,6 +395,7 @@
                         </div>
                         <div class="tab-content">
                             <div id="fileUploadContent" class="fileUploadContent"></div>
+                            <button onclick="testUpload()">函数提交</button>
                         </div>
                     </div>
                 </div>
@@ -807,7 +808,7 @@
 
     <script type="text/javascript">
         $("#fileUploadContent").initUpload({
-            "uploadUrl": "#",//上传文件信息地址
+            "uploadUrl": "/Report/UploadFile",//上传文件信息地址
             "progressUrl": "#",//获取进度信息地址，可选，注意需要返回的data格式如下（{bytesRead: 102516060, contentLength: 102516060, items: 1, percent: 100, startTime: 1489223136317, useTime: 2767}）
             "selfUploadBtId": "selfUploadBt",//自定义文件上传按钮id
             "isHiddenUploadBt": false,//是否隐藏上传按钮
@@ -832,12 +833,72 @@
             opt.otherData = [{ "name": "你要上传的参数", "value": "你要上传的值" }];
         }
         function onUploadFun(opt, data) {
-            alert(data);
+            //alert(data);
             uploadTools.uploadError(opt);//显示上传错误
         }
         function testUpload() {
             var opt = uploadTools.getOpt("fileUploadContent");
-            uploadEvent.uploadFileEvent(opt);
+           
+            for (var j = 0; j < opt.fileList.length; j++)
+            {
+                var formData = new FormData();
+                var b = opt.fileList[j];
+                formData.append("files", b);
+                var arr_j = opt.fileList[j].name.split(".");
+                if (arr_j[1] == "xls" || arr_j[1] == "xlsx") {
+                    var request = $.ajax({
+                        type: "POST",
+                        url: "/Report/StationImport",
+                        data: formData,			//这里上传的数据使用了formData 对象
+                        processData: false, 	//必须false才会自动加上正确的Content-Type
+                        contentType: false,
+                        //这里我们先拿到jQuery产生的XMLHttpRequest对象，为其增加 progress 事件绑定，然后再返回交给ajax使用
+
+                        //上传成功后回调
+                        success: function (data) {
+
+                            // alert("123")
+
+                        },
+
+                        //上传失败后回调
+                        error: function () {
+                            alert("失败")
+
+                        }
+                    });
+                } else if (arr_j[1] == "wmf") {
+                    var request = $.ajax({
+                        type: "POST",
+                        url: "/Report/StationImport2",
+                        data: formData,			//这里上传的数据使用了formData 对象
+                        processData: false, 	//必须false才会自动加上正确的Content-Type
+                        contentType: false,
+                        //这里我们先拿到jQuery产生的XMLHttpRequest对象，为其增加 progress 事件绑定，然后再返回交给ajax使用
+
+                        //上传成功后回调
+                        success: function (data) {
+
+                            // alert("123")
+
+                        },
+
+                        //上传失败后回调
+                        error: function () {
+                            alert("失败")
+
+                        }
+                    });
+                } else {
+                    alert("请选择正确的文件");
+                    return;
+                }
+               
+             
+              
+            }
+        
+          //  uploadEvent.uploadFileEvent(opt);
         }
         function tt() {
             var opt = uploadTools.getOpt("fileUploadContent");
