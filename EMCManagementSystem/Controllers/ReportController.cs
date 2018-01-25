@@ -298,7 +298,7 @@ namespace EMCManagementSystem.Controllers
             string fileName = file.FileName;
             string path = base.Server.MapPath(string.Format("~/{0}", "File"));
             file.SaveAs(Path.Combine(path, fileName));
-            return base.Content("<script>alert('上传成功');history.go(-1);</script>");
+            return Content("<script>alert('上传成功');history.go(-1);</script>");
         }
 
         // Token: 0x06000116 RID: 278 RVA: 0x00005547 File Offset: 0x00003747
