@@ -41,7 +41,7 @@ var uploadTools = {
         //url test测试需要更改
         var initOption={
             "uploadId":uploadId,
-            "uploadUrl":"#",//必须，上传地址
+            "uploadUrl": "/Report/UploadFile",//必须，上传地址
             "progressUrl":"#",//可选，获取进去信息的url
             "scheduleStandard":false,//模拟进度的模式
             "selfUploadBtId":"",//自定义文件上传按钮id
@@ -138,7 +138,7 @@ var uploadTools = {
         var showTypeStr="<div class='fileType'>"+fileType+"</div> <i class='iconfont icon-wenjian'></i>";//默认显示类型
         if(isImg){
             if(isImgUrl!=null&&isImgUrl!="null"&&isImgUrl!=""){//图片显示类型
-                showTypeStr = "<img src='"+isImgUrl+"'/>";
+                showTypeStr = "<img src='/control/img/file-picture-icon.png'/>";//isImgUrl
             }
         }
         var modelStr="";
