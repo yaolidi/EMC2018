@@ -1,4 +1,5 @@
 ﻿
+using EMCManagementSystem.Models;
 using Microsoft.Office.Interop.Word;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ using System.Web.Mvc;
 namespace EMCManagementSystem.Controllers
 {
     public class SystemController : Controller
-    {
+    {        
         /// <summary>
         /// 时间：2017/10/18
         /// 创建人：姚礼迪
@@ -226,5 +227,90 @@ namespace EMCManagementSystem.Controllers
         }
         #endregion
 
+        #region 添加报告
+        /// <summary>  
+        /// 添加报告  
+        /// </summary>  
+        public ActionResult addReport(Report tableReport)
+        {
+            dbEMCEntities.Entry(tableReport).State = System.Data.Entity.EntityState.Added;
+            int i = dbEMCEntities.SaveChanges();
+            if (i > 0)
+            {
+                //+Upload
+                //int reportID = tableReport.ReportID;
+                return Json("success", JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json("error", JsonRequestBehavior.AllowGet);
+            }
+        }
+        #endregion
+
+        #region 验证依据标准是否存在
+        /// <summary>  
+        /// 验证依据标准是否存在  
+        /// </summary>  
+        public ActionResult validateStandardExists(string BaseOnStandard)
+        {
+            var result = from table1 in dbEMCEntities.Report
+                         where table1.BaseOnStandard == BaseOnStandard
+                         select table1;
+
+            if (result.ToList().Count > 0)
+            {
+                return Json(result.ToList(), JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json("NotExist", JsonRequestBehavior.AllowGet);
+            }            
+        }
+        #endregion
+
+        #region 查询所有报告
+        /// <summary>  
+        /// 查询所有报告  
+        /// </summary>  
+        public ActionResult getAllReports()
+        {
+            var result = from table1 in dbEMCEntities.Report
+                         select new
+                         {
+                             Number = 0,
+                             table1.ReportID,
+                             table1.DocNumber,
+                             table1.DocName,
+                             table1.State,
+                             Operation = "无"
+                         };
+
+            return Json(result.ToList(), JsonRequestBehavior.AllowGet);
+        }
+        #endregion
+
+        #region 删除一条报告
+        /// <summary>  
+        /// 删除一条报告  
+        /// </summary>  
+        public ActionResult destroyAReport(int ReportID)
+        {
+            Report report = dbEMCEntities.Report.Find(ReportID);
+            report.State = "作废";
+            dbEMCEntities.Entry(report).State = System.Data.Entity.EntityState.Modified;
+            int i = dbEMCEntities.SaveChanges();
+            if (i > 0)
+            {                                
+                return Json("success", JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json("error", JsonRequestBehavior.AllowGet);
+            }
+        }
+        #endregion
+
+        private EMCEntities dbEMCEntities = new EMCEntities();
     }
 }
