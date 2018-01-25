@@ -753,6 +753,55 @@ namespace EMCManagementSystem.Controllers
             list.Add(text);
             return base.Json(list, JsonRequestBehavior.AllowGet);
         }
-    
-	}
+        public ActionResult selectTree()
+        {
+            var entity = (from tbR in this.dbEMCEntities.taskDetails
+                        
+                          select new {
+                              id=tbR.taskDetailsID,
+                              pId=tbR.taskID,
+                              name=tbR.taskDetailsName.ToString().Trim(),
+                              open=true
+
+                          }).ToList();
+
+            return Json(entity,JsonRequestBehavior.AllowGet);
+        }
+        /// <summary>
+        /// 修改树形
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult selectTree_update(string allId)
+        {
+            var entity = (from tbR in this.dbEMCEntities.taskDetails
+
+                          select new
+                          {
+                              id = tbR.taskDetailsID,
+                              pId = tbR.taskID,
+                              name = tbR.taskDetailsName.ToString().Trim(),
+                              open = true
+                          }).ToList();
+            List<Dictionary<string, object>> list = new List<Dictionary<string, object>>();
+          string [] arr = allId.Split(',');
+            foreach (var one in entity.ToList())
+            {
+                Dictionary<string, object> p = new Dictionary<string, object>();
+                p.Add("id", one.id);
+                p.Add("pId", one.pId);
+                p.Add("name", one.name);
+                p.Add("open", one.open);
+                if (Array.IndexOf(arr, one.id.ToString()) == -1)//不存在
+                {
+
+                }
+                else//存在
+                {
+                    p.Add("checked", true);
+                }
+                list.Add(p);
+            }
+                return Json(list, JsonRequestBehavior.AllowGet);
+        }
+    }
 }
