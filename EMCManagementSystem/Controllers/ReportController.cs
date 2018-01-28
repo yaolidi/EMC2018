@@ -11,6 +11,7 @@ using System.Web;
 using System.Web.Mvc;
 using EMCManagementSystem.Models;
 using Microsoft.CSharp.RuntimeBinder;
+using System.Text.RegularExpressions;
 
 namespace EMCManagementSystem.Controllers
 {
@@ -526,6 +527,7 @@ namespace EMCManagementSystem.Controllers
         {
             string Time = "";
             string item = "合格";
+            string filename_p = "";
             string FileName;
             string savePath;
 
@@ -545,6 +547,7 @@ namespace EMCManagementSystem.Controllers
                 string FileType = ".xls,.xlsx";//定义上传文件的类型字符串
                 Time = DateTime.Now.ToString("yyyyMMddhhmmss");
                 FileName = Time+ NoFileName + fileEx;
+                filename_p= NoFileName + fileEx;
                 if (!FileType.Contains(fileEx))
                 {
                     ViewBag.error = "文件类型不对，只能导入xls和xlsx格式的文件";
@@ -585,13 +588,15 @@ namespace EMCManagementSystem.Controllers
             }
             DataTable dataTable = dataSet.Tables["ExcelInfo"].DefaultView.ToTable();
             List<object> list = new List<object>();
+           
             using (TransactionScope transactionScope = new TransactionScope())
             {
                 for (int i = 0; i < dataTable.Rows.Count; i++)
                 {
                     List<double> list2 = new List<double>();
                     string text4 = dataTable.Rows[i][0].ToString();
-                    if (text4 != "")
+                    bool b = Regex.IsMatch(text4, @"[^ 0 - 9.-]");
+                    if (text4 != ""&& b == true)
                     {
                         list2.Add(Convert.ToDouble(dataTable.Rows[i][0].ToString().Trim()));
                         list2.Add(Convert.ToDouble(dataTable.Rows[i][1].ToString().Trim()));
@@ -612,9 +617,10 @@ namespace EMCManagementSystem.Controllers
                 }
                 transactionScope.Complete();
             }
+            list.Add(filename_p);
             list.Add(item);
             list.Add(Time);
-            return base.Json(list, JsonRequestBehavior.AllowGet);
+            return Json(list, JsonRequestBehavior.AllowGet);
         }
 
         // Token: 0x0600011B RID: 283 RVA: 0x000074E4 File Offset: 0x000056E4
@@ -634,7 +640,7 @@ namespace EMCManagementSystem.Controllers
             string path = text + fileNameWithoutExtension + extension;
             string filename = Path.Combine(AppDomain.CurrentDomain.BaseDirectory + "File/", path);
             httpPostedFileBase.SaveAs(filename);
-            return base.Json("上传成功," + text, JsonRequestBehavior.AllowGet);
+            return base.Json(path, JsonRequestBehavior.AllowGet);
         }
 
         // Token: 0x0600011C RID: 284 RVA: 0x000075A0 File Offset: 0x000057A0
@@ -643,6 +649,7 @@ namespace EMCManagementSystem.Controllers
         {
             string text = "";
             string item = "合格";
+            string filename_p = "";
             HttpPostedFileBase httpPostedFileBase = base.Request.Files["files"];
             //if (httpPostedFileBase == null || httpPostedFileBase.ContentLength <= 0)
             //{
@@ -665,32 +672,7 @@ namespace EMCManagementSystem.Controllers
             string arg_EF_0 = ".xls,.xlsx";
             text = DateTime.Now.ToString("yyyyMMddhhmmss");
             string path = text + fileNameWithoutExtension + extension;
-            //if (!arg_EF_0.Contains(extension))
-            //{
-            //    if (ReportController.<> o__12.<> p__1 == null)
-            //    {
-            //        ReportController.<> o__12.<> p__1 = CallSite<Func<CallSite, object, string, object>>.Create(Binder.SetMember(CSharpBinderFlags.None, "error", typeof(ReportController), new CSharpArgumentInfo[]
-            //        {
-            //            CSharpArgumentInfo.Create(CSharpArgumentInfoFlags.None, null),
-            //            CSharpArgumentInfo.Create(CSharpArgumentInfoFlags.UseCompileTimeType | CSharpArgumentInfoFlags.Constant, null)
-            //        }));
-            //    }
-            //    ReportController.<> o__12.<> p__1.Target(ReportController.<> o__12.<> p__1, base.ViewBag, "文件类型不对，只能导入xls和xlsx格式的文件");
-            //    return base.Json("文件类型不对", JsonRequestBehavior.AllowGet);
-            //}
-            //if (contentLength >= num)
-            //{
-            //    if (ReportController.<> o__12.<> p__2 == null)
-            //    {
-            //        ReportController.<> o__12.<> p__2 = CallSite<Func<CallSite, object, string, object>>.Create(Binder.SetMember(CSharpBinderFlags.None, "error", typeof(ReportController), new CSharpArgumentInfo[]
-            //        {
-            //            CSharpArgumentInfo.Create(CSharpArgumentInfoFlags.None, null),
-            //            CSharpArgumentInfo.Create(CSharpArgumentInfoFlags.UseCompileTimeType | CSharpArgumentInfoFlags.Constant, null)
-            //        }));
-            //    }
-            //    ReportController.<> o__12.<> p__2.Target(ReportController.<> o__12.<> p__2, base.ViewBag, "上传文件超过40M，不能上传");
-            //    return base.Json("超出大小", JsonRequestBehavior.AllowGet);
-            //}
+            filename_p = fileNameWithoutExtension + extension;
             string text2 = Path.Combine(AppDomain.CurrentDomain.BaseDirectory + "File/", path);
             httpPostedFileBase.SaveAs(text2);
             string text3 = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + text2 + ";Extended Properties=Excel 8.0";
@@ -713,7 +695,8 @@ namespace EMCManagementSystem.Controllers
                 {
                     List<double> list2 = new List<double>();
                     string text4 = dataTable.Rows[i][0].ToString();
-                    if (text4 != "")
+                    bool b = Regex.IsMatch(text4, @"[^ 0 - 9.-]");
+                    if (text4 != ""  && b == true )
                     {
                         list2.Add(Convert.ToDouble(dataTable.Rows[i][0].ToString().Trim()));
                         list2.Add(Convert.ToDouble(dataTable.Rows[i][1].ToString().Trim()));
@@ -749,6 +732,7 @@ namespace EMCManagementSystem.Controllers
                 }
                 transactionScope.Complete();
             }
+            list.Add(filename_p);
             list.Add(item);
             list.Add(text);
             return base.Json(list, JsonRequestBehavior.AllowGet);
