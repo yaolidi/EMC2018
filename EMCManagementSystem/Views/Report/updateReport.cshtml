@@ -235,10 +235,7 @@
         .highcharts-credits {
             display: none;
         }
-        i {
-        position:relative;
-        top:20px !important
-        }
+       
 
     </style>
 
@@ -313,14 +310,27 @@
                                             <div class="col-sm-4">
                                                 <input type="text" id="taskNumber" class="form-control">
                                             </div>
-                                            <label for="id_select" class="col-sm-2 control-label">测试任务:</label>
+                                            <label class="col-sm-2 control-label" for="field-1">试验时间:</label>
+
+                                            <div class="col-sm-4 ">
+                                                <div class="input-group">
+
+                                                    <input id="demo-1" class="form-control" value="" type="text" />
+                                                    <span class="input-group-addon">
+                                                        <i class="fa fa-calendar bigger-110"></i>
+                                                    </span>
+                                                </div>
+                                                @*<input class="laydate-icon form-control" id="time_date" type="text" onclick="laydate()">*@
+                                                @*<input type="text" class="form-control" id="field-1">*@
+                                            </div>
+                                            @*<label for="id_select" class="col-sm-2 control-label">测试任务:</label>
                                             <div class="col-sm-4">
 
                                                 <select id="id_select" class="selectpicker  form-control" multiple data-live-search="true">
                                                     <option>整车辐射发射测试</option>
                                                     <option>保护车载接收机测试</option>
                                                     <option>整车大电流注入抗干扰</option>
-                                                    @*<option selected>Bla</option>*@
+                                                  
                                                     <option>整车自由场抗扰测试</option>
                                                     <option>车载模拟发射机抗扰测试</option>
                                                     <option>整车静电放电抗扰</option>
@@ -335,7 +345,7 @@
                                                     <option>整车低频磁场抗扰</option>
                                                     <option>车内低频电磁场发射（人体防护测试）</option>
                                                 </select>
-                                            </div>
+                                            </div>*@
 
                                         </div>
                                         <div class="form-group">
@@ -344,19 +354,7 @@
                                             <div class="col-sm-4">
                                                 <input type="text" id="ModelCarModel" class="form-control">例如:(GHA7150AAC5C)
                                             </div>
-                                            <label class="col-sm-2 control-label" for="field-1">试验时间:</label>
-
-                                            <div class="col-sm-4 ">
-                                                <div class="input-group">
-
-                                                    <input id="demo-1" class="form-control" value="" type="text" />
-                                                    <span class="input-group-addon">
-                                                        <i class="fa fa-calendar bigger-110"></i>
-                                                    </span>
-                                                </div>
-                                                @*<input class="laydate-icon form-control" id="time_date" type="text" onclick="laydate()">*@
-                                                @*<input type="text" class="form-control" id="field-1">*@
-                                            </div>
+                                         
                                         </div>
 
 
@@ -385,21 +383,7 @@
             <link href="~/control/css/iconfont.css" rel="stylesheet" />
 
             <link href="~/control/css/fileUpload.css" rel="stylesheet" />
-            <div class="row">
-                <div class="col-sm-12">
-
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">任务列表</h3>
-
-                        </div>
-                        <div class="tab-content">
-                            <div id="fileUploadContent" class="fileUploadContent"></div>
-                            <button onclick="testUpload()">函数提交</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+       
             <div class="row">
                 <div class="col-sm-12">
 
@@ -462,12 +446,12 @@
 
 
                                     <div class="uploader white" style="width:62%">
-                                        <input type="text" class="filename" readonly />
+                                        <input type="text" class="filename" readonly id="fileCSJB_n" />
                                         <input type="button" name="file" class="button" value="选择excel" />
                                         <input type="file" size="30" name="file" id="fileCSJB" style="width:50%" />
 
                                     </div>
-                                    <input type="button" value="提交" onclick="submitCSJB('fileCSJB')" style="position: relative;top: -27px;left: 100px;" />
+                                    <input type="button" value="下载" onclick="Dow('fileCSJB_n')" style="position: relative;top: -27px;left: 100px;" />
                                     <label style="position: relative;top: -27px;left: 120px;color:red" id="p_fileCSJB"></label>
                                 </div>
 
@@ -475,11 +459,11 @@
 
 
                                     <div class="uploader white" style="width: 70%;">
-                                        <input type="text" class="filename" readonly />
+                                        <input type="text" class="filename" readonly id="fileCSJB2_n"/>
                                         <input type="button" name="file" class="button" value="选择图片" />
                                         <input type="file" size="30" name="file" id="fileCSJB2" style="width:60%" />
                                     </div>
-                                    <input type="button" value="提交" onclick="submitCSJB2('fileCSJB2')" style="position: relative;top: -27px;left: 100px;" />
+                                    <input type="button" value="下载" onclick="Dow('fileCSJB2_n')" style="position: relative;top: -27px;left: 100px;" />
                                     <label style="position: relative;top: -27px;left: 120px;color:red" id="p_fileCSJB2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
                                 </div>
                             </div>
@@ -490,11 +474,11 @@
 
 
                                     <div class="uploader white" style="width:62%">
-                                        <input type="text" class="filename" readonly />
+                                        <input type="text" class="filename" readonly id="file_LV_n" />
                                         <input type="button" name="file" class="button" value="选择excel" />
                                         <input type="file" size="30" name="file" id="file_LV" style="width:50%" />
                                     </div>
-                                    <input type="button" value="提交" onclick="submitCSJB('file_LV')" style="position: relative;top: -27px;left: 100px;" />
+                                    <input type="button" value="下载" onclick="Dow('file_LV_n')" style="position: relative;top: -27px;left: 100px;" />
                                     <label style="position: relative;top: -27px;left: 120px;color:red" id="p_file_LV"></label>
                                 </div>
 
@@ -502,11 +486,11 @@
 
 
                                     <div class="uploader white" style="width:70%">
-                                        <input type="text" class="filename" readonly />
+                                        <input type="text" class="filename" readonly id="file_LV2_n" />
                                         <input type="button" name="file" class="button" value="选择图片" />
                                         <input type="file" size="30" name="file" id="file_LV2" style="width:60%" />
                                     </div>
-                                    <input type="button" value="提交" onclick="submitCSJB2('file_LV2')" style="position: relative;top: -27px;left: 100px;" />
+                                    <input type="button" value="下载" onclick="Dow('file_LV2_n')" style="position: relative;top: -27px;left: 100px;" />
                                     <label style="position: relative;top: -27px;left: 120px;color:red" id="p_file_LV2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
                                 </div>
 
@@ -518,11 +502,11 @@
 
 
                                     <div class="uploader white" style="width:62%">
-                                        <input type="text" class="filename" readonly />
+                                        <input type="text" class="filename" readonly id="file_RH_n" />
                                         <input type="button" name="file" class="button" value="选择excel" />
                                         <input type="file" size="30" name="file" id="file_RH" style="width:50%" />
                                     </div>
-                                    <input type="button" value="提交" onclick="submitCSJB('file_RH')" style="position: relative;top: -27px;left: 100px;" />
+                                    <input type="button" value="下载" onclick="Dow('file_RH_n')" style="position: relative;top: -27px;left: 100px;" />
                                     <label style="position: relative;top: -27px;left: 120px;color:red" id="p_file_RH"></label>
                                 </div>
 
@@ -530,11 +514,11 @@
 
 
                                     <div class="uploader white" style="width:70%">
-                                        <input type="text" class="filename" readonly />
+                                        <input type="text" class="filename" readonly id="file_RH2_n" />
                                         <input type="button" name="file" class="button" value="选择图片" />
                                         <input type="file" size="30" name="file" id="file_RH2" style="width:60%" />
                                     </div>
-                                    <input type="button" value="提交" onclick="submitCSJB2('file_RH2')" style="position: relative;top: -27px;left: 100px;" />
+                                    <input type="button" value="下载" onclick="Dow('file_RH2_n')" style="position: relative;top: -27px;left: 100px;" />
                                     <label style="position: relative;top: -27px;left: 120px;color:red" id="p_file_RH2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
                                 </div>
 
@@ -546,11 +530,11 @@
 
 
                                     <div class="uploader white" style="width:62%">
-                                        <input type="text" class="filename" readonly />
+                                        <input type="text" class="filename" readonly id="file_RV_n" />
                                         <input type="button" name="file" class="button" value="选择excel" />
                                         <input type="file" size="30" name="file" id="file_RV" style="width:50%" />
                                     </div>
-                                    <input type="button" value="提交" onclick="submitCSJB('file_RV')" style="position: relative;top: -27px;left: 100px;" />
+                                    <input type="button" value="下载" onclick="Dow('file_RV_n')" style="position: relative;top: -27px;left: 100px;" />
                                     <label style="position: relative;top: -27px;left: 120px;color:red" id="p_file_RV"></label>
                                 </div>
 
@@ -558,11 +542,11 @@
 
 
                                     <div class="uploader white" style="width:70%">
-                                        <input type="text" class="filename" readonly />
+                                        <input type="text" class="filename" readonly id="file_RV2_n" />
                                         <input type="button" name="file" class="button" value="选择图片" />
                                         <input type="file" size="30" name="file" id="file_RV2" style="width:60%" />
                                     </div>
-                                    <input type="button" value="提交" onclick="submitCSJB2('file_RV2')" style="position: relative;top: -27px;left: 100px;" />
+                                    <input type="button" value="下载" onclick="Dow('file_RV2_n')" style="position: relative;top: -27px;left: 100px;" />
                                     <label style="position: relative;top: -27px;left: 120px;color:red" id="p_file_RV2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
                                 </div>
 
@@ -583,11 +567,11 @@
 
 
                                     <div class="uploader white" style="width:62%">
-                                        <input type="text" class="filename" readonly />
+                                        <input type="text" class="filename" readonly id="PK_file_LH_n" />
                                         <input type="button" name="file" class="button" value="选择excel" />
                                         <input type="file" size="30" name="file" id="PK_file_LH" style="width:50%" />
                                     </div>
-                                    <input type="button" value="提交" onclick="pk_submitCSJB('PK_file_LH')" style="position: relative;top: -27px;left: 100px;" />
+                                    <input type="button" value="下载" onclick="Dow('PK_file_LH_n')" style="position: relative;top: -27px;left: 100px;" />
                                     <label style="position: relative;top: -27px;left: 120px;color:red" id="p_PK_file_LH"></label>
                                 </div>
 
@@ -595,11 +579,11 @@
 
 
                                     <div class="uploader white" style="width:70%">
-                                        <input type="text" class="filename" readonly />
+                                        <input type="text" class="filename" readonly id="PK_file_LH2_n" />
                                         <input type="button" name="file" class="button" value="选择图片" />
                                         <input type="file" size="30" name="file" id="PK_file_LH2" style="width:60%" />
                                     </div>
-                                    <input type="button" value="提交" onclick="submitCSJB2('PK_file_LH2')" style="position: relative;top: -27px;left: 100px;" />
+                                    <input type="button" value="下载" onclick="Dow('PK_file_LH2_n')" style="position: relative;top: -27px;left: 100px;" />
                                     <label style="position: relative;top: -27px;left: 120px;color:red" id="p_PK_file_LH2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
                                 </div>
 
@@ -610,11 +594,11 @@
 
 
                                     <div class="uploader white" style="width:62%">
-                                        <input type="text" class="filename" readonly />
+                                        <input type="text" class="filename" readonly id="PK_file_LV_n" />
                                         <input type="button" name="file" class="button" value="选择excel" />
                                         <input type="file" size="30" name="file" id="PK_file_LV" style="width:50%" />
                                     </div>
-                                    <input type="button" value="提交" onclick="pk_submitCSJB('PK_file_LV')" style="position: relative;top: -27px;left: 100px;" />
+                                    <input type="button" value="下载" onclick="Dow('PK_file_LV_n')" style="position: relative;top: -27px;left: 100px;" />
                                     <label style="position: relative;top: -27px;left: 120px;color:red" id="p_PK_file_LV"></label>
                                 </div>
 
@@ -622,11 +606,11 @@
 
 
                                     <div class="uploader white" style="width:70%">
-                                        <input type="text" class="filename" readonly />
+                                        <input type="text" class="filename" readonly id="PK_file_LV2_n" />
                                         <input type="button" name="file" class="button" value="选择图片" />
                                         <input type="file" size="30" name="file" id="PK_file_LV2" style="width:60%" />
                                     </div>
-                                    <input type="button" value="提交" onclick="submitCSJB2('PK_file_LV2')" style="position: relative;top: -27px;left: 100px;" />
+                                    <input type="button" value="下载" onclick="Dow('PK_file_LV2_n')" style="position: relative;top: -27px;left: 100px;" />
                                     <label style="position: relative;top: -27px;left: 120px;color:red" id="p_PK_file_LV2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
                                 </div>
 
@@ -638,11 +622,11 @@
 
 
                                     <div class="uploader white" style="width:62%">
-                                        <input type="text" class="filename" readonly />
+                                        <input type="text" class="filename" readonly id="PK_file_RH_n" />
                                         <input type="button" name="file" class="button" value="选择excel" />
                                         <input type="file" size="30" name="file" id="PK_file_RH" style="width:50%" />
                                     </div>
-                                    <input type="button" value="提交" onclick="pk_submitCSJB('PK_file_RH')" style="position: relative;top: -27px;left: 100px;" />
+                                    <input type="button" value="下载" onclick="Dow('PK_file_RH_n')" style="position: relative;top: -27px;left: 100px;" />
                                     <label style="position: relative;top: -27px;left: 120px;color:red" id="p_PK_file_RH"></label>
                                 </div>
 
@@ -650,11 +634,11 @@
 
 
                                     <div class="uploader white" style="width:70%">
-                                        <input type="text" class="filename" readonly />
+                                        <input type="text" class="filename" readonly id="PK_file_RH2_n" />
                                         <input type="button" name="file" class="button" value="选择图片" />
                                         <input type="file" size="30" name="file" id="PK_file_RH2" style="width:60%" />
                                     </div>
-                                    <input type="button" value="提交" onclick="submitCSJB2('PK_file_RH2')" style="position: relative;top: -27px;left: 100px;" />
+                                    <input type="button" value="下载" onclick="Dow('PK_file_RH2_n')" style="position: relative;top: -27px;left: 100px;" />
                                     <label style="position: relative;top: -27px;left: 120px;color:red" id="p_PK_file_RH2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
                                 </div>
 
@@ -665,11 +649,11 @@
 
 
                                     <div class="uploader white" style="width:62%">
-                                        <input type="text" class="filename" readonly />
+                                        <input type="text" class="filename" readonly id="PK_file_RV_n"/>
                                         <input type="button" name="file" class="button" value="选择excel" />
                                         <input type="file" size="30" name="file" id="PK_file_RV" style="width:50%" />
                                     </div>
-                                    <input type="button" value="提交" onclick="pk_submitCSJB('PK_file_RV')" style="position: relative;top: -27px;left: 100px;" />
+                                    <input type="button" value="下载" onclick="Dow('PK_file_RV_n')" style="position: relative;top: -27px;left: 100px;" />
                                     <label style="position: relative;top: -27px;left: 120px;color:red" id="p_PK_file_RV"></label>
                                 </div>
 
@@ -677,11 +661,11 @@
 
 
                                     <div class="uploader white" style="width:70%">
-                                        <input type="text" class="filename" readonly />
+                                        <input type="text" class="filename" readonly id="PK_file_RV2_n" />
                                         <input type="button" name="file" class="button" value="选择图片" />
                                         <input type="file" size="30" name="file" id="PK_file_RV2" style="width:60%" />
                                     </div>
-                                    <input type="button" value="提交" onclick="submitCSJB2('PK_file_RV2')" style="position: relative;top: -27px;left: 100px;" />
+                                    <input type="button" value="下载" onclick="Dow('PK_file_RV2_n')" style="position: relative;top: -27px;left: 100px;" />
                                     <label style="position: relative;top: -27px;left: 120px;color:red" id="p_PK_file_RV2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
                                 </div>
 
@@ -807,103 +791,9 @@
    
 
     <script type="text/javascript">
-        $("#fileUploadContent").initUpload({
-            "uploadUrl": "/Report/UploadFile",//上传文件信息地址
-            "progressUrl": "#",//获取进度信息地址，可选，注意需要返回的data格式如下（{bytesRead: 102516060, contentLength: 102516060, items: 1, percent: 100, startTime: 1489223136317, useTime: 2767}）
-            "selfUploadBtId": "selfUploadBt",//自定义文件上传按钮id
-            "isHiddenUploadBt": false,//是否隐藏上传按钮
-            "isHiddenCleanBt": false,//是否隐藏清除按钮
-            "isAutoClean": false,//是否上传完成后自动清除
-            "velocity": 10,//模拟进度上传数据
-            //"rememberUpload":true,//记住文件上传
-            // "showFileItemProgress":false,
-            //"showSummerProgress":false,//总进度条，默认限制
-            //"scheduleStandard":true,//模拟进度的方式，设置为true是按总进度，用于控制上传时间，如果设置为false,按照文件数据的总量,默认为false
-            //"size":350,//文件大小限制，单位kb,默认不限制
-            //"maxFileNumber":3,//文件个数限制，为整数
-            //"filelSavePath":"",//文件上传地址，后台设置的根目录
-            //"beforeUpload":beforeUploadFun,//在上传前执行的函数
-            "onUpload": onUploadFun,//在上传后执行的函数
-            //autoCommit:true,//文件是否自动上传
-            //"fileType":['png','jpg','docx','doc']，//文件类型限制，默认不限制，注意写的是文件后缀
-
-        });
-
-        function beforeUploadFun(opt) {
-            opt.otherData = [{ "name": "你要上传的参数", "value": "你要上传的值" }];
-        }
-        function onUploadFun(opt, data) {
-            //alert(data);
-            uploadTools.uploadError(opt);//显示上传错误
-        }
-        function testUpload() {
-            var opt = uploadTools.getOpt("fileUploadContent");
-           
-            for (var j = 0; j < opt.fileList.length; j++)
-            {
-                var formData = new FormData();
-                var b = opt.fileList[j];
-                formData.append("files", b);
-                var arr_j = opt.fileList[j].name.split(".");
-                if (arr_j[1] == "xls" || arr_j[1] == "xlsx") {
-                    var request = $.ajax({
-                        type: "POST",
-                        url: "/Report/StationImport",
-                        data: formData,			//这里上传的数据使用了formData 对象
-                        processData: false, 	//必须false才会自动加上正确的Content-Type
-                        contentType: false,
-                        //这里我们先拿到jQuery产生的XMLHttpRequest对象，为其增加 progress 事件绑定，然后再返回交给ajax使用
-
-                        //上传成功后回调
-                        success: function (data) {
-
-                            // alert("123")
-
-                        },
-
-                        //上传失败后回调
-                        error: function () {
-                            alert("失败")
-
-                        }
-                    });
-                } else if (arr_j[1] == "wmf") {
-                    var request = $.ajax({
-                        type: "POST",
-                        url: "/Report/StationImport2",
-                        data: formData,			//这里上传的数据使用了formData 对象
-                        processData: false, 	//必须false才会自动加上正确的Content-Type
-                        contentType: false,
-                        //这里我们先拿到jQuery产生的XMLHttpRequest对象，为其增加 progress 事件绑定，然后再返回交给ajax使用
-
-                        //上传成功后回调
-                        success: function (data) {
-
-                            // alert("123")
-
-                        },
-
-                        //上传失败后回调
-                        error: function () {
-                            alert("失败")
-
-                        }
-                    });
-                } else {
-                    alert("请选择正确的文件");
-                    return;
-                }
-               
-             
-              
-            }
-        
-          //  uploadEvent.uploadFileEvent(opt);
-        }
-        function tt() {
-            var opt = uploadTools.getOpt("fileUploadContent");
-            uploadTools.uploadError(opt);//显示上传错误
-        }
+        var task_str = "";
+        var task_arr = [];
+        var task_arr2 = [];
 
         var setting = {
             check: {
@@ -925,15 +815,56 @@
                 this.splice(index, 1);
             }
         };
+        var boo_tree = false;
         function onCheck(e, treeId, treeNode) {
             if (task_arr.length > 0) {
-                if (task_arr.indexOf(treeNode.id + "," + treeNode.pId) > -1) {
-                    task_arr.remove(treeNode.id + "," + treeNode.pId)
+                if (treeNode.children) {
+                    boo_tree = false;
+                    if (task_arr.indexOf(treeNode.id + "") > -1) {
+                        task_arr.remove(treeNode.id + "");
+                        boo_tree = true;
+                    } else {
+                     
+                            task_arr.push(treeNode.id + "");
+                        
+                       
+                    }
+                    for (var i = 0; i < treeNode.children.length; i++) {
+                        if (task_arr.indexOf(treeNode.children[i].id + "") > -1) {
+                            task_arr.remove(treeNode.children[i].id +"");
+                        } else {
+                            if (boo_tree == false) {
+                                task_arr.push(treeNode.children[i].id + "");
+                            }
+                        }
+                    }
                 } else {
-                    task_arr.push(treeNode.id + "," + treeNode.pId);
+                    
+                    if (task_arr.indexOf(treeNode.pId + "") > -1) {
+                        task_arr.remove(treeNode.pId + "");
+                    } else {
+                        task_arr.push(treeNode.pId + "");
+                    }
+                    if (task_arr.indexOf(treeNode.id + "") > -1) {
+                        task_arr.remove(treeNode.id + "");
+                    } else {
+                        task_arr.push(treeNode.id + "");
+                    }
+
                 }
+
             } else {
-                task_arr.push(treeNode.id + "," + treeNode.pId + "");
+                if (treeNode.children) {
+                    task_arr.push(treeNode.id + "");
+                    for (var i = 0; i < treeNode.children.length; i++) {
+                        task_arr.push(treeNode.id + "");
+                    }
+                }
+                else {
+                    task_arr.push(treeNode.pId + "");
+                    task_arr.push(treeNode.id + "");
+                }
+
 
             }
 
@@ -959,6 +890,10 @@
                 
                 document.getElementById("introduce").value = data[0].introduce;
                 document.getElementById("Remarks").value = data[0].Remarks;
+
+               
+                task_arr = data[0].taskAllName.split(",");
+                task_arr.pop();
                 $.ajax({
 
                     type: "post",
@@ -1036,15 +971,22 @@
 function save() {
     //alert("这只是个演示！(｡◕ฺˇε ˇ◕ฺ｡）")
     var brand = document.getElementById("brand").value;
-    var BrandModel = document.getElementById("BrandModel").value;
-    var configure = document.getElementById("configure").value;
-    var taskAllNameall = document.getElementById("span_id").innerText
+  
+
+    var taskAllNameall ="";
+    for (var u = 0; u < task_arr.length; u++)
+    {
+        taskAllNameall += task_arr[u] + ",";
+
+    }
+        
+    //taskAllid += arr_str[0] + ",";
     var ModelCarModel = document.getElementById("ModelCarModel").value;
     var VIN = document.getElementById("VIN").value;
-    var sel = document.getElementById("ResultID");
-    var selected_val = sel.options[sel.selectedIndex].value;
-
-    var ResultID = selected_val;
+    var ResultID = document.getElementById("ResultID").value;
+  
+    var taskNumber = document.getElementById("taskNumber").value;
+  
     var RegistrationName = "";
     var OriginalRecordName = "";
 
@@ -1067,7 +1009,7 @@ function save() {
 
         async: true,
 
-        data: { brand: brand, BrandModel: BrandModel, configure: configure, taskAllName: taskAllNameall, ModelCarModel: ModelCarModel, VIN: VIN, ResultID: ResultID, RegistrationName: RegistrationName, OriginalRecordName: OriginalRecordName, introduce: introduce, Remarks: Remarks },
+        data: { brand: brand, taskAllName: taskAllNameall, ModelCarModel: ModelCarModel, VIN: VIN, ResultID: ResultID, RegistrationName: RegistrationName, OriginalRecordName: OriginalRecordName, introduce: introduce, Remarks: Remarks, taskNumber: taskNumber },
 
         success: function (data) {
             alert(data);
@@ -1660,6 +1602,11 @@ function saveall() {
         document.getElementById("file_textsample").style.display = "block";
         document.getElementById("file_textsample").innerText = str_sample;
     }
+
+}
+function Dow(t) {
+    var url = document.getElementById(t).value;
+    window.open("/file/" + url)
 }
     </script>
 </body>
