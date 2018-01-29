@@ -5,12 +5,31 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="EMCModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="car">
+          <Key>
+            <PropertyRef Name="carID" />
+          </Key>
+          <Property Name="carID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="carName" Type="nchar" MaxLength="15" />
+        </EntityType>
         <EntityType Name="CarQualification">
           <Key>
             <PropertyRef Name="CarID" />
           </Key>
           <Property Name="CarID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CarName" Type="nchar" MaxLength="15" />
+          <Property Name="qualificationNumber" Type="int" />
+          <Property Name="UnqualifiedTimes" Type="int" />
+          <Property Name="Qualification" Type="float" />
+        </EntityType>
+        <EntityType Name="CarYearQualification">
+          <Key>
+            <PropertyRef Name="CarYearQualificationID" />
+          </Key>
+          <Property Name="CarYearQualificationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="carName" Type="nchar" MaxLength="15" />
+          <Property Name="CarYearQualification" Type="nchar" MaxLength="10" />
+          <Property Name="year" Type="nchar" MaxLength="4" />
           <Property Name="qualificationNumber" Type="int" />
           <Property Name="UnqualifiedTimes" Type="int" />
           <Property Name="Qualification" Type="float" />
@@ -31,6 +50,15 @@
           <Property Name="Remarks" Type="nchar" MaxLength="300" />
           <Property Name="time" Type="date" />
           <Property Name="taskNumber" Type="nchar" MaxLength="25" />
+        </EntityType>
+        <EntityType Name="OriginalRecorddetails">
+          <Key>
+            <PropertyRef Name="OriginalRecorddetailsID" />
+          </Key>
+          <Property Name="OriginalRecorddetailsID" Type="int" Nullable="false" />
+          <Property Name="OriginalRecordID" Type="int" />
+          <Property Name="taskid" Type="int" />
+          <Property Name="pid" Type="int" />
         </EntityType>
         <EntityType Name="OriginalRecordPath">
           <Key>
@@ -81,6 +109,28 @@
           <Property Name="Route" Type="nchar" MaxLength="100" />
           <Property Name="OriginalRecordID" Type="int" />
         </EntityType>
+        <EntityType Name="Report">
+          <Key>
+            <PropertyRef Name="ReportID" />
+          </Key>
+          <Property Name="ReportID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ExamTime" Type="date" />
+          <Property Name="DocNumber" Type="nchar" MaxLength="20" />
+          <Property Name="DocName" Type="nchar" MaxLength="20" />
+          <Property Name="BaseOnStandard" Type="nchar" MaxLength="20" />
+          <Property Name="State" Type="nchar" MaxLength="10" />
+          <Property Name="ModuleIntroduction" Type="nchar" MaxLength="10" />
+          <Property Name="LastThing" Type="nchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="ReportFile">
+          <Key>
+            <PropertyRef Name="ReportFileID" />
+          </Key>
+          <Property Name="ReportFileID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FileName" Type="nchar" MaxLength="20" />
+          <Property Name="FilePath" Type="nchar" MaxLength="50" />
+          <Property Name="ReportID" Type="int" />
+        </EntityType>
         <EntityType Name="task">
           <Key>
             <PropertyRef Name="taskID" />
@@ -97,11 +147,16 @@
           <Property Name="taskID" Type="int" />
         </EntityType>
         <EntityContainer Name="EMCModelStoreContainer">
+          <EntitySet Name="car" EntityType="Self.car" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CarQualification" EntityType="Self.CarQualification" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CarYearQualification" EntityType="Self.CarYearQualification" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OriginalRecord" EntityType="Self.OriginalRecord" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OriginalRecorddetails" EntityType="Self.OriginalRecorddetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OriginalRecordPath" EntityType="Self.OriginalRecordPath" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="path" EntityType="Self.path" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RegistrationPath" EntityType="Self.RegistrationPath" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Report" EntityType="Self.Report" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ReportFile" EntityType="Self.ReportFile" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="task" EntityType="Self.task" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="taskDetails" EntityType="Self.taskDetails" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
@@ -110,20 +165,44 @@
     <edmx:ConceptualModels>
       <Schema Namespace="EMCModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="EMCEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="car" EntityType="EMCModel.car" />
           <EntitySet Name="CarQualification" EntityType="EMCModel.CarQualification" />
+          <EntitySet Name="CarYearQualification" EntityType="EMCModel.CarYearQualification" />
           <EntitySet Name="OriginalRecord" EntityType="EMCModel.OriginalRecord" />
+          <EntitySet Name="OriginalRecorddetails" EntityType="EMCModel.OriginalRecorddetails" />
           <EntitySet Name="OriginalRecordPath" EntityType="EMCModel.OriginalRecordPath" />
           <EntitySet Name="path" EntityType="EMCModel.path" />
           <EntitySet Name="RegistrationPath" EntityType="EMCModel.RegistrationPath" />
+          <EntitySet Name="Report" EntityType="EMCModel.Report" />
+          <EntitySet Name="ReportFile" EntityType="EMCModel.ReportFile" />
           <EntitySet Name="task" EntityType="EMCModel.task" />
           <EntitySet Name="taskDetails" EntityType="EMCModel.taskDetails" />
         </EntityContainer>
+        <EntityType Name="car">
+          <Key>
+            <PropertyRef Name="carID" />
+          </Key>
+          <Property Name="carID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="carName" Type="String" MaxLength="15" FixedLength="true" Unicode="true" />
+        </EntityType>
         <EntityType Name="CarQualification">
           <Key>
             <PropertyRef Name="CarID" />
           </Key>
           <Property Name="CarID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CarName" Type="String" MaxLength="15" FixedLength="true" Unicode="true" />
+          <Property Name="qualificationNumber" Type="Int32" />
+          <Property Name="UnqualifiedTimes" Type="Int32" />
+          <Property Name="Qualification" Type="Double" />
+        </EntityType>
+        <EntityType Name="CarYearQualification">
+          <Key>
+            <PropertyRef Name="CarYearQualificationID" />
+          </Key>
+          <Property Name="CarYearQualificationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="carName" Type="String" MaxLength="15" FixedLength="true" Unicode="true" />
+          <Property Name="CarYearQualification1" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="year" Type="String" MaxLength="4" FixedLength="true" Unicode="true" />
           <Property Name="qualificationNumber" Type="Int32" />
           <Property Name="UnqualifiedTimes" Type="Int32" />
           <Property Name="Qualification" Type="Double" />
@@ -144,6 +223,15 @@
           <Property Name="Remarks" Type="String" MaxLength="300" FixedLength="true" Unicode="true" />
           <Property Name="time" Type="DateTime" Precision="0" />
           <Property Name="taskNumber" Type="String" MaxLength="25" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="OriginalRecorddetails">
+          <Key>
+            <PropertyRef Name="OriginalRecorddetailsID" />
+          </Key>
+          <Property Name="OriginalRecorddetailsID" Type="Int32" Nullable="false" />
+          <Property Name="OriginalRecordID" Type="Int32" />
+          <Property Name="taskid" Type="Int32" />
+          <Property Name="pid" Type="Int32" />
         </EntityType>
         <EntityType Name="OriginalRecordPath">
           <Key>
@@ -194,6 +282,28 @@
           <Property Name="Route" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
           <Property Name="OriginalRecordID" Type="Int32" />
         </EntityType>
+        <EntityType Name="Report">
+          <Key>
+            <PropertyRef Name="ReportID" />
+          </Key>
+          <Property Name="ReportID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ExamTime" Type="DateTime" Precision="0" />
+          <Property Name="DocNumber" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="DocName" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="BaseOnStandard" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="State" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="ModuleIntroduction" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="LastThing" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ReportFile">
+          <Key>
+            <PropertyRef Name="ReportFileID" />
+          </Key>
+          <Property Name="ReportFileID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FileName" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="FilePath" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="ReportID" Type="Int32" />
+        </EntityType>
         <EntityType Name="task">
           <Key>
             <PropertyRef Name="taskID" />
@@ -215,6 +325,14 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="EMCModelStoreContainer" CdmEntityContainer="EMCEntities">
+          <EntitySetMapping Name="car">
+            <EntityTypeMapping TypeName="EMCModel.car">
+              <MappingFragment StoreEntitySet="car">
+                <ScalarProperty Name="carName" ColumnName="carName" />
+                <ScalarProperty Name="carID" ColumnName="carID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="CarQualification">
             <EntityTypeMapping TypeName="EMCModel.CarQualification">
               <MappingFragment StoreEntitySet="CarQualification">
@@ -223,6 +341,19 @@
                 <ScalarProperty Name="qualificationNumber" ColumnName="qualificationNumber" />
                 <ScalarProperty Name="CarName" ColumnName="CarName" />
                 <ScalarProperty Name="CarID" ColumnName="CarID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CarYearQualification">
+            <EntityTypeMapping TypeName="EMCModel.CarYearQualification">
+              <MappingFragment StoreEntitySet="CarYearQualification">
+                <ScalarProperty Name="Qualification" ColumnName="Qualification" />
+                <ScalarProperty Name="UnqualifiedTimes" ColumnName="UnqualifiedTimes" />
+                <ScalarProperty Name="qualificationNumber" ColumnName="qualificationNumber" />
+                <ScalarProperty Name="year" ColumnName="year" />
+                <ScalarProperty Name="CarYearQualification1" ColumnName="CarYearQualification" />
+                <ScalarProperty Name="carName" ColumnName="carName" />
+                <ScalarProperty Name="CarYearQualificationID" ColumnName="CarYearQualificationID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -241,6 +372,16 @@
                 <ScalarProperty Name="BrandModel" ColumnName="BrandModel" />
                 <ScalarProperty Name="brand" ColumnName="brand" />
                 <ScalarProperty Name="OriginalRecordID" ColumnName="OriginalRecordID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OriginalRecorddetails">
+            <EntityTypeMapping TypeName="EMCModel.OriginalRecorddetails">
+              <MappingFragment StoreEntitySet="OriginalRecorddetails">
+                <ScalarProperty Name="pid" ColumnName="pid" />
+                <ScalarProperty Name="taskid" ColumnName="taskid" />
+                <ScalarProperty Name="OriginalRecordID" ColumnName="OriginalRecordID" />
+                <ScalarProperty Name="OriginalRecorddetailsID" ColumnName="OriginalRecorddetailsID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -293,6 +434,30 @@
                 <ScalarProperty Name="Route" ColumnName="Route" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="RegistrationRouteID" ColumnName="RegistrationRouteID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Report">
+            <EntityTypeMapping TypeName="EMCModel.Report">
+              <MappingFragment StoreEntitySet="Report">
+                <ScalarProperty Name="LastThing" ColumnName="LastThing" />
+                <ScalarProperty Name="ModuleIntroduction" ColumnName="ModuleIntroduction" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="BaseOnStandard" ColumnName="BaseOnStandard" />
+                <ScalarProperty Name="DocName" ColumnName="DocName" />
+                <ScalarProperty Name="DocNumber" ColumnName="DocNumber" />
+                <ScalarProperty Name="ExamTime" ColumnName="ExamTime" />
+                <ScalarProperty Name="ReportID" ColumnName="ReportID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ReportFile">
+            <EntityTypeMapping TypeName="EMCModel.ReportFile">
+              <MappingFragment StoreEntitySet="ReportFile">
+                <ScalarProperty Name="ReportID" ColumnName="ReportID" />
+                <ScalarProperty Name="FilePath" ColumnName="FilePath" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="ReportFileID" ColumnName="ReportFileID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

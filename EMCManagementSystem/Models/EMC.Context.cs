@@ -25,11 +25,16 @@ namespace EMCManagementSystem.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<car> car { get; set; }
         public virtual DbSet<CarQualification> CarQualification { get; set; }
+        public virtual DbSet<CarYearQualification> CarYearQualification { get; set; }
         public virtual DbSet<OriginalRecord> OriginalRecord { get; set; }
+        public virtual DbSet<OriginalRecorddetails> OriginalRecorddetails { get; set; }
         public virtual DbSet<OriginalRecordPath> OriginalRecordPath { get; set; }
         public virtual DbSet<path> path { get; set; }
         public virtual DbSet<RegistrationPath> RegistrationPath { get; set; }
+        public virtual DbSet<Report> Report { get; set; }
+        public virtual DbSet<ReportFile> ReportFile { get; set; }
         public virtual DbSet<task> task { get; set; }
         public virtual DbSet<taskDetails> taskDetails { get; set; }
     }
