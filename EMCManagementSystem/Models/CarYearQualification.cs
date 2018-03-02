@@ -17,7 +17,7 @@ namespace EMCManagementSystem.Models
         public int CarYearQualificationID { get; set; }
         public string carName { get; set; }
         public string CarYearQualification1 { get; set; }
-        public string year { get; set; }
+        public Nullable<int> year { get; set; }
         public Nullable<int> qualificationNumber { get; set; }
         public Nullable<int> UnqualifiedTimes { get; set; }
         public Nullable<double> Qualification { get; set; }

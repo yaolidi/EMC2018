@@ -29,7 +29,7 @@
           <Property Name="CarYearQualificationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="carName" Type="nchar" MaxLength="15" />
           <Property Name="CarYearQualification" Type="nchar" MaxLength="10" />
-          <Property Name="year" Type="nchar" MaxLength="4" />
+          <Property Name="year" Type="int" />
           <Property Name="qualificationNumber" Type="int" />
           <Property Name="UnqualifiedTimes" Type="int" />
           <Property Name="Qualification" Type="float" />
@@ -202,7 +202,7 @@
           <Property Name="CarYearQualificationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="carName" Type="String" MaxLength="15" FixedLength="true" Unicode="true" />
           <Property Name="CarYearQualification1" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="year" Type="String" MaxLength="4" FixedLength="true" Unicode="true" />
+          <Property Name="year" Type="Int32" />
           <Property Name="qualificationNumber" Type="Int32" />
           <Property Name="UnqualifiedTimes" Type="Int32" />
           <Property Name="Qualification" Type="Double" />
