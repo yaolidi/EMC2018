@@ -815,59 +815,50 @@
                 this.splice(index, 1);
             }
         };
-        var boo_tree = false;
+        //var boo_tree = false;
         function onCheck(e, treeId, treeNode) {
             if (task_arr.length > 0) {
                 if (treeNode.children) {
-                    boo_tree = false;
-                    if (task_arr.indexOf(treeNode.id + "") > -1) {
-                        task_arr.remove(treeNode.id + "");
-                        boo_tree = true;
-                    } else {
-                     
-                            task_arr.push(treeNode.id + "");
-                        
-                       
-                    }
                     for (var i = 0; i < treeNode.children.length; i++) {
+
                         if (task_arr.indexOf(treeNode.children[i].id + "") > -1) {
-                            task_arr.remove(treeNode.children[i].id +"");
-                        } else {
-                            if (boo_tree == false) {
-                                task_arr.push(treeNode.children[i].id + "");
-                            }
+                            task_arr.remove(treeNode.children[i].id + "");
+                            task_arr.remove(treeNode.id + "");
                         }
                     }
-                } else {
-                    
-                    if (task_arr.indexOf(treeNode.pId + "") > -1) {
-                        task_arr.remove(treeNode.pId + "");
-                    } else {
-                        task_arr.push(treeNode.pId + "");
-                    }
-                    if (task_arr.indexOf(treeNode.id + "") > -1) {
-                        task_arr.remove(treeNode.id + "");
-                    } else {
-                        task_arr.push(treeNode.id + "");
+                    if (treeNode.checked == true) {
+
+                        for (var j = 0; j < treeNode.children.length; j++) {
+
+                                task_arr.push(treeNode.children[j].id + "");
+                                task_arr.push(treeNode.id + "");
+                        }
                     }
 
+                } else {
+                    if (treeNode.checked == true) {
+                        task_arr.push(treeNode.pId + "");
+                        task_arr.push(treeNode.id + "");
+                    }
+                    else {
+                        task_arr.remove(treeNode.pId + "");
+                        task_arr.remove(treeNode.id + "");
+                    }
                 }
 
             } else {
                 if (treeNode.children) {
-                    task_arr.push(treeNode.id + "");
-                    for (var i = 0; i < treeNode.children.length; i++) {
+                    for (var p = 0; p < treeNode.children.length; p++) {
+
+                        task_arr.push(treeNode.children[p].id + "");
                         task_arr.push(treeNode.id + "");
                     }
-                }
-                else {
+                } else {
                     task_arr.push(treeNode.pId + "");
                     task_arr.push(treeNode.id + "");
                 }
-
-
+                
             }
-
         }
         var code;
         $('#demo-1').fdatepicker();

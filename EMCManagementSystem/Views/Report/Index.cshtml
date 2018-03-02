@@ -376,7 +376,20 @@
             if (window.confirm('是否确定删除？'))
             {
                 $.getJSON("/Report/DelectReport?OriginalRecordID=" + t, function (data) {
-                    window.location.reload();
+                    $.getJSON("/Report/SelectReport", function (data) {
+                       
+                        if ($.isEmptyObject(data)) data = {};
+                        var toData = {
+                            'ajaxParam': { 'data': data }
+                        }
+                        
+                            toData.paginate = {};
+                            toData.paginate.currentPage = 1;
+                      
+                        var $table = $page.find('.result-list');
+                        $table.yhhDataTable('refresh', toData);
+
+                    })
                 })
 
             } else {

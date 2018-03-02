@@ -22,6 +22,8 @@
     <link href="~/control/css/demo.css" rel="stylesheet" />
 
     <link href="~/control/css/zTreeStyle.css" rel="stylesheet" />
+    <link href="~/assets/zhongyao.css" rel="stylesheet" />
+   
     <style>
         .fileBox {
             margin: 50px;
@@ -246,6 +248,32 @@
         top:20px !important
         }
     </style>
+    <style>
+    .zhezhao {
+        width: 100%;
+        height: 100%;
+        background-color: #000;
+        filter: alpha(opacity=50);
+        -moz-opacity: 0.5;
+        opacity: 0.5;
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        display: none;
+        z-index: 99999;
+    }
+
+    /*.rowColor {
+        color: #000000;
+        font-size: 15px;
+    }
+
+    .panel {
+        padding: 0px 10px;
+    }*/
+
+ 
+</style>
    
   
 
@@ -411,11 +439,11 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="col-sm-2 control-label">机械配置参数:</label>
+                                @*<label class="col-sm-2 control-label">机械配置参数:</label>
                                 <div class="col-sm-10">
 
                                     <a href="javascript:;" id="hide" onclick="jQuery('#modal-1').modal('show', {backdrop: 'fade'});" style="border-radius:8px;display:none" type="button" class="btn btn-success bg-lg">上传文件</a>
-                                    @*<input style="display:none" type="text" id="file_textOriginal" class="form-control" />*@
+                                   
                                     <div class="col-sm-2" style="position: relative;top: -2px;right: 120px;">
 
                                         <label id="file_textOriginal" style="display: block;position: relative;top: 10px;left: 20px;"></label>
@@ -423,7 +451,7 @@
                                     <div class="col-sm-10">
                                         <a href="javascript:;" onclick="Original()" style="border-radius:8px;float:left" type="button" class="btn btn-success bg-lg">选择文件</a>
                                     </div>
-                                </div>
+                                </div>*@
 
                             </div>
 
@@ -772,8 +800,6 @@
                 
             </div>
 
-       
-
             <div class="row">
                 <div class="col-sm-12">
 
@@ -793,7 +819,7 @@
                                 <label class="control-label" for="about">备注</label>
                                 <textarea class="form-control autogrow" name="about" id="Remarks" data-validate="minlength[10]" rows="5" placeholder="请输入备注信息" style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 104px;"></textarea>
                             </div>
-                            <button class="btn btn-sm btn-info" style="float:right" onclick="save()">
+                            <button class="btn btn-sm btn-info" style="float:right" id="save_a" onclick="save()">
 
                                 保存编辑器内容
                             </button>
@@ -897,6 +923,12 @@
             </div>
         </div>
     </div>
+    <div class="zhezhao" id="zhezhao">
+
+        <div id="loader-container">
+            <p id="loadingText">正在上传</p>
+        </div>
+    </div>
     <script src="~/assets/js/bootstrap.min.js"></script>
     <script src="~/easyui/js/bootstrap-select.js"></script>
     <script src="~/easyui/js/bootstrap-select.min.js"></script>
@@ -911,6 +943,7 @@
     
     <script type="text/javascript">
         function testUpload() {
+            document.getElementById("zhezhao").style.display = "block";
             var opt = uploadTools.getOpt("fileUploadContent");
             var str_name_col = "";
             for (var j = 0; j < opt.fileList.length; j++) {
@@ -929,7 +962,7 @@
 
                         //上传成功后回调
                         success: function (data) {
-
+                            
                             if (data[data.length - 3] == "LH.xls" || data[data.length - 3] == "LH.xlsx") {
                                 setCookie("fileCSJB", data[data.length - 1] + data[data.length - 3], 1);
                                 if (data[data.length - 2] == "不合格") {
@@ -975,6 +1008,7 @@
                                 bool_qualified = false;
                                 document.getElementById("ResultID").value = "不合格";
                             }
+                            document.getElementById("zhezhao").style.display = "none";
                             //var id = "p_" + t;
                             //document.getElementById(id).innerHTML = data[data.length - 2];
 
@@ -1027,6 +1061,7 @@
             //  uploadEvent.uploadFileEvent(opt);
         }
         function testUpload2() {
+            document.getElementById("zhezhao").style.display = "block";
             var opt = uploadTools.getOpt("fileUploadContent2");
             var str_name_col = "";
             for (var j = 0; j < opt.fileList.length; j++) {
@@ -1045,6 +1080,7 @@
 
                         //上传成功后回调
                         success: function (data) {
+                            
                             //str_name_col += "名字：" + data[data.length - 3] + "/合格否：" + data[data.length - 2] + "\n";
                             //alert(str_name_col);
                             if (data[data.length - 3] == "LH.xls" || data[data.length - 3] == "LH.xlsx") {
@@ -1094,7 +1130,7 @@
                                 bool_qualified = false;
                                 document.getElementById("ResultID").value = "不合格";
                             }
-
+                            document.getElementById("zhezhao").style.display = "none";
                             //var id = "p_" + t;
                             //document.getElementById(id).innerHTML = data[data.length - 2];
                         },
@@ -1217,41 +1253,50 @@
             this.splice(index, 1);
         }
     };
+    var boo_tree = false;
     function onCheck(e, treeId, treeNode) {
         if (task_arr.length > 0) {
-            if (treeNode.children)
-            {
+            if (treeNode.children) {
                 for (var i = 0; i < treeNode.children.length; i++) {
-                    if (task_arr.indexOf(treeNode.children[i].id + "," + treeNode.children[i].pId) > -1) {
-                        task_arr.remove(treeNode.children[i].id + "," + treeNode.children[i].pId)
-                    } else {
-                        task_arr.push(treeNode.children[i].id + "," + treeNode.children[i].pId);
+
+                    if (task_arr.indexOf(treeNode.children[i].id + "") > -1) {
+                        task_arr.remove(treeNode.children[i].id + "");
+                        task_arr.remove(treeNode.id + "");
                     }
                 }
-            } else {
-                if (task_arr.indexOf(treeNode.id + "," + treeNode.pId) > -1) {
-                    task_arr.remove(treeNode.id + "," + treeNode.pId)
-                } else {
-                    task_arr.push(treeNode.id + "," + treeNode.pId + "");
-                }
-              
-            }
-           
-        } else {
-            if (treeNode.children.length > 0)
-            {
-                for (var i = 0; i < treeNode.children.length; i++)
-                {
-                    task_arr.push(treeNode.children[i].id + "," + treeNode.children[i].pId + "");
-                }
-            }
-            else {
-                task_arr.push(treeNode.id + "," + treeNode.pId + "");
-            }
-            
-         
-        }
+                if (treeNode.checked == true) {
 
+                    for (var j = 0; j < treeNode.children.length; j++) {
+
+                        task_arr.push(treeNode.children[j].id + "");
+                        task_arr.push(treeNode.id + "");
+                    }
+                }
+
+            } else {
+                if (treeNode.checked == true) {
+                    task_arr.push(treeNode.pId + "");
+                    task_arr.push(treeNode.id + "");
+                }
+                else {
+                    task_arr.remove(treeNode.pId + "");
+                    task_arr.remove(treeNode.id + "");
+                }
+            }
+
+        } else {
+            if (treeNode.children) {
+                for (var p = 0; p < treeNode.children.length; p++) {
+
+                    task_arr.push(treeNode.children[p].id + "");
+                    task_arr.push(treeNode.id + "");
+                }
+            } else {
+                task_arr.push(treeNode.pId + "");
+                task_arr.push(treeNode.id + "");
+            }
+
+        }
     }
         var code;
 		
@@ -1607,32 +1652,35 @@
                 'selectedText': 'cat'
             });
 })
-function save() {
-
+        function save() {
+     
+    document.getElementById("save_a").disabled = "disabled";
     var brand = document.getElementById("brand").value;
     var taskNumber = document.getElementById("taskNumber").value;
     // var configure = document.getElementById("configure").value;
     var taskAllid = "";
-    for (var i = 0; i < task_arr.length; i++)
-    {
-        if (task_arr2.length > 0) {
+    //for (var i = 0; i < task_arr.length; i++)
+    //{
+    //    if (task_arr2.length > 0) {
           
-            var arr_str = task_arr[i].split(",");
-            if(task_arr2.indexOf(arr_str[1])>-1)
-            {
-                taskAllid += arr_str[0] + ",";
-            } else {
-                taskAllid += arr_str[0] + "," + arr_str[1] + ",";
-            }
-        } else {
+    //        var arr_str = task_arr[i].split(",");
+    //        if(task_arr2.indexOf(arr_str[1])>-1)
+    //        {
+    //            taskAllid += arr_str[0] + ",";
+    //        } else {
+    //            taskAllid += arr_str[0] + "," + arr_str[1] + ",";
+    //        }
+    //    } else {
          
-            var arr_str = task_arr[i].split(",");
-            task_arr2.push(arr_str[1]);
-            taskAllid += arr_str[0] + "," + arr_str[1]+",";
-        }
+    //        var arr_str = task_arr[i].split(",");
+    //        task_arr2.push(arr_str[1]);
+    //        taskAllid += arr_str[0] + "," + arr_str[1]+",";
+    //    }
       
+    //}
+    for (var u = 0; u < task_arr.length; u++) {
+        taskAllid += task_arr[u] + ",";
     }
-    
    // var taskAllName = document.getElementById("id_select");//.value
     var time_date = document.getElementById("demo-1").value;
 
@@ -1686,6 +1734,7 @@ function save() {
 
         success: function (data) {
             alert(data);
+            
             window.location.href = "/Report/Index";
         }
     });

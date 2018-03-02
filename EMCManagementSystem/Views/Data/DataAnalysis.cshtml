@@ -27,66 +27,68 @@
     <script type="text/javascript">
         
         $(function () {
-            Highcharts.chart('container', {
+            $.ajax({
 
-                title: {
-                    text: '汽车品牌合格率, 2010-2016'
-                },
+                type: "post",
 
-                subtitle: {
-                    text: '详情如下图'
-                },
+                url: "/Data/selectYearCarQualification",
 
-                yAxis: {
-                    title: {
-                        text: '百分比'
-                    }
-                },
-                legend: {
-                    layout: 'vertical',
-                    align: 'right',
-                    verticalAlign: 'middle'
-                },
-                plotOptions: {
-                    series: {
-                        label: {
-                            connectorAllowed: false
+                cache: false,
+
+                async: true,
+
+                success: function (data) {
+                   
+                    var data1 = data;
+                    Highcharts.chart('container', {
+
+                        title: {
+                            text: '汽车品牌合格率, 2014-2018'
                         },
-                        pointStart: 2010
-                    }
-                },
-                series: [{
-                    name: '五菱',
-                    data: [0.55, 0.56, 0.60, 0.65, 0.64, 0.67, 0.70, 0.70]
-                }, {
-                    name: '江铃',
-                    data: [0.55, 0.56, 0.55, 0.54, 0.57, 0.58, 0.57, 0.55]
-                }, {
-                    name: '本田',
-                    data: [0.45, 0.50, 0.51, 0.53, 0.55, 0.58, 0.59, 0.58]
-                }, {
-                    name: '丰田',
-                    data: [null, null, 0.45, 0.45, 0.50, 0.45, 0.50, 0.50]
-                }, {
-                    name: '奇瑞',
-                    data: [0.55, 0.55, 0.55, 0.55, 0.55, 0.55, 0.55, 0.55]
-                }],
-                responsive: {
-                    rules: [{
-                        condition: {
-                            maxWidth: 500
+
+                        subtitle: {
+                            text: '详情如下图'
                         },
-                        chartOptions: {
-                            legend: {
-                                layout: 'horizontal',
-                                align: 'center',
-                                verticalAlign: 'bottom'
+
+                        yAxis: {
+                            title: {
+                                text: '百分比'
                             }
+                        },
+                        legend: {
+                            layout: 'vertical',
+                            align: 'right',
+                            verticalAlign: 'middle'
+                        },
+                        plotOptions: {
+                            series: {
+                                label: {
+                                    connectorAllowed: false
+                                },
+                                pointStart: 2014
+                            }
+                        },
+                        series: data1,
+                        responsive: {
+                            rules: [{
+                                condition: {
+                                    maxWidth: 500
+                                },
+                                chartOptions: {
+                                    legend: {
+                                        layout: 'horizontal',
+                                        align: 'center',
+                                        verticalAlign: 'bottom'
+                                    }
+                                }
+                            }]
                         }
-                    }]
-                }
 
+                    });
+                }
             });
+          
+           
         })
       
     </script>
