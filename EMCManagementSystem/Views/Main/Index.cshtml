@@ -410,6 +410,21 @@
                                 </a>
                             </li>
                             <li>
+                                <a href="javaScript:series()">
+                                    <span class="title">系列数据分析</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javaScript:testsNumber ()">
+                                    <span class="title">试验总数统计</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javaScript:qualifiedProportion ()">
+                                    <span class="title">试验各项合格比例</span>
+                                </a>
+                            </li>
+                            <li>
                                 <a href="javaScript:RankingLis()">
                                     <span class="title">合格率排行榜</span>
                                 </a>
@@ -1119,6 +1134,15 @@
         }
         function carAnalysis() {
             $("#iframe").attr("src", "/Data/carAnalysis");
+        }
+        function series() {
+            $("#iframe").attr("src", "/Data/qualified_all");
+        }
+        function testsNumber() {
+            $("#iframe").attr("src", "/Data/category");
+        }
+        function qualifiedProportion() {
+            $("#iframe").attr("src", "/Data/qualified");
         }
         
     </script>

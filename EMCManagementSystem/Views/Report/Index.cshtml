@@ -125,11 +125,10 @@
                                         <thead>
                                             <tr>
                                                 @*<th width="5%">NO</th>*@
+                                                <th width="10%">类别</th>
                                                 <th width="10%">创建时间</th>
                                                 <th width="10%">汽车品牌</th>
                                                 <th width="10%">任务号</th>
-                                                
-                                               
                                                 <th width="10%">检验结果</th>
                                                 <th width="15%">操作</th>
                                             </tr>
@@ -338,7 +337,8 @@
                     'tbodyRow': {
                         'zebra': true,
                         'write': function (d) {
-                            return '<tr><td>' + d.time + '</td><td>' + d.brand + '</td><td>' + d.taskNumber + '</td><td>' + d.ResultID + '</td><td><div class="btn-group"><button class="btn btn-xs btn-info" onclick="edit(' + d.OriginalRecordID + ')"><i class="ace-icon fa fa-pencil bigger-120"></i>查看</button><button class="btn btn-xs btn-danger" onclick="deleteRow(' + d.OriginalRecordID + ')"><i class="ace-icon fa fa-trash-o bigger-120"></i>删除</button></div></td></tr>';
+                            
+                            return '<tr><td>' + d.category + '</td><td>' + d.time + '</td><td>' + d.brand + '</td><td>' + d.taskNumber + '</td><td>' + d.ResultID + '</td><td><div class="btn-group"><button class="btn btn-xs btn-info" onclick="edit(' + d.OriginalRecordID + ')"><i class="ace-icon fa fa-pencil bigger-120"></i>查看</button><button class="btn btn-xs btn-danger" onclick="deleteRow(' + d.OriginalRecordID + ')"><i class="ace-icon fa fa-trash-o bigger-120"></i>删除</button></div></td></tr>';
                         }
                     },
                     'tbodyData': {

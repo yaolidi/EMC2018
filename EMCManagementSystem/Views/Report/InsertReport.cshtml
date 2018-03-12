@@ -236,8 +236,8 @@
             display: none;
         }
          .box i {
-        position:relative;
-        top:30px !important
+        position:relative !important;
+        top:-20px !important
         }
         .cleanFileBt i {
         position:relative;
@@ -247,6 +247,7 @@
              position:relative;
         top:20px !important
         }
+        
     </style>
     <style>
     .zhezhao {
@@ -438,12 +439,12 @@
 
                             </div>
 
-                            <div class="form-group">
-                                @*<label class="col-sm-2 control-label">机械配置参数:</label>
+                            @*<div class="form-group">
+                                <label class="col-sm-2 control-label">机械配置参数:</label>
                                 <div class="col-sm-10">
 
                                     <a href="javascript:;" id="hide" onclick="jQuery('#modal-1').modal('show', {backdrop: 'fade'});" style="border-radius:8px;display:none" type="button" class="btn btn-success bg-lg">上传文件</a>
-                                   
+                                
                                     <div class="col-sm-2" style="position: relative;top: -2px;right: 120px;">
 
                                         <label id="file_textOriginal" style="display: block;position: relative;top: 10px;left: 20px;"></label>
@@ -451,9 +452,9 @@
                                     <div class="col-sm-10">
                                         <a href="javascript:;" onclick="Original()" style="border-radius:8px;float:left" type="button" class="btn btn-success bg-lg">选择文件</a>
                                     </div>
-                                </div>*@
+                                </div>
 
-                            </div>
+                            </div>*@
 
                         </div>
 
@@ -703,7 +704,7 @@
                 </div>
             </div>
       
-            <div class="row">
+            <div class="row " id="car14023" style="display:none">
                 <div class="col-sm-12">
 
                  
@@ -799,7 +800,235 @@
                 </div>
                 
             </div>
+            <div class="row " id="car18387"style="display:none">
+                <div class="col-sm-12">
 
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">ROD</h3>
+
+                        </div>
+                     
+                        <div class="tab-content">
+                            <div class="row">
+                                <label class="control-label bolder blue"> &nbsp; &nbsp;选择强扫面</label>
+                            </div>
+                             
+                                <div class="row">
+
+                                    <div class="col-sm-3">
+                                        <div class="control-group">
+
+
+                                            <div class="radio">
+                                                <label>
+                                                    <input onclick="Ck_ra2('0')"  name="form-field-radio" type="radio" class="ace" />
+                                                    <span class="lbl"> L</span>
+                                                </label>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="control-group">
+
+
+                                            <div class="radio">
+                                                <label>
+                                                    <input onclick="Ck_ra2('1')" name="form-field-radio" type="radio" class="ace" />
+                                                    <span class="lbl">R</span>
+                                                </label>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="control-group">
+
+
+                                            <div class="radio">
+                                                <label>
+                                                    <input onclick="Ck_ra2('2')" name="form-field-radio" type="radio" class="ace" />
+                                                    <span class="lbl"> F</span>
+                                                </label>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="control-group">
+
+
+                                            <div class="radio">
+                                                <label>
+                                                    <input onclick="Ck_ra2('3')" name="form-field-radio" type="radio" class="ace" />
+                                                    <span class="lbl">B</span>
+                                                </label>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <br />
+
+                                <div class="row">
+
+                                    <div id="fileUploadContent3" class="fileUploadContent"></div>
+                                    <button onclick="testUpload_18387()">函数提交</button>
+                                    <br />
+                                    <br />
+                                  
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label" for="field-1">强扫图：</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" id="av_LH_Re" disabled="disabled" style="color:red" class="form-control">
+                                        </div>
+
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label" for="field-1">rod(16km/h)：</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" id="rod_16" disabled="disabled" style="color:red" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label" for="field-1">rod(70km/h)：</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" id="rod_70" disabled="disabled" style="color:red" class="form-control">
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        <hr />
+                        <div class="panel-heading">
+                            <h3 class="panel-title">LOOP</h3>
+
+                        </div>
+                        <div class="tab-content">
+                            <div class="row">
+                                <label class="control-label bolder blue">   &nbsp; &nbsp; 选择强扫面</label>
+                            </div>
+                            <div class="row">
+
+                                <div class="col-sm-3">
+                                    <div class="control-group">
+                                  
+
+                                        <div class="radio">
+                                            <label>
+                                                <input name="form-field-radio" onclick="Ck_ra('0')" type="radio" class="ace2" />
+                                                <span class="lbl"> L</span>
+                                            </label>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="control-group">
+
+
+                                        <div class="radio">
+                                            <label>
+                                                <input name="form-field-radio" onclick="Ck_ra('1')" type="radio" class="ace2" />
+                                                <span class="lbl">R</span>
+                                            </label>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="control-group">
+
+
+                                        <div class="radio">
+                                            <label>
+                                                <input name="form-field-radio" onclick="Ck_ra('2')" type="radio" class="ace2" />
+                                                <span class="lbl"> F</span>
+                                            </label>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="control-group">
+
+
+                                        <div class="radio">
+                                            <label>
+                                                <input name="form-field-radio"onclick="Ck_ra('3')" type="radio" class="ace2" />
+                                                <span class="lbl">B</span>
+                                            </label>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+                            <div class="row">
+                            
+                                <div id="fileUploadContent4" class="fileUploadContent"></div>
+                                <button onclick="testUpload_18387_Magnetic()">函数提交</button>
+                                <br />
+                                <br />
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label" for="field-1">强扫图：</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" id="pk_LH_Re" disabled="disabled" style="color:red" class="form-control">
+                                    </div>
+
+                                </div>
+                                <div class="form-group">
+                                    <label id="lb_16y" class="col-sm-2 control-label" for="field-1">L-Y(16km/h)：</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" id="Magnetic_16y" disabled="disabled" style="color:red" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label id="lb_16x" class="col-sm-2 control-label" for="field-1">L-(16km/h)：</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" id="Magnetic_16x" disabled="disabled" style="color:red" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label id="lb_70y" class="col-sm-2 control-label" for="field-1">L-Y(70km/h)：</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" id="Magnetic_70y" disabled="disabled" style="color:red" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label id="lb_70x" class="col-sm-2 control-label" for="field-1">L-X(70km/h)：</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" id="Magnetic_70x" disabled="disabled" style="color:red" class="form-control">
+                                    </div>
+                                </div>
+                                <hr />
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label" style=" color:red">检测结果:</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" disabled="disabled" id="ResultIDnew" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+
+                    </div>
+                </div>
+
+            </div>
             <div class="row">
                 <div class="col-sm-12">
 
@@ -942,6 +1171,273 @@
     <script src="~/Highcharts/js/highcharts-zh_CN.js"></script>
     
     <script type="text/javascript">
+        var surface = "";
+        var surface2 = "";
+        function Ck_ra2(t) {
+            surface2 = t;
+        }
+        function Ck_ra(t) {
+            surface = t;
+            if (t == "0") {
+               
+                document.getElementById("lb_16y").innerText = "L-Y(16km/h):";
+                document.getElementById("lb_16x").innerText = "L-X(16km/h):";
+                document.getElementById("lb_70y").innerText = "L-Y(70km/h):";
+                document.getElementById("lb_70x").innerText = "L-X(70km/h):";
+            } else if (t == "1") {
+               
+                document.getElementById("lb_16y").innerText = "R-Y(16km/h):";
+                document.getElementById("lb_16x").innerText = "R-X(16km/h):";
+                document.getElementById("lb_70y").innerText = "R-Y(70km/h):";
+                document.getElementById("lb_70x").innerText = "R-X(70km/h):";
+            } else if (t == "2") {
+               
+                document.getElementById("lb_16y").innerText = "F-Y(16km/h):";
+                document.getElementById("lb_16x").innerText = "F-X(16km/h):";
+                document.getElementById("lb_70y").innerText = "F-Y(70km/h):";
+                document.getElementById("lb_70x").innerText = "F-X(70km/h):";
+            }
+            else if (t == "3") {
+                
+                document.getElementById("lb_16y").innerText = "B-Y(16km/h):";
+                document.getElementById("lb_16x").innerText = "B-X(16km/h):";
+                document.getElementById("lb_70y").innerText = "B-Y(70km/h):";
+                document.getElementById("lb_70x").innerText = "B-X(70km/h):";
+            }
+        }
+        function testUpload_18387_Magnetic() {
+            document.getElementById("zhezhao").style.display = "block";
+            var opt = uploadTools.getOpt("fileUploadContent4");
+            var str_name_col = "";
+            for (var j = 0; j < opt.fileList.length; j++) {
+                var formData = new FormData();
+                var b = opt.fileList[j];
+                formData.append("files", b);
+                var arr_j = opt.fileList[j].name.split(".");
+                if (arr_j[1] == "xls" || arr_j[1] == "xlsx") {
+                    var request = $.ajax({
+                        type: "POST",
+                        url: "/Report/StationImport_18387Magnetic",
+                        data: formData,			//这里上传的数据使用了formData 对象
+                        processData: false, 	//必须false才会自动加上正确的Content-Type
+                        contentType: false,
+                        //这里我们先拿到jQuery产生的XMLHttpRequest对象，为其增加 progress 事件绑定，然后再返回交给ajax使用
+
+                        //上传成功后回调
+                        success: function (data) {
+                           
+                            if (data[data.length - 3].indexOf("X-16") > 0) {
+                                setCookie("Magnetic_x_16", data[data.length - 1] + data[data.length - 3], 1);
+                                if (data[data.length - 2] == "不合格") {
+                                    setCookie("Magnetic_x_16_qualified", "0", 1);
+                                    document.getElementById("Magnetic_16x").value = "不合格";
+                                } else {
+                                    document.getElementById("Magnetic_16x").value = "合格";
+                                    setCookie("Magnetic_x_16_qualified", "1", 1);
+                                }
+                            } else if (data[data.length - 3].indexOf("X-70") > 0) {
+                                setCookie("Magnetic_x_70", data[data.length - 1] + data[data.length - 3], 1);
+                                if (data[data.length - 2] == "不合格") {
+                                    setCookie("Magnetic_x_70_qualified", "0", 1);
+                                    document.getElementById("Magnetic_70x").value = "不合格";
+                                } else {
+                                    setCookie("Magnetic_x_70_qualified", "1", 1);
+                                    document.getElementById("Magnetic_70x").value = "合格";
+                                }
+                            }
+                            else if (data[data.length - 3].indexOf("Y-16") > 0) {
+                                setCookie("Magnetic_y_16", data[data.length - 1] + data[data.length - 3], 1);
+                                if (data[data.length - 2] == "不合格") {
+                                    setCookie("Magnetic_y_16_qualified", "0", 1);
+                                    document.getElementById("Magnetic_16y").value = "不合格";
+                                } else {
+                                    setCookie("Magnetic_y_16_qualified", "1", 1);
+                                    document.getElementById("Magnetic_16y").value = "合格";
+                                }
+                            } else if (data[data.length - 3].indexOf("Y-70") > 0) {
+                                setCookie("Magnetic_y_70", data[data.length - 1] + data[data.length - 3], 1);
+                                if (data[data.length - 2] == "不合格") {
+                                    setCookie("Magnetic_y_70_qualified", "0", 1);
+                                    document.getElementById("Magnetic_70y").value = "不合格";
+                                } else {
+                                    setCookie("Magnetic_y_70_qualified", "1", 1);
+                                    document.getElementById("Magnetic_70y").value = "合格";
+                                }
+                            }
+                            var i = selectAll2();
+                            if (i == "合格") {
+                                document.getElementById("ResultIDnew").value = "合格";
+                            }
+                            if (data[data.length - 2] == "不合格") {
+                                bool_qualified = false;
+                                document.getElementById("ResultIDnew").value = "不合格";
+                            }
+                            if (opt.fileList.length == j) {
+                                document.getElementById("zhezhao").style.display = "none";
+                            }
+                            //var id = "p_" + t;
+                            //document.getElementById(id).innerHTML = data[data.length - 2];
+
+                        },
+                        //上传失败后回调
+                        error: function () {
+                            alert("失败")
+
+                        }
+                    });
+                }
+                else if (arr_j[1].toLowerCase() == "wmf" || arr_j[1].toLowerCase() == "gif" || arr_j[1].toLowerCase() == "png" || arr_j[1].toLowerCase() == "bmp" || arr_j[1].toLowerCase() == "jpeg" || arr_j[1].toLowerCase() == "jpg") {
+                    var request = $.ajax({
+                        type: "POST",
+                        url: "/Report/StationImport2",
+                        data: formData,			//这里上传的数据使用了formData 对象
+                        processData: false, 	//必须false才会自动加上正确的Content-Type
+                        contentType: false,
+                        //这里我们先拿到jQuery产生的XMLHttpRequest对象，为其增加 progress 事件绑定，然后再返回交给ajax使用
+
+                        //上传成功后回调
+                        success: function (data) {
+                            if (data.indexOf("X-16") > -1) {
+                                setCookie("LOOP_16x_IMG", data, 1);
+                            } else if (data.indexOf("X-70") > -1) {
+                                setCookie("LOOP_70x_IMG", data, 1);
+                            }
+                            else if (data.indexOf("Y-16") > -1) {
+                                setCookie("LOOP_16y_IMG", data, 1);
+                            }
+                            else if (data.indexOf("Y-70") > -1) {
+                                setCookie("LOOP_70y_IMG", data, 1);
+                            }
+
+                            else if (data.indexOf("DUI BI") > -1) {
+                                setCookie("DUI_Magnetic", data, 1);
+                            }
+                            else {
+                                setCookie("Magnetic_img", data, 1);
+                            }
+                            if (opt.fileList.length == j) {
+                                document.getElementById("zhezhao").style.display = "none";
+                            }
+
+                        },
+
+                        //上传失败后回调
+                        error: function () {
+                            alert("失败")
+
+                        }
+                    });
+                } else {
+                    alert("请选择正确的文件");
+                    return;
+                }
+
+            }
+            
+            //  uploadEvent.uploadFileEvent(opt);
+        }
+        function testUpload_18387() {
+            document.getElementById("zhezhao").style.display = "block";
+            var opt = uploadTools.getOpt("fileUploadContent3");
+            var str_name_col = "";
+            for (var j = 0; j < opt.fileList.length; j++) {
+                var formData = new FormData();
+                var b = opt.fileList[j];
+                formData.append("files", b);
+                var arr_j = opt.fileList[j].name.split(".");
+                if (arr_j[1] == "xls" || arr_j[1] == "xlsx") {
+                    var request = $.ajax({
+                        type: "POST",
+                        url: "/Report/StationImport_18387Electrical",
+                        data: formData,			//这里上传的数据使用了formData 对象
+                        processData: false, 	//必须false才会自动加上正确的Content-Type
+                        contentType: false,
+                        //这里我们先拿到jQuery产生的XMLHttpRequest对象，为其增加 progress 事件绑定，然后再返回交给ajax使用
+
+                        //上传成功后回调
+                        success: function (data) {
+
+                            if (data[data.length - 3].indexOf("16")>0) {
+                                setCookie("rod_16", data[data.length - 1] + data[data.length - 3], 1);
+                                if (data[data.length - 2] == "不合格") {
+                                    setCookie("rod_16_qualified", "0", 1);
+                                    document.getElementById("rod_16").value = "不合格";
+                                } else {
+                                    document.getElementById("rod_16").value = "合格";
+                                    setCookie("rod_16_qualified", "1", 1);
+                                }
+                            } else if (data[data.length - 3].indexOf("70") > 0) {
+                                setCookie("rod_70", data[data.length - 1] + data[data.length - 3], 1);
+                                if (data[data.length - 2] == "不合格") {
+                                    setCookie("rod_70_qualified", "0", 1);
+                                    document.getElementById("rod_70").value = "不合格";
+                                } else {
+                                    setCookie("rod_70_qualified", "1", 1);
+                                    document.getElementById("rod_70").value = "合格";
+                                }
+                            }
+                            var i = selectAll2();
+                            if (i == "合格") {
+                                document.getElementById("ResultIDnew").value = "合格";
+                            }
+                            if (data[data.length - 2] == "不合格") {
+                                bool_qualified = false;
+                                document.getElementById("ResultIDnew").value = "不合格";
+                            }
+                            if (opt.fileList.length == j) {
+                                document.getElementById("zhezhao").style.display = "none";
+                            }
+                            //var id = "p_" + t;
+                            //document.getElementById(id).innerHTML = data[data.length - 2];
+
+                        },
+                        //上传失败后回调
+                        error: function () {
+                            alert("失败")
+
+                        }
+                    });
+                } else if (arr_j[1].toLowerCase() == "wmf" || arr_j[1].toLowerCase() == "gif" || arr_j[1].toLowerCase() == "png" || arr_j[1].toLowerCase() == "bmp" || arr_j[1].toLowerCase() == "jpeg" || arr_j[1].toLowerCase() == "jpg") {
+                    var request = $.ajax({
+                        type: "POST",
+                        url: "/Report/StationImport2",
+                        data: formData,			//这里上传的数据使用了formData 对象
+                        processData: false, 	//必须false才会自动加上正确的Content-Type
+                        contentType: false,
+                        //这里我们先拿到jQuery产生的XMLHttpRequest对象，为其增加 progress 事件绑定，然后再返回交给ajax使用
+
+                        //上传成功后回调
+                        success: function (data) {
+                            
+                            if (data.indexOf("-16") > -1) {
+                                setCookie("rod_16_Electrical", data, 1);
+                            } else if (data.indexOf("-70") > -1) {
+                                setCookie("rod_70_Electrical", data, 1);
+                            } else if (data.indexOf("DUI BI") > -1) {
+                                setCookie("DUI_Electrical", data, 1);
+                            } else {
+                                setCookie("rod_img", data, 1);
+                            }
+                            if (opt.fileList.length == j) {
+                                document.getElementById("zhezhao").style.display = "none";
+                            }
+                        },
+
+                        //上传失败后回调
+                        error: function () {
+                            alert("失败")
+
+                        }
+                    });
+                } else {
+                    alert("请选择正确的文件");
+                    return;
+                }
+
+            }
+          
+            //  uploadEvent.uploadFileEvent(opt);
+        }
         function testUpload() {
             document.getElementById("zhezhao").style.display = "block";
             var opt = uploadTools.getOpt("fileUploadContent");
@@ -1223,6 +1719,48 @@
             //"fileType":['png','jpg','docx','doc']，//文件类型限制，默认不限制，注意写的是文件后缀
 
         });
+        $("#fileUploadContent3").initUpload({
+
+            "progressUrl": "#",//获取进度信息地址，可选，注意需要返回的data格式如下（{bytesRead: 102516060, contentLength: 102516060, items: 1, percent: 100, startTime: 1489223136317, useTime: 2767}）
+            "selfUploadBtId": "selfUploadBt",//自定义文件上传按钮id
+            "isHiddenUploadBt": true,//是否隐藏上传按钮
+            "isHiddenCleanBt": false,//是否隐藏清除按钮
+            "isAutoClean": false,//是否上传完成后自动清除
+            "velocity": 10,//模拟进度上传数据
+            //"rememberUpload":true,//记住文件上传
+            // "showFileItemProgress":false,
+            //"showSummerProgress":false,//总进度条，默认限制
+            //"scheduleStandard":true,//模拟进度的方式，设置为true是按总进度，用于控制上传时间，如果设置为false,按照文件数据的总量,默认为false
+            //"size":350,//文件大小限制，单位kb,默认不限制
+            //"maxFileNumber":3,//文件个数限制，为整数
+            //"filelSavePath":"",//文件上传地址，后台设置的根目录
+            //"beforeUpload":beforeUploadFun,//在上传前执行的函数
+            "onUpload": onUploadFun,//在上传后执行的函数
+            //autoCommit:true,//文件是否自动上传
+            //"fileType":['png','jpg','docx','doc']，//文件类型限制，默认不限制，注意写的是文件后缀
+
+        });
+        $("#fileUploadContent4").initUpload({
+
+            "progressUrl": "#",//获取进度信息地址，可选，注意需要返回的data格式如下（{bytesRead: 102516060, contentLength: 102516060, items: 1, percent: 100, startTime: 1489223136317, useTime: 2767}）
+            "selfUploadBtId": "selfUploadBt",//自定义文件上传按钮id
+            "isHiddenUploadBt": true,//是否隐藏上传按钮
+            "isHiddenCleanBt": false,//是否隐藏清除按钮
+            "isAutoClean": false,//是否上传完成后自动清除
+            "velocity": 10,//模拟进度上传数据
+            //"rememberUpload":true,//记住文件上传
+            // "showFileItemProgress":false,
+            //"showSummerProgress":false,//总进度条，默认限制
+            //"scheduleStandard":true,//模拟进度的方式，设置为true是按总进度，用于控制上传时间，如果设置为false,按照文件数据的总量,默认为false
+            //"size":350,//文件大小限制，单位kb,默认不限制
+            //"maxFileNumber":3,//文件个数限制，为整数
+            //"filelSavePath":"",//文件上传地址，后台设置的根目录
+            //"beforeUpload":beforeUploadFun,//在上传前执行的函数
+            "onUpload": onUploadFun,//在上传后执行的函数
+            //autoCommit:true,//文件是否自动上传
+            //"fileType":['png','jpg','docx','doc']，//文件类型限制，默认不限制，注意写的是文件后缀
+
+        });
         function beforeUploadFun(opt) {
             opt.otherData = [{ "name": "你要上传的参数", "value": "你要上传的值" }];
         }
@@ -1254,7 +1792,20 @@
         }
     };
     var boo_tree = false;
+    var  classJ= 0;//用来判断保存类型是14023还是18387之类的e) {
     function onCheck(e, treeId, treeNode) {
+        if (treeNode.id == 1)
+        {
+            classJ = 1;
+            document.getElementById("car14023").style.display = "block";
+            document.getElementById("car18387").style.display = "none";
+        }
+        if (treeNode.id == 16)
+        {
+            classJ = 2;
+            document.getElementById("car18387").style.display = "block";
+            document.getElementById("car14023").style.display = "none";
+        }
         if (task_arr.length > 0) {
             if (treeNode.children) {
                 for (var i = 0; i < treeNode.children.length; i++) {
@@ -1319,7 +1870,7 @@
         }
         //判断是否全部选择
         function selectAll() {
-            if (getCookie("PK_file_LH") != "" && getCookie("PK_file_LV") != "" && getCookie("PK_file_RH") != "" && getCookie("PK_file_RV") != "" && getCookie("fileCSJB") && getCookie("file_LV") && getCookie("file_RH") && getCookie("file_RV"))
+            if (getCookie("PK_file_LH") != "" && getCookie("PK_file_LV") != "" && getCookie("PK_file_RH") != "" && getCookie("PK_file_RV") != "" && getCookie("fileCSJB") != "" && getCookie("file_LV") != "" && getCookie("file_RH") != "" && getCookie("file_RV") != "")
             {
                 if (bool_qualified == true)
                 {
@@ -1329,7 +1880,15 @@
     
            
         }
-       
+        function selectAll2() {
+            if (getCookie("rod_16") != "" && getCookie("rod_70") != "" && getCookie("Magnetic_x_16") != "" && getCookie("Magnetic_x_70") != "" && getCookie("Magnetic_y_16") != "" && getCookie("Magnetic_y_70") != "") {
+                if (bool_qualified == true) {
+                    return "合格";
+                }
+            }
+
+
+        }
         //删除cookies 
         function delCookie(name) {
             var exp = new Date();
@@ -1654,7 +2213,7 @@
 })
         function save() {
      
-    document.getElementById("save_a").disabled = "disabled";
+   // document.getElementById("save_a").disabled = "disabled";
     var brand = document.getElementById("brand").value;
     var taskNumber = document.getElementById("taskNumber").value;
     // var configure = document.getElementById("configure").value;
@@ -1704,7 +2263,7 @@
     var ModelCarModel = document.getElementById("ModelCarModel").value;
     var VIN = document.getElementById("VIN").value;
 
-    var ResultID = document.getElementById("ResultID").value;
+   
     //var selected_val = sel.options[sel.selectedIndex].value;
 
     //var ResultID = "合格";
@@ -1720,24 +2279,49 @@
     }
     var introduce = document.getElementById("introduce").value;
     var Remarks = document.getElementById("Remarks").value;
-    $.ajax({
+    if (classJ == 1)
+    {
+        var ResultID = document.getElementById("ResultID").value;
+        $.ajax({
 
-        type: "post",
+            type: "post",
 
-        url: "/Report/InsertReportContent",
+            url: "/Report/InsertReportContent",
 
-        cache: false,
+            cache: false,
 
-        async: true,
+            async: true,
 
-        data: { brand: brand, taskNumber: taskNumber, taskAllName: taskAllid, ModelCarModel: ModelCarModel, VIN: VIN, ResultID: ResultID, RegistrationName: RegistrationName, OriginalRecordName: OriginalRecordName, introduce: introduce, Remarks: Remarks, time: time_date },
+            data: { brand: brand, taskNumber: taskNumber, taskAllName: taskAllid, ModelCarModel: ModelCarModel, VIN: VIN, ResultID: ResultID, RegistrationName: RegistrationName, OriginalRecordName: OriginalRecordName, introduce: introduce, Remarks: Remarks, time: time_date},
 
-        success: function (data) {
-            alert(data);
-            
-            window.location.href = "/Report/Index";
-        }
-    });
+            success: function (data) {
+                alert(data);
+
+                window.location.href = "/Report/Index";
+            }
+        });
+    } else if (classJ == 2) {
+        var ResultID = document.getElementById("ResultIDnew").value;
+        $.ajax({
+
+            type: "post",
+
+            url: "/Report/InsertReportContent_18387",
+
+            cache: false,
+
+            async: true,
+
+            data: { brand: brand, taskNumber: taskNumber, taskAllName: taskAllid, ModelCarModel: ModelCarModel, VIN: VIN, ResultID: ResultID, RegistrationName: RegistrationName, OriginalRecordName: OriginalRecordName, introduce: introduce, Remarks: Remarks, time: time_date, surface: surface, surface2: surface2 },
+
+            success: function (data) {
+                alert(data);
+
+                window.location.href = "/Report/Index";
+            }
+        });
+    }
+    
 }
 
 function Thousands() {

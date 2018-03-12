@@ -414,12 +414,12 @@
 
                             </div>
 
-                            <div class="form-group">
+                            @*<div class="form-group">
                                 <label class="col-sm-2 control-label">机械配置参数:</label>
                                 <div class="col-sm-10">
 
                                     <a href="javascript:;" id="hide" onclick="jQuery('#modal-1').modal('show', {backdrop: 'fade'});" style="border-radius:8px;display:none" type="button" class="btn btn-success bg-lg">上传文件</a>
-                                    @*<input style="display:none" type="text" id="file_textOriginal" class="form-control" />*@
+                                   
                                     <div class="col-sm-2" style="position: relative;top: -2px;right: 120px;">
 
                                         <label id="file_textOriginal" style="display: block;position: relative;top: 10px;left: 20px;"></label>
@@ -429,255 +429,652 @@
                                     </div>
                                 </div>
 
-                            </div>
+                            </div>*@
 
                         </div>
+                        <div id="car14023" style="display:none">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">AV测试结果</h3>
 
-                        <div class="panel-heading">
-                            <h3 class="panel-title">AV测试结果</h3>
+                            </div>
+                            <div class="panel-body">
 
+
+                                <div class="form-group">
+                                    <label class="col-sm-1 control-label" for="field-1">LH：</label>
+                                    <div class="col-sm-6">
+
+
+                                        <div class="uploader white" style="width:62%">
+                                            <input type="text" class="filename" readonly id="fileCSJB_n" />
+                                            <input type="button" name="file" class="button" value="选择excel" />
+                                            <input type="file" size="30" name="file" id="fileCSJB" style="width:50%" />
+
+                                        </div>
+                                        <input type="button" value="下载" onclick="Dow('fileCSJB_n')" style="position: relative;top: -27px;left: 100px;" />
+                                        <label style="position: relative;top: -27px;left: 120px;color:red" id="p_fileCSJB"></label>
+                                    </div>
+
+                                    <div class="col-sm-5">
+
+
+                                        <div class="uploader white" style="width: 70%;">
+                                            <input type="text" class="filename" readonly id="fileCSJB2_n" />
+                                            <input type="button" name="file" class="button" value="选择图片" />
+                                            <input type="file" size="30" name="file" id="fileCSJB2" style="width:60%" />
+                                        </div>
+                                        <input type="button" value="下载" onclick="Dow('fileCSJB2_n')" style="position: relative;top: -27px;left: 100px;" />
+                                        <label style="position: relative;top: -27px;left: 120px;color:red" id="p_fileCSJB2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-1 control-label">LV:</label>
+                                    <div class="col-sm-6">
+
+
+                                        <div class="uploader white" style="width:62%">
+                                            <input type="text" class="filename" readonly id="file_LV_n" />
+                                            <input type="button" name="file" class="button" value="选择excel" />
+                                            <input type="file" size="30" name="file" id="file_LV" style="width:50%" />
+                                        </div>
+                                        <input type="button" value="下载" onclick="Dow('file_LV_n')" style="position: relative;top: -27px;left: 100px;" />
+                                        <label style="position: relative;top: -27px;left: 120px;color:red" id="p_file_LV"></label>
+                                    </div>
+
+                                    <div class="col-sm-5">
+
+
+                                        <div class="uploader white" style="width:70%">
+                                            <input type="text" class="filename" readonly id="file_LV2_n" />
+                                            <input type="button" name="file" class="button" value="选择图片" />
+                                            <input type="file" size="30" name="file" id="file_LV2" style="width:60%" />
+                                        </div>
+                                        <input type="button" value="下载" onclick="Dow('file_LV2_n')" style="position: relative;top: -27px;left: 100px;" />
+                                        <label style="position: relative;top: -27px;left: 120px;color:red" id="p_file_LV2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                    </div>
+
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-1 control-label">RH:</label>
+                                    <div class="col-sm-6">
+
+
+                                        <div class="uploader white" style="width:62%">
+                                            <input type="text" class="filename" readonly id="file_RH_n" />
+                                            <input type="button" name="file" class="button" value="选择excel" />
+                                            <input type="file" size="30" name="file" id="file_RH" style="width:50%" />
+                                        </div>
+                                        <input type="button" value="下载" onclick="Dow('file_RH_n')" style="position: relative;top: -27px;left: 100px;" />
+                                        <label style="position: relative;top: -27px;left: 120px;color:red" id="p_file_RH"></label>
+                                    </div>
+
+                                    <div class="col-sm-5">
+
+
+                                        <div class="uploader white" style="width:70%">
+                                            <input type="text" class="filename" readonly id="file_RH2_n" />
+                                            <input type="button" name="file" class="button" value="选择图片" />
+                                            <input type="file" size="30" name="file" id="file_RH2" style="width:60%" />
+                                        </div>
+                                        <input type="button" value="下载" onclick="Dow('file_RH2_n')" style="position: relative;top: -27px;left: 100px;" />
+                                        <label style="position: relative;top: -27px;left: 120px;color:red" id="p_file_RH2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                    </div>
+
+
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-1 control-label">RV:</label>
+                                    <div class="col-sm-6">
+
+
+                                        <div class="uploader white" style="width:62%">
+                                            <input type="text" class="filename" readonly id="file_RV_n" />
+                                            <input type="button" name="file" class="button" value="选择excel" />
+                                            <input type="file" size="30" name="file" id="file_RV" style="width:50%" />
+                                        </div>
+                                        <input type="button" value="下载" onclick="Dow('file_RV_n')" style="position: relative;top: -27px;left: 100px;" />
+                                        <label style="position: relative;top: -27px;left: 120px;color:red" id="p_file_RV"></label>
+                                    </div>
+
+                                    <div class="col-sm-5">
+
+
+                                        <div class="uploader white" style="width:70%">
+                                            <input type="text" class="filename" readonly id="file_RV2_n" />
+                                            <input type="button" name="file" class="button" value="选择图片" />
+                                            <input type="file" size="30" name="file" id="file_RV2" style="width:60%" />
+                                        </div>
+                                        <input type="button" value="下载" onclick="Dow('file_RV2_n')" style="position: relative;top: -27px;left: 100px;" />
+                                        <label style="position: relative;top: -27px;left: 120px;color:red" id="p_file_RV2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                    </div>
+
+                                </div>
+
+
+
+                            </div>
+
+                            <div class="panel-heading">
+                                <h3 class="panel-title">PK测试结果</h3>
+
+                            </div>
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    <label class="col-sm-1 control-label">LH:</label>
+                                    <div class="col-sm-6">
+
+
+                                        <div class="uploader white" style="width:62%">
+                                            <input type="text" class="filename" readonly id="PK_file_LH_n" />
+                                            <input type="button" name="file" class="button" value="选择excel" />
+                                            <input type="file" size="30" name="file" id="PK_file_LH" style="width:50%" />
+                                        </div>
+                                        <input type="button" value="下载" onclick="Dow('PK_file_LH_n')" style="position: relative;top: -27px;left: 100px;" />
+                                        <label style="position: relative;top: -27px;left: 120px;color:red" id="p_PK_file_LH"></label>
+                                    </div>
+
+                                    <div class="col-sm-5">
+
+
+                                        <div class="uploader white" style="width:70%">
+                                            <input type="text" class="filename" readonly id="PK_file_LH2_n" />
+                                            <input type="button" name="file" class="button" value="选择图片" />
+                                            <input type="file" size="30" name="file" id="PK_file_LH2" style="width:60%" />
+                                        </div>
+                                        <input type="button" value="下载" onclick="Dow('PK_file_LH2_n')" style="position: relative;top: -27px;left: 100px;" />
+                                        <label style="position: relative;top: -27px;left: 120px;color:red" id="p_PK_file_LH2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                    </div>
+
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-1 control-label">LV:</label>
+                                    <div class="col-sm-6">
+
+
+                                        <div class="uploader white" style="width:62%">
+                                            <input type="text" class="filename" readonly id="PK_file_LV_n" />
+                                            <input type="button" name="file" class="button" value="选择excel" />
+                                            <input type="file" size="30" name="file" id="PK_file_LV" style="width:50%" />
+                                        </div>
+                                        <input type="button" value="下载" onclick="Dow('PK_file_LV_n')" style="position: relative;top: -27px;left: 100px;" />
+                                        <label style="position: relative;top: -27px;left: 120px;color:red" id="p_PK_file_LV"></label>
+                                    </div>
+
+                                    <div class="col-sm-5">
+
+
+                                        <div class="uploader white" style="width:70%">
+                                            <input type="text" class="filename" readonly id="PK_file_LV2_n" />
+                                            <input type="button" name="file" class="button" value="选择图片" />
+                                            <input type="file" size="30" name="file" id="PK_file_LV2" style="width:60%" />
+                                        </div>
+                                        <input type="button" value="下载" onclick="Dow('PK_file_LV2_n')" style="position: relative;top: -27px;left: 100px;" />
+                                        <label style="position: relative;top: -27px;left: 120px;color:red" id="p_PK_file_LV2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                    </div>
+
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-1 control-label">RH:</label>
+                                    <div class="col-sm-6">
+
+
+                                        <div class="uploader white" style="width:62%">
+                                            <input type="text" class="filename" readonly id="PK_file_RH_n" />
+                                            <input type="button" name="file" class="button" value="选择excel" />
+                                            <input type="file" size="30" name="file" id="PK_file_RH" style="width:50%" />
+                                        </div>
+                                        <input type="button" value="下载" onclick="Dow('PK_file_RH_n')" style="position: relative;top: -27px;left: 100px;" />
+                                        <label style="position: relative;top: -27px;left: 120px;color:red" id="p_PK_file_RH"></label>
+                                    </div>
+
+                                    <div class="col-sm-5">
+
+
+                                        <div class="uploader white" style="width:70%">
+                                            <input type="text" class="filename" readonly id="PK_file_RH2_n" />
+                                            <input type="button" name="file" class="button" value="选择图片" />
+                                            <input type="file" size="30" name="file" id="PK_file_RH2" style="width:60%" />
+                                        </div>
+                                        <input type="button" value="下载" onclick="Dow('PK_file_RH2_n')" style="position: relative;top: -27px;left: 100px;" />
+                                        <label style="position: relative;top: -27px;left: 120px;color:red" id="p_PK_file_RH2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                    </div>
+
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-1 control-label">RV:</label>
+                                    <div class="col-sm-6">
+
+
+                                        <div class="uploader white" style="width:62%">
+                                            <input type="text" class="filename" readonly id="PK_file_RV_n" />
+                                            <input type="button" name="file" class="button" value="选择excel" />
+                                            <input type="file" size="30" name="file" id="PK_file_RV" style="width:50%" />
+                                        </div>
+                                        <input type="button" value="下载" onclick="Dow('PK_file_RV_n')" style="position: relative;top: -27px;left: 100px;" />
+                                        <label style="position: relative;top: -27px;left: 120px;color:red" id="p_PK_file_RV"></label>
+                                    </div>
+
+                                    <div class="col-sm-5">
+
+
+                                        <div class="uploader white" style="width:70%">
+                                            <input type="text" class="filename" readonly id="PK_file_RV2_n" />
+                                            <input type="button" name="file" class="button" value="选择图片" />
+                                            <input type="file" size="30" name="file" id="PK_file_RV2" style="width:60%" />
+                                        </div>
+                                        <input type="button" value="下载" onclick="Dow('PK_file_RV2_n')" style="position: relative;top: -27px;left: 100px;" />
+                                        <label style="position: relative;top: -27px;left: 120px;color:red" id="p_PK_file_RV2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                    </div>
+
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-1 control-label" style=" color:red">检测结果:</label>
+                                    <div class="col-sm-4">
+                                        <input type="text" disabled="disabled" id="ResultID" class="form-control">
+                                    </div>
+
+
+                                </div>
+                            </div>
                         </div>
-                        <div class="panel-body">
+                        <div class="row " id="car18387" style="display:none">
+                            <div class="col-sm-22">
 
 
-                            <div class="form-group">
-                                <label class="col-sm-1 control-label" for="field-1">LH：</label>
-                                <div class="col-sm-6">
-
-
-                                    <div class="uploader white" style="width:62%">
-                                        <input type="text" class="filename" readonly id="fileCSJB_n" />
-                                        <input type="button" name="file" class="button" value="选择excel" />
-                                        <input type="file" size="30" name="file" id="fileCSJB" style="width:50%" />
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">ROD</h3>
 
                                     </div>
-                                    <input type="button" value="下载" onclick="Dow('fileCSJB_n')" style="position: relative;top: -27px;left: 100px;" />
-                                    <label style="position: relative;top: -27px;left: 120px;color:red" id="p_fileCSJB"></label>
-                                </div>
 
-                                <div class="col-sm-5">
+                                    <div class="tab-content">
+                                        <div class="row">
+                                            <label class="control-label bolder blue"> &nbsp; &nbsp;选择强扫面</label>
+                                        </div>
+
+                                        <div class="row">
+
+                                            <div class="col-sm-3">
+                                                <div class="control-group">
 
 
-                                    <div class="uploader white" style="width: 70%;">
-                                        <input type="text" class="filename" readonly id="fileCSJB2_n"/>
-                                        <input type="button" name="file" class="button" value="选择图片" />
-                                        <input type="file" size="30" name="file" id="fileCSJB2" style="width:60%" />
+                                                    <div class="radio">
+                                                        <label>
+                                                            <input name="form-field-radio" type="radio" class="ace" />
+                                                            <span class="lbl"> L</span>
+                                                        </label>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <div class="control-group">
+
+
+                                                    <div class="radio">
+                                                        <label>
+                                                            <input name="form-field-radio" type="radio" class="ace" />
+                                                            <span class="lbl">R</span>
+                                                        </label>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <div class="control-group">
+
+
+                                                    <div class="radio">
+                                                        <label>
+                                                            <input name="form-field-radio" type="radio" class="ace" />
+                                                            <span class="lbl"> F</span>
+                                                        </label>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <div class="control-group">
+
+
+                                                    <div class="radio">
+                                                        <label>
+                                                            <input name="form-field-radio" type="radio" class="ace" />
+                                                            <span class="lbl">B</span>
+                                                        </label>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br />
+                                        <div class="panel-body">
+
+
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label" for="field-1">16km/h:</label>
+                                                <div class="col-sm-5">
+
+
+                                                    <div class="uploader white" style="width:80%">
+                                                        <input type="text" class="filename" readonly id="dow_rod_16" />
+                                                        <input type="button" name="file" class="button" value="选择excel" />
+                                                        <input type="file" size="30" name="file" id="rod_16" style="width:50%" />
+
+                                                    </div>
+                                                    <input type="button" value="下载" onclick="Dow('dow_rod_16')" style="position: relative;top: -27px;left: 100px;" />
+                                                    <label style="position: relative;top: -27px;left: 120px;color:red" id="p_rod_16"></label>
+                                                </div>
+
+                                                <div class="col-sm-5">
+                                                    <div class="uploader white" style="width: 100%;">
+                                                        <input type="text" class="filename" readonly id="dow_rod_16_img" />
+                                                        <input type="button" name="file" class="button" value="选择图片" />
+                                                        <input type="file" size="30" name="file" id="rod_16_img" style="width:60%" />
+                                                    </div>
+                                                    <input type="button" value="下载" onclick="Dow('dow_rod_16_img')" style="position: relative;top: -27px;left: 100px;" />
+                                                    <label style="position: relative;top: -27px;left: 120px;color:red" id="p_rod_16_img">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">70km/h:</label>
+                                                <div class="col-sm-5">
+
+
+                                                    <div class="uploader white" style="width:80%">
+                                                        <input type="text" class="filename" readonly id="dow_rod_70" />
+                                                        <input type="button" name="file" class="button" value="选择excel" />
+                                                        <input type="file" size="30" name="file" id="rod_70" style="width:50%" />
+                                                    </div>
+                                                    <input type="button" value="下载" onclick="Dow('dow_rod_70')" style="position: relative;top: -27px;left: 100px;" />
+                                                    <label style="position: relative;top: -27px;left: 120px;color:red" id="p_rod_70"></label>
+                                                </div>
+
+                                                <div class="col-sm-5">
+
+
+                                                    <div class="uploader white" style="width:100%">
+                                                        <input type="text" class="filename" readonly id="dow_rod_70_img" />
+                                                        <input type="button" name="file" class="button" value="选择图片" />
+                                                        <input type="file" size="30" name="file" id="rod_70_img" style="width:60%" />
+                                                    </div>
+                                                    <input type="button" value="下载" onclick="Dow('dow_rod_70_img')" style="position: relative;top: -27px;left: 100px;" />
+                                                    <label style="position: relative;top: -27px;left: 120px;color:red" id="p_rod_70_img">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">DUIBI:</label>
+                                                <div class="col-sm-10">
+
+
+                                                    <div class="uploader white" style="width:40%">
+                                                        <input type="text" class="filename" readonly id="dow_DUIBI" />
+                                                        <input type="button" name="file" class="button" value="选择excel" />
+                                                        <input type="file" size="30" name="file" id="DUIBI" style="width:50%" />
+                                                    </div>
+                                                    <input type="button" value="下载" onclick="Dow('dow_DUIBI')" style="position: relative;top: -27px;left: 100px;" />
+                                                    <label style="position: relative;top: -27px;left: 120px;color:red" id="p_DUIBI"></label>
+                                                </div>
+
+                                           
+
+                                            </div>
+                                       
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">强扫图</label>
+                                                <div class="col-sm-5">
+
+
+                                                    <div class="uploader white" style="width:80%">
+                                                        <input type="text" class="filename" readonly id="dow_surface_img" />
+                                                        <input type="button" name="file" class="button" value="选择excel" />
+                                                        <input type="file" size="30" name="file" id="surface_img" style="width:50%" />
+                                                    </div>
+                                                    <input type="button" value="下载" onclick="Dow('dow_surface_img')" style="position: relative;top: -27px;left: 100px;" />
+                                                    <label style="position: relative;top: -27px;left: 120px;color:red" id="p_dow_surface_img"></label>
+                                                </div>
+
+
+
+                                            </div>
+                                        </div>
+                                       
+
                                     </div>
-                                    <input type="button" value="下载" onclick="Dow('fileCSJB2_n')" style="position: relative;top: -27px;left: 100px;" />
-                                    <label style="position: relative;top: -27px;left: 120px;color:red" id="p_fileCSJB2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                    <hr />
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">LOOP</h3>
+
+                                    </div>
+                                    <div class="tab-content">
+                                        <div class="row">
+                                            <label class="control-label bolder blue">   &nbsp; &nbsp; 选择强扫面</label>
+                                        </div>
+                                        <div class="row">
+
+                                            <div class="col-sm-3">
+                                                <div class="control-group">
+
+
+                                                    <div class="radio">
+                                                        <label>
+                                                            <input name="form-field-radio2" onclick="Ck_ra('L')" type="radio" class="ace2" />
+                                                            <span class="lbl"> L</span>
+                                                        </label>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <div class="control-group">
+
+
+                                                    <div class="radio">
+                                                        <label>
+                                                            <input name="form-field-radio2" onclick="Ck_ra('R')" type="radio" class="ace2" />
+                                                            <span class="lbl">R</span>
+                                                        </label>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <div class="control-group">
+
+
+                                                    <div class="radio">
+                                                        <label>
+                                                            <input name="form-field-radio2" onclick="Ck_ra('F')" type="radio" class="ace2" />
+                                                            <span class="lbl"> F</span>
+                                                        </label>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <div class="control-group">
+
+
+                                                    <div class="radio">
+                                                        <label>
+                                                            <input name="form-field-radio2" onclick="Ck_ra('B')" type="radio" class="ace2" />
+                                                            <span class="lbl">B</span>
+                                                        </label>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br />
+                                        <div class="panel-body">
+
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">x-16km/h:</label>
+                                                <div class="col-sm-5">
+
+
+                                                    <div class="uploader white" style="width:80%">
+                                                        <input type="text" class="filename" readonly id="dow_Magnetic_16x" />
+                                                        <input type="button" name="file" class="button" value="选择excel" />
+                                                        <input type="file" size="30" name="file" id="Magnetic_16x" style="width:50%" />
+                                                    </div>
+                                                    <input type="button" value="下载" onclick="Dow('dow_Magnetic_16x')" style="position: relative;top: -27px;left: 100px;" />
+                                                    <label style="position: relative;top: -27px;left: 120px;color:red" id="p_Magnetic_16x"></label>
+                                                </div>
+
+                                                <div class="col-sm-5">
+
+
+                                                    <div class="uploader white" style="width:100%">
+                                                        <input type="text" class="filename" readonly id="dow_Magnetic_16x_img" />
+                                                        <input type="button" name="file" class="button" value="选择图片" />
+                                                        <input type="file" size="30" name="file" id="Magnetic_16x_img" style="width:60%" />
+                                                    </div>
+                                                    <input type="button" value="下载" onclick="Dow('dow_Magnetic_16x_img')" style="position: relative;top: -27px;left: 100px;" />
+                                                    <label style="position: relative;top: -27px;left: 120px;color:red" id="p_Magnetic_16x_img">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                                </div>
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label" for="field-1">y-16km/h:</label>
+                                                <div class="col-sm-5">
+
+
+                                                    <div class="uploader white" style="width:80%">
+                                                        <input type="text" class="filename" readonly id="dow_Magnetic_16y" />
+                                                        <input type="button" name="file" class="button" value="选择excel" />
+                                                        <input type="file" size="30" name="file" id="Magnetic_16y" style="width:50%" />
+
+                                                    </div>
+                                                    <input type="button" value="下载" onclick="Dow('dow_Magnetic_16y')" style="position: relative;top: -27px;left: 100px;" />
+                                                    <label style="position: relative;top: -27px;left: 120px;color:red" id="p_Magnetic_16y"></label>
+                                                </div>
+
+                                                <div class="col-sm-5">
+
+
+                                                    <div class="uploader white" style="width: 100%;">
+                                                        <input type="text" class="filename" readonly id="dow_Magnetic_16y_img" />
+                                                        <input type="button" name="file" class="button" value="选择图片" />
+                                                        <input type="file" size="30" name="file" id="Magnetic_16y_img" style="width:60%" />
+                                                    </div>
+                                                    <input type="button" value="下载" onclick="Dow('dow_Magnetic_16y_img')" style="position: relative;top: -27px;left: 100px;" />
+                                                    <label style="position: relative;top: -27px;left: 120px;color:red" id="p_Magnetic_16y_img">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">x-70km/h:</label>
+                                                <div class="col-sm-5">
+
+
+                                                    <div class="uploader white" style="width:80%">
+                                                        <input type="text" class="filename" readonly id="dow_Magnetic_7x" />
+                                                        <input type="button" name="file" class="button" value="选择excel" />
+                                                        <input type="file" size="30" name="file" id="Magnetic_70x" style="width:50%" />
+                                                    </div>
+                                                    <input type="button" value="下载" onclick="Dow('dow_Magnetic_70x')" style="position: relative;top: -27px;left: 100px;" />
+                                                    <label style="position: relative;top: -27px;left: 120px;color:red" id="p_Magnetic_70x"></label>
+                                                </div>
+
+                                                <div class="col-sm-5">
+
+
+                                                    <div class="uploader white" style="width:100%">
+                                                        <input type="text" class="filename" readonly id="dow_Magnetic_70x_img" />
+                                                        <input type="button" name="file" class="button" value="选择图片" />
+                                                        <input type="file" size="30" name="file" id="Magnetic_70x_img" style="width:60%" />
+                                                    </div>
+                                                    <input type="button" value="下载" onclick="Dow('dow_Magnetic_70x_img')" style="position: relative;top: -27px;left: 100px;" />
+                                                    <label style="position: relative;top: -27px;left: 120px;color:red" id="p_Magnetic_70x_img">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                                </div>
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label" for="field-1">y-70km/h:</label>
+                                                <div class="col-sm-5">
+
+
+                                                    <div class="uploader white" style="width:80%">
+                                                        <input type="text" class="filename" readonly id="dow_Magnetic_70y" />
+                                                        <input type="button" name="file" class="button" value="选择excel" />
+                                                        <input type="file" size="30" name="file" id="Magnetic_70y" style="width:50%" />
+
+                                                    </div>
+                                                    <input type="button" value="下载" onclick="Dow('dow_Magnetic_70y')" style="position: relative;top: -27px;left: 100px;" />
+                                                    <label style="position: relative;top: -27px;left: 120px;color:red" id="p_Magnetic_70y"></label>
+                                                </div>
+
+                                                <div class="col-sm-5">
+
+
+                                                    <div class="uploader white" style="width: 100%;">
+                                                        <input type="text" class="filename" readonly id="dow_Magnetic_70y_img" />
+                                                        <input type="button" name="file" class="button" value="选择图片" />
+                                                        <input type="file" size="30" name="file" id="Magnetic_70y_img" style="width:60%" />
+                                                    </div>
+                                                    <input type="button" value="下载" onclick="Dow('dow_Magnetic_70y_img')" style="position: relative;top: -27px;left: 100px;" />
+                                                    <label style="position: relative;top: -27px;left: 120px;color:red" id="p_Magnetic_70y_img">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">DUIBI:</label>
+                                                <div class="col-sm-10">
+
+
+                                                    <div class="uploader white" style="width:40%">
+                                                        <input type="text" class="filename" readonly id="dow_DUIBI-Magnetic" />
+                                                        <input type="button" name="file" class="button" value="选择excel" />
+                                                        <input type="file" size="30" name="file" id="DUIBI-Magnetic" style="width:50%" />
+                                                    </div>
+                                                    <input type="button" value="下载" onclick="Dow('dow_DUIBI-Magnetic')" style="position: relative;top: -27px;left: 100px;" />
+                                                    <label style="position: relative;top: -27px;left: 120px;color:red" id="p_DUIBI-Magnetic"></label>
+                                                </div>
+
+
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">强扫图</label>
+                                                <div class="col-sm-5">
+
+
+                                                    <div class="uploader white" style="width:80%">
+                                                        <input type="text" class="filename" readonly id="dow_surface_img_Magnetic" />
+                                                        <input type="button" name="file" class="button" value="选择excel" />
+                                                        <input type="file" size="30" name="file" id="surface_img_Magnetic" style="width:50%" />
+                                                    </div>
+                                                    <input type="button" value="下载" onclick="Dow('dow_surface_img_Magnetic')" style="position: relative;top: -27px;left: 100px;" />
+                                                    <label style="position: relative;top: -27px;left: 120px;color:red" id="p_dow_surface_img_Magnetic"></label>
+                                                </div>
+
+
+
+                                            </div>
+                                      
+                                            
+                                        </div>
+
+                                    </div>
+
+
+
                                 </div>
                             </div>
 
-                            <div class="form-group">
-                                <label class="col-sm-1 control-label">LV:</label>
-                                <div class="col-sm-6">
-
-
-                                    <div class="uploader white" style="width:62%">
-                                        <input type="text" class="filename" readonly id="file_LV_n" />
-                                        <input type="button" name="file" class="button" value="选择excel" />
-                                        <input type="file" size="30" name="file" id="file_LV" style="width:50%" />
-                                    </div>
-                                    <input type="button" value="下载" onclick="Dow('file_LV_n')" style="position: relative;top: -27px;left: 100px;" />
-                                    <label style="position: relative;top: -27px;left: 120px;color:red" id="p_file_LV"></label>
-                                </div>
-
-                                <div class="col-sm-5">
-
-
-                                    <div class="uploader white" style="width:70%">
-                                        <input type="text" class="filename" readonly id="file_LV2_n" />
-                                        <input type="button" name="file" class="button" value="选择图片" />
-                                        <input type="file" size="30" name="file" id="file_LV2" style="width:60%" />
-                                    </div>
-                                    <input type="button" value="下载" onclick="Dow('file_LV2_n')" style="position: relative;top: -27px;left: 100px;" />
-                                    <label style="position: relative;top: -27px;left: 120px;color:red" id="p_file_LV2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                                </div>
-
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-sm-1 control-label">RH:</label>
-                                <div class="col-sm-6">
-
-
-                                    <div class="uploader white" style="width:62%">
-                                        <input type="text" class="filename" readonly id="file_RH_n" />
-                                        <input type="button" name="file" class="button" value="选择excel" />
-                                        <input type="file" size="30" name="file" id="file_RH" style="width:50%" />
-                                    </div>
-                                    <input type="button" value="下载" onclick="Dow('file_RH_n')" style="position: relative;top: -27px;left: 100px;" />
-                                    <label style="position: relative;top: -27px;left: 120px;color:red" id="p_file_RH"></label>
-                                </div>
-
-                                <div class="col-sm-5">
-
-
-                                    <div class="uploader white" style="width:70%">
-                                        <input type="text" class="filename" readonly id="file_RH2_n" />
-                                        <input type="button" name="file" class="button" value="选择图片" />
-                                        <input type="file" size="30" name="file" id="file_RH2" style="width:60%" />
-                                    </div>
-                                    <input type="button" value="下载" onclick="Dow('file_RH2_n')" style="position: relative;top: -27px;left: 100px;" />
-                                    <label style="position: relative;top: -27px;left: 120px;color:red" id="p_file_RH2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                                </div>
-
-
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-1 control-label">RV:</label>
-                                <div class="col-sm-6">
-
-
-                                    <div class="uploader white" style="width:62%">
-                                        <input type="text" class="filename" readonly id="file_RV_n" />
-                                        <input type="button" name="file" class="button" value="选择excel" />
-                                        <input type="file" size="30" name="file" id="file_RV" style="width:50%" />
-                                    </div>
-                                    <input type="button" value="下载" onclick="Dow('file_RV_n')" style="position: relative;top: -27px;left: 100px;" />
-                                    <label style="position: relative;top: -27px;left: 120px;color:red" id="p_file_RV"></label>
-                                </div>
-
-                                <div class="col-sm-5">
-
-
-                                    <div class="uploader white" style="width:70%">
-                                        <input type="text" class="filename" readonly id="file_RV2_n" />
-                                        <input type="button" name="file" class="button" value="选择图片" />
-                                        <input type="file" size="30" name="file" id="file_RV2" style="width:60%" />
-                                    </div>
-                                    <input type="button" value="下载" onclick="Dow('file_RV2_n')" style="position: relative;top: -27px;left: 100px;" />
-                                    <label style="position: relative;top: -27px;left: 120px;color:red" id="p_file_RV2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                                </div>
-
-                            </div>
-
-
-
-                        </div>
-
-                        <div class="panel-heading">
-                            <h3 class="panel-title">PK测试结果</h3>
-
-                        </div>
-                        <div class="panel-body">
-                            <div class="form-group">
-                                <label class="col-sm-1 control-label">LH:</label>
-                                <div class="col-sm-6">
-
-
-                                    <div class="uploader white" style="width:62%">
-                                        <input type="text" class="filename" readonly id="PK_file_LH_n" />
-                                        <input type="button" name="file" class="button" value="选择excel" />
-                                        <input type="file" size="30" name="file" id="PK_file_LH" style="width:50%" />
-                                    </div>
-                                    <input type="button" value="下载" onclick="Dow('PK_file_LH_n')" style="position: relative;top: -27px;left: 100px;" />
-                                    <label style="position: relative;top: -27px;left: 120px;color:red" id="p_PK_file_LH"></label>
-                                </div>
-
-                                <div class="col-sm-5">
-
-
-                                    <div class="uploader white" style="width:70%">
-                                        <input type="text" class="filename" readonly id="PK_file_LH2_n" />
-                                        <input type="button" name="file" class="button" value="选择图片" />
-                                        <input type="file" size="30" name="file" id="PK_file_LH2" style="width:60%" />
-                                    </div>
-                                    <input type="button" value="下载" onclick="Dow('PK_file_LH2_n')" style="position: relative;top: -27px;left: 100px;" />
-                                    <label style="position: relative;top: -27px;left: 120px;color:red" id="p_PK_file_LH2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                                </div>
-
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-1 control-label">LV:</label>
-                                <div class="col-sm-6">
-
-
-                                    <div class="uploader white" style="width:62%">
-                                        <input type="text" class="filename" readonly id="PK_file_LV_n" />
-                                        <input type="button" name="file" class="button" value="选择excel" />
-                                        <input type="file" size="30" name="file" id="PK_file_LV" style="width:50%" />
-                                    </div>
-                                    <input type="button" value="下载" onclick="Dow('PK_file_LV_n')" style="position: relative;top: -27px;left: 100px;" />
-                                    <label style="position: relative;top: -27px;left: 120px;color:red" id="p_PK_file_LV"></label>
-                                </div>
-
-                                <div class="col-sm-5">
-
-
-                                    <div class="uploader white" style="width:70%">
-                                        <input type="text" class="filename" readonly id="PK_file_LV2_n" />
-                                        <input type="button" name="file" class="button" value="选择图片" />
-                                        <input type="file" size="30" name="file" id="PK_file_LV2" style="width:60%" />
-                                    </div>
-                                    <input type="button" value="下载" onclick="Dow('PK_file_LV2_n')" style="position: relative;top: -27px;left: 100px;" />
-                                    <label style="position: relative;top: -27px;left: 120px;color:red" id="p_PK_file_LV2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                                </div>
-
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-sm-1 control-label">RH:</label>
-                                <div class="col-sm-6">
-
-
-                                    <div class="uploader white" style="width:62%">
-                                        <input type="text" class="filename" readonly id="PK_file_RH_n" />
-                                        <input type="button" name="file" class="button" value="选择excel" />
-                                        <input type="file" size="30" name="file" id="PK_file_RH" style="width:50%" />
-                                    </div>
-                                    <input type="button" value="下载" onclick="Dow('PK_file_RH_n')" style="position: relative;top: -27px;left: 100px;" />
-                                    <label style="position: relative;top: -27px;left: 120px;color:red" id="p_PK_file_RH"></label>
-                                </div>
-
-                                <div class="col-sm-5">
-
-
-                                    <div class="uploader white" style="width:70%">
-                                        <input type="text" class="filename" readonly id="PK_file_RH2_n" />
-                                        <input type="button" name="file" class="button" value="选择图片" />
-                                        <input type="file" size="30" name="file" id="PK_file_RH2" style="width:60%" />
-                                    </div>
-                                    <input type="button" value="下载" onclick="Dow('PK_file_RH2_n')" style="position: relative;top: -27px;left: 100px;" />
-                                    <label style="position: relative;top: -27px;left: 120px;color:red" id="p_PK_file_RH2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                                </div>
-
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-1 control-label">RV:</label>
-                                <div class="col-sm-6">
-
-
-                                    <div class="uploader white" style="width:62%">
-                                        <input type="text" class="filename" readonly id="PK_file_RV_n"/>
-                                        <input type="button" name="file" class="button" value="选择excel" />
-                                        <input type="file" size="30" name="file" id="PK_file_RV" style="width:50%" />
-                                    </div>
-                                    <input type="button" value="下载" onclick="Dow('PK_file_RV_n')" style="position: relative;top: -27px;left: 100px;" />
-                                    <label style="position: relative;top: -27px;left: 120px;color:red" id="p_PK_file_RV"></label>
-                                </div>
-
-                                <div class="col-sm-5">
-
-
-                                    <div class="uploader white" style="width:70%">
-                                        <input type="text" class="filename" readonly id="PK_file_RV2_n" />
-                                        <input type="button" name="file" class="button" value="选择图片" />
-                                        <input type="file" size="30" name="file" id="PK_file_RV2" style="width:60%" />
-                                    </div>
-                                    <input type="button" value="下载" onclick="Dow('PK_file_RV2_n')" style="position: relative;top: -27px;left: 100px;" />
-                                    <label style="position: relative;top: -27px;left: 120px;color:red" id="p_PK_file_RV2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                                </div>
-
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-1 control-label" style=" color:red">检测结果:</label>
-                                <div class="col-sm-4">
-                                    <input type="text" disabled="disabled" id="ResultID" class="form-control">
-                                </div>
-
-
-                            </div>
                         </div>
                     </div>
 
@@ -868,6 +1265,14 @@
         $(document).ready(function () {
 
             $.getJSON("/Report/selectupdateReport", function (data) {
+                if (data[0].Difference == "14023")
+                { 
+                    document.getElementById("car14023").style.display = "block";
+                    document.getElementById("car18387").style.display = "none";
+                } else if (data[0].Difference == "18387") {
+                    document.getElementById("car18387").style.display = "block";
+                    document.getElementById("car14023").style.display = "none";
+                }
                 document.getElementById("brand").value = data[0].brand;
                 document.getElementById("taskNumber").value = data[0].taskNumber;
                 document.getElementById("ResultID").value = data[0].ResultID;
@@ -877,7 +1282,7 @@
                 document.getElementById("demo-1").value = data[0].time;
              
                 document.getElementById("file_textsample").innerText = data[0].RegistrationName;
-                document.getElementById("file_textOriginal").innerText = data[0].OriginalRecordName;
+            //    document.getElementById("file_textOriginal").innerText = data[0].OriginalRecordName;
                 
                 document.getElementById("introduce").value = data[0].introduce;
                 document.getElementById("Remarks").value = data[0].Remarks;
@@ -904,52 +1309,103 @@
                 $("input[type=file]").change(function () { $(this).parents(".uploader").find(".filename").val($(this).val()); });
                 $("input[type=file]").each(function () {
                     if ($(this).val() == "") {
-                        if (this.id == "fileCSJB")
+                        if (data[0].Difference == "14023") {
+                            if (this.id == "fileCSJB") {
+                                $(this).parents(".uploader").find(".filename").val(data[0].AV_LH);
+                            } else if (this.id == "fileCSJB2") {
+                                $(this).parents(".uploader").find(".filename").val(data[0].AV_LH_img);
+                            } else if (this.id == "file_LV") {
+                                $(this).parents(".uploader").find(".filename").val(data[0].AV_LV);
+                            } else if (this.id == "file_LV2") {
+                                $(this).parents(".uploader").find(".filename").val(data[0].AV_LV_img);
+                            } else if (this.id == "file_RH") {
+                                $(this).parents(".uploader").find(".filename").val(data[0].AV_RH);
+                            } else if (this.id == "file_RH2") {
+                                $(this).parents(".uploader").find(".filename").val(data[0].AV_RH_img);
+                            } else if (this.id == "file_RV") {
+                                $(this).parents(".uploader").find(".filename").val(data[0].AV_RV);
+                            } else if (this.id == "file_RV2") {
+                                $(this).parents(".uploader").find(".filename").val(data[0].AV_RV_img);
+                            }
+                            else if (this.id == "PK_file_LH") {
+                                $(this).parents(".uploader").find(".filename").val(data[0].AK_LH);
+                            }
+                            else if (this.id == "PK_file_LH2") {
+                                $(this).parents(".uploader").find(".filename").val(data[0].AK_LH_img);
+                            }
+                            else if (this.id == "PK_file_LV") {
+                                $(this).parents(".uploader").find(".filename").val(data[0].AK_LV);
+                            }
+                            else if (this.id == "PK_file_LV2") {
+                                $(this).parents(".uploader").find(".filename").val(data[0].AK_LV_img);
+                            }
+                            else if (this.id == "PK_file_RH") {
+                                $(this).parents(".uploader").find(".filename").val(data[0].AK_RH);
+                            }
+                            else if (this.id == "PK_file_RH2") {
+                                $(this).parents(".uploader").find(".filename").val(data[0].AK_RH_img);
+                            }
+                            else if (this.id == "PK_file_RV") {
+                                $(this).parents(".uploader").find(".filename").val(data[0].AK_RV);
+                            }
+                            else if (this.id == "PK_file_RV2") {
+                                $(this).parents(".uploader").find(".filename").val(data[0].AK_RV_img);
+                            }
+                            else {
+                                $(this).parents(".uploader").find(".filename").val("没有选择...");
+                            }
+
+                        } else if (data[0].Difference == "18387")
                         {
-                            $(this).parents(".uploader").find(".filename").val(data[0].AV_LH);
-                        } else if (this.id == "fileCSJB2") {
-                            $(this).parents(".uploader").find(".filename").val(data[0].AV_LH_img);
-                        } else if (this.id == "file_LV") {
-                            $(this).parents(".uploader").find(".filename").val(data[0].AV_LV);
-                        } else if (this.id == "file_LV2") {
-                            $(this).parents(".uploader").find(".filename").val(data[0].AV_LV_img);
-                        } else if (this.id == "file_RH") {
-                            $(this).parents(".uploader").find(".filename").val(data[0].AV_RH);
-                        } else if (this.id == "file_RH2") {
-                            $(this).parents(".uploader").find(".filename").val(data[0].AV_RH_img);
-                        } else if (this.id == "file_RV") {
-                            $(this).parents(".uploader").find(".filename").val(data[0].AV_RV);
-                        } else if (this.id == "file_RV2") {
-                            $(this).parents(".uploader").find(".filename").val(data[0].AV_RV_img);
+                           
+                            $("input[name='form-field-radio']").eq(Number(data[0].RODsurface)).attr("checked", "checked");
+                            $("input[name='form-field-radio2']").eq(Number(data[0].LOOPsurface)).attr("checked", "checked");
+                            if (this.id == "rod_16") {
+                                $(this).parents(".uploader").find(".filename").val(data[0].ROD16);
+                            } else if (this.id == "rod_16_img") {
+                                $(this).parents(".uploader").find(".filename").val(data[0].ROD16_img);
+                            } else if (this.id == "rod_70") {
+                                $(this).parents(".uploader").find(".filename").val(data[0].ROD70);
+                            } else if (this.id == "rod_70_img") {
+                                $(this).parents(".uploader").find(".filename").val(data[0].ROD70_img);
+                            } else if (this.id == "DUIBI") {
+                                $(this).parents(".uploader").find(".filename").val(data[0].ROD_DUI_img);
+                            } else if (this.id == "Magnetic_16x") {
+                                $(this).parents(".uploader").find(".filename").val(data[0].LOOP_16x);
+                            } else if (this.id == "Magnetic_16x_img") {
+                                $(this).parents(".uploader").find(".filename").val(data[0].LOOP_16x_img);
+                            } else if (this.id == "Magnetic_16y") {
+                                $(this).parents(".uploader").find(".filename").val(data[0].LOOP_16y);
+                            }
+                            else if (this.id == "Magnetic_16y_img") {
+                                $(this).parents(".uploader").find(".filename").val(data[0].LOOP_16y_img);
+                            }
+                            else if (this.id == "Magnetic_70x") {
+                                $(this).parents(".uploader").find(".filename").val(data[0].LOOP_70x);
+                            }
+                            else if (this.id == "Magnetic_70x_img") {
+                                $(this).parents(".uploader").find(".filename").val(data[0].LOOP_70x_img);
+                            }
+                            else if (this.id == "Magnetic_70y") {
+                                $(this).parents(".uploader").find(".filename").val(data[0].LOOP_70y);
+                            }
+                            else if (this.id == "Magnetic_70y_img") {
+                                $(this).parents(".uploader").find(".filename").val(data[0].LOOP_70y_img);
+                            }
+                            else if (this.id == "DUIBI-Magnetic") {
+                                $(this).parents(".uploader").find(".filename").val(data[0].LOOP_DUI_img);
+                            }
+                            else if (this.id == "surface_img") {
+                                $(this).parents(".uploader").find(".filename").val(data[0].RODsurface_img);
+                            } else if (this.id == "surface_img_Magnetic") {
+                                $(this).parents(".uploader").find(".filename").val(data[0].LOOPsurface_img);
+                            }
+                            else {
+                                $(this).parents(".uploader").find(".filename").val("没有选择...");
+                            }
+
                         }
-                        else if (this.id == "PK_file_LH") {
-                            $(this).parents(".uploader").find(".filename").val(data[0].AK_LH);
-                        }
-                        else if (this.id == "PK_file_LH2") {
-                            $(this).parents(".uploader").find(".filename").val(data[0].AK_LH_img);
-                        }
-                        else if (this.id == "PK_file_LV") {
-                            $(this).parents(".uploader").find(".filename").val(data[0].AK_LV);
-                        }
-                        else if (this.id == "PK_file_LV2") {
-                            $(this).parents(".uploader").find(".filename").val(data[0].AK_LV_img);
-                        }
-                        else if (this.id == "PK_file_RH") {
-                            $(this).parents(".uploader").find(".filename").val(data[0].AK_RH);
-                        }
-                        else if (this.id == "PK_file_RH2") {
-                            $(this).parents(".uploader").find(".filename").val(data[0].AK_RH_img);
-                        }
-                        else if (this.id == "PK_file_RV") {
-                            $(this).parents(".uploader").find(".filename").val(data[0].AK_RV);
-                        }
-                        else if (this.id == "PK_file_RV2") {
-                            $(this).parents(".uploader").find(".filename").val(data[0].AK_RV_img);
-                        }
-                        else {
-                            $(this).parents(".uploader").find(".filename").val("没有选择...");
-                        }
-                        
+                      
                     }
                 });
             })
