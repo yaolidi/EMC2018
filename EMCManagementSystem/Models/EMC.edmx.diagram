@@ -12,11 +12,12 @@
         <EntityTypeShape EntityType="EMCModel.OriginalRecorddetails" Width="1.5" PointX="4.75" PointY="0.75" />
         <EntityTypeShape EntityType="EMCModel.OriginalRecordPath" Width="1.5" PointX="4.75" PointY="3.75" />
         <EntityTypeShape EntityType="EMCModel.path" Width="1.5" PointX="6.75" PointY="0.75" />
-        <EntityTypeShape EntityType="EMCModel.RegistrationPath" Width="1.5" PointX="0.75" PointY="7.75" />
-        <EntityTypeShape EntityType="EMCModel.Report" Width="1.5" PointX="2.75" PointY="7.75" />
-        <EntityTypeShape EntityType="EMCModel.ReportFile" Width="1.5" PointX="4.75" PointY="7.75" />
-        <EntityTypeShape EntityType="EMCModel.task" Width="1.5" PointX="6.75" PointY="7.75" />
-        <EntityTypeShape EntityType="EMCModel.taskDetails" Width="1.5" PointX="8.75" PointY="0.75" />
+        <EntityTypeShape EntityType="EMCModel.path_18387" Width="1.5" PointX="4.75" PointY="7.75" />
+        <EntityTypeShape EntityType="EMCModel.RegistrationPath" Width="1.5" PointX="6.75" PointY="7.75" />
+        <EntityTypeShape EntityType="EMCModel.Report" Width="1.5" PointX="8.75" PointY="0.75" />
+        <EntityTypeShape EntityType="EMCModel.ReportFile" Width="1.5" PointX="0.75" PointY="8.75" />
+        <EntityTypeShape EntityType="EMCModel.task" Width="1.5" PointX="8.75" PointY="4.75" />
+        <EntityTypeShape EntityType="EMCModel.taskDetails" Width="1.5" PointX="8.75" PointY="7.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

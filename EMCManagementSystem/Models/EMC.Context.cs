@@ -32,6 +32,7 @@ namespace EMCManagementSystem.Models
         public virtual DbSet<OriginalRecorddetails> OriginalRecorddetails { get; set; }
         public virtual DbSet<OriginalRecordPath> OriginalRecordPath { get; set; }
         public virtual DbSet<path> path { get; set; }
+        public virtual DbSet<path_18387> path_18387 { get; set; }
         public virtual DbSet<RegistrationPath> RegistrationPath { get; set; }
         public virtual DbSet<Report> Report { get; set; }
         public virtual DbSet<ReportFile> ReportFile { get; set; }

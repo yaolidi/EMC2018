@@ -50,6 +50,7 @@
           <Property Name="Remarks" Type="nchar" MaxLength="300" />
           <Property Name="time" Type="date" />
           <Property Name="taskNumber" Type="nchar" MaxLength="25" />
+          <Property Name="category" Type="varchar" MaxLength="15" />
         </EntityType>
         <EntityType Name="OriginalRecorddetails">
           <Key>
@@ -99,6 +100,37 @@
           <Property Name="AK_RV_img" Type="nchar" MaxLength="100" />
           <Property Name="AK_RV_qualified" Type="nchar" MaxLength="10" />
           <Property Name="OriginalRecordID" Type="int" />
+        </EntityType>
+        <EntityType Name="path_18387">
+          <Key>
+            <PropertyRef Name="pathID" />
+          </Key>
+          <Property Name="pathID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ROD16" Type="varchar" MaxLength="50" />
+          <Property Name="ROD16_img" Type="varchar" MaxLength="50" />
+          <Property Name="ROD16_qualified" Type="varchar" MaxLength="10" />
+          <Property Name="ROD70" Type="varchar" MaxLength="50" />
+          <Property Name="ROD70_img" Type="varchar" MaxLength="50" />
+          <Property Name="ROD70_qualified" Type="varchar" MaxLength="10" />
+          <Property Name="LOOP_16y" Type="varchar" MaxLength="50" />
+          <Property Name="LOOP_16y_img" Type="varchar" MaxLength="50" />
+          <Property Name="LOOP_16y_qualified" Type="varchar" MaxLength="10" />
+          <Property Name="LOOP_16x" Type="varchar" MaxLength="50" />
+          <Property Name="LOOP_16x_img" Type="varchar" MaxLength="50" />
+          <Property Name="LOOP_16x_qualified" Type="varchar" MaxLength="10" />
+          <Property Name="LOOP_70y" Type="varchar" MaxLength="50" />
+          <Property Name="LOOP_70y_img" Type="varchar" MaxLength="50" />
+          <Property Name="LOOP_70y_qualified" Type="varchar" MaxLength="10" />
+          <Property Name="LOOP_70x" Type="varchar" MaxLength="50" />
+          <Property Name="LOOP_70x_img" Type="varchar" MaxLength="50" />
+          <Property Name="LOOP_70x_qualified" Type="varchar" MaxLength="10" />
+          <Property Name="LOOP_DUI_img" Type="varchar" MaxLength="50" />
+          <Property Name="ROD_DUI_img" Type="varchar" MaxLength="50" />
+          <Property Name="OriginalRecordID" Type="int" />
+          <Property Name="RODsurface" Type="varchar" MaxLength="5" />
+          <Property Name="LOOPsurface" Type="varchar" MaxLength="5" />
+          <Property Name="RODsurface_img" Type="varchar" MaxLength="50" />
+          <Property Name="LOOPsurface_img" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="RegistrationPath">
           <Key>
@@ -154,6 +186,7 @@
           <EntitySet Name="OriginalRecorddetails" EntityType="Self.OriginalRecorddetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OriginalRecordPath" EntityType="Self.OriginalRecordPath" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="path" EntityType="Self.path" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="path_18387" EntityType="Self.path_18387" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RegistrationPath" EntityType="Self.RegistrationPath" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Report" EntityType="Self.Report" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ReportFile" EntityType="Self.ReportFile" Schema="dbo" store:Type="Tables" />
@@ -172,6 +205,7 @@
           <EntitySet Name="OriginalRecorddetails" EntityType="EMCModel.OriginalRecorddetails" />
           <EntitySet Name="OriginalRecordPath" EntityType="EMCModel.OriginalRecordPath" />
           <EntitySet Name="path" EntityType="EMCModel.path" />
+          <EntitySet Name="path_18387" EntityType="EMCModel.path_18387" />
           <EntitySet Name="RegistrationPath" EntityType="EMCModel.RegistrationPath" />
           <EntitySet Name="Report" EntityType="EMCModel.Report" />
           <EntitySet Name="ReportFile" EntityType="EMCModel.ReportFile" />
@@ -223,6 +257,7 @@
           <Property Name="Remarks" Type="String" MaxLength="300" FixedLength="true" Unicode="true" />
           <Property Name="time" Type="DateTime" Precision="0" />
           <Property Name="taskNumber" Type="String" MaxLength="25" FixedLength="true" Unicode="true" />
+          <Property Name="category" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="OriginalRecorddetails">
           <Key>
@@ -272,6 +307,37 @@
           <Property Name="AK_RV_img" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
           <Property Name="AK_RV_qualified" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="OriginalRecordID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="path_18387">
+          <Key>
+            <PropertyRef Name="pathID" />
+          </Key>
+          <Property Name="pathID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ROD16" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ROD16_img" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ROD16_qualified" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ROD70" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ROD70_img" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ROD70_qualified" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="LOOP_16y" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LOOP_16y_img" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LOOP_16y_qualified" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="LOOP_16x" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LOOP_16x_img" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LOOP_16x_qualified" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="LOOP_70y" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LOOP_70y_img" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LOOP_70y_qualified" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="LOOP_70x" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LOOP_70x_img" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LOOP_70x_qualified" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="LOOP_DUI_img" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ROD_DUI_img" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OriginalRecordID" Type="Int32" />
+          <Property Name="RODsurface" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="LOOPsurface" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="RODsurface_img" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LOOPsurface_img" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="RegistrationPath">
           <Key>
@@ -360,6 +426,7 @@
           <EntitySetMapping Name="OriginalRecord">
             <EntityTypeMapping TypeName="EMCModel.OriginalRecord">
               <MappingFragment StoreEntitySet="OriginalRecord">
+                <ScalarProperty Name="category" ColumnName="category" />
                 <ScalarProperty Name="taskNumber" ColumnName="taskNumber" />
                 <ScalarProperty Name="time" ColumnName="time" />
                 <ScalarProperty Name="Remarks" ColumnName="Remarks" />
@@ -423,6 +490,38 @@
                 <ScalarProperty Name="AV_LH_qualified" ColumnName="AV_LH_qualified" />
                 <ScalarProperty Name="AV_LH_img" ColumnName="AV_LH_img" />
                 <ScalarProperty Name="AV_LH" ColumnName="AV_LH" />
+                <ScalarProperty Name="pathID" ColumnName="pathID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="path_18387">
+            <EntityTypeMapping TypeName="EMCModel.path_18387">
+              <MappingFragment StoreEntitySet="path_18387">
+                <ScalarProperty Name="LOOPsurface_img" ColumnName="LOOPsurface_img" />
+                <ScalarProperty Name="RODsurface_img" ColumnName="RODsurface_img" />
+                <ScalarProperty Name="LOOPsurface" ColumnName="LOOPsurface" />
+                <ScalarProperty Name="RODsurface" ColumnName="RODsurface" />
+                <ScalarProperty Name="OriginalRecordID" ColumnName="OriginalRecordID" />
+                <ScalarProperty Name="ROD_DUI_img" ColumnName="ROD_DUI_img" />
+                <ScalarProperty Name="LOOP_DUI_img" ColumnName="LOOP_DUI_img" />
+                <ScalarProperty Name="LOOP_70x_qualified" ColumnName="LOOP_70x_qualified" />
+                <ScalarProperty Name="LOOP_70x_img" ColumnName="LOOP_70x_img" />
+                <ScalarProperty Name="LOOP_70x" ColumnName="LOOP_70x" />
+                <ScalarProperty Name="LOOP_70y_qualified" ColumnName="LOOP_70y_qualified" />
+                <ScalarProperty Name="LOOP_70y_img" ColumnName="LOOP_70y_img" />
+                <ScalarProperty Name="LOOP_70y" ColumnName="LOOP_70y" />
+                <ScalarProperty Name="LOOP_16x_qualified" ColumnName="LOOP_16x_qualified" />
+                <ScalarProperty Name="LOOP_16x_img" ColumnName="LOOP_16x_img" />
+                <ScalarProperty Name="LOOP_16x" ColumnName="LOOP_16x" />
+                <ScalarProperty Name="LOOP_16y_qualified" ColumnName="LOOP_16y_qualified" />
+                <ScalarProperty Name="LOOP_16y_img" ColumnName="LOOP_16y_img" />
+                <ScalarProperty Name="LOOP_16y" ColumnName="LOOP_16y" />
+                <ScalarProperty Name="ROD70_qualified" ColumnName="ROD70_qualified" />
+                <ScalarProperty Name="ROD70_img" ColumnName="ROD70_img" />
+                <ScalarProperty Name="ROD70" ColumnName="ROD70" />
+                <ScalarProperty Name="ROD16_qualified" ColumnName="ROD16_qualified" />
+                <ScalarProperty Name="ROD16_img" ColumnName="ROD16_img" />
+                <ScalarProperty Name="ROD16" ColumnName="ROD16" />
                 <ScalarProperty Name="pathID" ColumnName="pathID" />
               </MappingFragment>
             </EntityTypeMapping>
