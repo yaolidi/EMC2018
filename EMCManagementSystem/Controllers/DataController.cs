@@ -2,6 +2,8 @@
 using System.Linq;
 using System.Web.Mvc;
 using EMCManagementSystem.Models;
+using System.Collections.Generic;
+using System.Collections;
 
 namespace EMCManagementSystem.Controllers
 {
@@ -61,7 +63,65 @@ namespace EMCManagementSystem.Controllers
         {
             return base.View();
         }
+        /// <summary>
+        /// 汽车类型
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult category()
+        {
+            return base.View();
+        }
+        /// <summary>
+        /// 检测项合格率
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult qualified()
+        {
+            return base.View();
+        }
+        /// <summary>
+        /// 全部分类的合格率
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult qualified_all()
+        {
+            return base.View();
+        }
+        public ActionResult selectYearCarQualification()
+        {
+            var data = (from tbCT in this.dbEMCEntities.CarYearQualification
+                        select new
+                        {
+                            name = tbCT.carName,
+                          
+                        }).Distinct().ToList();
+            List<Dictionary<string, object>> list = new List<Dictionary<string, object>>();
+            foreach (var one in data.ToList())
+            {
+                Dictionary<string, object> p = new Dictionary<string, object>();
+                ArrayList arraylist = new ArrayList();
+                p.Add("name", one.name.ToString().Trim());
+                string name = one.name.ToString().Trim();
+                var data2 = (from tbCT in this.dbEMCEntities.CarYearQualification
+                             orderby tbCT.year descending
+                             where tbCT.carName== name
+                             select new
+                            {
+                                  tbCT.Qualification,
+                                 tbCT.year
 
+                             }).Distinct().ToList();
+               
+                foreach (var one2 in data2.ToList())
+                {
+                    arraylist.Add(one2.Qualification);
+                }
+                    
+                p.Add("data", arraylist);
+                list.Add(p);
+            }
+           return Json(list, JsonRequestBehavior.AllowGet);
+        }
         // Token: 0x04000072 RID: 114
         private EMCEntities dbEMCEntities = new EMCEntities();
     }
