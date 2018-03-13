@@ -13,6 +13,7 @@ namespace EMCManagementSystem.Controllers
        //数据2
         public ActionResult Index()
         {
+
             return base.View();
         }
 
