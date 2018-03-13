@@ -9,6 +9,7 @@ namespace EMCManagementSystem.Controllers
         // Token: 0x060000E3 RID: 227 RVA: 0x00003FD5 File Offset: 0x000021D5
         public ActionResult Index()
         {
+
             return base.View();
         }
 
