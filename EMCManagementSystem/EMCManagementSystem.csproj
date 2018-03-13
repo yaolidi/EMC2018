@@ -1180,6 +1180,63 @@
     <Content Include="assets\less\index.html" />
     <Content Include="assets\less\other-less\index.html" />
     <Content Include="assets\less\xenon-less\index.html" />
+    <Content Include="assets\style.css" />
+    <Content Include="assets\zhongyao.css" />
+    <Content Include="bin\EMCManagementSystem.dll" />
+    <Content Include="bin\EMCManagementSystem.pdb" />
+    <Content Include="bin\EntityFramework.dll" />
+    <Content Include="bin\EntityFramework.SqlServer.dll" />
+    <Content Include="bin\EntityFramework.SqlServer.xml" />
+    <Content Include="bin\EntityFramework.xml" />
+    <Content Include="bin\Microsoft.AspNet.SignalR.Core.dll" />
+    <Content Include="bin\Microsoft.AspNet.SignalR.Core.xml" />
+    <Content Include="bin\Microsoft.AspNet.SignalR.SystemWeb.dll" />
+    <Content Include="bin\Microsoft.AspNet.SignalR.SystemWeb.xml" />
+    <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll" />
+    <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml" />
+    <Content Include="bin\Microsoft.Office.Interop.Word.dll" />
+    <Content Include="bin\Microsoft.Owin.dll" />
+    <Content Include="bin\Microsoft.Owin.Host.SystemWeb.dll" />
+    <Content Include="bin\Microsoft.Owin.Host.SystemWeb.xml" />
+    <Content Include="bin\Microsoft.Owin.Security.dll" />
+    <Content Include="bin\Microsoft.Owin.Security.xml" />
+    <Content Include="bin\Microsoft.Owin.xml" />
+    <Content Include="bin\Microsoft.Web.Infrastructure.dll" />
+    <Content Include="bin\Newtonsoft.Json.dll" />
+    <Content Include="bin\Newtonsoft.Json.xml" />
+    <Content Include="bin\Owin.dll" />
+    <Content Include="bin\roslyn\csc.exe" />
+    <Content Include="bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll" />
+    <Content Include="bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll" />
+    <Content Include="bin\roslyn\Microsoft.CodeAnalysis.dll" />
+    <Content Include="bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll" />
+    <Content Include="bin\roslyn\System.Collections.Immutable.dll" />
+    <Content Include="bin\roslyn\System.Reflection.Metadata.dll" />
+    <Content Include="bin\roslyn\vbc.exe" />
+    <Content Include="bin\roslyn\VBCSCompiler.exe" />
+    <Content Include="bin\System.Web.Helpers.dll" />
+    <Content Include="bin\System.Web.Helpers.xml" />
+    <Content Include="bin\System.Web.Mvc.dll" />
+    <Content Include="bin\System.Web.Mvc.xml" />
+    <Content Include="bin\System.Web.Razor.dll" />
+    <Content Include="bin\System.Web.Razor.xml" />
+    <Content Include="bin\System.Web.Webpages.Deployment.dll" />
+    <Content Include="bin\System.Web.Webpages.Deployment.xml" />
+    <Content Include="bin\System.Web.Webpages.dll" />
+    <Content Include="bin\System.Web.Webpages.Razor.dll" />
+    <Content Include="bin\System.Web.Webpages.Razor.xml" />
+    <Content Include="bin\System.Web.Webpages.xml" />
+    <Content Include="bin\zh-Hans\Microsoft.AspNet.SignalR.Core.resources.dll" />
+    <Content Include="bin\zh-Hans\Microsoft.AspNet.SignalR.SystemWeb.resources.dll" />
+    <Content Include="bin\zh-Hans\Microsoft.Owin.Host.SystemWeb.resources.dll" />
+    <Content Include="bin\zh-Hans\Microsoft.Owin.resources.dll" />
+    <Content Include="bin\zh-Hans\Microsoft.Owin.Security.resources.dll" />
+    <Content Include="bin\zh-Hans\System.Web.Helpers.resources.dll" />
+    <Content Include="bin\zh-Hans\System.Web.Mvc.resources.dll" />
+    <Content Include="bin\zh-Hans\System.Web.Razor.resources.dll" />
+    <Content Include="bin\zh-Hans\System.Web.Webpages.Deployment.resources.dll" />
+    <Content Include="bin\zh-Hans\System.Web.Webpages.Razor.resources.dll" />
+    <Content Include="bin\zh-Hans\System.Web.Webpages.resources.dll" />
     <Content Include="Content\css\ace-fonts.css" />
     <Content Include="Content\css\ace-skins.min.css" />
     <Content Include="Content\css\ace.min.css" />
@@ -1195,6 +1252,8 @@
     <Content Include="Content\css\font-awesome.min.css" />
     <Content Include="Content\css\fullcalendar.css" />
     <Content Include="Content\css\jquery-ui.custom.min.css" />
+    <Content Include="Content\css\jquery.paginate.css" />
+    <Content Include="Content\css\jquery.yhhDataTable.css" />
     <Content Include="Content\css\select2.css" />
     <Content Include="Content\css\state.css" />
     <Content Include="Content\css\style.css" />
@@ -1212,6 +1271,10 @@
     <Content Include="Content\font\DXI1ORHCpsQm3Vp6mXoaTXhCUOGz7vYGh680lGh-uXM.woff" />
     <Content Include="Content\font\fontawesome-webfont.woff" />
     <Content Include="Content\font\readme" />
+    <Content Include="bin\EMCManagementSystem.dll.config" />
+    <Content Include="bin\roslyn\Microsoft.CSharp.Core.targets" />
+    <Content Include="bin\roslyn\Microsoft.VisualBasic.Core.targets" />
+    <Content Include="bin\roslyn\VBCSCompiler.exe.config" />
     <None Include="Content\js\jquery-1.8.3.intellisense.js" />
     <Content Include="Content\js\ace-elements.min.js" />
     <Content Include="Content\js\ace-extra.min.js" />
@@ -1294,26 +1357,68 @@
     <Content Include="Content\js\jquery.maskedinput.min.js" />
     <Content Include="Content\js\jquery.min.js" />
     <Content Include="Content\js\jquery.mobile.custom.min.js" />
+    <Content Include="Content\js\jquery.paginate.js" />
     <Content Include="Content\js\jquery.signalR-1.1.3.js" />
     <Content Include="Content\js\jquery.signalR-1.1.3.min.js" />
     <Content Include="Content\js\jquery.ui.touch-punch.min.js" />
+    <Content Include="Content\js\jquery.yhhDataTable.js" />
     <Content Include="Content\js\select2.min.js" />
     <Content Include="Content\js\typeahead-bs2.min.js" />
     <Content Include="Content\js\typeahead.jquery.min.js" />
     <Content Include="Content\style.css" />
+    <Content Include="Content\System\reportTemplate.css" />
+    <Content Include="Content\System\reportTemplate.js" />
+    <Content Include="control\css\common.css" />
+    <Content Include="control\css\demo.css" />
+    <Content Include="control\css\fileUpload.css" />
+    <Content Include="control\css\foundation-datepicker.css" />
+    <Content Include="control\css\foundation.min.css" />
+    <Content Include="control\css\iconfont.css" />
+    <Content Include="control\css\select.css" />
     <Content Include="control\css\styles.css" />
+    <Content Include="control\css\zTreeStyle.css" />
     <Content Include="control\css\zyUpload.css" />
+    <Content Include="control\fonts\iconfont.svg" />
+    <Content Include="control\images\addicon.jpg" />
+    <Content Include="control\images\add_03.jpg" />
     <Content Include="control\images\add_img.png" />
     <Content Include="control\images\bg.png" />
     <Content Include="control\images\delete_blue.png" />
     <Content Include="control\images\delete_white.png" />
+    <Content Include="control\images\duigou.jpg" />
+    <Content Include="control\images\duigou2.jpg" />
     <Content Include="control\images\fileType\file.png" />
     <Content Include="control\images\fileType\rar.png" />
     <Content Include="control\images\fileType\txt.png" />
     <Content Include="control\images\fileType\zip.png" />
+    <Content Include="control\images\jian_03.jpg" />
+    <Content Include="control\images\lianxi_bg.jpg" />
+    <Content Include="control\images\listone.jpg" />
+    <Content Include="control\images\listone2.jpg" />
+    <Content Include="control\images\lx_list_03.jpg" />
+    <Content Include="control\images\minus.gif" />
+    <Content Include="control\images\minusbottom.gif" />
+    <Content Include="control\images\rentou.jpg" />
     <Content Include="control\images\success.png" />
+    <Content Include="control\img\file-picture-icon.png" />
+    <Content Include="control\img\line_conn.gif" />
+    <Content Include="control\img\loading.gif" />
+    <Content Include="control\img\zTreeStandard.gif" />
+    <Content Include="control\img\zTreeStandard.png" />
     <Content Include="control\js\demo.js" />
+    <Content Include="control\images\empty.gif" />
+    <Content Include="control\js\fileUpload.js" />
+    <Content Include="control\js\foundation-datepicker.js" />
+    <Content Include="control\js\foundation-datepicker.zh-CN.js" />
+    <Content Include="control\images\join.gif" />
+    <Content Include="control\images\joinbottom.gif" />
+    <Content Include="control\js\iconfont.js" />
     <Content Include="control\js\jquery-1.7.2.js" />
+    <Content Include="control\images\line.gif" />
+    <Content Include="control\images\plus.gif" />
+    <Content Include="control\images\plusbottom.gif" />
+    <Content Include="control\js\jquery.ztree.core.js" />
+    <Content Include="control\js\jquery.ztree.excheck.js" />
     <Content Include="control\js\zyFile.js" />
     <Content Include="control\js\zyUpload.js" />
     <Content Include="data\ajax-content.txt" />
@@ -1332,10 +1437,13 @@
     <Content Include="easyui\js\bootstrap-select.min.js" />
     <Content Include="Global.asax" />
     <Content Include="Highcharts\js\exporting.js" />
+    <Content Include="Highcharts\js\heatmap.js" />
+    <Content Include="Highcharts\js\highcharts-more.js" />
     <Content Include="Highcharts\js\highcharts-zh_CN.js" />
     <Content Include="Highcharts\js\highcharts.js" />
     <Content Include="Highcharts\js\oldie.js" />
     <Content Include="Highcharts\js\series-label.js" />
+    <Content Include="Highcharts\js\treemap.js" />
     <Content Include="img\1.png" />
     <Content Include="img\a1.jpg" />
     <Content Include="img\a2.jpg" />
@@ -1356,8 +1464,6 @@
     <Content Include="img\icons.png" />
     <Content Include="img\loadinfo.gif" />
     <Content Include="img\browser.psd" />
-    <Content Include="file\作文.docx" />
-    <Content Include="file\3，整车（空白） QSOE- ECE R10 车辆电磁兼容性检验记录（整车）-0163.docx" />
     <EntityDeploy Include="Models\EMC.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>EMC.Designer.cs</LastGenOutput>
@@ -1379,6 +1485,9 @@
     <Content Include="Models\EMC.edmx.diagram">
       <DependentUpon>EMC.edmx</DependentUpon>
     </Content>
+    <Content Include="control\fonts\iconfont.eot" />
+    <Content Include="control\fonts\iconfont.ttf" />
+    <Content Include="control\fonts\iconfont.woff" />
     <None Include="Properties\PublishProfiles\发布.pubxml" />
     <Content Include="Models\EMC.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -1585,7 +1694,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\car.cs">
+      <DependentUpon>EMC.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\CarQualification.cs">
+      <DependentUpon>EMC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CarYearQualification.cs">
       <DependentUpon>EMC.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\EMC.Context.cs">
@@ -1606,13 +1721,25 @@
     <Compile Include="Models\OriginalRecord.cs">
       <DependentUpon>EMC.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\OriginalRecorddetails.cs">
+      <DependentUpon>EMC.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\OriginalRecordPath.cs">
       <DependentUpon>EMC.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\path.cs">
       <DependentUpon>EMC.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\path_18387.cs">
+      <DependentUpon>EMC.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\RegistrationPath.cs">
+      <DependentUpon>EMC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Report.cs">
+      <DependentUpon>EMC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ReportFile.cs">
       <DependentUpon>EMC.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\task.cs">
@@ -1994,6 +2121,9 @@
     <Content Include="Views\System\upload.cshtml" />
     <Content Include="Views\Task\Addtask.cshtml" />
     <Content Include="Views\Task\Index.cshtml" />
+    <Content Include="Views\Data\category.cshtml" />
+    <Content Include="Views\Data\qualified.cshtml" />
+    <Content Include="Views\Data\qualified_all.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2003,7 +2133,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="control\fonts\" />
+    <Folder Include="file\" />
     <Folder Include="Highcharts\css\" />
     <Folder Include="Views\WebUploader\" />
   </ItemGroup>

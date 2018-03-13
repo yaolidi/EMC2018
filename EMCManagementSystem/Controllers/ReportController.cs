@@ -52,6 +52,7 @@ namespace EMCManagementSystem.Controllers
         public ActionResult SelectReport()
         {
             var data = (from tbCT in this.dbEMCEntities.OriginalRecord
+                        orderby tbCT.time descending
                         select new
                         {
                             brand = tbCT.brand.ToString().Trim(),
@@ -68,7 +69,27 @@ namespace EMCManagementSystem.Controllers
                         }).Distinct().ToList();
             return base.Json(data, JsonRequestBehavior.AllowGet);
         }
-
+        public ActionResult SelectReport(string brand,string test)
+        {
+            var data = (from tbCT in this.dbEMCEntities.OriginalRecord
+                        orderby tbCT.time descending
+                        
+                        select new
+                        {
+                            brand = tbCT.brand.ToString().Trim(),
+                            taskNumber = tbCT.taskNumber.ToString().Trim(),
+                            introduce = tbCT.introduce.ToString().Trim(),
+                            ModelCarModel = tbCT.ModelCarModel.ToString().Trim(),
+                            OriginalRecordID = tbCT.OriginalRecordID,
+                            Remarks = tbCT.Remarks.ToString().Trim(),
+                            ResultID = tbCT.ResultID,
+                            taskAllName = tbCT.taskAllName,
+                            VIN = tbCT.VIN.ToString().Trim(),
+                            time = tbCT.time.ToString().Trim(),
+                            tbCT.category
+                        }).Distinct().ToList();
+            return base.Json(data, JsonRequestBehavior.AllowGet);
+        }
         /// <summary>
         /// 14023
         /// </summary>

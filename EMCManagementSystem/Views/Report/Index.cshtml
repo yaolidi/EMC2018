@@ -104,9 +104,16 @@
                                         <tr>
                                             <td width="10%" class="left">汽车品牌：</td>
                                             <td width="20%" class="right">
-                                                <input type="text" size="16" style="width:100%" />
+                                                <input id="brand" type="text" size="16" style="width:100%" />
                                             </td>
-                                   
+                                            <td width="10%" class="left">试验分类：</td>
+                                            <td width="20%" class="right" style="position:relative;right:20px">
+                                                <select id="test">
+                                                    <option>《--未选择--》</option>
+                                                    <option>14023</option>
+                                                    <option>18387</option>
+                                                </select>
+                                            </td>
                                             <td class="right" colspan="2">
                                                 <button class="btn btn-primary pull-left col-sm-12 tbl-search" data-dismiss="modal" onclick="search()">
                                                     开始搜索
@@ -318,12 +325,12 @@
     <script src="~/Content/js/jquery.paginate.js"></script>
     <script src="~/Content/js/jquery.yhhDataTable.js"></script>
     <script type="text/javascript">
-        $(function () {
-            $.getJSON("/Report/SelectReport" , function (data) {
+        function sele() {
+            $.getJSON("/Report/SelectReport", function (data) {
                 //$("#sample-table-2 tr:gt(0)").remove();//清空当前查询的数据
                 //var table;
                 //for (i = 0; i < data.length ; i++) {
-                    
+
                 //    table += '<tr><td>' + (i + 1) + '</td><td class="hidden-480">' + data[i].time + '<td class="hidden-480"><span class="label label-sm label-warning">' + data[i].brand + '</span></td><td class="hidden-480">' + data[i].taskNumber + '</td><td>' + data[i].taskAllName + '</td><td>' + data[i].ResultID + '</td><td><div class="btn-group"><button class="btn btn-xs btn-info" onclick="edit(' + data[i].OriginalRecordID + ')"><i class="ace-icon fa fa-pencil bigger-120"></i>查看</button><button class="btn btn-xs btn-danger" onclick="deleteRow(' + data[i].OriginalRecordID + ')"><i class="ace-icon fa fa-trash-o bigger-120"></i>删除</button></div></td></tr>'
                 //}
                 //$("#sample-table-2").append(table);
@@ -332,12 +339,13 @@
                     'paginate': {
                         'changeDisplayLen': true,
                         'type': 'updown',
-                        'visibleGo': true
+                        'visibleGo': true,
+                        'enabled': true, /*是否分页*/
                     },
                     'tbodyRow': {
                         'zebra': true,
                         'write': function (d) {
-                            
+
                             return '<tr><td>' + d.category + '</td><td>' + d.time + '</td><td>' + d.brand + '</td><td>' + d.taskNumber + '</td><td>' + d.ResultID + '</td><td><div class="btn-group"><button class="btn btn-xs btn-info" onclick="edit(' + d.OriginalRecordID + ')"><i class="ace-icon fa fa-pencil bigger-120"></i>查看</button><button class="btn btn-xs btn-danger" onclick="deleteRow(' + d.OriginalRecordID + ')"><i class="ace-icon fa fa-trash-o bigger-120"></i>删除</button></div></td></tr>';
                         }
                     },
@@ -356,39 +364,122 @@
                 });
 
             })
-            //var oTable1 = $('#sample-table-2').dataTable({
-            //    "aoColumns": [
-			//      { "bSortable": false },
-			//      null, null, null, null, null,
-			//	  { "bSortable": false }
-            //    ]
-            //});
+        }
+        $(function () {
+            sele();
+           
         })
         function edit(t) {
             window.location.href = "/Report/updateReport?id=" + t;
           //  alert("编辑了第"+(t+1)+"行，但是还并不能显示！  ~(￣▽￣)~")
         }
         function search() {
-            alert("你点击了搜索 ~(￣▽￣)~")
-            
+            var brand = document.getElementById("brand").value;
+            var test = document.getElementById("test").value;
+            $.ajax({
+
+                type: "post",
+
+                url: "/Report/SelectReport_combination",
+
+                cache: false,
+
+                async: true,
+                data: { brand: brand, test: test },
+                success: function (data) {
+                    var el = document.getElementsByClassName('info-box');
+                    if (el != null) {
+                        $(".info-box").parent().remove();
+                    }
+                    var testdata3 = { 'code': '000', 'data': "" };
+                    $('#sample-table-2').yhhDataTable({
+                        'paginate': {
+                            'changeDisplayLen': false,
+                            'enabled': false, /*是否分页*/
+                            'visibleGo': false
+                        },
+                        'tbodyRow': {
+                            'zebra': false,
+                            'write': function (d) {
+                                return '<tr></tr>';
+                            }
+                        },
+                    });
+                    var el = document.getElementsByClassName('info-box');
+                    if (el != null) {
+                        $(".info-box").parent().remove();
+                    }
+                    var el2 = document.getElementsByClassName('per-length-box');
+                    if (el2 != null) {
+                        $(".per-length-box").parent().remove();
+                    }
+                    var testdata3 = { 'code': '000', 'data': data };
+                    $('#sample-table-2').yhhDataTable({
+                        'paginate': {
+                            'changeDisplayLen': true,
+                            'type': 'updown',
+                            'visibleGo': true,
+                            'enabled': true, /*是否分页*/
+                        },
+                        'tbodyRow': {
+                            'zebra': true,
+                            'write': function (d) {
+
+                                return '<tr><td>' + d.category + '</td><td>' + d.time + '</td><td>' + d.brand + '</td><td>' + d.taskNumber + '</td><td>' + d.ResultID + '</td><td><div class="btn-group"><button class="btn btn-xs btn-info" onclick="edit(' + d.OriginalRecordID + ')"><i class="ace-icon fa fa-pencil bigger-120"></i>查看</button><button class="btn btn-xs btn-danger" onclick="deleteRow(' + d.OriginalRecordID + ')"><i class="ace-icon fa fa-trash-o bigger-120"></i>删除</button></div></td></tr>';
+                            }
+                        },
+                        'tbodyData': {
+                            'enabled': true,  /*是否传入表格数据*/
+                            'source': testdata3 /*传入的表格数据*/
+                        },
+                        'backDataHandle': function (d) {
+                            if (d.code == '000') {
+                                return d.data;
+                            } else {
+                                alert('出错信息');
+                                return [];
+                            }
+                        }
+                    });
+                }
+            });
+        
         }
         function deleteRow(t) {
             if (window.confirm('是否确定删除？'))
             {
                 $.getJSON("/Report/DelectReport?OriginalRecordID=" + t, function (data) {
                     $.getJSON("/Report/SelectReport", function (data) {
-                       
-                        if ($.isEmptyObject(data)) data = {};
-                        var toData = {
-                            'ajaxParam': { 'data': data }
+                        var el = document.getElementsByClassName('info-box');
+                        if (el != null) {
+                            $(".info-box").parent().remove();
                         }
-                        
-                            toData.paginate = {};
-                            toData.paginate.currentPage = 1;
-                      
-                        var $table = $page.find('.result-list');
-                        $table.yhhDataTable('refresh', toData);
+                        var testdata3 = { 'code': '000', 'data': "" };
+                        $('#sample-table-2').yhhDataTable({
+                            'paginate': {
+                                'changeDisplayLen': false,
+                                'enabled': false, /*是否分页*/
+                                'visibleGo': false
+                            },
+                            'tbodyRow': {
+                                'zebra': false,
+                                'write': function (d) {
+                                    return '<tr></tr>';
+                                }
+                            },
 
+
+                        });
+                        var el = document.getElementsByClassName('info-box');
+                        if (el != null) {
+                            $(".info-box").parent().remove();
+                        }
+                        var el2 = document.getElementsByClassName('per-length-box');
+                        if (el2 != null) {
+                            $(".per-length-box").parent().remove();
+                        }
+                   
+                        sele();
                     })
                 })
 
@@ -397,6 +488,7 @@
             }
 
         }
+      
     </script>
 </body>
 </html>

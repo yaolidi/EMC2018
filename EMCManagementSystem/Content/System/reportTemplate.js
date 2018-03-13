@@ -64,7 +64,74 @@ function destroyAReport(ReportID) {
     var confirmed = confirm("您确定要删除该报告吗？");
     if (confirmed) {
         $.getJSON("/System/destroyAReport", { ReportID: ReportID }, function (data) {
-            
+            var el = document.getElementsByClassName('info-box');
+            if (el != null)
+            {
+                $(".info-box").parent().remove();
+            }  
+            var testdata3 = { 'code': '000', 'data': "" };
+            $('#tableReport').yhhDataTable({
+                'paginate': {
+                    'changeDisplayLen': false,
+                    'enabled': false, /*是否分页*/
+                    'visibleGo': false
+                },
+                'tbodyRow': {
+                    'zebra': false,
+                    'write': function (d) {
+                        return '<tr></tr>';
+                    }
+                },
+             
+               
+            });
+            var el = document.getElementsByClassName('info-box');
+            if (el != null) {
+                $(".info-box").parent().remove();
+            }
+            var el2 = document.getElementsByClassName('per-length-box');
+            if (el2 != null) {
+                $(".per-length-box").parent().remove();
+            }
+           
+           
+           
+            $.getJSON("/System/getAllReports", {}, function (data) {
+                for (var i = 0; i < data.length; i++) {
+                    data[i].Number = i + 1;
+                    data[i].Operation = getOperation(data[i].ReportID, data[i].State);
+                }
+
+                var testdata3 = { 'code': '000', 'data': data };
+
+                $('#tableReport').yhhDataTable({
+                    'paginate': {
+                        'changeDisplayLen': true,
+                        'type': 'updown',
+                        'visibleGo': true,
+                        'enabled': true, /*是否分页*/
+                    },
+                    'tbodyRow': {
+                        'zebra': true,
+                        'write': function (d) {
+                            return '<tr><td>' + d.Number + '</td><td>' + d.DocNumber + '</td><td>' + d.DocName + '</td><td>' + d.State + '</td><td>' + d.Operation + '</td></tr>';
+                        }
+                    },
+                    'tbodyData': {
+                        'enabled': true,  /*是否传入表格数据*/
+                        'source': testdata3 /*传入的表格数据*/
+                    },
+                    'backDataHandle': function (d) {
+                        if (d.code == '000') {
+                            return d.data;
+                        } else {
+                            alert('出错信息');
+                            return [];
+                        }
+                    }
+                });
+            });
+         
         });
     }
 }
