@@ -132,6 +132,133 @@ namespace EMCManagementSystem.Controllers
             }
            return Json(list, JsonRequestBehavior.AllowGet);
         }
+        //试验各项合格比例
+        public ActionResult selectqualifiedratio(int judgenum)
+        {
+
+            ArrayList qualifiedlist = new ArrayList();
+            if (judgenum == 1)
+            {
+                int AV_LH_qualifiedcount = 0;
+                int AV_LV_qualifiedcount = 0;
+                int AV_RH_qualifiedcount = 0;
+                int AV_RV_qualifiedcount = 0;
+                int AK_LH_qualifiedcount = 0;
+                int AK_LV_qualifiedcount = 0;
+                int AK_RH_qualifiedcount = 0;
+                int AK_RV_qualifiedcount = 0;
+                var data = (from tbpath in this.dbEMCEntities.path
+                            select new
+                            {
+                                AV_LH_qualified = tbpath.AV_LH_qualified,
+                                AV_LV_qualified = tbpath.AV_LV_qualified,
+                                AV_RH_qualified = tbpath.AV_RH_qualified,
+                                AV_RV_qualified = tbpath.AV_RV_qualified,
+                                AK_LH_qualified = tbpath.AK_LH_qualified,
+                                AK_LV_qualified = tbpath.AK_LV_qualified,
+                                AK_RH_qualified = tbpath.AK_RH_qualified,
+                                AK_RV_qualified = tbpath.AK_RV_qualified
+
+                            }).ToList();
+                foreach (var qualified14023 in data.ToList())
+                {//'AV_LH', 'AV_LV', 'AV_RH', 'AV_RV','AK_LH', 'AK_LV', 'AK_RH', 'AK_RV'
+                    if (qualified14023.AV_LH_qualified != null && qualified14023.AV_LH_qualified.Trim() == "合格")
+                    {
+                        AV_LH_qualifiedcount++;
+                    }
+                    if (qualified14023.AV_LV_qualified != null && qualified14023.AV_LV_qualified.Trim() == "合格")
+                    {
+                        AV_LV_qualifiedcount++;
+                    }
+                    if (qualified14023.AV_RH_qualified != null && qualified14023.AV_RH_qualified.Trim() == "合格")
+                    {
+                        AV_RH_qualifiedcount++;
+                    }
+                    if (qualified14023.AV_RV_qualified != null && qualified14023.AV_RV_qualified.Trim() == "合格")
+                    {
+                        AV_RV_qualifiedcount++;
+                    }
+                    if (qualified14023.AK_LH_qualified != null && qualified14023.AK_LH_qualified.Trim() == "合格")
+                    {
+                        AK_LH_qualifiedcount++;
+                    }
+                    if (qualified14023.AK_LV_qualified != null && qualified14023.AK_LV_qualified.Trim() == "合格")
+                    {
+                        AK_LV_qualifiedcount++;
+                    }
+                    if (qualified14023.AK_RH_qualified != null && qualified14023.AK_RH_qualified.Trim() == "合格")
+                    {
+                        AK_RH_qualifiedcount++;
+                    }
+                    if (qualified14023.AK_RV_qualified != null && qualified14023.AK_RV_qualified.Trim() == "合格")
+                    {
+                        AK_RV_qualifiedcount++;
+                    }
+                }
+                qualifiedlist.Add(AV_LH_qualifiedcount);
+                qualifiedlist.Add(AV_LV_qualifiedcount);
+                qualifiedlist.Add(AV_RH_qualifiedcount);
+                qualifiedlist.Add(AV_RV_qualifiedcount);
+                qualifiedlist.Add(AK_LH_qualifiedcount);
+                qualifiedlist.Add(AK_LV_qualifiedcount);
+                qualifiedlist.Add(AK_RH_qualifiedcount);
+                qualifiedlist.Add(AK_RV_qualifiedcount);
+            }
+            else if (judgenum == 2)
+            {
+                //合格率
+                int ROD16_qualifiedcount = 0;
+                int ROD70_qualifiedcount = 0;
+                int LOOP_16y_qualifiedcount = 0;
+                int LOOP_16x_qualifiedcount = 0;
+                int LOOP_70y_qualifiedcount = 0;
+                int LOOP_70x_qualifiedcount = 0;
+                var data = (from tbpath in this.dbEMCEntities.path_18387
+                            select new
+                            {
+                                ROD16_qualified = tbpath.ROD16_qualified,
+                                ROD70_qualified = tbpath.ROD70_qualified,
+                                LOOP_16y_qualified = tbpath.LOOP_16y_qualified,
+                                LOOP_16x_qualified = tbpath.LOOP_16x_qualified,
+                                LOOP_70y_qualified = tbpath.LOOP_70y_qualified,
+                                LOOP_70x_qualified = tbpath.LOOP_70x_qualified,
+                            }).ToList();
+                foreach (var qualified18387 in data.ToList())
+                {
+                    if (qualified18387.ROD16_qualified != null && qualified18387.ROD16_qualified.Trim() == "合格")
+                    {
+                        ROD16_qualifiedcount++;
+                    }
+                    if (qualified18387.ROD70_qualified != null && qualified18387.ROD70_qualified.Trim() == "合格")
+                    {
+                        ROD70_qualifiedcount++;
+                    }
+                    if (qualified18387.LOOP_16y_qualified != null && qualified18387.LOOP_16y_qualified.Trim() == "合格")
+                    {
+                        LOOP_16y_qualifiedcount++;
+                    }
+                    if (qualified18387.LOOP_16x_qualified != null && qualified18387.LOOP_16x_qualified.Trim() == "合格")
+                    {
+                        LOOP_16x_qualifiedcount++;
+                    }
+                    if (qualified18387.LOOP_70y_qualified != null && qualified18387.LOOP_70y_qualified.Trim() == "合格")
+                    {
+                        LOOP_70y_qualifiedcount++;
+                    }
+                    if (qualified18387.LOOP_70x_qualified != null && qualified18387.LOOP_70x_qualified.Trim() == "合格")
+                    {
+                        LOOP_70x_qualifiedcount++;
+                    }
+                }
+                qualifiedlist.Add(ROD16_qualifiedcount);
+                qualifiedlist.Add(ROD70_qualifiedcount);
+                qualifiedlist.Add(LOOP_16x_qualifiedcount);
+                qualifiedlist.Add(LOOP_16y_qualifiedcount);
+                qualifiedlist.Add(LOOP_70x_qualifiedcount);
+                qualifiedlist.Add(LOOP_70y_qualifiedcount);
+            }
+            return Json(qualifiedlist, JsonRequestBehavior.AllowGet);
+        }
         // Token: 0x04000072 RID: 114
         private EMCEntities dbEMCEntities = new EMCEntities();
     }
