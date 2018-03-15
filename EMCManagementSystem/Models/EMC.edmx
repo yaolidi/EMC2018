@@ -5,6 +5,17 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="EMCModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CalendarArrangement">
+          <Key>
+            <PropertyRef Name="CalendarArrangement_id" />
+          </Key>
+          <Property Name="CalendarArrangement_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CalendarArrangement_title" Type="nchar" MaxLength="100" />
+          <Property Name="StartTime" Type="date" />
+          <Property Name="EndTime" Type="datetime" />
+          <Property Name="Colorclass" Type="nchar" MaxLength="30" />
+          <Property Name="InsertTime" Type="datetime" />
+        </EntityType>
         <EntityType Name="car">
           <Key>
             <PropertyRef Name="carID" />
@@ -190,6 +201,7 @@
           <Property Name="taskID" Type="int" />
         </EntityType>
         <EntityContainer Name="EMCModelStoreContainer">
+          <EntitySet Name="CalendarArrangement" EntityType="Self.CalendarArrangement" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="car" EntityType="Self.car" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CarQualification" EntityType="Self.CarQualification" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CarQualification_18387" EntityType="Self.CarQualification_18387" Schema="dbo" store:Type="Tables" />
@@ -224,6 +236,7 @@
           <EntitySet Name="ReportFile" EntityType="EMCModel.ReportFile" />
           <EntitySet Name="task" EntityType="EMCModel.task" />
           <EntitySet Name="taskDetails" EntityType="EMCModel.taskDetails" />
+          <EntitySet Name="CalendarArrangement" EntityType="EMCModel.CalendarArrangement" />
         </EntityContainer>
         <EntityType Name="car">
           <Key>
@@ -408,6 +421,17 @@
           <Property Name="taskDetailsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="taskDetailsName" Type="String" MaxLength="300" FixedLength="true" Unicode="true" />
           <Property Name="taskID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="CalendarArrangement">
+          <Key>
+            <PropertyRef Name="CalendarArrangement_id" />
+          </Key>
+          <Property Name="CalendarArrangement_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CalendarArrangement_title" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="StartTime" Type="DateTime" Precision="0" />
+          <Property Name="EndTime" Type="DateTime" Precision="3" />
+          <Property Name="Colorclass" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+          <Property Name="InsertTime" Type="DateTime" Precision="3" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -610,6 +634,18 @@
                 <ScalarProperty Name="taskID" ColumnName="taskID" />
                 <ScalarProperty Name="taskDetailsName" ColumnName="taskDetailsName" />
                 <ScalarProperty Name="taskDetailsID" ColumnName="taskDetailsID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CalendarArrangement">
+            <EntityTypeMapping TypeName="EMCModel.CalendarArrangement">
+              <MappingFragment StoreEntitySet="CalendarArrangement">
+                <ScalarProperty Name="InsertTime" ColumnName="InsertTime" />
+                <ScalarProperty Name="Colorclass" ColumnName="Colorclass" />
+                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="CalendarArrangement_title" ColumnName="CalendarArrangement_title" />
+                <ScalarProperty Name="CalendarArrangement_id" ColumnName="CalendarArrangement_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

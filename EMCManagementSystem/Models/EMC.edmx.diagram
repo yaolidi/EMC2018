@@ -19,6 +19,7 @@
         <EntityTypeShape EntityType="EMCModel.ReportFile" Width="1.5" PointX="8.75" PointY="3.75" />
         <EntityTypeShape EntityType="EMCModel.task" Width="1.5" PointX="8.75" PointY="6.75" />
         <EntityTypeShape EntityType="EMCModel.taskDetails" Width="1.5" PointX="8.75" PointY="9.75" />
+        <EntityTypeShape EntityType="EMCModel.CalendarArrangement" Width="1.5" PointX="5.375" PointY="10.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

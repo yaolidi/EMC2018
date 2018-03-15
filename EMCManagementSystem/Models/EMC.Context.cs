@@ -39,5 +39,6 @@ namespace EMCManagementSystem.Models
         public virtual DbSet<ReportFile> ReportFile { get; set; }
         public virtual DbSet<task> task { get; set; }
         public virtual DbSet<taskDetails> taskDetails { get; set; }
+        public virtual DbSet<CalendarArrangement> CalendarArrangement { get; set; }
     }
 }
