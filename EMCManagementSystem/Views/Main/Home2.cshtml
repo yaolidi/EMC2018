@@ -62,7 +62,6 @@
 
                                     <div id="calendar"></div>
                                 </div>
-
                                 <div class="col-sm-3">
                                     <div class="widget-box transparent">
                                         <div class="widget-header">
@@ -147,31 +146,31 @@
     <script type="text/javascript">
 			jQuery(function($) {
 
-/* initialize the external events
+/* 初始化外部事件
 	-----------------------------------------------------------------*/
 
 	$('#external-events div.external-event').each(function() {
 
-		// create an Event Object (http://arshaw.com/fullcalendar/docs/event_data/Event_Object/)
-		// it doesn't need to have a start or end
+	    // 创建事件对象 (http://arshaw.com/fullcalendar/docs/event_data/Event_Object/)
+	    // 它不需要有一个开始或结束
 		var eventObject = {
-			title: $.trim($(this).text()) // use the element's text as the event title
+		    title: $.trim($(this).text()) //将元素的文本用作事件标题
 		};
 
-		// store the Event Object in the DOM element so we can get to it later
+	    // 将事件对象存储在 DOM 元素中, 以便以后可以找到它
 		$(this).data('eventObject', eventObject);
 
-		// make the event draggable using jQuery UI
+	    // 使用 jQuery UI 使事件拖动
 		$(this).draggable({
 			zIndex: 999,
-			revert: true,      // will cause the event to go back to its
+			revert: true,      // 将导致事件在拖动后返回到其原始位置
 			revertDuration: 0  //  original position after the drag
 		});
 
 	});
+                 
 
-
-	/* initialize the calendar
+   /* 初始化日历
 	-----------------------------------------------------------------*/
 
 	var date = new Date();
@@ -180,6 +179,50 @@
 	var y = date.getFullYear();
 
 
+	/*
+        标题(title)   开始时间   结束时间  颜色
+                
+    */
+
+    //日历信息
+
+	var dataTimeStr = Array();
+	$.ajax({
+	    url: '/Main/CalendarArrangement',  //链接
+	    type: 'POST',
+	    async: false,     //或false,是否异步
+	    timeout: 500,
+	    dataType: 'json',
+	    data: {   //传递参数
+	       // PageSize: 8,
+	       // CurPage: Cur,
+	    },
+	    success: function (data) {   //成功执行的方法
+	        var DTimeStr = "";
+	        for (i = 0; i < data.length; i++) {
+	            var endStr = "";
+	            if (data[i].EndTime == "") {
+	                endStr =false ;
+	            }else {
+	                endStr = new Date(data[i].EndTime)
+	            }
+	          
+
+	            DTimeStr = {
+	                id: data[i].CalendarArrangement_id,
+	                title:data[i].CalendarArrangement_title,
+	                start: new Date(data[i].StartTime),
+	                end: endStr,
+	                className: data[i].Colorclass
+	            }
+	            dataTimeStr.push(DTimeStr);
+	        }
+	    },
+	    error: function (XMLHttpRequest, textStatus, errorThrown) {
+	        // ajax提交失败的处理函数！
+	    }
+
+	});
 	var calendar = $('#calendar').fullCalendar({
 		 buttonText: {
 			prev: '<i class="icon-chevron-left"></i>',
@@ -191,96 +234,112 @@
 			center: 'title',
 			right: 'month,agendaWeek,agendaDay'
 		},
-		events: [
-                {
-                    title: '测试MM-i105实验',
-                    start: new Date(y, m, 1),
-                    end: new Date(y, m, 2),
-                    className: 'label-important'
-                },
-                {
-                    title: 'MM-i105要出报告',
-                    start: new Date(y, m, 10),
-                    allDay: true,
-                    className: 'label-success'
-                },
-                {
-                    title: '出差',
-                    start: new Date(y, m, 18),
-                    allDay: true,
-                    className: 'label-important'
-                },
-                {
-                    title: '丰田汽车 柯斯达 HIACE 测试',
-                    start: new Date(y, m, 20),
-                    end: new Date(y, m, 23),
-                    className: 'label-important'
-                },
-                {
-                    title: '奇瑞 H5 实验',
-                    start: new Date(y, m, 5),
-                    end: new Date(y, m, 6),
-                    className: 'label-success'
-                },
-                {
-                    title: '传奇GS8 测试实验',
-                    start: new Date(y, m, 21),
-                    className: 'label-important'
-                    
-                },
-                {
-                    title: '休息',
-                    start: new Date(y, m, 5),
-                    className: 'label-success'
-                }
-		],
-		//events: [
-		//{
-		//	title: '测试MM-i105实验',
-		//	start: new Date(y, m, 1),
-		//	className: 'label-important'
-		//},
-		//{
-		//	title: 'Long Event',
-		//	start: new Date(y, m, d-5),
-		//	end: new Date(y, m, d-2),
-		//	className: 'label-success'
-		//},
-		//{
-		//	title: 'Some Event',
-		//	start: new Date(y, m, d-3, 16, 0),
-		//	allDay: false
-		//}]
-		//,
-		editable: true,
-		droppable: true, // this allows things to be dropped onto the calendar !!!
-		drop: function(date, allDay) { // this function is called when something is dropped
-
-			// retrieve the dropped element's stored Event Object
+		events: dataTimeStr,
+		
+		editable: true,// 这允许改变事情的日期!!!(就是拖动到其他地方)
+		droppable: true, // 这允许将事情拖到日历上!!!
+		drop: function (date, allDay) { // 当某个东西被丢弃时调用这个函数
+		    // 检索丢弃的元素的存储事件对象
 			var originalEventObject = $(this).data('eventObject');
 			var $extraEventClass = $(this).attr('data-class');
 
 
-			// we need to copy it, so that multiple events don't have a reference to the same object
+		    // 我们需要复制它, 以便多个事件没有对同一对象的引用
 			var copiedEventObject = $.extend({}, originalEventObject);
 
-			// assign it the date that was reported
+		    // 将报告的日期分配给它
 			copiedEventObject.start = date;
 			copiedEventObject.allDay = allDay;
-			if($extraEventClass) copiedEventObject['className'] = [$extraEventClass];
+			if ($extraEventClass) copiedEventObject['className'] = [$extraEventClass];
 
-			// render the event on the calendar
+			var dataValue = new Date(date.getTime())//时间减一天
+			var dataValue2 = dataValue.getFullYear() + '/' + (dataValue.getMonth() + 1) + '/' + dataValue.getDate();//年份的最后一天
+
+			$.ajax({
+			    url: '/Main/SaveCalendar',  //链接
+			    type: 'POST',
+			    async: false,     //或false, 
+			    dataType: 'json',
+			    data: {   //传递参数
+			        title:originalEventObject.title,
+			        start: dataValue2,
+			        //end: null,
+			        className: $extraEventClass,
+			    },
+			    success: function (data) {   //成功执行的方法
+			        copiedEventObject.id = data;
+			    },
+			    error: function (XMLHttpRequest, textStatus, errorThrown) {
+			        // ajax提交失败的处理函数！
+			    }
+
+			});
+
+
+		    // 在日历上呈现事件
+
 			// the last `true` argument determines if the event "sticks" (http://arshaw.com/fullcalendar/docs/event_rendering/renderEvent/)
-			$('#calendar').fullCalendar('renderEvent', copiedEventObject, true);
-
-			// is the "remove after drop" checkbox checked?
+			$('#calendar').fullCalendar('renderEvent', copiedEventObject, true); //最后一个 "true" 参数确定事件是否 "粘"
+		    //是否选中 "除去后删除" 复选框？
 			if ($('#drop-remove').is(':checked')) {
-				// if so, remove the element from the "Draggable Events" list
-				$(this).remove();
+			    // 如果是, 请从 "拖动事件" 列表中删除该元素
+			    $(this).remove();
+			    alert("df");
 			}
 
+		},eventDrop:function(event, dayDelta, minuteDelta, allDay, revertFunc, jsEvent, ui, view ) {//拖动事件触发
+
+		    var endTime = new Date(event.start);
+		    var ETValue = endTime.getFullYear() + '/' + (endTime.getMonth() + 1) + '/' + endTime.getDate();
+
+		    var startTime = new Date(event.end);
+		    var STValue = startTime.getFullYear() + '/' + (startTime.getMonth() + 1) + '/' + startTime.getDate();
+
+		    $.ajax({
+		        url: '/Main/UpdataSaveCalendarTow',  //链接
+		        type: 'POST',
+		        async: false,//或false, 
+		        dataType: 'json',
+		        data: {   //传递参数
+		            CalendarArrangement_id: event.id,
+		            start: ETValue,
+		            end: STValue,
+		        },
+		        success: function (data) { },
+		        error: function (XMLHttpRequest, textStatus, errorThrown) {
+		            // ajax提交失败的处理函数！
+		        }
+
+		    });
+
 		}
-		,
+        //, eventResizeStart: function (event, dayDelta, jsEvent, ui, view) {//改变长度 之前事件
+		//    console.log("拖动11");
+
+		//}, eventResizeStop: function (event, dayDelta, jsEvent, ui, view) {//改变长度 之后事件
+		//    alert("拖动12");
+
+		//}
+        , eventResize: function (event, dayDelta, minuteDelta, revertFunc, jsEvent, ui, view) {////改变长度 之后事件
+            var startTime = new Date(event.end)//时间减一天
+            var STValue = startTime.getFullYear() + '/' + (startTime.getMonth() + 1) + '/' + startTime.getDate();
+            $.ajax({
+                url: '/Main/UpdataSaveCalendarOne',  //链接
+                type: 'POST',
+                async: false,     //或false, 
+                dataType: 'json',
+                data: {   //传递参数
+                    CalendarArrangement_id: event.id,
+                    end: STValue,
+                },
+                success: function (data) {},
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    // ajax提交失败的处理函数！
+                }
+
+            });
+
+		},
 		selectable: true,
 		selectHelper: true,
 		select: function(start, end, allDay) {
@@ -304,12 +363,12 @@
 
 		}
 		,
-		eventClick: function(calEvent, jsEvent, view) {
+		eventClick: function (calEvent, jsEvent, view) {
 
 			var form = $("<form class='form-inline'><label>更改名字&nbsp;</label></form>");
-			form.append("<input class='middle' autocomplete=off type=text value='" + calEvent.title + "' /> ");
+			form.append("<input class='middle' autocomplete=off type=text title='" + calEvent.id + "' value='" + calEvent.title + "' /> ");
 			form.append("<button type='submit' class='btn btn-sm btn-success'><i class='icon-ok'></i> 保存</button>");
-
+			var QX = 0;
 			var div = bootbox.dialog({
 				message: form,
 
@@ -318,8 +377,27 @@
 						"label" : "<i class='icon-trash'></i> 删除",
 						"className" : "btn-sm btn-danger",
 						"callback": function() {
-							calendar.fullCalendar('removeEvents' , function(ev){
-								return (ev._id == calEvent._id);
+						    calendar.fullCalendar('removeEvents', function (ev) {
+						       
+						        if (QX > 0) { } else {
+						            QX = 1;
+						            $.ajax({
+						                url: '/Main/DelectSaveCalendar',  //链接
+						                type: 'POST',
+						                async: false,     //或false, 
+						                dataType: 'json',
+						                data: {   //传递参数
+						                    CalendarArrangement_id: calEvent.id,
+						                },
+						                success: function (data) { },
+						                error: function (XMLHttpRequest, textStatus, errorThrown) {
+						                    // ajax提交失败的处理函数！
+						                }
+
+						            });
+						        }
+						       
+							    return (ev._id == calEvent._id);
 							})
 						}
 					} ,
@@ -331,7 +409,24 @@
 
 			});
 
-			form.on('submit', function(){
+			form.on('submit', function () {
+
+			    $.ajax({
+			        url: '/Main/UpdataTitle',  //链接
+			        type: 'POST',
+			        async: false,     //或false, 
+			        dataType: 'json',
+			        data: {   //传递参数
+			            CalendarArrangement_id: form[0][0].title,
+			            title: form.find("input[type=text]").val(),
+			        },
+			        success: function (data) { },
+			        error: function (XMLHttpRequest, textStatus, errorThrown) {
+			            // ajax提交失败的处理函数！
+			        }
+
+			    });
+
 				calEvent.title = form.find("input[type=text]").val();
 				calendar.fullCalendar('updateEvent', calEvent);
 				div.modal("hide");
