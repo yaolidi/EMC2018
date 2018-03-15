@@ -89,227 +89,190 @@
 
                 <!-- /section:settings.box -->
                 <div class="page-content-area">
-
                     <div class="row">
-                        <div class="col-xs-12">
 
-                            <div class="row">
-                                <div class="col-xs-12">
+                        <div class="col-md-12">
 
-                                    <div class="table-header">
-                                        新增数据信息记录
-                                    </div>
+                            <ul class="nav nav-tabs nav-tabs-justified">
+                                <li class="active">
+                                    <a href="#home-3" data-toggle="tab">
+                                        <span class="visible-xs"><i class="fa-home"></i></span>
+                                        <span class="hidden-xs">以完成</span>
+                                    </a>
+                                </li>
+                                <li class="">
+                                    <a href="#profile-3" data-toggle="tab">
+                                        <span class="visible-xs"><i class="fa-user"></i></span>
+                                        <span class="hidden-xs">未完成</span>
+                                    </a>
+                                </li>
+                            </ul>
 
-                                    <table width="100%" class="CSSearchTbl" cellpadding="0" cellspacing="0">
-                                        <tr>
-                                            <td width="10%" class="left">汽车品牌：</td>
-                                            <td width="20%" class="right">
-                                                <input id="brand" type="text" size="16" style="width:100%" />
-                                            </td>
-                                            <td width="10%" class="left">试验分类：</td>
-                                            <td width="20%" class="right" style="position:relative;right:20px">
-                                                <select id="test">
-                                                    <option>《--未选择--》</option>
-                                                    <option>14023</option>
-                                                    <option>18387</option>
-                                                </select>
-                                            </td>
-                                            <td class="right" colspan="2">
-                                                <button class="btn btn-primary pull-left col-sm-12 tbl-search" data-dismiss="modal" onclick="search()">
-                                                    开始搜索
-                                                </button>
-                                            </td>
-                                            <td class="right" colspan="2">
-                                                <a href="/Report/InsertReport" class="btn btn-primary pull-left col-sm-12 tbl-search"><span>添加数据信息记录</span></a>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="home-3">
 
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                        </tr>
-                                    </table>
+                                    <div class="row">
+                                        <div class="col-xs-12">
 
-                                    <table id="sample-table-2" class="table table-striped table-bordered table-hover">
-                                        <thead>
-                                            <tr>
-                                                @*<th width="5%">NO</th>*@
-                                                <th width="10%">类别</th>
-                                                <th width="10%">创建时间</th>
-                                                <th width="10%">汽车品牌</th>
-                                                <th width="10%">任务号</th>
-                                                <th width="10%">检验结果</th>
-                                                <th width="15%">操作</th>
-                                            </tr>
-                                        </thead>
+                                            <div class="row">
+                                                <div class="col-xs-12">
 
-                                        <tbody>
-                                            @*<tr>
-                                                <td>1</td>
-                                                <td class="hidden-480"><span class="label label-sm label-warning">吉利</span></td>
-                                               
-                                                <td class="hidden-480">型号1</td>
-                                               
-                                                <td>高配</td>
-                                                <td>任务一、任务二</td>
-                                                <td>合格</td>
-                                                <td>
-                                                    <div class="btn-group">
-
-                                                        <button class="btn btn-xs btn-info" onclick="edit(0)">
-                                                            <i class="ace-icon fa fa-pencil bigger-120"></i>
-                                                            编辑
-                                                        </button>
-
-                                                        <button class="btn btn-xs btn-danger" onclick="deleteRow(0)">
-                                                            <i class="ace-icon fa fa-trash-o bigger-120"></i>
-                                                            删除
-                                                        </button>
+                                                    <div class="table-header">
+                                                        新增数据信息记录
                                                     </div>
-                                                </td>
-                                            </tr>
 
-                                            <tr>
-                                                <td>2</td>
+                                                    <table width="100%" class="CSSearchTbl" cellpadding="0" cellspacing="0">
+                                                        <tr>
+                                                            <td width="10%" class="left">汽车品牌：</td>
+                                                            <td width="20%" class="right">
+                                                                <input id="brand" type="text" size="16" style="width:100%" />
+                                                            </td>
 
-                                                <td class="hidden-480"><span class="label label-sm label-warning">五菱</span></td>
+                                                            <td width="10%" class="left">试验分类：</td>
+                                                            <td width="20%" class="right" style="position:relative;right:20px">
+                                                                <select id="test">
+                                                                    <option>《--未选择--》</option>
+                                                                    <option>14023</option>
+                                                                    <option>18387</option>
+                                                                </select>
+                                                            </td>
 
-                                                <td class="hidden-480">型号2</td>
+                                                            <td class="right" colspan="2">
+                                                                <a href="/Report/InsertReport" class="btn btn-primary pull-left col-sm-12 tbl-search"><span>添加数据信息记录</span></a>
 
-                                                <td>高配</td>
-                                                <td>任务一、任务二、任务三</td>
-                                                <td>合格</td>
-                                                <td>
-                                                    <div class="btn-group">
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td width="10%" class="left">起始时间：</td>
+                                                            <td width="20%" class="right">
+                                                                <input id="TestTime" type="text" size="16" style="width:100%" />
+                                                            </td>
+                                                            <td width="10%" class="left">终止时间：</td>
+                                                            <td width="20%" class="right">
+                                                                <input id="TestTime2" type="text" size="16" style="width:100%" />
+                                                            </td>
+                                                            <td class="right" colspan="2">
+                                                                <button class="btn btn-primary pull-left col-sm-12 tbl-search" data-dismiss="modal" onclick="search()">
+                                                                    开始搜索
+                                                                </button>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
 
-                                                        <button class="btn btn-xs btn-info" onclick="edit(0)">
-                                                            <i class="ace-icon fa fa-pencil bigger-120"></i>
-                                                            编辑
-                                                        </button>
+                                                    <table id="sample-table-2" class="table table-striped table-bordered table-hover" data-toolbar="#toolbar"
+                                                           data-pagination="true"
+                                                           data-page-size="10">
+                                                        <thead>
+                                                            <tr>
+                                                                @*<th width="5%">NO</th>*@
+                                                                <th width="10%" data-field="category">类别</th>
+                                                                <th width="10%" data-field="time">创建时间</th>
+                                                                <th width="10%" data-field="brand">汽车品牌</th>
+                                                                <th width="10%" data-field="taskNumber">任务号</th>
+                                                                <th width="10%" data-field="ResultID">检验结果</th>
+                                                                <th width="15%" data-field="operation">操作</th>
+                                                            </tr>
+                                                        </thead>
 
-                                                        <button class="btn btn-xs btn-danger" onclick="deleteRow(0)">
-                                                            <i class="ace-icon fa fa-trash-o bigger-120"></i>
-                                                            删除
-                                                        </button>
+                                                        <tbody>
+                                                        
+                                                        </tbody>
+                                                    </table>
+
+                                                    <div class="modal-footer no-margin-top">
+
+
                                                     </div>
-                                                </td>
-                                            </tr>
 
-                                            <tr>
-                                                <td>3</td>
-                                                <td class="hidden-480"><span class="label label-sm label-warning">五菱</span></td>
-
-                                                <td class="hidden-480">型号3</td>
-                                                
-                                                <td>高配</td>
-                                                <td>任务一、任务二、任务三、任务四</td>
-                                                <td>合格</td>
-                                                <td>
-                                                    <div class="btn-group">
-
-                                                        <button class="btn btn-xs btn-info" onclick="edit(0)">
-                                                            <i class="ace-icon fa fa-pencil bigger-120"></i>
-                                                            编辑
-                                                        </button>
-
-                                                        <button class="btn btn-xs btn-danger" onclick="deleteRow(0)">
-                                                            <i class="ace-icon fa fa-trash-o bigger-120"></i>
-                                                            删除
-                                                        </button>
-                                                    </div>
-                                                </td>
-                                            </tr>
-
-                                            <tr>
-                                                <td>4</td>
-
-
-                                                <td class="hidden-480"><span class="label label-sm label-warning">五菱</span></td>
-
-                                                <td class="hidden-480">型号4</td>
-
-                                                <td>高配</td>
-                                                <td>任务一、任务二、任务三</td>
-                                                <td>合格</td>
-                                                <td>
-                                                    <div class="btn-group">
-
-                                                        <button class="btn btn-xs btn-info" onclick="edit(0)">
-                                                            <i class="ace-icon fa fa-pencil bigger-120"></i>
-                                                            编辑
-                                                        </button>
-
-                                                        <button class="btn btn-xs btn-danger" onclick="deleteRow(0)">
-                                                            <i class="ace-icon fa fa-trash-o bigger-120"></i>
-                                                            删除
-                                                        </button>
-                                                    </div>
-                                                </td>
-                                            </tr>
-
-                                            <tr>
-                                                <td>5</td>
-
-
-                                                <td class="hidden-480"><span class="label label-sm label-warning">五菱</span></td>
-
-                                                <td class="hidden-480">型号5</td>
-
-                                                <td>高配</td>
-                                                <td>任务一、任务二</td>
-                                                <td>合格</td>
-                                                <td>
-                                                    <div class="btn-group">
-
-                                                        <button class="btn btn-xs btn-info" onclick="edit(0)">
-                                                            <i class="ace-icon fa fa-pencil bigger-120"></i>
-                                                            编辑
-                                                        </button>
-
-                                                        <button class="btn btn-xs btn-danger" onclick="deleteRow(0)">
-                                                            <i class="ace-icon fa fa-trash-o bigger-120"></i>
-                                                            删除
-                                                        </button>
-                                                    </div>
-                                                </td>
-                                            </tr>
-
-                                            <tr>
-                                                <td>6</td>
-
-
-                                                <td class="hidden-480"><span class="label label-sm label-warning">五菱</span></td>
-
-                                                <td class="hidden-480">型号6</td>
-
-                                                <td>高配</td>
-                                                <td>任务一、任务二、任务三</td>
-                                                <td>合格</td>
-                                                <td>
-                                                    <div class="btn-group">
-
-                                                        <button class="btn btn-xs btn-info" onclick="edit(0)">
-                                                            <i class="ace-icon fa fa-pencil bigger-120"></i>
-                                                            编辑
-                                                        </button>
-
-                                                        <button class="btn btn-xs btn-danger" onclick="deleteRow(0)">
-                                                            <i class="ace-icon fa fa-trash-o bigger-120"></i>
-                                                            删除
-                                                        </button>
-                                                    </div>
-                                                </td>
-                                            </tr>*@
-                                        </tbody>
-                                    </table>
-
-                                    <div class="modal-footer no-margin-top">
-
-                                 
-                                    </div>
-
+                                                </div>
+                                            </div>
+                                        </div><!-- /.col -->
+                                    </div><!-- /.row -->
                                 </div>
+                                <div class="tab-pane" id="profile-3">
+                                    <div class="row">
+                                        <div class="col-xs-12">
+
+                                            <div class="row">
+                                                <div class="col-xs-12">
+
+                                                    <div class="table-header">
+                                                        新增数据信息记录
+                                                    </div>
+
+                                                    <table width="100%" class="CSSearchTbl" cellpadding="0" cellspacing="0">
+                                                        <tr>
+                                                            <td width="10%" class="left">汽车品牌：</td>
+                                                            <td width="20%" class="right">
+                                                                <input id="brand" type="text" size="16" style="width:100%" />
+                                                            </td>
+
+                                                            <td width="10%" class="left">试验分类：</td>
+                                                            <td width="20%" class="right" style="position:relative;right:20px">
+                                                                <select id="test">
+                                                                    <option>《--未选择--》</option>
+                                                                    <option>14023</option>
+                                                                    <option>18387</option>
+                                                                </select>
+                                                            </td>
+
+                                                            <td class="right" colspan="2">
+                                                                <a href="/Report/InsertReport" class="btn btn-primary pull-left col-sm-12 tbl-search"><span>添加数据信息记录</span></a>
+
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td width="10%" class="left">起始时间：</td>
+                                                            <td width="20%" class="right">
+                                                                <input id="TestTime" type="text" size="16" style="width:100%" />
+                                                            </td>
+                                                            <td width="10%" class="left">终止时间：</td>
+                                                            <td width="20%" class="right">
+                                                                <input id="TestTime2" type="text" size="16" style="width:100%" />
+                                                            </td>
+                                                            <td class="right" colspan="2">
+                                                                <button class="btn btn-primary pull-left col-sm-12 tbl-search" data-dismiss="modal" onclick="search()">
+                                                                    开始搜索
+                                                                </button>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+
+                                                    <table id="sample-table-3" class="table table-striped table-bordered table-hover" data-toolbar="#toolbar"
+                                                           data-pagination="true"
+                                                           data-page-size="10">
+                                                        <thead>
+                                                            <tr>
+                                                                @*<th width="5%">NO</th>*@
+                                                                <th width="10%" data-field="category">类别</th>
+                                                                <th width="10%" data-field="time">创建时间</th>
+                                                                <th width="10%" data-field="brand">汽车品牌</th>
+                                                                <th width="10%" data-field="taskNumber">任务号</th>
+                                                                <th width="10%" data-field="ResultID">检验结果</th>
+                                                                <th width="15%" data-field="operation">操作</th>
+                                                            </tr>
+                                                        </thead>
+
+                                                        <tbody></tbody>
+                                                    </table>
+
+                                                    <div class="modal-footer no-margin-top">
+
+
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div><!-- /.col -->
+                                    </div><!-- /.row -->
+                                </div>
+                         
                             </div>
-                        </div><!-- /.col -->
-                    </div><!-- /.row -->
+
+
+                        </div>
+                    </div>
+               
                 </div><!-- /.page-content-area -->
             </div><!-- /.page-content -->
         </div><!-- /.main-content -->
@@ -321,61 +284,97 @@
         </a>
     </div><!-- /.main-container -->
     <script src="~/Content/js/jquery-1.8.3.min.js"></script>
-    <script src="~/Content/js/jquery.dataTables.min.js"></script>
+    <script src="~/assets/js/bootstrap.min.js"></script>
+    @*<script src="~/Content/js/jquery.dataTables.min.js"></script>
     <script src="~/Content/js/jquery.paginate.js"></script>
-    <script src="~/Content/js/jquery.yhhDataTable.js"></script>
+    <script src="~/Content/js/jquery.yhhDataTable.js"></script>*@
+    <script src="~/assets/js/dist/bootstrap-table.min.js"></script>
+    <script src="~/assets/js/dist/locale/bootstrap-table-zh-CN.js"></script>
+
+  @*datetime控件*@
+    <link href="~/BootStrap/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+    <script src="~/BootStrap/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="~/BootStrap/js/moment-with-locales(1).js"></script>
+    <script src="~/BootStrap/js/bootstrap-datetimepicker.zh-CN.js"></script>
+
+
     <script type="text/javascript">
         function sele() {
             $.getJSON("/Report/SelectReport", function (data) {
-                //$("#sample-table-2 tr:gt(0)").remove();//清空当前查询的数据
-                //var table;
-                //for (i = 0; i < data.length ; i++) {
-
-                //    table += '<tr><td>' + (i + 1) + '</td><td class="hidden-480">' + data[i].time + '<td class="hidden-480"><span class="label label-sm label-warning">' + data[i].brand + '</span></td><td class="hidden-480">' + data[i].taskNumber + '</td><td>' + data[i].taskAllName + '</td><td>' + data[i].ResultID + '</td><td><div class="btn-group"><button class="btn btn-xs btn-info" onclick="edit(' + data[i].OriginalRecordID + ')"><i class="ace-icon fa fa-pencil bigger-120"></i>查看</button><button class="btn btn-xs btn-danger" onclick="deleteRow(' + data[i].OriginalRecordID + ')"><i class="ace-icon fa fa-trash-o bigger-120"></i>删除</button></div></td></tr>'
-                //}
-                //$("#sample-table-2").append(table);
-                var testdata3 = { 'code': '000', 'data': data };
-                $('#sample-table-2').yhhDataTable({
-                    'paginate': {
-                        'changeDisplayLen': true,
-                        'type': 'updown',
-                        'visibleGo': true,
-                        'enabled': true, /*是否分页*/
-                    },
-                    'tbodyRow': {
-                        'zebra': true,
-                        'write': function (d) {
-
-                            return '<tr><td>' + d.category + '</td><td>' + d.time + '</td><td>' + d.brand + '</td><td>' + d.taskNumber + '</td><td>' + d.ResultID + '</td><td><div class="btn-group"><button class="btn btn-xs btn-info" onclick="edit(' + d.OriginalRecordID + ')"><i class="ace-icon fa fa-pencil bigger-120"></i>查看</button><button class="btn btn-xs btn-danger" onclick="deleteRow(' + d.OriginalRecordID + ')"><i class="ace-icon fa fa-trash-o bigger-120"></i>删除</button></div></td></tr>';
-                        }
-                    },
-                    'tbodyData': {
-                        'enabled': true,  /*是否传入表格数据*/
-                        'source': testdata3 /*传入的表格数据*/
-                    },
-                    'backDataHandle': function (d) {
-                        if (d.code == '000') {
-                            return d.data;
-                        } else {
-                            alert('出错信息');
-                            return [];
-                        }
-                    }
-                });
-
+                for (i = 0; i < data.length ; i++) {
+                    data[i].operation = '<div class="btn-group"><button class="btn btn-xs btn-info" onclick="edit(' + data[i].OriginalRecordID + ')"><i class="ace-icon fa fa-pencil bigger-120"></i>查看</button><button class="btn btn-xs btn-danger" onclick="deleteRow(' + data[i].OriginalRecordID + ')"><i class="ace-icon fa fa-trash-o bigger-120"></i>删除</button></div>';
+                   
+                }
+                $("#sample-table-2").bootstrapTable("load", data);
             })
         }
         $(function () {
-            sele();
+            $('#TestTime').datetimepicker({
+                language: 'zh-CN',//显示中文
+                format: 'yyyy-mm-dd',//显示格式
+                minView: "month",//设置只显示到月份
+                initialDate: new Date(),
+                autoclose: true,//选中自动关闭
+                todayBtn: true,//显示今日按钮
+                locale: moment.locale('zh-cn')
+            });
+            $('#TestTime2').datetimepicker({
+                language: 'zh-CN',//显示中文
+                format: 'yyyy-mm-dd',//显示格式
+                 minView: "month",//设置只显示到月份
+                initialDate: new Date(),
+                autoclose: true,//选中自动关闭
+                todayBtn: true,//显示今日按钮
+                locale: moment.locale('zh-cn')
+            });
            
+            $("#sample-table-2").bootstrapTable({
+                //url: "/DataManagement/JsfzrCjdrw",
+                onClickRow: function (a, b) {
+                    $("#sample-table-2 tr.focus").removeClass("focus");
+                    $(b).addClass("focus");
+                    //rowTaskID.value = a.TaskID;
+                    //rowStateID.value = a.StateID;
+                   // checkTaskPass(a.TaskID);
+                }
+            });
+            sele();
+            $("#sample-table-3").bootstrapTable({
+                //url: "/DataManagement/JsfzrCjdrw",
+                onClickRow: function (a, b) {
+                    $("#sample-table-3 tr.focus").removeClass("focus");
+                    $(b).addClass("focus");
+                    //rowTaskID.value = a.TaskID;
+                    //rowStateID.value = a.StateID;
+                    // checkTaskPass(a.TaskID);
+                }
+            });
+            $.getJSON("/Report/SelectReport2", function (data) {
+                for (i = 0; i < data.length ; i++) {
+                    data[i].operation = '<div class="btn-group"><button class="btn btn-xs btn-info" onclick="edit(' + data[i].OriginalRecordID + ')"><i class="ace-icon fa fa-pencil bigger-120"></i>查看</button><button class="btn btn-xs btn-danger" onclick="deleteRow(' + data[i].OriginalRecordID + ')"><i class="ace-icon fa fa-trash-o bigger-120"></i>删除</button></div>';
+
+                }
+                $("#sample-table-3").bootstrapTable("load", data);
+            })
         })
         function edit(t) {
-            window.location.href = "/Report/updateReport?id=" + t;
+            window.location.href = "/Report/updateReport_Continue?id=" + t;
           //  alert("编辑了第"+(t+1)+"行，但是还并不能显示！  ~(￣▽￣)~")
         }
+        function ConvertToDate1(sourceDate) {
+            sourceDate = sourceDate.replace("/Date(", "").replace(")/", "");
+            sourceDate = sourceDate.substr(0, sourceDate.length - 3);
+            sourceDate = Number(sourceDate) * 1000;
+            var dateObj = new Date(sourceDate);
+            var UnixTimeToDate = dateObj.getFullYear() + '-' + (dateObj.getMonth() + 1) + '-' + dateObj.getDate();
+            return UnixTimeToDate;
+        }
         function search() {
+         
             var brand = document.getElementById("brand").value;
             var test = document.getElementById("test").value;
+            var TestTime = document.getElementById("TestTime").value;
+            var TestTime2 = document.getElementById("TestTime2").value;
             $.ajax({
 
                 type: "post",
@@ -385,62 +384,14 @@
                 cache: false,
 
                 async: true,
-                data: { brand: brand, test: test },
+                data: { brand: brand, test: test, TestTime: TestTime, TestTime2: TestTime2 },
                 success: function (data) {
-                    var el = document.getElementsByClassName('info-box');
-                    if (el != null) {
-                        $(".info-box").parent().remove();
+          
+                    for (i = 0; i < data.length ; i++) {
+                        data[i].operation = '<div class="btn-group"><button class="btn btn-xs btn-info" onclick="edit(' + data[i].OriginalRecordID + ')"><i class="ace-icon fa fa-pencil bigger-120"></i>查看</button><button class="btn btn-xs btn-danger" onclick="deleteRow(' + data[i].OriginalRecordID + ')"><i class="ace-icon fa fa-trash-o bigger-120"></i>删除</button></div>';
+                        data[i].time = ConvertToDate1(data[i].time);
                     }
-                    var testdata3 = { 'code': '000', 'data': "" };
-                    $('#sample-table-2').yhhDataTable({
-                        'paginate': {
-                            'changeDisplayLen': false,
-                            'enabled': false, /*是否分页*/
-                            'visibleGo': false
-                        },
-                        'tbodyRow': {
-                            'zebra': false,
-                            'write': function (d) {
-                                return '<tr></tr>';
-                            }
-                        },
-                    });
-                    var el = document.getElementsByClassName('info-box');
-                    if (el != null) {
-                        $(".info-box").parent().remove();
-                    }
-                    var el2 = document.getElementsByClassName('per-length-box');
-                    if (el2 != null) {
-                        $(".per-length-box").parent().remove();
-                    }
-                    var testdata3 = { 'code': '000', 'data': data };
-                    $('#sample-table-2').yhhDataTable({
-                        'paginate': {
-                            'changeDisplayLen': true,
-                            'type': 'updown',
-                            'visibleGo': true,
-                            'enabled': true, /*是否分页*/
-                        },
-                        'tbodyRow': {
-                            'zebra': true,
-                            'write': function (d) {
-
-                                return '<tr><td>' + d.category + '</td><td>' + d.time + '</td><td>' + d.brand + '</td><td>' + d.taskNumber + '</td><td>' + d.ResultID + '</td><td><div class="btn-group"><button class="btn btn-xs btn-info" onclick="edit(' + d.OriginalRecordID + ')"><i class="ace-icon fa fa-pencil bigger-120"></i>查看</button><button class="btn btn-xs btn-danger" onclick="deleteRow(' + d.OriginalRecordID + ')"><i class="ace-icon fa fa-trash-o bigger-120"></i>删除</button></div></td></tr>';
-                            }
-                        },
-                        'tbodyData': {
-                            'enabled': true,  /*是否传入表格数据*/
-                            'source': testdata3 /*传入的表格数据*/
-                        },
-                        'backDataHandle': function (d) {
-                            if (d.code == '000') {
-                                return d.data;
-                            } else {
-                                alert('出错信息');
-                                return [];
-                            }
-                        }
-                    });
+                    $("#sample-table-2").bootstrapTable("load", data);
                 }
             });
         
@@ -450,36 +401,15 @@
             {
                 $.getJSON("/Report/DelectReport?OriginalRecordID=" + t, function (data) {
                     $.getJSON("/Report/SelectReport", function (data) {
-                        var el = document.getElementsByClassName('info-box');
-                        if (el != null) {
-                            $(".info-box").parent().remove();
-                        }
-                        var testdata3 = { 'code': '000', 'data': "" };
-                        $('#sample-table-2').yhhDataTable({
-                            'paginate': {
-                                'changeDisplayLen': false,
-                                'enabled': false, /*是否分页*/
-                                'visibleGo': false
-                            },
-                            'tbodyRow': {
-                                'zebra': false,
-                                'write': function (d) {
-                                    return '<tr></tr>';
-                                }
-                            },
-
-
-                        });
-                        var el = document.getElementsByClassName('info-box');
-                        if (el != null) {
-                            $(".info-box").parent().remove();
-                        }
-                        var el2 = document.getElementsByClassName('per-length-box');
-                        if (el2 != null) {
-                            $(".per-length-box").parent().remove();
-                        }
+           
                    
-                        sele();
+                        $.getJSON("/Report/SelectReport", function (data) {
+                            for (i = 0; i < data.length ; i++) {
+                                data[i].operation = '<div class="btn-group"><button class="btn btn-xs btn-info" onclick="edit(' + data[i].OriginalRecordID + ')"><i class="ace-icon fa fa-pencil bigger-120"></i>查看</button><button class="btn btn-xs btn-danger" onclick="deleteRow(' + data[i].OriginalRecordID + ')"><i class="ace-icon fa fa-trash-o bigger-120"></i>删除</button></div>';
+
+                            }
+                            $("#sample-table-2").bootstrapTable("load", data);
+                        })
                     })
                 })
 

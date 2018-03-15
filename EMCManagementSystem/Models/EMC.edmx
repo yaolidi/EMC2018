@@ -22,6 +22,16 @@
           <Property Name="UnqualifiedTimes" Type="int" />
           <Property Name="Qualification" Type="float" />
         </EntityType>
+        <EntityType Name="CarQualification_18387">
+          <Key>
+            <PropertyRef Name="CarID" />
+          </Key>
+          <Property Name="CarID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CarName" Type="nchar" MaxLength="15" />
+          <Property Name="qualificationNumber" Type="int" />
+          <Property Name="UnqualifiedTimes" Type="int" />
+          <Property Name="Qualification" Type="float" />
+        </EntityType>
         <EntityType Name="CarYearQualification">
           <Key>
             <PropertyRef Name="CarYearQualificationID" />
@@ -51,6 +61,7 @@
           <Property Name="time" Type="date" />
           <Property Name="taskNumber" Type="nchar" MaxLength="25" />
           <Property Name="category" Type="varchar" MaxLength="15" />
+          <Property Name="complete" Type="bit" />
         </EntityType>
         <EntityType Name="OriginalRecorddetails">
           <Key>
@@ -181,6 +192,7 @@
         <EntityContainer Name="EMCModelStoreContainer">
           <EntitySet Name="car" EntityType="Self.car" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CarQualification" EntityType="Self.CarQualification" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CarQualification_18387" EntityType="Self.CarQualification_18387" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CarYearQualification" EntityType="Self.CarYearQualification" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OriginalRecord" EntityType="Self.OriginalRecord" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OriginalRecorddetails" EntityType="Self.OriginalRecorddetails" Schema="dbo" store:Type="Tables" />
@@ -200,6 +212,7 @@
         <EntityContainer Name="EMCEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="car" EntityType="EMCModel.car" />
           <EntitySet Name="CarQualification" EntityType="EMCModel.CarQualification" />
+          <EntitySet Name="CarQualification_18387" EntityType="EMCModel.CarQualification_18387" />
           <EntitySet Name="CarYearQualification" EntityType="EMCModel.CarYearQualification" />
           <EntitySet Name="OriginalRecord" EntityType="EMCModel.OriginalRecord" />
           <EntitySet Name="OriginalRecorddetails" EntityType="EMCModel.OriginalRecorddetails" />
@@ -220,6 +233,16 @@
           <Property Name="carName" Type="String" MaxLength="15" FixedLength="true" Unicode="true" />
         </EntityType>
         <EntityType Name="CarQualification">
+          <Key>
+            <PropertyRef Name="CarID" />
+          </Key>
+          <Property Name="CarID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CarName" Type="String" MaxLength="15" FixedLength="true" Unicode="true" />
+          <Property Name="qualificationNumber" Type="Int32" />
+          <Property Name="UnqualifiedTimes" Type="Int32" />
+          <Property Name="Qualification" Type="Double" />
+        </EntityType>
+        <EntityType Name="CarQualification_18387">
           <Key>
             <PropertyRef Name="CarID" />
           </Key>
@@ -258,6 +281,7 @@
           <Property Name="time" Type="DateTime" Precision="0" />
           <Property Name="taskNumber" Type="String" MaxLength="25" FixedLength="true" Unicode="true" />
           <Property Name="category" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="complete" Type="Boolean" />
         </EntityType>
         <EntityType Name="OriginalRecorddetails">
           <Key>
@@ -410,6 +434,17 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="CarQualification_18387">
+            <EntityTypeMapping TypeName="EMCModel.CarQualification_18387">
+              <MappingFragment StoreEntitySet="CarQualification_18387">
+                <ScalarProperty Name="Qualification" ColumnName="Qualification" />
+                <ScalarProperty Name="UnqualifiedTimes" ColumnName="UnqualifiedTimes" />
+                <ScalarProperty Name="qualificationNumber" ColumnName="qualificationNumber" />
+                <ScalarProperty Name="CarName" ColumnName="CarName" />
+                <ScalarProperty Name="CarID" ColumnName="CarID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="CarYearQualification">
             <EntityTypeMapping TypeName="EMCModel.CarYearQualification">
               <MappingFragment StoreEntitySet="CarYearQualification">
@@ -426,6 +461,7 @@
           <EntitySetMapping Name="OriginalRecord">
             <EntityTypeMapping TypeName="EMCModel.OriginalRecord">
               <MappingFragment StoreEntitySet="OriginalRecord">
+                <ScalarProperty Name="complete" ColumnName="complete" />
                 <ScalarProperty Name="category" ColumnName="category" />
                 <ScalarProperty Name="taskNumber" ColumnName="taskNumber" />
                 <ScalarProperty Name="time" ColumnName="time" />

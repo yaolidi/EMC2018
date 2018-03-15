@@ -52,7 +52,9 @@ namespace EMCManagementSystem.Controllers
         public ActionResult SelectReport()
         {
             var data = (from tbCT in this.dbEMCEntities.OriginalRecord
+                        where tbCT.complete != false
                         orderby tbCT.time descending
+
                         select new
                         {
                             brand = tbCT.brand.ToString().Trim(),
@@ -65,15 +67,17 @@ namespace EMCManagementSystem.Controllers
                             taskAllName = tbCT.taskAllName,
                             VIN = tbCT.VIN.ToString().Trim(),
                             time = tbCT.time.ToString().Trim(),
-                            tbCT.category
+                            tbCT.category,
+                            operation=""
                         }).Distinct().ToList();
             return base.Json(data, JsonRequestBehavior.AllowGet);
         }
-        public ActionResult SelectReport(string brand,string test)
+        public ActionResult SelectReport2()
         {
             var data = (from tbCT in this.dbEMCEntities.OriginalRecord
+                        where tbCT.complete == false
                         orderby tbCT.time descending
-                        
+
                         select new
                         {
                             brand = tbCT.brand.ToString().Trim(),
@@ -86,9 +90,50 @@ namespace EMCManagementSystem.Controllers
                             taskAllName = tbCT.taskAllName,
                             VIN = tbCT.VIN.ToString().Trim(),
                             time = tbCT.time.ToString().Trim(),
-                            tbCT.category
+                            tbCT.category,
+                            operation = ""
                         }).Distinct().ToList();
             return base.Json(data, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult SelectReport_combination(string brand, string test,string TestTime,string TestTime2)
+        {
+            var data = (from tbCT in this.dbEMCEntities.OriginalRecord
+                        where tbCT.complete != false
+                        orderby tbCT.time descending
+
+                        select new
+                        {
+                            brand = tbCT.brand.ToString().Trim(),
+                            taskNumber = tbCT.taskNumber.ToString().Trim(),
+                            introduce = tbCT.introduce.ToString().Trim(),
+                            ModelCarModel = tbCT.ModelCarModel.ToString().Trim(),
+                            OriginalRecordID = tbCT.OriginalRecordID,
+                            Remarks = tbCT.Remarks.ToString().Trim(),
+                            ResultID = tbCT.ResultID,
+                            taskAllName = tbCT.taskAllName,
+                            VIN = tbCT.VIN.ToString().Trim(),
+                            time = tbCT.time,
+                            tbCT.category
+                        });
+            var listbrand = data;
+            if (brand !="")
+            {
+                listbrand = data.Where(m => m.brand == brand);
+            }
+            var listtest = listbrand;
+            if (test != "" && test != "《--未选择--》")
+            {
+                listtest = listbrand.Where(m => m.category == test);
+            }
+            var listTime = listtest;
+            if (TestTime != "" && TestTime2 != "")
+            {
+                DateTime dt = Convert.ToDateTime(TestTime);
+                DateTime dt2 = Convert.ToDateTime(TestTime2);
+                listTime = listtest.Where(m => m.time>= dt && m.time <= dt2);
+            }
+          
+            return base.Json(listTime, JsonRequestBehavior.AllowGet);
         }
         /// <summary>
         /// 14023
@@ -110,7 +155,14 @@ namespace EMCManagementSystem.Controllers
             originalRecord.taskAllName = tbOriginalRecord.taskAllName;
             originalRecord.VIN = tbOriginalRecord.VIN;
             originalRecord.category = "14023";
-            this.dbEMCEntities.OriginalRecord.Add(originalRecord);
+            if (base.Request.Cookies["PK_file_LH"] != null && base.Request.Cookies["PK_file_LV"] != null && base.Request.Cookies["PK_file_RH"] != null && base.Request.Cookies["PK_file_RV"] != null && base.Request.Cookies["fileCSJB"] != null && base.Request.Cookies["file_LV"] != null && base.Request.Cookies["file_RH"] != null && base.Request.Cookies["file_RV"] != null && base.Request.Cookies["PK_file_LH2"] != null && base.Request.Cookies["PK_file_LV2"] != null && Request.Cookies["PK_file_RH2"] != null && Request.Cookies["PK_file_RV2"] != null && Request.Cookies["fileCSJB2"] != null && Request.Cookies["file_LV2"] != null && Request.Cookies["file_RH2"] != null && Request.Cookies["file_RV2"] != null)
+            {
+
+            }
+            else {
+                originalRecord.complete = false;
+            }
+                this.dbEMCEntities.OriginalRecord.Add(originalRecord);
             this.dbEMCEntities.SaveChanges();
             int originalRecordID = originalRecord.OriginalRecordID;
             if (originalRecordID > 0)
@@ -125,58 +177,64 @@ namespace EMCManagementSystem.Controllers
                                 tbCT.qualificationNumber,
                                 tbCT.UnqualifiedTimes
                             }).Distinct().ToList();
-                if (list.Count > 0)
+                if (tbOriginalRecord.ResultID != null && originalRecord.complete != false)
                 {
-                    ///车型合格率
-                    int id = list[0].CarID;
-                    if ((from tbReport in this.dbEMCEntities.CarQualification
-                         where tbReport.CarID == id
-                         select tbReport).ToList<CarQualification>().Count > 0)
+                    if (list.Count > 0)
                     {
-                        CarQualification carQualification = this.dbEMCEntities.CarQualification.Find(new object[]
+
+                        ///车型合格率
+                        int id = list[0].CarID;
+                        if ((from tbReport in this.dbEMCEntities.CarQualification
+                             where tbReport.CarID == id
+                             select tbReport).ToList<CarQualification>().Count > 0)
                         {
+                            CarQualification carQualification = this.dbEMCEntities.CarQualification.Find(new object[]
+                            {
                             id
-                        });
-                        if (tbOriginalRecord.ResultID.ToString().Trim() == "合格")
-                        {
-                            carQualification.qualificationNumber = list[0].qualificationNumber + 1;
-                            double num = Convert.ToDouble(list[0].qualificationNumber + 1);
-                            double num2 = Convert.ToDouble(list[0].UnqualifiedTimes);
-                            CarQualification arg_3EF_0 = carQualification;
-                            double expr_3D5 = num;
-                            arg_3EF_0.Qualification = new double?(Math.Round(expr_3D5 / (expr_3D5 + num2) * 100.0, 2));
+                            });
+
+                            if (tbOriginalRecord.ResultID.ToString().Trim() == "合格")
+                            {
+                                carQualification.qualificationNumber = list[0].qualificationNumber + 1;
+                                double num = Convert.ToDouble(list[0].qualificationNumber + 1);
+                                double num2 = Convert.ToDouble(list[0].UnqualifiedTimes);
+                                CarQualification arg_3EF_0 = carQualification;
+                                double expr_3D5 = num;
+                                arg_3EF_0.Qualification = new double?(Math.Round(expr_3D5 / (expr_3D5 + num2) * 100.0, 2));
+                            }
+                            else
+                            {
+                                carQualification.UnqualifiedTimes = list[0].UnqualifiedTimes + 1;
+                                double num3 = Convert.ToDouble(list[0].qualificationNumber);
+                                double num4 = Convert.ToDouble(list[0].UnqualifiedTimes + 1);
+                                CarQualification arg_4AC_0 = carQualification;
+                                double expr_492 = num3;
+                                arg_4AC_0.Qualification = new double?(Math.Round(expr_492 / (expr_492 + num4) * 100.0, 2));
+                            }
+                            this.dbEMCEntities.SaveChanges();
                         }
-                        else
-                        {
-                            carQualification.UnqualifiedTimes = list[0].UnqualifiedTimes + 1;
-                            double num3 = Convert.ToDouble(list[0].qualificationNumber);
-                            double num4 = Convert.ToDouble(list[0].UnqualifiedTimes + 1);
-                            CarQualification arg_4AC_0 = carQualification;
-                            double expr_492 = num3;
-                            arg_4AC_0.Qualification = new double?(Math.Round(expr_492 / (expr_492 + num4) * 100.0, 2));
-                        }
-                        this.dbEMCEntities.SaveChanges();
-                    }
-                }
-                else
-                {
-                    CarQualification carQualification2 = new CarQualification();
-                    carQualification2.CarName = CarName;
-                    if (tbOriginalRecord.ResultID.ToString().Trim() == "合格")
-                    {
-                        carQualification2.qualificationNumber = new int?(1);
-                        carQualification2.UnqualifiedTimes = new int?(0);
-                        carQualification2.Qualification = new double?((double)100);
                     }
                     else
                     {
-                        carQualification2.qualificationNumber = new int?(0);
-                        carQualification2.UnqualifiedTimes = new int?(1);
-                        carQualification2.Qualification = new double?(0.0);
+                        CarQualification carQualification2 = new CarQualification();
+                        carQualification2.CarName = CarName;
+                        if (tbOriginalRecord.ResultID.ToString().Trim() == "合格")
+                        {
+                            carQualification2.qualificationNumber = new int?(1);
+                            carQualification2.UnqualifiedTimes = new int?(0);
+                            carQualification2.Qualification = new double?((double)100);
+                        }
+                        else
+                        {
+                            carQualification2.qualificationNumber = new int?(0);
+                            carQualification2.UnqualifiedTimes = new int?(1);
+                            carQualification2.Qualification = new double?(0.0);
+                        }
+                        this.dbEMCEntities.CarQualification.Add(carQualification2);
+                        this.dbEMCEntities.SaveChanges();
                     }
-                    this.dbEMCEntities.CarQualification.Add(carQualification2);
-                    this.dbEMCEntities.SaveChanges();
                 }
+               
                 //年合格率
                 int time2 =Convert.ToInt32( Convert.ToDateTime(tbOriginalRecord.time).Year.ToString());
                 var list2 = (from tbCT in this.dbEMCEntities.CarYearQualification
@@ -189,62 +247,66 @@ namespace EMCManagementSystem.Controllers
                                 tbCT.UnqualifiedTimes,
                                 tbCT.year
                             }).Distinct().ToList();
-                if (list2.Count > 0)
+                if (tbOriginalRecord.ResultID != null && originalRecord.complete != false)
                 {
-                    int id = list2[0].CarYearQualificationID;
-                   
+                    if (list2.Count > 0)
+                    {
+                        int id = list2[0].CarYearQualificationID;
+
                         if ((from tbReport in dbEMCEntities.CarYearQualification
-                         where tbReport.CarYearQualificationID == id
-                         select tbReport).ToList<CarYearQualification>().Count > 0)
-                    {
-                        CarYearQualification carQualification = this.dbEMCEntities.CarYearQualification.Find(new object[]
+                             where tbReport.CarYearQualificationID == id
+                             select tbReport).ToList<CarYearQualification>().Count > 0)
                         {
+                            CarYearQualification carQualification = this.dbEMCEntities.CarYearQualification.Find(new object[]
+                            {
                             id
-                        });
-                        if (tbOriginalRecord.ResultID.ToString().Trim() == "合格")
-                        {
-                            carQualification.qualificationNumber = list2[0].qualificationNumber + 1;
-                            double num = Convert.ToDouble(list2[0].qualificationNumber + 1);
-                            double num2 = Convert.ToDouble(list2[0].UnqualifiedTimes);
-                            CarYearQualification arg_3EF_0 = carQualification;
-                            double expr_3D5 = num;
-                            arg_3EF_0.Qualification = new double?(Math.Round(expr_3D5 / (expr_3D5 + num2)*100, 2));
+                            });
+                            if (tbOriginalRecord.ResultID.ToString().Trim() == "合格")
+                            {
+                                carQualification.qualificationNumber = list2[0].qualificationNumber + 1;
+                                double num = Convert.ToDouble(list2[0].qualificationNumber + 1);
+                                double num2 = Convert.ToDouble(list2[0].UnqualifiedTimes);
+                                CarYearQualification arg_3EF_0 = carQualification;
+                                double expr_3D5 = num;
+                                arg_3EF_0.Qualification = new double?(Math.Round(expr_3D5 / (expr_3D5 + num2) * 100, 2));
+                            }
+                            else
+                            {
+                                carQualification.UnqualifiedTimes = list2[0].UnqualifiedTimes + 1;
+                                double num3 = Convert.ToDouble(list2[0].qualificationNumber);
+                                double num4 = Convert.ToDouble(list2[0].UnqualifiedTimes + 1);
+                                CarYearQualification arg_4AC_0 = carQualification;
+                                double expr_492 = num3;
+                                arg_4AC_0.Qualification = new double?(Math.Round(expr_492 / (expr_492 + num4) * 100, 2));
+                            }
+                            this.dbEMCEntities.SaveChanges();
                         }
-                        else
-                        {
-                            carQualification.UnqualifiedTimes = list2[0].UnqualifiedTimes + 1;
-                            double num3 = Convert.ToDouble(list2[0].qualificationNumber);
-                            double num4 = Convert.ToDouble(list2[0].UnqualifiedTimes + 1);
-                            CarYearQualification arg_4AC_0 = carQualification;
-                            double expr_492 = num3;
-                            arg_4AC_0.Qualification = new double?(Math.Round(expr_492 / (expr_492 + num4) * 100, 2));
-                        }
-                        this.dbEMCEntities.SaveChanges();
-                    }
-                }
-                else
-                {
-                    CarYearQualification carQualification2 = new CarYearQualification();
-                    carQualification2.carName = CarName;
-                    if (tbOriginalRecord.ResultID.ToString().Trim() == "合格")
-                    {
-                        int  time = Convert.ToInt32 (Convert.ToDateTime(tbOriginalRecord.time).Year.ToString());
-                        carQualification2.year = time;
-                        carQualification2.qualificationNumber = new int?(1);
-                        carQualification2.UnqualifiedTimes = new int?(0);
-                        carQualification2.Qualification = new double?((double)100);
                     }
                     else
                     {
-                        int time = Convert.ToInt32(Convert.ToDateTime(tbOriginalRecord.time).Year.ToString());
-                        carQualification2.year = time;
-                        carQualification2.qualificationNumber = new int?(0);
-                        carQualification2.UnqualifiedTimes = new int?(1);
-                        carQualification2.Qualification = new double?(0.0);
+                        CarYearQualification carQualification2 = new CarYearQualification();
+                        carQualification2.carName = CarName;
+                        if (tbOriginalRecord.ResultID.ToString().Trim() == "合格")
+                        {
+                            int time = Convert.ToInt32(Convert.ToDateTime(tbOriginalRecord.time).Year.ToString());
+                            carQualification2.year = time;
+                            carQualification2.qualificationNumber = new int?(1);
+                            carQualification2.UnqualifiedTimes = new int?(0);
+                            carQualification2.Qualification = new double?((double)100);
+                        }
+                        else
+                        {
+                            int time = Convert.ToInt32(Convert.ToDateTime(tbOriginalRecord.time).Year.ToString());
+                            carQualification2.year = time;
+                            carQualification2.qualificationNumber = new int?(0);
+                            carQualification2.UnqualifiedTimes = new int?(1);
+                            carQualification2.Qualification = new double?(0.0);
+                        }
+                        this.dbEMCEntities.CarYearQualification.Add(carQualification2);
+                        this.dbEMCEntities.SaveChanges();
                     }
-                    this.dbEMCEntities.CarYearQualification.Add(carQualification2);
-                    this.dbEMCEntities.SaveChanges();
                 }
+               
                 path path = new path();
                 path.OriginalRecordID = new int?(originalRecordID);
                 if (base.Request.Cookies["PK_file_LH"] != null)
@@ -427,13 +489,19 @@ namespace EMCManagementSystem.Controllers
             originalRecord.taskAllName = tbOriginalRecord.taskAllName;
             originalRecord.VIN = tbOriginalRecord.VIN;
             originalRecord.category = "18387";
-            this.dbEMCEntities.OriginalRecord.Add(originalRecord);
+            if (base.Request.Cookies["rod_16"] != null && Request.Cookies["rod_70"] != null && Request.Cookies["rod_img"] != null && Request.Cookies["rod_16_Electrical"] != null && Request.Cookies["rod_70_Electrical"] != null && Request.Cookies["DUI_Electrical"] != null && Request.Cookies["Magnetic_x_16"] != null && Request.Cookies["Magnetic_x_70"] != null && Request.Cookies["Magnetic_y_16"] != null && Request.Cookies["Magnetic_y_70"] != null && Request.Cookies["LOOP_16x_IMG"] != null && Request.Cookies["LOOP_70x_IMG"] != null && Request.Cookies["LOOP_16y_IMG"] != null && Request.Cookies["LOOP_70y_IMG"] != null && Request.Cookies["DUI_Magnetic"] != null && Request.Cookies["Magnetic_img"] != null)
+            {
+            }
+            else {
+                originalRecord.complete = false;
+            }
+                this.dbEMCEntities.OriginalRecord.Add(originalRecord);
             this.dbEMCEntities.SaveChanges();
             int originalRecordID = originalRecord.OriginalRecordID;
             if (originalRecordID > 0)
             {
                 string CarName = tbOriginalRecord.brand.ToString().Trim();
-                var list = (from tbCT in this.dbEMCEntities.CarQualification
+                var list = (from tbCT in this.dbEMCEntities.CarQualification_18387
                             where tbCT.CarName == CarName
                             select new
                             {
@@ -442,58 +510,64 @@ namespace EMCManagementSystem.Controllers
                                 tbCT.qualificationNumber,
                                 tbCT.UnqualifiedTimes
                             }).Distinct().ToList();
-                if (list.Count > 0)
+                if (tbOriginalRecord.ResultID != null && originalRecord.complete != false)
                 {
-                    ///车型合格率
-                    int id = list[0].CarID;
-                    if ((from tbReport in this.dbEMCEntities.CarQualification
-                         where tbReport.CarID == id
-                         select tbReport).ToList<CarQualification>().Count > 0)
+                    if (list.Count > 0)
                     {
-                        CarQualification carQualification = this.dbEMCEntities.CarQualification.Find(new object[]
+                        ///车型合格率
+                        int id = list[0].CarID;
+                        if ((from tbReport in this.dbEMCEntities.CarQualification_18387
+                             where tbReport.CarID == id
+                             select tbReport).ToList<CarQualification_18387>().Count > 0)
                         {
+                            CarQualification_18387 carQualification = this.dbEMCEntities.CarQualification_18387.Find(new object[]
+                            {
                             id
-                        });
-                        if (tbOriginalRecord.ResultID.ToString().Trim() == "合格")
-                        {
-                            carQualification.qualificationNumber = list[0].qualificationNumber + 1;
-                            double num = Convert.ToDouble(list[0].qualificationNumber + 1);
-                            double num2 = Convert.ToDouble(list[0].UnqualifiedTimes);
-                            CarQualification arg_3EF_0 = carQualification;
-                            double expr_3D5 = num;
-                            arg_3EF_0.Qualification = new double?(Math.Round(expr_3D5 / (expr_3D5 + num2) * 100.0, 2));
+                            });
+                            if (tbOriginalRecord.ResultID.ToString().Trim() == "合格")
+                            {
+                                carQualification.qualificationNumber = list[0].qualificationNumber + 1;
+                                double num = Convert.ToDouble(list[0].qualificationNumber + 1);
+                                double num2 = Convert.ToDouble(list[0].UnqualifiedTimes);
+                                CarQualification_18387 arg_3EF_0 = carQualification;
+                                double expr_3D5 = num;
+                                arg_3EF_0.Qualification = new double?(Math.Round(expr_3D5 / (expr_3D5 + num2) * 100.0, 2));
+                            }
+                            else
+                            {
+                                carQualification.UnqualifiedTimes = list[0].UnqualifiedTimes + 1;
+                                double num3 = Convert.ToDouble(list[0].qualificationNumber);
+                                double num4 = Convert.ToDouble(list[0].UnqualifiedTimes + 1);
+                                CarQualification_18387 arg_4AC_0 = carQualification;
+                                double expr_492 = num3;
+                                arg_4AC_0.Qualification = new double?(Math.Round(expr_492 / (expr_492 + num4) * 100.0, 2));
+                            }
+                            this.dbEMCEntities.SaveChanges();
                         }
-                        else
-                        {
-                            carQualification.UnqualifiedTimes = list[0].UnqualifiedTimes + 1;
-                            double num3 = Convert.ToDouble(list[0].qualificationNumber);
-                            double num4 = Convert.ToDouble(list[0].UnqualifiedTimes + 1);
-                            CarQualification arg_4AC_0 = carQualification;
-                            double expr_492 = num3;
-                            arg_4AC_0.Qualification = new double?(Math.Round(expr_492 / (expr_492 + num4) * 100.0, 2));
-                        }
-                        this.dbEMCEntities.SaveChanges();
-                    }
-                }
-                else
-                {
-                    CarQualification carQualification2 = new CarQualification();
-                    carQualification2.CarName = CarName;
-                    if (tbOriginalRecord.ResultID.ToString().Trim() == "合格")
-                    {
-                        carQualification2.qualificationNumber = new int?(1);
-                        carQualification2.UnqualifiedTimes = new int?(0);
-                        carQualification2.Qualification = new double?((double)100);
                     }
                     else
                     {
-                        carQualification2.qualificationNumber = new int?(0);
-                        carQualification2.UnqualifiedTimes = new int?(1);
-                        carQualification2.Qualification = new double?(0.0);
+                        CarQualification_18387 carQualification2 = new CarQualification_18387();
+                        carQualification2.CarName = CarName;
+
+
+                        if (tbOriginalRecord.ResultID.ToString().Trim() == "合格")
+                        {
+                            carQualification2.qualificationNumber = new int?(1);
+                            carQualification2.UnqualifiedTimes = new int?(0);
+                            carQualification2.Qualification = new double?((double)100);
+                        }
+                        else
+                        {
+                            carQualification2.qualificationNumber = new int?(0);
+                            carQualification2.UnqualifiedTimes = new int?(1);
+                            carQualification2.Qualification = new double?(0.0);
+                        }
+                        this.dbEMCEntities.CarQualification_18387.Add(carQualification2);
+                        this.dbEMCEntities.SaveChanges();
                     }
-                    this.dbEMCEntities.CarQualification.Add(carQualification2);
-                    this.dbEMCEntities.SaveChanges();
                 }
+                 
                 //年合格率
                 int time2 = Convert.ToInt32(Convert.ToDateTime(tbOriginalRecord.time).Year.ToString());
                 var list2 = (from tbCT in this.dbEMCEntities.CarYearQualification
@@ -506,62 +580,66 @@ namespace EMCManagementSystem.Controllers
                                  tbCT.UnqualifiedTimes,
                                  tbCT.year
                              }).Distinct().ToList();
-                if (list2.Count > 0)
+                if (tbOriginalRecord.ResultID != null && originalRecord.complete != false)
                 {
-                    int id = list2[0].CarYearQualificationID;
+                    if (list2.Count > 0)
+                    {
+                        int id = list2[0].CarYearQualificationID;
 
-                    if ((from tbReport in dbEMCEntities.CarYearQualification
-                         where tbReport.CarYearQualificationID == id
-                         select tbReport).ToList<CarYearQualification>().Count > 0)
-                    {
-                        CarYearQualification carQualification = this.dbEMCEntities.CarYearQualification.Find(new object[]
+                        if ((from tbReport in dbEMCEntities.CarYearQualification
+                             where tbReport.CarYearQualificationID == id
+                             select tbReport).ToList<CarYearQualification>().Count > 0)
                         {
+                            CarYearQualification carQualification = this.dbEMCEntities.CarYearQualification.Find(new object[]
+                            {
                             id
-                        });
-                        if (tbOriginalRecord.ResultID.ToString().Trim() == "合格")
-                        {
-                            carQualification.qualificationNumber = list2[0].qualificationNumber + 1;
-                            double num = Convert.ToDouble(list2[0].qualificationNumber + 1);
-                            double num2 = Convert.ToDouble(list2[0].UnqualifiedTimes);
-                            CarYearQualification arg_3EF_0 = carQualification;
-                            double expr_3D5 = num;
-                            arg_3EF_0.Qualification = new double?(Math.Round(expr_3D5 / (expr_3D5 + num2) * 100, 2));
+                            });
+                            if (tbOriginalRecord.ResultID.ToString().Trim() == "合格")
+                            {
+                                carQualification.qualificationNumber = list2[0].qualificationNumber + 1;
+                                double num = Convert.ToDouble(list2[0].qualificationNumber + 1);
+                                double num2 = Convert.ToDouble(list2[0].UnqualifiedTimes);
+                                CarYearQualification arg_3EF_0 = carQualification;
+                                double expr_3D5 = num;
+                                arg_3EF_0.Qualification = new double?(Math.Round(expr_3D5 / (expr_3D5 + num2) * 100, 2));
+                            }
+                            else
+                            {
+                                carQualification.UnqualifiedTimes = list2[0].UnqualifiedTimes + 1;
+                                double num3 = Convert.ToDouble(list2[0].qualificationNumber);
+                                double num4 = Convert.ToDouble(list2[0].UnqualifiedTimes + 1);
+                                CarYearQualification arg_4AC_0 = carQualification;
+                                double expr_492 = num3;
+                                arg_4AC_0.Qualification = new double?(Math.Round(expr_492 / (expr_492 + num4) * 100, 2));
+                            }
+                            this.dbEMCEntities.SaveChanges();
                         }
-                        else
-                        {
-                            carQualification.UnqualifiedTimes = list2[0].UnqualifiedTimes + 1;
-                            double num3 = Convert.ToDouble(list2[0].qualificationNumber);
-                            double num4 = Convert.ToDouble(list2[0].UnqualifiedTimes + 1);
-                            CarYearQualification arg_4AC_0 = carQualification;
-                            double expr_492 = num3;
-                            arg_4AC_0.Qualification = new double?(Math.Round(expr_492 / (expr_492 + num4) * 100, 2));
-                        }
-                        this.dbEMCEntities.SaveChanges();
-                    }
-                }
-                else
-                {
-                    CarYearQualification carQualification2 = new CarYearQualification();
-                    carQualification2.carName = CarName;
-                    if (tbOriginalRecord.ResultID.ToString().Trim() == "合格")
-                    {
-                        int time = Convert.ToInt32(Convert.ToDateTime(tbOriginalRecord.time).Year.ToString());
-                        carQualification2.year = time;
-                        carQualification2.qualificationNumber = new int?(1);
-                        carQualification2.UnqualifiedTimes = new int?(0);
-                        carQualification2.Qualification = new double?((double)100);
                     }
                     else
                     {
-                        int time = Convert.ToInt32(Convert.ToDateTime(tbOriginalRecord.time).Year.ToString());
-                        carQualification2.year = time;
-                        carQualification2.qualificationNumber = new int?(0);
-                        carQualification2.UnqualifiedTimes = new int?(1);
-                        carQualification2.Qualification = new double?(0.0);
+                        CarYearQualification carQualification2 = new CarYearQualification();
+                        carQualification2.carName = CarName;
+                        if (tbOriginalRecord.ResultID.ToString().Trim() == "合格")
+                        {
+                            int time = Convert.ToInt32(Convert.ToDateTime(tbOriginalRecord.time).Year.ToString());
+                            carQualification2.year = time;
+                            carQualification2.qualificationNumber = new int?(1);
+                            carQualification2.UnqualifiedTimes = new int?(0);
+                            carQualification2.Qualification = new double?((double)100);
+                        }
+                        else
+                        {
+                            int time = Convert.ToInt32(Convert.ToDateTime(tbOriginalRecord.time).Year.ToString());
+                            carQualification2.year = time;
+                            carQualification2.qualificationNumber = new int?(0);
+                            carQualification2.UnqualifiedTimes = new int?(1);
+                            carQualification2.Qualification = new double?(0.0);
+                        }
+                        this.dbEMCEntities.CarYearQualification.Add(carQualification2);
+                        this.dbEMCEntities.SaveChanges();
                     }
-                    this.dbEMCEntities.CarYearQualification.Add(carQualification2);
-                    this.dbEMCEntities.SaveChanges();
                 }
+                   
                 path_18387 path = new path_18387();
                 path.RODsurface = surface;
                 path.LOOPsurface = surface2;
@@ -735,7 +813,16 @@ namespace EMCManagementSystem.Controllers
             base.Session["OriginalRecordID"] = id;
             return base.View();
         }
-
+        /// <summary>
+        /// 试验数据继续录入
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public ActionResult updateReport_Continue(int id)
+        {
+            base.Session["OriginalRecordID"] = id;
+            return base.View();
+        }
         // Token: 0x06000117 RID: 279 RVA: 0x00005568 File Offset: 0x00003768
         public ActionResult selectupdateReport()
         {
@@ -1177,6 +1264,117 @@ namespace EMCManagementSystem.Controllers
             list.Add(Time);
             return Json(list, JsonRequestBehavior.AllowGet);
         }
+        [HttpPost]
+        public ActionResult StationImport_Continue(HttpPostedFileBase filebase)
+        {
+            string Time = "";
+            string item = "合格";
+            string filename_p = "";
+            string FileName;
+            string savePath;
+
+            HttpPostedFileBase file = Request.Files["files"];
+            if (file == null || file.ContentLength <= 0)
+            {
+                ViewBag.error = "文件不能为空";
+                return View();
+            }
+            else
+            {
+                string filename = Path.GetFileName(file.FileName);
+                int filesize = file.ContentLength;//获取上传文件的大小单位为字节byte
+                string fileEx = System.IO.Path.GetExtension(filename);//获取上传文件的扩展名
+                string NoFileName = System.IO.Path.GetFileNameWithoutExtension(filename);//获取无扩展名的文件名
+                int Maxsize = 40000 * 1024;//定义上传文件的最大空间大小为4M
+                string FileType = ".xls,.xlsx";//定义上传文件的类型字符串
+                Time = DateTime.Now.ToString("yyyyMMddhhmmss");
+                FileName = Time + NoFileName + fileEx;
+                filename_p = NoFileName + fileEx;
+                if (!FileType.Contains(fileEx))
+                {
+                    ViewBag.error = "文件类型不对，只能导入xls和xlsx格式的文件";
+                    return View();
+                }
+                if (filesize >= Maxsize)
+                {
+                    ViewBag.error = "上传文件超过4M，不能上传";
+                    return View();
+                }
+                string path = AppDomain.CurrentDomain.BaseDirectory + "file/";
+                savePath = Path.Combine(path, FileName);
+                file.SaveAs(savePath);
+            }
+
+            string text3 = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + savePath + ";Extended Properties=Excel 8.0";
+            new OleDbConnection(text3).Open();
+            OleDbDataAdapter oleDbDataAdapter = new OleDbDataAdapter("select * from [Sheet1$]", text3);
+            DataSet dataSet = new DataSet();
+            try
+            {
+                oleDbDataAdapter.Fill(dataSet, "ExcelInfo");
+            }
+            catch (Exception ex)
+            {
+
+            }
+            DataTable dataTable = dataSet.Tables["ExcelInfo"].DefaultView.ToTable();
+            List<object> list = new List<object>();
+
+            using (TransactionScope transactionScope = new TransactionScope())
+            {
+                for (int i = 0; i < dataTable.Rows.Count; i++)
+                {
+                    List<double> list2 = new List<double>();
+                    string text4 = dataTable.Rows[i][0].ToString();
+                    bool b = Regex.IsMatch(text4, @"[^ 0 - 9.-]");
+                    if (text4 != "" && b == true)
+                    {
+                        list2.Add(Convert.ToDouble(dataTable.Rows[i][0].ToString().Trim()));
+                        list2.Add(Convert.ToDouble(dataTable.Rows[i][1].ToString().Trim()));
+                        list.Add(list2);
+                        string text5 = dataTable.Rows[i][1].ToString();
+                        if (Convert.ToDouble(text4) <= 230.0)
+                        {
+                            if (text5 != "" && Convert.ToDouble(text5) > 28.0)
+                            {
+                                item = "不合格";
+                            }
+                        }
+                        else if (text5 != "" && Convert.ToDouble(text5) > 35.0)
+                        {
+                            item = "不合格";
+                        }
+                    }
+                }
+                transactionScope.Complete();
+            }
+            var OriginalRecordID = Convert.ToInt32(Session["OriginalRecordID"]);
+            var listOriginalRecord = (from tb in dbEMCEntities.path
+                                      where tb.OriginalRecordID == OriginalRecordID
+                                      select tb).ToList();
+            if (filename_p == "LH.xls" || filename_p == "LH.xlsx")
+            {
+                listOriginalRecord[0].AV_LH = Time + filename_p;
+                listOriginalRecord[0].AV_LH_qualified = item;
+            } else if (filename_p == "LV.xls" || filename_p == "LV.xlsx")
+            {
+                listOriginalRecord[0].AV_LV = Time + filename_p;
+                listOriginalRecord[0].AV_LV_qualified = item;
+            }
+            else if (filename_p == "RH.xls" || filename_p == "RH.xlsx") {
+                listOriginalRecord[0].AV_RH = Time + filename_p;
+                listOriginalRecord[0].AV_RH_qualified = item;
+            }
+            else if (filename_p == "RV.xls" || filename_p == "RV.xlsx") {
+                listOriginalRecord[0].AV_RV= Time + filename_p;
+                listOriginalRecord[0].AV_RV_qualified = item;
+            }
+            dbEMCEntities.SaveChanges();
+            list.Add(filename_p);
+            list.Add(item);
+            list.Add(Time);
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
         /// <summary>
         /// 18387电场
         /// </summary>
@@ -1439,10 +1637,55 @@ namespace EMCManagementSystem.Controllers
             string path = text + fileNameWithoutExtension + extension;
             string filename = Path.Combine(AppDomain.CurrentDomain.BaseDirectory + "File/", path);
             httpPostedFileBase.SaveAs(filename);
+
+         
             return base.Json(path, JsonRequestBehavior.AllowGet);
         }
-
-        // Token: 0x0600011C RID: 284 RVA: 0x000075A0 File Offset: 0x000057A0
+        [HttpPost]
+        public ActionResult StationImport2_Continue(HttpPostedFileBase filebase)
+        {
+            HttpPostedFileBase httpPostedFileBase = base.Request.Files["files"];
+            if (httpPostedFileBase == null || httpPostedFileBase.ContentLength <= 0)
+            {
+                return base.Json("文件不能为空", JsonRequestBehavior.AllowGet);
+            }
+            string fileName = Path.GetFileName(httpPostedFileBase.FileName);
+            int arg_48_0 = httpPostedFileBase.ContentLength;
+            string extension = Path.GetExtension(fileName);
+            string fileNameWithoutExtension = Path.GetFileNameWithoutExtension(fileName);
+            string text = DateTime.Now.ToString("yyyyMMddhhmmss");
+            string path = text + fileNameWithoutExtension + extension;
+            string filename = Path.Combine(AppDomain.CurrentDomain.BaseDirectory + "File/", path);
+            httpPostedFileBase.SaveAs(filename);
+            string NoFileName = System.IO.Path.GetFileNameWithoutExtension(filename);//获取无扩展名的文件名
+            string fileEx = System.IO.Path.GetExtension(filename);//获取上传文件的扩展名
+            var Time = DateTime.Now.ToString("yyyyMMddhhmmss");
+            var FileName = Time + NoFileName + fileEx;
+            var filename_p = NoFileName + fileEx;
+            var OriginalRecordID = Convert.ToInt32(Session["OriginalRecordID"]);
+            var listOriginalRecord = (from tb in dbEMCEntities.path
+                                      where tb.OriginalRecordID == OriginalRecordID
+                                      select tb).ToList();
+            if (filename_p.IndexOf("LH") > -1)
+            {
+                listOriginalRecord[0].AV_LH_img = path;
+            }
+            else if (filename_p.IndexOf("LV") > -1)
+            {
+                listOriginalRecord[0].AV_LV_img = path;
+            }
+            else if (filename_p.IndexOf("RH") > -1)
+            {
+                listOriginalRecord[0].AV_RH_img = path;
+            }
+            else if (filename_p.IndexOf("RV") > -1)
+            {
+                listOriginalRecord[0].AV_RV_img = path;
+            }
+            dbEMCEntities.SaveChanges();
+            return base.Json(path, JsonRequestBehavior.AllowGet);
+        }
+     
         [HttpPost]
         public ActionResult StationImport3(HttpPostedFileBase filebase)
         {
@@ -1535,6 +1778,161 @@ namespace EMCManagementSystem.Controllers
             list.Add(item);
             list.Add(text);
             return base.Json(list, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public ActionResult StationImport3_Continue(HttpPostedFileBase filebase)
+        {
+            string text = "";
+            string item = "合格";
+            string filename_p = "";
+            HttpPostedFileBase httpPostedFileBase = base.Request.Files["files"];
+          
+            string fileName = Path.GetFileName(httpPostedFileBase.FileName);
+            int contentLength = httpPostedFileBase.ContentLength;
+            string extension = Path.GetExtension(fileName);
+            string fileNameWithoutExtension = Path.GetFileNameWithoutExtension(fileName);
+            int num = 40960000;
+            string arg_EF_0 = ".xls,.xlsx";
+            text = DateTime.Now.ToString("yyyyMMddhhmmss");
+            string path = text + fileNameWithoutExtension + extension;
+            filename_p = fileNameWithoutExtension + extension;
+            string text2 = Path.Combine(AppDomain.CurrentDomain.BaseDirectory + "File/", path);
+            httpPostedFileBase.SaveAs(text2);
+            string text3 = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + text2 + ";Extended Properties=Excel 8.0";
+            new OleDbConnection(text3).Open();
+            OleDbDataAdapter oleDbDataAdapter = new OleDbDataAdapter("select * from [Sheet1$]", text3);
+            DataSet dataSet = new DataSet();
+            try
+            {
+                oleDbDataAdapter.Fill(dataSet, "ExcelInfo");
+            }
+            catch (Exception ex)
+            {
+
+            }
+            DataTable dataTable = dataSet.Tables["ExcelInfo"].DefaultView.ToTable();
+            List<object> list = new List<object>();
+            using (TransactionScope transactionScope = new TransactionScope())
+            {
+                for (int i = 0; i < dataTable.Rows.Count; i++)
+                {
+                    List<double> list2 = new List<double>();
+                    string text4 = dataTable.Rows[i][0].ToString();
+                    bool b = Regex.IsMatch(text4, @"[^ 0 - 9.-]");
+                    if (text4 != "" && b == true)
+                    {
+                        list2.Add(Convert.ToDouble(dataTable.Rows[i][0].ToString().Trim()));
+                        list2.Add(Convert.ToDouble(dataTable.Rows[i][1].ToString().Trim()));
+                        list.Add(list2);
+                        string text5 = dataTable.Rows[i][1].ToString();
+                        if (Convert.ToDouble(text4) <= 75.0)
+                        {
+                            if (text5 != "" && Convert.ToDouble(text5) > 52.0)
+                            {
+                                item = "不合格";
+                                break;
+                            }
+                        }
+                        else if (Convert.ToDouble(text4) > 75.0 && Convert.ToDouble(text4) < 400.0)
+                        {
+                            if (text5 != "")
+                            {
+                                double num2 = Convert.ToDouble(text4);
+                                double num3 = 75.0;
+                                if (52.0 + 15.13 * Math.Log10(num2 / num3) < Convert.ToDouble(text5))
+                                {
+                                    item = "不合格";
+                                    break;
+                                }
+                            }
+                        }
+                        else if (text5 != "" && Convert.ToDouble(text5) > 63.0)
+                        {
+                            item = "不合格";
+                            break;
+                        }
+                    }
+                }
+                transactionScope.Complete();
+            }
+            var OriginalRecordID = Convert.ToInt32(Session["OriginalRecordID"]);
+            var listOriginalRecord = (from tb in dbEMCEntities.path
+                                      where tb.OriginalRecordID == OriginalRecordID
+                                      select tb).ToList();
+
+            if (filename_p.IndexOf("LH") > -1)
+            {
+           
+                listOriginalRecord[0].AK_LH = text + filename_p;
+                listOriginalRecord[0].AK_LH_qualified = item;
+            }
+            else if (filename_p.IndexOf("LV") > -1)
+            {
+                listOriginalRecord[0].AK_LV = text + filename_p;
+                listOriginalRecord[0].AK_LV_qualified = item;
+            }
+            else if (filename_p.IndexOf("RH") > -1)
+            {
+                listOriginalRecord[0].AK_RH = text + filename_p;
+                listOriginalRecord[0].AK_RH_qualified = item;
+            }
+            else if (filename_p.IndexOf("RV") > -1)
+            {
+                listOriginalRecord[0].AK_RV = text + filename_p;
+                listOriginalRecord[0].AK_RV_qualified = item;
+            }
+            dbEMCEntities.SaveChanges();
+            list.Add(filename_p);
+            list.Add(item);
+            list.Add(text);
+            return base.Json(list, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public ActionResult StationImport3_Continue2(HttpPostedFileBase filebase)
+        {
+            HttpPostedFileBase httpPostedFileBase = base.Request.Files["files"];
+            if (httpPostedFileBase == null || httpPostedFileBase.ContentLength <= 0)
+            {
+                return base.Json("文件不能为空", JsonRequestBehavior.AllowGet);
+            }
+            string fileName = Path.GetFileName(httpPostedFileBase.FileName);
+            int arg_48_0 = httpPostedFileBase.ContentLength;
+            string extension = Path.GetExtension(fileName);
+            string fileNameWithoutExtension = Path.GetFileNameWithoutExtension(fileName);
+            string text = DateTime.Now.ToString("yyyyMMddhhmmss");
+            string path = text + fileNameWithoutExtension + extension;
+            string filename = Path.Combine(AppDomain.CurrentDomain.BaseDirectory + "File/", path);
+            httpPostedFileBase.SaveAs(filename);
+            string NoFileName = System.IO.Path.GetFileNameWithoutExtension(filename);//获取无扩展名的文件名
+            string fileEx = System.IO.Path.GetExtension(filename);//获取上传文件的扩展名
+            var Time = DateTime.Now.ToString("yyyyMMddhhmmss");
+            var FileName = Time + NoFileName + fileEx;
+            var filename_p = NoFileName + fileEx;
+            var OriginalRecordID = Convert.ToInt32(Session["OriginalRecordID"]);
+            var listOriginalRecord = (from tb in dbEMCEntities.path
+                                     where tb.OriginalRecordID== OriginalRecordID
+                                     select tb).ToList();
+            
+            if (filename_p.IndexOf("LH") > -1)
+            {
+                listOriginalRecord[0].AK_LH_img = path;
+            }
+            else if (filename_p.IndexOf("LV") > -1)
+            {
+                listOriginalRecord[0].AK_LV_img = path;
+            }
+            else if (filename_p.IndexOf("RH") > -1)
+            {
+                listOriginalRecord[0].AK_RH_img = path;
+            }
+            else if (filename_p.IndexOf("RV") > -1)
+            {
+                listOriginalRecord[0].AK_RV_img = path;
+            }
+            dbEMCEntities.SaveChanges();
+            return base.Json(path, JsonRequestBehavior.AllowGet);
         }
         public ActionResult selectTree()
         {

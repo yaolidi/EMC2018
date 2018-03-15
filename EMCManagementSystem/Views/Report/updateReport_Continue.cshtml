@@ -1,0 +1,2824 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>updateReport_Continue</title>
+    <link href="~/easyui/css/bootstrap-select.css" rel="stylesheet" />
+    <link href="~/easyui/css/bootstrap-select.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/assets/css/fonts/fontawesome/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="~/assets/css/bootstrap.css">
+    <link rel="stylesheet" href="~/assets/css/xenon-core.css">
+    <link rel="stylesheet" href="~/assets/css/xenon-forms.css">
+
+
+
+    @*<link href="~/control/css/foundation.min.css" rel="stylesheet" />*@
+    <link href="~/control/css/foundation-datepicker.css" rel="stylesheet" />
+
+    <style>
+        .fileBox {
+            margin: 50px;
+        }
+
+        .fileInputP {
+            display: inline-block;
+            width: 200px;
+            height: 30px;
+            border-radius: 5px;
+            overflow: hidden;
+            position: relative;
+        }
+
+            .fileInputP i {
+                display: inline-block;
+                width: 200px;
+                height: 30px;
+                color: #fff;
+                background: #7d8f33;
+                text-align: center;
+                line-height: 30px;
+            }
+
+        #fileInput {
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 0;
+        }
+
+        #fileSpan {
+            display: inline-block;
+            width: 300px;
+            height: 150px;
+            border: 2px dashed #ccc;
+            text-align: center;
+            line-height: 150px;
+        }
+
+        .fileList_parent {
+            margin: 50px;
+            display: none;
+        }
+
+            .fileList_parent th {
+                background: #dadada;
+                font-weight: bold;
+            }
+
+            .fileList_parent th, .fileList_parent td {
+                padding: 5px;
+            }
+
+        .fileList tr:nth-of-type(2n) {
+            background: #dadada;
+        }
+
+        .progressParent {
+            width: 200px;
+            height: 20px;
+            border-radius: 5px;
+            background: #ccc;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress {
+            width: 0%;
+            height: 20px;
+            background: #7d8f33;
+        }
+
+        .progressNum {
+            display: inline-block;
+            width: 100%;
+            height: 20px;
+            text-align: center;
+            line-height: 20px;
+            color: #fff;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        #fileBtn {
+            margin-left: 50px;
+            display: none;
+        }
+
+        tr td {
+            text-align: center;
+            vertical-align: middle !important; /*设置垂直居中*/
+        }
+
+        tr th {
+            text-align: center;
+            vertical-align: middle !important; /*设置垂直居中*/
+        }
+
+        .uploader {
+            -moz-box-shadow: 0px 0px 5px #ddd;
+            -webkit-box-shadow: 0px 0px 5px #ddd;
+            box-shadow: 0px 0px 5px #ddd;
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            border-radius: 5px;
+        }
+
+        .filename {
+            float: left;
+            display: inline-block;
+            outline: 0 none;
+            height: 32px;
+            width: 65%;
+            margin: 0;
+            padding: 8px 10px;
+            overflow: hidden;
+            cursor: default;
+            border: 1px solid;
+            border-right: 0;
+            font: 9pt/100% Arial, Helvetica, sans-serif;
+            color: #777;
+            text-shadow: 1px 1px 0px #fff;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            -moz-border-radius: 5px 0px 0px 5px;
+            -webkit-border-radius: 5px 0px 0px 5px;
+            border-radius: 5px 0px 0px 5px;
+            background: #f5f5f5;
+            background: -moz-linear-gradient(top, #fafafa 0%, #eee 100%);
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fafafa), color-stop(100%,#f5f5f5));
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fafafa', endColorstr='#f5f5f5',GradientType=0);
+            border-color: #ccc;
+            -moz-box-shadow: 0px 0px 1px #fff inset;
+            -webkit-box-shadow: 0px 0px 1px #fff inset;
+            box-shadow: 0px 0px 1px #fff inset;
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        .uploader input[type=file] {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            border: 0;
+            padding: 0;
+            margin: 0;
+            height: 30px;
+            cursor: pointer;
+            filter: alpha(opacity=0);
+            -moz-opacity: 0;
+            -khtml-opacity: 0;
+            opacity: 0;
+        }
+
+        input[type=button]::-moz-focus-inner {
+            padding: 0;
+            border: 0 none;
+            -moz-box-sizing: content-box;
+        }
+
+        input[type=button]::-webkit-focus-inner {
+            padding: 0;
+            border: 0 none;
+            -webkit-box-sizing: content-box;
+        }
+
+        input[type=text]::-moz-focus-inner {
+            padding: 0;
+            border: 0 none;
+            -moz-box-sizing: content-box;
+        }
+
+        input[type=text]::-webkit-focus-inner {
+            padding: 0;
+            border: 0 none;
+            -webkit-box-sizing: content-box;
+        }
+
+        /* White Color Scheme ------------------------ */
+
+        .white .button {
+            color: #555;
+            text-shadow: 1px 1px 0px #fff;
+            background: #ddd;
+            background: -moz-linear-gradient(top, #eeeeee 0%, #dddddd 100%);
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#eeeeee), color-stop(100%,#dddddd));
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#eeeeee', endColorstr='#dddddd',GradientType=0);
+            border-color: #ccc;
+            height: 30px;
+        }
+
+        .white:hover .button {
+            background: #eee;
+            background: -moz-linear-gradient(top, #dddddd 0%, #eeeeee 100%);
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#dddddd), color-stop(100%,#eeeeee));
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#dddddd', endColorstr='#eeeeee',GradientType=0);
+        }
+
+        #container {
+            min-width: 310px;
+            max-width: 800px;
+            height: 400px;
+            margin: 0 auto;
+        }
+
+        .highcharts-credits {
+            display: none;
+        }
+           .box i {
+        position:relative !important;
+        top:-20px !important
+        }
+        .cleanFileBt i {
+        position:relative;
+        top:8px !important
+        }
+        .status i {
+             position:relative;
+        top:20px !important
+        }
+    </style>
+    <style>
+             .zhezhao {
+                 width: 100%;
+                 height: 100%;
+                 background-color: #000;
+                 filter: alpha(opacity=50);
+                 -moz-opacity: 0.5;
+                 opacity: 0.5;
+                 position: absolute;
+                 left: 0px;
+                 top: 0px;
+                 display: none;
+                 z-index: 99999;
+             }
+
+             /*.rowColor {
+            color: #000000;
+            font-size: 15px;
+        }
+
+        .panel {
+            padding: 0px 10px;
+        }*/
+    </style>
+    <link href="~/control/css/demo.css" rel="stylesheet" />
+
+    <link href="~/control/css/zTreeStyle.css" rel="stylesheet" />
+
+    <script src="~/assets/js/jquery.min.js"></script>
+
+    <script src="~/control/js/fileUpload.js"></script>
+    <script src="~/control/js/jquery.ztree.core.js"></script>
+
+    <script src="~/control/js/jquery.ztree.excheck.js"></script>
+    <script src="~/assets/js/bootstrap.min.js"></script>
+    <script src="~/easyui/js/bootstrap-select.js"></script>
+    <script src="~/easyui/js/bootstrap-select.min.js"></script>
+
+
+    <script src="~/control/js/foundation-datepicker.js"></script>>
+    <script src="~/control/js/foundation-datepicker.zh-CN.js"></script>
+    <script src="~/Highcharts/js/highcharts.js"></script>
+
+    <script src="~/Highcharts/js/exporting.js"></script>
+    <script src="~/Highcharts/js/highcharts-zh_CN.js"></script>
+
+</head>
+<body class="page-body">
+
+
+    <div class="page-container">
+
+
+        <div class="main-content">
+            <div class="page-title">
+
+                <div class="title-env">
+                    <h1 class="title">新增原始记录</h1>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">填写基本信息</h3>
+                            <a style="float: right;" href="#" onclick="back()" class="btn btn-sm btn-info"><span style="color:#000">返回</span></a>
+                        </div>
+                        <div class="tab-content">
+                            <!-- Tabs Content -->
+                            <div class="tab-pane active" id="tab1">
+                                <form role="form" class="form-horizontal">
+                                    <div class="row">
+
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">汽车品牌:</label>
+                                            <div class="col-sm-4">
+                                                <input type="text" id="brand" class="form-control">
+                                            </div>
+                                            <label class="col-sm-2 control-label">车辆VIN:</label>
+                                            <div class="col-sm-4">
+                                                <input type="text" id="VIN" class="form-control">
+                                            </div>
+
+                                            @*<label class="col-sm-2 control-label">品牌型号:</label>
+                                                <div class="col-sm-4">
+                                                    <input type="text"id="BrandModel" class="form-control">
+                                                </div>*@
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">任务号:</label>
+                                            <div class="col-sm-4">
+                                                <input type="text" id="taskNumber" class="form-control">
+                                            </div>
+                                            <label class="col-sm-2 control-label" for="field-1">试验时间:</label>
+
+                                            <div class="col-sm-4 ">
+                                                <div class="input-group">
+
+                                                    <input id="demo-1" class="form-control" value="" type="text" />
+                                                    <span class="input-group-addon">
+                                                        <i class="fa fa-calendar bigger-110"></i>
+                                                    </span>
+                                                </div>
+                                                @*<input class="laydate-icon form-control" id="time_date" type="text" onclick="laydate()">*@
+                                                @*<input type="text" class="form-control" id="field-1">*@
+                                            </div>
+                                         
+
+                                        </div>
+                                        <div class="form-group">
+
+                                            <label class="col-sm-2 control-label">样车型号:</label>
+                                            <div class="col-sm-4">
+                                                <input type="text" id="ModelCarModel" class="form-control">例如:(GHA7150AAC5C)
+                                            </div>
+
+                                        </div>
+
+
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">任务列表</h3>
+
+                        </div>
+                        <div class="tab-content">
+                            <ul id="treeDemo" style="width:100%" class="ztree"></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <link href="~/control/css/iconfont.css" rel="stylesheet" />
+
+            <link href="~/control/css/fileUpload.css" rel="stylesheet" />
+
+            <div class="row">
+                <div class="col-sm-12">
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">测试结果</h3>
+
+                        </div>
+                        <div class="panel-body">
+
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">样品登记:</label>
+                                <div class="col-sm-10">
+                                    <div class="col-sm-2" style="position: relative;top: -2px;right: 120px;">
+
+                                        <label id="file_textsample" style="display: block;position: relative;top: 10px;left: 20px;"></label>
+                                    </div>
+                                    <div class="col-sm-10">
+                                        <a href="javascript:;" onclick="sample()" style="border-radius:8px;float:left" type="button" class="btn btn-success bg-lg">选择文件</a>
+                                    </div>
+
+
+                                    <a href="javascript:;" id="hide_sample" onclick="jQuery('#modal-1').modal('show', {backdrop: 'fade'});" style="border-radius:8px;display:none" type="button" class="btn btn-success bg-lg">上传文件</a>
+                                    @*<input style="display:none" type="text"  class="form-control"  />*@
+
+                                </div>
+
+                            </div>
+
+                            @*<div class="form-group">
+                                    <label class="col-sm-2 control-label">机械配置参数:</label>
+                                    <div class="col-sm-10">
+
+                                        <a href="javascript:;" id="hide" onclick="jQuery('#modal-1').modal('show', {backdrop: 'fade'});" style="border-radius:8px;display:none" type="button" class="btn btn-success bg-lg">上传文件</a>
+
+                                        <div class="col-sm-2" style="position: relative;top: -2px;right: 120px;">
+
+                                            <label id="file_textOriginal" style="display: block;position: relative;top: 10px;left: 20px;"></label>
+                                        </div>
+                                        <div class="col-sm-10">
+                                            <a href="javascript:;" onclick="Original()" style="border-radius:8px;float:left" type="button" class="btn btn-success bg-lg">选择文件</a>
+                                        </div>
+                                    </div>
+
+                                </div>*@
+
+                        </div>
+                        <div id="car14023" style="display:none">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">AV测试结果</h3>
+
+                            </div>
+                            <div class="panel-body">
+                                <div id="fileUploadContent" class="fileUploadContent"></div>
+                                <button onclick="testUpload()">函数提交</button>
+                                <br />
+                                <br />
+                                <div class="form-group" style="display:none">
+                                    <label class="col-sm-1 control-label" for="field-1">LH：</label>
+                                    <div class="col-sm-11">
+                                        <input type="text" id="av_LH_Re" disabled="disabled" style="color:red" class="form-control">
+                                    </div>
+
+                                </div>
+                                <div class="form-group" style="display:none">
+                                    <label class="col-sm-1 control-label" for="field-1">LV：</label>
+                                    <div class="col-sm-11">
+                                        <input type="text" id="av_LV_Re" disabled="disabled" style="color:red" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group" style="display:none">
+                                    <label class="col-sm-1 control-label" for="field-1">RH：</label>
+                                    <div class="col-sm-11">
+                                        <input type="text" id="av_RH_Re" disabled="disabled" style="color:red" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group" style="display:none">
+                                    <label class="col-sm-1 control-label" for="field-1">RV：</label>
+                                    <div class="col-sm-11">
+                                        <input type="text" id="av_RV_Re" style="color:red" disabled="disabled" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-1 control-label" for="field-1">LH：</label>
+                                    <div class="col-sm-6">
+
+
+                                        <div class="uploader white" style="width:62%">
+                                            <input type="text" class="filename" readonly id="fileCSJB_n" />
+                                            <input type="button" name="file" class="button" value="选择excel" />
+                                            <input type="file" size="30" name="file" id="fileCSJB" style="width:50%" />
+
+                                        </div>
+                                        <input type="button" value="下载" onclick="Dow('fileCSJB_n')" style="position: relative;top: -27px;left: 100px;" />
+                                        <input type="button" value="上传" onclick="upload('fileCSJB')" style="position: relative;top: -27px;left: 100px;" />
+                                          <label style="position: relative;top: -27px;left: 120px;color:red" id="p_fileCSJB"></label>
+                                    </div>
+
+                                    <div class="col-sm-5">
+
+
+                                        <div class="uploader white" style="width: 70%;">
+                                            <input type="text" class="filename" readonly id="fileCSJB2_n" />
+                                            <input type="button" name="file" class="button" value="选择图片" />
+                                            <input type="file" size="30" name="file" id="fileCSJB2" style="width:60%" />
+                                        </div>
+                                        <input type="button" value="下载" onclick="Dow('fileCSJB2_n')" style="position: relative;top: -27px;left: 100px;" />
+                                        <input type="button" value="上传" onclick="upload('fileCSJB2')" style="position: relative;top: -27px;left: 100px;" />
+                                         <label style="position: relative;top: -27px;left: 120px;color:red" id="p_fileCSJB2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-1 control-label">LV:</label>
+                                    <div class="col-sm-6">
+
+
+                                        <div class="uploader white" style="width:62%">
+                                            <input type="text" class="filename" readonly id="file_LV_n" />
+                                            <input type="button" name="file" class="button" value="选择excel" />
+                                            <input type="file" size="30" name="file" id="file_LV" style="width:50%" />
+                                        </div>
+                                        <input type="button" value="下载" onclick="Dow('file_LV_n')" style="position: relative;top: -27px;left: 100px;" />
+                                        <input type="button" value="上传" onclick="upload('file_LV')" style="position: relative;top: -27px;left: 100px;" />
+                                        <label style="position: relative;top: -27px;left: 120px;color:red" id="p_file_LV"></label>
+                                    </div>
+
+                                    <div class="col-sm-5">
+
+
+                                        <div class="uploader white" style="width:70%">
+                                            <input type="text" class="filename" readonly id="file_LV2_n" />
+                                            <input type="button" name="file" class="button" value="选择图片" />
+                                            <input type="file" size="30" name="file" id="file_LV2" style="width:60%" />
+                                        </div>
+                                        <input type="button" value="下载" onclick="Dow('file_LV2_n')" style="position: relative;top: -27px;left: 100px;" />
+                                        <input type="button" value="上传" onclick="upload('file_LV2')" style="position: relative;top: -27px;left: 100px;" />
+                                        <label style="position: relative;top: -27px;left: 120px;color:red" id="p_file_LV2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                    </div>
+
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-1 control-label">RH:</label>
+                                    <div class="col-sm-6">
+
+
+                                        <div class="uploader white" style="width:62%">
+                                            <input type="text" class="filename" readonly id="file_RH_n" />
+                                            <input type="button" name="file" class="button" value="选择excel" />
+                                            <input type="file" size="30" name="file" id="file_RH" style="width:50%" />
+                                        </div>
+                                        <input type="button" value="下载" onclick="Dow('file_RH_n')" style="position: relative;top: -27px;left: 100px;" />
+                                        <input type="button" value="上传" onclick="upload('file_RH')" style="position: relative;top: -27px;left: 100px;" />
+                                        <label style="position: relative;top: -27px;left: 120px;color:red" id="p_file_RH"></label>
+                                    </div>
+
+                                    <div class="col-sm-5">
+
+
+                                        <div class="uploader white" style="width:70%">
+                                            <input type="text" class="filename" readonly id="file_RH2_n" />
+                                            <input type="button" name="file" class="button" value="选择图片" />
+                                            <input type="file" size="30" name="file" id="file_RH2" style="width:60%" />
+                                        </div>
+                                        <input type="button" value="下载" onclick="Dow('file_RH2_n')" style="position: relative;top: -27px;left: 100px;" />
+                                        <input type="button" value="上传" onclick="upload('file_RH2')" style="position: relative;top: -27px;left: 100px;" />
+
+                                         <label style="position: relative;top: -27px;left: 120px;color:red" id="p_file_RH2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                    </div>
+
+
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-1 control-label">RV:</label>
+                                    <div class="col-sm-6">
+
+
+                                        <div class="uploader white" style="width:62%">
+                                            <input type="text" class="filename" readonly id="file_RV_n" />
+                                            <input type="button" name="file" class="button" value="选择excel" />
+                                            <input type="file" size="30" name="file" id="file_RV" style="width:50%" />
+                                        </div>
+                                        <input type="button" value="下载" onclick="Dow('file_RV_n')" style="position: relative;top: -27px;left: 100px;" />
+                                        <input type="button" value="上传" onclick="upload('file_RV')" style="position: relative;top: -27px;left: 100px;" />
+
+                                          <label style="position: relative;top: -27px;left: 120px;color:red" id="p_file_RV"></label>
+                                    </div>
+
+                                    <div class="col-sm-5">
+
+
+                                        <div class="uploader white" style="width:70%">
+                                            <input type="text" class="filename" readonly id="file_RV2_n" />
+                                            <input type="button" name="file" class="button" value="选择图片" />
+                                            <input type="file" size="30" name="file" id="file_RV2" style="width:60%" />
+                                        </div>
+                                        <input type="button" value="下载" onclick="Dow('file_RV2_n')" style="position: relative;top: -27px;left: 100px;" />
+                                        <input type="button" value="上传" onclick="upload('file_RV2')" style="position: relative;top: -27px;left: 100px;" />
+
+                                        <label style="position: relative;top: -27px;left: 120px;color:red" id="p_file_RV2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                    </div>
+
+                                </div>
+
+
+
+                            </div>
+
+                            <div class="panel-heading">
+                                <h3 class="panel-title">PK测试结果</h3>
+
+                            </div>
+                            <div class="panel-body">
+                                <div id="fileUploadContent2" class="fileUploadContent"></div>
+                                <button onclick="testUpload2()">函数提交</button>
+                                <br />
+                                <br />
+                                <div class="form-group" style="display:none">
+                                    <label class="col-sm-1 control-label" for="field-1">LH：</label>
+                                    <div class="col-sm-11">
+                                        <input type="text" id="pk_LH_Re" disabled="disabled" style="color:red" class="form-control">
+                                    </div>
+
+                                </div>
+                                <div class="form-group" style="display:none">
+                                    <label class="col-sm-1 control-label" for="field-1">LV：</label>
+                                    <div class="col-sm-11">
+                                        <input type="text" id="pk_LV_Re" disabled="disabled" style="color:red" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group" style="display:none">
+                                    <label class="col-sm-1 control-label" for="field-1">RH：</label>
+                                    <div class="col-sm-11">
+                                        <input type="text" id="pk_RH_Re" disabled="disabled" style="color:red" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group" style="display:none">
+                                    <label class="col-sm-1 control-label" for="field-1">RV：</label>
+                                    <div class="col-sm-11">
+                                        <input type="text" id="pk_RV_Re" disabled="disabled" style="color:red" class="form-control">
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label class="col-sm-1 control-label">LH:</label>
+                                    <div class="col-sm-6">
+
+
+                                        <div class="uploader white" style="width:62%">
+                                            <input type="text" class="filename" readonly id="PK_file_LH_n" />
+                                            <input type="button" name="file" class="button" value="选择excel" />
+                                            <input type="file" size="30" name="file" id="PK_file_LH" style="width:50%" />
+                                        </div>
+                                        <input type="button" value="下载" onclick="Dow('PK_file_LH_n')" style="position: relative;top: -27px;left: 100px;" />
+                                        <input type="button" value="上传" onclick="upload('PK_file_LH')" style="position: relative;top: -27px;left: 100px;" />
+
+                                         <label style="position: relative;top: -27px;left: 120px;color:red" id="p_PK_file_LH"></label>
+                                    </div>
+
+                                    <div class="col-sm-5">
+
+
+                                        <div class="uploader white" style="width:70%">
+                                            <input type="text" class="filename" readonly id="PK_file_LH2_n" />
+                                            <input type="button" name="file" class="button" value="选择图片" />
+                                            <input type="file" size="30" name="file" id="PK_file_LH2" style="width:60%" />
+                                        </div>
+                                        <input type="button" value="下载" onclick="Dow('PK_file_LH2_n')" style="position: relative;top: -27px;left: 100px;" />
+                                        <input type="button" value="上传" onclick="upload('PK_file_LH2')" style="position: relative;top: -27px;left: 100px;" />
+
+                                         <label style="position: relative;top: -27px;left: 120px;color:red" id="p_PK_file_LH2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                    </div>
+
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-1 control-label">LV:</label>
+                                    <div class="col-sm-6">
+
+
+                                        <div class="uploader white" style="width:62%">
+                                            <input type="text" class="filename" readonly id="PK_file_LV_n" />
+                                            <input type="button" name="file" class="button" value="选择excel" />
+                                            <input type="file" size="30" name="file" id="PK_file_LV" style="width:50%" />
+                                        </div>
+                                        <input type="button" value="下载" onclick="Dow('PK_file_LV_n')" style="position: relative;top: -27px;left: 100px;" />
+                                        <input type="button" value="上传" onclick="upload('PK_file_LV')" style="position: relative;top: -27px;left: 100px;" />
+
+                                          <label style="position: relative;top: -27px;left: 120px;color:red" id="p_PK_file_LV"></label>
+                                    </div>
+
+                                    <div class="col-sm-5">
+
+
+                                        <div class="uploader white" style="width:70%">
+                                            <input type="text" class="filename" readonly id="PK_file_LV2_n" />
+                                            <input type="button" name="file" class="button" value="选择图片" />
+                                            <input type="file" size="30" name="file" id="PK_file_LV2" style="width:60%" />
+                                        </div>
+                                        <input type="button" value="下载" onclick="Dow('PK_file_LV2_n')" style="position: relative;top: -27px;left: 100px;" />
+                                        <input type="button" value="上传" onclick="upload('PK_file_LV2')" style="position: relative;top: -27px;left: 100px;" />
+
+                                         <label style="position: relative;top: -27px;left: 120px;color:red" id="p_PK_file_LV2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                    </div>
+
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-1 control-label">RH:</label>
+                                    <div class="col-sm-6">
+
+
+                                        <div class="uploader white" style="width:62%">
+                                            <input type="text" class="filename" readonly id="PK_file_RH_n" />
+                                            <input type="button" name="file" class="button" value="选择excel" />
+                                            <input type="file" size="30" name="file" id="PK_file_RH" style="width:50%" />
+                                        </div>
+                                        <input type="button" value="下载" onclick="Dow('PK_file_RH_n')" style="position: relative;top: -27px;left: 100px;" />
+                                        <input type="button" value="上传" onclick="upload('PK_file_RH')" style="position: relative;top: -27px;left: 100px;" />
+
+                                         <label style="position: relative;top: -27px;left: 120px;color:red" id="p_PK_file_RH"></label>
+                                    </div>
+
+                                    <div class="col-sm-5">
+
+
+                                        <div class="uploader white" style="width:70%">
+                                            <input type="text" class="filename" readonly id="PK_file_RH2_n" />
+                                            <input type="button" name="file" class="button" value="选择图片" />
+                                            <input type="file" size="30" name="file" id="PK_file_RH2" style="width:60%" />
+                                        </div>
+                                        <input type="button" value="下载" onclick="Dow('PK_file_RH2_n')" style="position: relative;top: -27px;left: 100px;" />
+                                        <input type="button" value="上传" onclick="upload('PK_file_RH2')" style="position: relative;top: -27px;left: 100px;" />
+
+                                        <label style="position: relative;top: -27px;left: 120px;color:red" id="p_PK_file_RH2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                    </div>
+
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-1 control-label">RV:</label>
+                                    <div class="col-sm-6">
+
+
+                                        <div class="uploader white" style="width:62%">
+                                            <input type="text" class="filename" readonly id="PK_file_RV_n" />
+                                            <input type="button" name="file" class="button" value="选择excel" />
+                                            <input type="file" size="30" name="file" id="PK_file_RV" style="width:50%" />
+                                        </div>
+                                        <input type="button" value="下载" onclick="Dow('PK_file_RV_n')" style="position: relative;top: -27px;left: 100px;" />
+                                        <input type="button" value="上传" onclick="upload('PK_file_RV')" style="position: relative;top: -27px;left: 100px;" />
+
+                                         <label style="position: relative;top: -27px;left: 120px;color:red" id="p_PK_file_RV"></label>
+                                    </div>
+
+                                    <div class="col-sm-5">
+
+
+                                        <div class="uploader white" style="width:70%">
+                                            <input type="text" class="filename" readonly id="PK_file_RV2_n" />
+                                            <input type="button" name="file" class="button" value="选择图片" />
+                                            <input type="file" size="30" name="file" id="PK_file_RV2" style="width:60%" />
+                                        </div>
+                                        <input type="button" value="下载" onclick="Dow('PK_file_RV2_n')" style="position: relative;top: -27px;left: 100px;" />
+                                        <input type="button" value="上传" onclick="upload('PK_file_RV2')" style="position: relative;top: -27px;left: 100px;" />
+
+                                        <label style="position: relative;top: -27px;left: 120px;color:red" id="p_PK_file_RV2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                    </div>
+
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-1 control-label" style=" color:red">检测结果:</label>
+                                    <div class="col-sm-4">
+                                        <input type="text" disabled="disabled" id="ResultID" class="form-control">
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row " id="car18387" style="display:none">
+                            <div class="col-sm-22">
+
+
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">ROD</h3>
+
+                                    </div>
+
+                                    <div class="tab-content">
+                                        <div id="fileUploadContent3" class="fileUploadContent"></div>
+                                        <button onclick="testUpload3()">函数提交</button>
+                                        <br />
+                                        <br />
+                                        <div class="form-group" style="display:none">
+                                            <label class="col-sm-2 control-label" for="field-1">强扫图：</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" id="av_LH_Re" disabled="disabled" style="color:red" class="form-control">
+                                            </div>
+
+                                        </div>
+                                        <div class="form-group" style="display:none">
+                                            <label class="col-sm-2 control-label" for="field-1">rod(16km/h)：</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" id="rod_16" disabled="disabled" style="color:red" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="form-group" style="display:none">
+                                            <label class="col-sm-2 control-label" for="field-1">rod(70km/h)：</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" id="rod_70" disabled="disabled" style="color:red" class="form-control">
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <label class="control-label bolder blue"> &nbsp; &nbsp;选择强扫面</label>
+                                        </div>
+
+                                        <div class="row">
+
+                                            <div class="col-sm-3">
+                                                <div class="control-group">
+
+
+                                                    <div class="radio">
+                                                        <label>
+                                                            <input name="form-field-radio" type="radio" class="ace" />
+                                                            <span class="lbl"> L</span>
+                                                        </label>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <div class="control-group">
+
+
+                                                    <div class="radio">
+                                                        <label>
+                                                            <input name="form-field-radio" type="radio" class="ace" />
+                                                            <span class="lbl">R</span>
+                                                        </label>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <div class="control-group">
+
+
+                                                    <div class="radio">
+                                                        <label>
+                                                            <input name="form-field-radio" type="radio" class="ace" />
+                                                            <span class="lbl"> F</span>
+                                                        </label>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <div class="control-group">
+
+
+                                                    <div class="radio">
+                                                        <label>
+                                                            <input name="form-field-radio" type="radio" class="ace" />
+                                                            <span class="lbl">B</span>
+                                                        </label>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br />
+                                        <div class="panel-body">
+
+
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label" for="field-1">16km/h:</label>
+                                                <div class="col-sm-5">
+
+
+                                                    <div class="uploader white" style="width:80%">
+                                                        <input type="text" class="filename" readonly id="dow_rod_16" />
+                                                        <input type="button" name="file" class="button" value="选择excel" />
+                                                        <input type="file" size="30" name="file" id="rod_16" style="width:50%" />
+
+                                                    </div>
+                                                    <input type="button" value="下载" onclick="Dow('dow_rod_16')" style="position: relative;top: -27px;left: 100px;" />
+                                                    <label style="position: relative;top: -27px;left: 120px;color:red" id="p_rod_16"></label>
+                                                </div>
+
+                                                <div class="col-sm-5">
+                                                    <div class="uploader white" style="width: 100%;">
+                                                        <input type="text" class="filename" readonly id="dow_rod_16_img" />
+                                                        <input type="button" name="file" class="button" value="选择图片" />
+                                                        <input type="file" size="30" name="file" id="rod_16_img" style="width:60%" />
+                                                    </div>
+                                                    <input type="button" value="下载" onclick="Dow('dow_rod_16_img')" style="position: relative;top: -27px;left: 100px;" />
+                                                    <label style="position: relative;top: -27px;left: 120px;color:red" id="p_rod_16_img">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">70km/h:</label>
+                                                <div class="col-sm-5">
+
+
+                                                    <div class="uploader white" style="width:80%">
+                                                        <input type="text" class="filename" readonly id="dow_rod_70" />
+                                                        <input type="button" name="file" class="button" value="选择excel" />
+                                                        <input type="file" size="30" name="file" id="rod_70" style="width:50%" />
+                                                    </div>
+                                                    <input type="button" value="下载" onclick="Dow('dow_rod_70')" style="position: relative;top: -27px;left: 100px;" />
+                                                    <label style="position: relative;top: -27px;left: 120px;color:red" id="p_rod_70"></label>
+                                                </div>
+
+                                                <div class="col-sm-5">
+
+
+                                                    <div class="uploader white" style="width:100%">
+                                                        <input type="text" class="filename" readonly id="dow_rod_70_img" />
+                                                        <input type="button" name="file" class="button" value="选择图片" />
+                                                        <input type="file" size="30" name="file" id="rod_70_img" style="width:60%" />
+                                                    </div>
+                                                    <input type="button" value="下载" onclick="Dow('dow_rod_70_img')" style="position: relative;top: -27px;left: 100px;" />
+                                                    <label style="position: relative;top: -27px;left: 120px;color:red" id="p_rod_70_img">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">DUIBI:</label>
+                                                <div class="col-sm-10">
+
+
+                                                    <div class="uploader white" style="width:40%">
+                                                        <input type="text" class="filename" readonly id="dow_DUIBI" />
+                                                        <input type="button" name="file" class="button" value="选择excel" />
+                                                        <input type="file" size="30" name="file" id="DUIBI" style="width:50%" />
+                                                    </div>
+                                                    <input type="button" value="下载" onclick="Dow('dow_DUIBI')" style="position: relative;top: -27px;left: 100px;" />
+                                                    <label style="position: relative;top: -27px;left: 120px;color:red" id="p_DUIBI"></label>
+                                                </div>
+
+
+
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">强扫图</label>
+                                                <div class="col-sm-5">
+
+
+                                                    <div class="uploader white" style="width:80%">
+                                                        <input type="text" class="filename" readonly id="dow_surface_img" />
+                                                        <input type="button" name="file" class="button" value="选择excel" />
+                                                        <input type="file" size="30" name="file" id="surface_img" style="width:50%" />
+                                                    </div>
+                                                    <input type="button" value="下载" onclick="Dow('dow_surface_img')" style="position: relative;top: -27px;left: 100px;" />
+                                                    <label style="position: relative;top: -27px;left: 120px;color:red" id="p_dow_surface_img"></label>
+                                                </div>
+
+
+
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                    <hr />
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">LOOP</h3>
+
+                                    </div>
+                                    <div class="tab-content">
+                                        <div id="fileUploadContent4" class="fileUploadContent"></div>
+                                        <button onclick="testUpload4()">函数提交</button>
+                                        <br />
+                                        <br />
+                                        <div class="form-group" style="display:none">
+                                            <label id="lb_16y" class="col-sm-2 control-label" for="field-1">L-Y(16km/h)：</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" id="Magnetic_16y" disabled="disabled" style="color:red" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="form-group" style="display:none">
+                                            <label id="lb_16x" class="col-sm-2 control-label" for="field-1">L-(16km/h)：</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" id="Magnetic_16x" disabled="disabled" style="color:red" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="form-group" style="display:none">
+                                            <label id="lb_70y" class="col-sm-2 control-label" for="field-1">L-Y(70km/h)：</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" id="Magnetic_70y" disabled="disabled" style="color:red" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="form-group" style="display:none">
+                                            <label id="lb_70x" class="col-sm-2 control-label" for="field-1">L-X(70km/h)：</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" id="Magnetic_70x" disabled="disabled" style="color:red" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <label class="control-label bolder blue">   &nbsp; &nbsp; 选择强扫面</label>
+                                        </div>
+                                        <div class="row">
+
+                                            <div class="col-sm-3">
+                                                <div class="control-group">
+
+
+                                                    <div class="radio">
+                                                        <label>
+                                                            <input name="form-field-radio2" onclick="Ck_ra('L')" type="radio" class="ace2" />
+                                                            <span class="lbl"> L</span>
+                                                        </label>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <div class="control-group">
+
+
+                                                    <div class="radio">
+                                                        <label>
+                                                            <input name="form-field-radio2" onclick="Ck_ra('R')" type="radio" class="ace2" />
+                                                            <span class="lbl">R</span>
+                                                        </label>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <div class="control-group">
+
+
+                                                    <div class="radio">
+                                                        <label>
+                                                            <input name="form-field-radio2" onclick="Ck_ra('F')" type="radio" class="ace2" />
+                                                            <span class="lbl"> F</span>
+                                                        </label>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <div class="control-group">
+
+
+                                                    <div class="radio">
+                                                        <label>
+                                                            <input name="form-field-radio2" onclick="Ck_ra('B')" type="radio" class="ace2" />
+                                                            <span class="lbl">B</span>
+                                                        </label>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br />
+                                        <div class="panel-body">
+
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">x-16km/h:</label>
+                                                <div class="col-sm-5">
+
+
+                                                    <div class="uploader white" style="width:80%">
+                                                        <input type="text" class="filename" readonly id="dow_Magnetic_16x" />
+                                                        <input type="button" name="file" class="button" value="选择excel" />
+                                                        <input type="file" size="30" name="file" id="Magnetic_16x" style="width:50%" />
+                                                    </div>
+                                                    <input type="button" value="下载" onclick="Dow('dow_Magnetic_16x')" style="position: relative;top: -27px;left: 100px;" />
+                                                    <label style="position: relative;top: -27px;left: 120px;color:red" id="p_Magnetic_16x"></label>
+                                                </div>
+
+                                                <div class="col-sm-5">
+
+
+                                                    <div class="uploader white" style="width:100%">
+                                                        <input type="text" class="filename" readonly id="dow_Magnetic_16x_img" />
+                                                        <input type="button" name="file" class="button" value="选择图片" />
+                                                        <input type="file" size="30" name="file" id="Magnetic_16x_img" style="width:60%" />
+                                                    </div>
+                                                    <input type="button" value="下载" onclick="Dow('dow_Magnetic_16x_img')" style="position: relative;top: -27px;left: 100px;" />
+                                                    <label style="position: relative;top: -27px;left: 120px;color:red" id="p_Magnetic_16x_img">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                                </div>
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label" for="field-1">y-16km/h:</label>
+                                                <div class="col-sm-5">
+
+
+                                                    <div class="uploader white" style="width:80%">
+                                                        <input type="text" class="filename" readonly id="dow_Magnetic_16y" />
+                                                        <input type="button" name="file" class="button" value="选择excel" />
+                                                        <input type="file" size="30" name="file" id="Magnetic_16y" style="width:50%" />
+
+                                                    </div>
+                                                    <input type="button" value="下载" onclick="Dow('dow_Magnetic_16y')" style="position: relative;top: -27px;left: 100px;" />
+                                                    <label style="position: relative;top: -27px;left: 120px;color:red" id="p_Magnetic_16y"></label>
+                                                </div>
+
+                                                <div class="col-sm-5">
+
+
+                                                    <div class="uploader white" style="width: 100%;">
+                                                        <input type="text" class="filename" readonly id="dow_Magnetic_16y_img" />
+                                                        <input type="button" name="file" class="button" value="选择图片" />
+                                                        <input type="file" size="30" name="file" id="Magnetic_16y_img" style="width:60%" />
+                                                    </div>
+                                                    <input type="button" value="下载" onclick="Dow('dow_Magnetic_16y_img')" style="position: relative;top: -27px;left: 100px;" />
+                                                    <label style="position: relative;top: -27px;left: 120px;color:red" id="p_Magnetic_16y_img">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">x-70km/h:</label>
+                                                <div class="col-sm-5">
+
+
+                                                    <div class="uploader white" style="width:80%">
+                                                        <input type="text" class="filename" readonly id="dow_Magnetic_7x" />
+                                                        <input type="button" name="file" class="button" value="选择excel" />
+                                                        <input type="file" size="30" name="file" id="Magnetic_70x" style="width:50%" />
+                                                    </div>
+                                                    <input type="button" value="下载" onclick="Dow('dow_Magnetic_70x')" style="position: relative;top: -27px;left: 100px;" />
+                                                    <label style="position: relative;top: -27px;left: 120px;color:red" id="p_Magnetic_70x"></label>
+                                                </div>
+
+                                                <div class="col-sm-5">
+
+
+                                                    <div class="uploader white" style="width:100%">
+                                                        <input type="text" class="filename" readonly id="dow_Magnetic_70x_img" />
+                                                        <input type="button" name="file" class="button" value="选择图片" />
+                                                        <input type="file" size="30" name="file" id="Magnetic_70x_img" style="width:60%" />
+                                                    </div>
+                                                    <input type="button" value="下载" onclick="Dow('dow_Magnetic_70x_img')" style="position: relative;top: -27px;left: 100px;" />
+                                                    <label style="position: relative;top: -27px;left: 120px;color:red" id="p_Magnetic_70x_img">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                                </div>
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label" for="field-1">y-70km/h:</label>
+                                                <div class="col-sm-5">
+
+
+                                                    <div class="uploader white" style="width:80%">
+                                                        <input type="text" class="filename" readonly id="dow_Magnetic_70y" />
+                                                        <input type="button" name="file" class="button" value="选择excel" />
+                                                        <input type="file" size="30" name="file" id="Magnetic_70y" style="width:50%" />
+
+                                                    </div>
+                                                    <input type="button" value="下载" onclick="Dow('dow_Magnetic_70y')" style="position: relative;top: -27px;left: 100px;" />
+                                                    <label style="position: relative;top: -27px;left: 120px;color:red" id="p_Magnetic_70y"></label>
+                                                </div>
+
+                                                <div class="col-sm-5">
+
+
+                                                    <div class="uploader white" style="width: 100%;">
+                                                        <input type="text" class="filename" readonly id="dow_Magnetic_70y_img" />
+                                                        <input type="button" name="file" class="button" value="选择图片" />
+                                                        <input type="file" size="30" name="file" id="Magnetic_70y_img" style="width:60%" />
+                                                    </div>
+                                                    <input type="button" value="下载" onclick="Dow('dow_Magnetic_70y_img')" style="position: relative;top: -27px;left: 100px;" />
+                                                    <label style="position: relative;top: -27px;left: 120px;color:red" id="p_Magnetic_70y_img">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">DUIBI:</label>
+                                                <div class="col-sm-10">
+
+
+                                                    <div class="uploader white" style="width:40%">
+                                                        <input type="text" class="filename" readonly id="dow_DUIBI-Magnetic" />
+                                                        <input type="button" name="file" class="button" value="选择excel" />
+                                                        <input type="file" size="30" name="file" id="DUIBI-Magnetic" style="width:50%" />
+                                                    </div>
+                                                    <input type="button" value="下载" onclick="Dow('dow_DUIBI-Magnetic')" style="position: relative;top: -27px;left: 100px;" />
+                                                    <label style="position: relative;top: -27px;left: 120px;color:red" id="p_DUIBI-Magnetic"></label>
+                                                </div>
+
+
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">强扫图</label>
+                                                <div class="col-sm-5">
+
+
+                                                    <div class="uploader white" style="width:80%">
+                                                        <input type="text" class="filename" readonly id="dow_surface_img_Magnetic" />
+                                                        <input type="button" name="file" class="button" value="选择excel" />
+                                                        <input type="file" size="30" name="file" id="surface_img_Magnetic" style="width:50%" />
+                                                    </div>
+                                                    <input type="button" value="下载" onclick="Dow('dow_surface_img_Magnetic')" style="position: relative;top: -27px;left: 100px;" />
+                                                    <label style="position: relative;top: -27px;left: 120px;color:red" id="p_dow_surface_img_Magnetic"></label>
+                                                </div>
+
+
+
+                                            </div>
+
+
+                                        </div>
+
+                                    </div>
+
+
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="row">
+                <div class="col-sm-12">
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">其他信息</h3>
+
+                        </div>
+                        <div class="panel-body">
+
+
+                            <div class="form-group">
+                                <label class="control-label" for="about">简介</label>
+                                <textarea class="form-control autogrow" name="about" id="introduce" data-validate="minlength[10]" rows="5" placeholder="请输入简介信息" style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 104px;"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="about">备注</label>
+                                <textarea class="form-control autogrow" name="about" id="Remarks" data-validate="minlength[10]" rows="5" placeholder="请输入备注信息" style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 104px;"></textarea>
+                            </div>
+                            <button class="btn btn-sm btn-info" style="float:right" onclick="save()">
+
+                                保存编辑器内容
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="modal fade" id="modal-1">
+        <div class="modal-dialog" style="width:80%">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">上传结果</h4>
+                </div>
+
+                <div class="modal-body">
+
+                    <div class="fileBox">
+                        <p class="fileInputP vm">
+                            <i>选择文件</i>
+                            <input type="file" name="file" multiple id="fileInput" />
+                        </p>
+                        <span id="fileSpan" class="vm">或者将文件拖到此处</span>
+                        <div class="mask"></div>
+                    </div>
+
+                    <table width="90%" border="1" class="fileList_parent">
+                        <thead>
+                            <tr>
+                                <th>文件名</th>
+                                <th>类型</th>
+                                <th>大小</th>
+                                @*<th>私藏</th>*@
+                                <th>进度</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+
+                        <tbody class="fileList"></tbody>
+
+                    </table>
+
+                    <input type="button" value="上传" id="fileBtn" />
+
+                </div>
+
+                <div class="modal-footer">
+                    @*<button type="button" class="btn btn-white" data-dismiss="modal">关闭</button>*@
+                    <button type="button" class="btn btn-info" onclick="saveall()" data-dismiss="modal">保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href="javascript:;" id="hide_sample2" onclick="jQuery('#modal-2').modal('show', {backdrop: 'fade'});" style="border-radius:8px;display:none" type="button" class="btn btn-success bg-lg">上传文件</a>
+    <div class="modal fade" id="modal-2">
+        <div class="modal-dialog" style="width:80%">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">上传结果</h4>
+                </div>
+
+                <div class="modal-body">
+                    <div id="container"></div>
+
+
+                </div>
+
+                <div class="modal-footer">
+                    @*<button type="button" class="btn btn-white" data-dismiss="modal">关闭</button>*@
+                    <button type="button" class="btn btn-info" onclick="saveall()" data-dismiss="modal">保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="zhezhao" id="zhezhao">
+
+        <div id="loader-container">
+            <p id="loadingText">正在上传</p>
+        </div>
+    </div>
+    <script type="text/javascript">
+        //判断是否全部选择
+        function selectAll() {
+            if (getCookie("PK_file_LH") != "" && getCookie("PK_file_LV") != "" && getCookie("PK_file_RH") != "" && getCookie("PK_file_RV") != "" && getCookie("fileCSJB") != "" && getCookie("file_LV") != "" && getCookie("file_RH") != "" && getCookie("file_RV") != "") {
+                if (bool_qualified == true) {
+                    return "合格";
+                }
+            }
+
+
+        }
+        function selectAll2() {
+            if (getCookie("rod_16") != "" && getCookie("rod_70") != "" && getCookie("Magnetic_x_16") != "" && getCookie("Magnetic_x_70") != "" && getCookie("Magnetic_y_16") != "" && getCookie("Magnetic_y_70") != "") {
+                if (bool_qualified == true) {
+                    return "合格";
+                }
+            }
+
+
+        }
+        function delCookie(name) {
+            var exp = new Date();
+            exp.setTime(exp.getTime() - 1);
+            var cval = getCookie(name);
+            if (cval != null)
+                document.cookie = name + "=" + cval + ";expires=" + exp.toGMTString();
+        }
+        function getCookie(c_name) {
+            if (document.cookie.length > 0) {
+                c_start = document.cookie.indexOf(c_name + "=")
+                if (c_start != -1) {
+                    c_start = c_start + c_name.length + 1
+                    c_end = document.cookie.indexOf(";", c_start)
+                    if (c_end == -1) c_end = document.cookie.length
+                    return unescape(document.cookie.substring(c_start, c_end))
+                }
+            }
+            return ""
+        }
+        function setCookie(c_name, value, expiredays) {
+            var exdate = new Date()
+            exdate.setDate(exdate.getDate() + expiredays)
+            document.cookie = c_name + "=" + escape(value) +
+            ((expiredays == null) ? "" : ";expires=" + exdate.toGMTString())
+        }
+        function testUpload4() {
+            document.getElementById("zhezhao").style.display = "block";
+            var opt = uploadTools.getOpt("fileUploadContent4");
+            var str_name_col = "";
+            for (var j = 0; j < opt.fileList.length; j++) {
+                var formData = new FormData();
+                var b = opt.fileList[j];
+                formData.append("files", b);
+                var arr_j = opt.fileList[j].name.split(".");
+                if (arr_j[1] == "xls" || arr_j[1] == "xlsx") {
+                    var request = $.ajax({
+                        type: "POST",
+                        url: "/Report/StationImport_18387Magnetic",
+                        data: formData,			//这里上传的数据使用了formData 对象
+                        processData: false, 	//必须false才会自动加上正确的Content-Type
+                        contentType: false,
+                        //这里我们先拿到jQuery产生的XMLHttpRequest对象，为其增加 progress 事件绑定，然后再返回交给ajax使用
+
+                        //上传成功后回调
+                        success: function (data) {
+
+                            if (data[data.length - 3].indexOf("X-16") > 0) {
+                                setCookie("Magnetic_x_16", data[data.length - 1] + data[data.length - 3], 1);
+                                if (data[data.length - 2] == "不合格") {
+                                    setCookie("Magnetic_x_16_qualified", "0", 1);
+                                    document.getElementById("Magnetic_16x").value = "不合格";
+                                } else {
+                                    document.getElementById("Magnetic_16x").value = "合格";
+                                    setCookie("Magnetic_x_16_qualified", "1", 1);
+                                }
+                            } else if (data[data.length - 3].indexOf("X-70") > 0) {
+                                setCookie("Magnetic_x_70", data[data.length - 1] + data[data.length - 3], 1);
+                                if (data[data.length - 2] == "不合格") {
+                                    setCookie("Magnetic_x_70_qualified", "0", 1);
+                                    document.getElementById("Magnetic_70x").value = "不合格";
+                                } else {
+                                    setCookie("Magnetic_x_70_qualified", "1", 1);
+                                    document.getElementById("Magnetic_70x").value = "合格";
+                                }
+                            }
+                            else if (data[data.length - 3].indexOf("Y-16") > 0) {
+                                setCookie("Magnetic_y_16", data[data.length - 1] + data[data.length - 3], 1);
+                                if (data[data.length - 2] == "不合格") {
+                                    setCookie("Magnetic_y_16_qualified", "0", 1);
+                                    document.getElementById("Magnetic_16y").value = "不合格";
+                                } else {
+                                    setCookie("Magnetic_y_16_qualified", "1", 1);
+                                    document.getElementById("Magnetic_16y").value = "合格";
+                                }
+                            } else if (data[data.length - 3].indexOf("Y-70") > 0) {
+                                setCookie("Magnetic_y_70", data[data.length - 1] + data[data.length - 3], 1);
+                                if (data[data.length - 2] == "不合格") {
+                                    setCookie("Magnetic_y_70_qualified", "0", 1);
+                                    document.getElementById("Magnetic_70y").value = "不合格";
+                                } else {
+                                    setCookie("Magnetic_y_70_qualified", "1", 1);
+                                    document.getElementById("Magnetic_70y").value = "合格";
+                                }
+                            }
+                            var i = selectAll2();
+                            if (i == "合格") {
+                                document.getElementById("ResultIDnew").value = "合格";
+                            }
+                            if (data[data.length - 2] == "不合格") {
+                                bool_qualified = false;
+                                document.getElementById("ResultIDnew").value = "不合格";
+                            }
+                            if (opt.fileList.length == j) {
+                                document.getElementById("zhezhao").style.display = "none";
+                            }
+                            //var id = "p_" + t;
+                            //document.getElementById(id).innerHTML = data[data.length - 2];
+
+                        },
+                        //上传失败后回调
+                        error: function () {
+                            alert("失败")
+
+                        }
+                    });
+                }
+                else if (arr_j[1].toLowerCase() == "wmf" || arr_j[1].toLowerCase() == "gif" || arr_j[1].toLowerCase() == "png" || arr_j[1].toLowerCase() == "bmp" || arr_j[1].toLowerCase() == "jpeg" || arr_j[1].toLowerCase() == "jpg") {
+                    var request = $.ajax({
+                        type: "POST",
+                        url: "/Report/StationImport2",
+                        data: formData,			//这里上传的数据使用了formData 对象
+                        processData: false, 	//必须false才会自动加上正确的Content-Type
+                        contentType: false,
+                        //这里我们先拿到jQuery产生的XMLHttpRequest对象，为其增加 progress 事件绑定，然后再返回交给ajax使用
+
+                        //上传成功后回调
+                        success: function (data) {
+                            if (data.indexOf("X-16") > -1) {
+                                setCookie("LOOP_16x_IMG", data, 1);
+                            } else if (data.indexOf("X-70") > -1) {
+                                setCookie("LOOP_70x_IMG", data, 1);
+                            }
+                            else if (data.indexOf("Y-16") > -1) {
+                                setCookie("LOOP_16y_IMG", data, 1);
+                            }
+                            else if (data.indexOf("Y-70") > -1) {
+                                setCookie("LOOP_70y_IMG", data, 1);
+                            }
+
+                            else if (data.indexOf("DUI BI") > -1) {
+                                setCookie("DUI_Magnetic", data, 1);
+                            }
+                            else {
+                                setCookie("Magnetic_img", data, 1);
+                            }
+                            if (opt.fileList.length == j) {
+                                document.getElementById("zhezhao").style.display = "none";
+                            }
+
+                        },
+
+                        //上传失败后回调
+                        error: function () {
+                            alert("失败")
+
+                        }
+                    });
+                } else {
+                    alert("请选择正确的文件");
+                    return;
+                }
+
+            }
+
+            //  uploadEvent.uploadFileEvent(opt);
+        }
+        function testUpload3() {
+            document.getElementById("zhezhao").style.display = "block";
+            var opt = uploadTools.getOpt("fileUploadContent3");
+            var str_name_col = "";
+            for (var j = 0; j < opt.fileList.length; j++) {
+                var formData = new FormData();
+                var b = opt.fileList[j];
+                formData.append("files", b);
+                var arr_j = opt.fileList[j].name.split(".");
+                if (arr_j[1] == "xls" || arr_j[1] == "xlsx") {
+                    var request = $.ajax({
+                        type: "POST",
+                        url: "/Report/StationImport_18387Electrical",
+                        data: formData,			//这里上传的数据使用了formData 对象
+                        processData: false, 	//必须false才会自动加上正确的Content-Type
+                        contentType: false,
+                        //这里我们先拿到jQuery产生的XMLHttpRequest对象，为其增加 progress 事件绑定，然后再返回交给ajax使用
+
+                        //上传成功后回调
+                        success: function (data) {
+
+                            if (data[data.length - 3].indexOf("16") > 0) {
+                                setCookie("rod_16", data[data.length - 1] + data[data.length - 3], 1);
+                                if (data[data.length - 2] == "不合格") {
+                                    setCookie("rod_16_qualified", "0", 1);
+                                    document.getElementById("rod_16").value = "不合格";
+                                } else {
+                                    document.getElementById("rod_16").value = "合格";
+                                    setCookie("rod_16_qualified", "1", 1);
+                                }
+                            } else if (data[data.length - 3].indexOf("70") > 0) {
+                                setCookie("rod_70", data[data.length - 1] + data[data.length - 3], 1);
+                                if (data[data.length - 2] == "不合格") {
+                                    setCookie("rod_70_qualified", "0", 1);
+                                    document.getElementById("rod_70").value = "不合格";
+                                } else {
+                                    setCookie("rod_70_qualified", "1", 1);
+                                    document.getElementById("rod_70").value = "合格";
+                                }
+                            }
+                            var i = selectAll2();
+                            if (i == "合格") {
+                                document.getElementById("ResultIDnew").value = "合格";
+                            }
+                            if (data[data.length - 2] == "不合格") {
+                                bool_qualified = false;
+                                document.getElementById("ResultIDnew").value = "不合格";
+                            }
+                            if (opt.fileList.length == j) {
+                                document.getElementById("zhezhao").style.display = "none";
+                            }
+                            //var id = "p_" + t;
+                            //document.getElementById(id).innerHTML = data[data.length - 2];
+
+                        },
+                        //上传失败后回调
+                        error: function () {
+                            alert("失败")
+
+                        }
+                    });
+                } else if (arr_j[1].toLowerCase() == "wmf" || arr_j[1].toLowerCase() == "gif" || arr_j[1].toLowerCase() == "png" || arr_j[1].toLowerCase() == "bmp" || arr_j[1].toLowerCase() == "jpeg" || arr_j[1].toLowerCase() == "jpg") {
+                    var request = $.ajax({
+                        type: "POST",
+                        url: "/Report/StationImport2",
+                        data: formData,			//这里上传的数据使用了formData 对象
+                        processData: false, 	//必须false才会自动加上正确的Content-Type
+                        contentType: false,
+                        //这里我们先拿到jQuery产生的XMLHttpRequest对象，为其增加 progress 事件绑定，然后再返回交给ajax使用
+
+                        //上传成功后回调
+                        success: function (data) {
+
+                            if (data.indexOf("-16") > -1) {
+                                setCookie("rod_16_Electrical", data, 1);
+                            } else if (data.indexOf("-70") > -1) {
+                                setCookie("rod_70_Electrical", data, 1);
+                            } else if (data.indexOf("DUI BI") > -1) {
+                                setCookie("DUI_Electrical", data, 1);
+                            } else {
+                                setCookie("rod_img", data, 1);
+                            }
+                            if (opt.fileList.length == j) {
+                                document.getElementById("zhezhao").style.display = "none";
+                            }
+                        },
+
+                        //上传失败后回调
+                        error: function () {
+                            alert("失败")
+
+                        }
+                    });
+                } else {
+                    alert("请选择正确的文件");
+                    return;
+                }
+
+            }
+
+            //  uploadEvent.uploadFileEvent(opt);
+        }
+        function testUpload() {
+            document.getElementById("zhezhao").style.display = "block";
+            var opt = uploadTools.getOpt("fileUploadContent");
+            var str_name_col = "";
+            for (var j = 0; j < opt.fileList.length; j++) {
+                var formData = new FormData();
+                var b = opt.fileList[j];
+                formData.append("files", b);
+                var arr_j = opt.fileList[j].name.split(".");
+                if (arr_j[1] == "xls" || arr_j[1] == "xlsx") {
+                    var request = $.ajax({
+                        type: "POST",
+                        url: "/Report/StationImport_Continue",
+                        data: formData,			//这里上传的数据使用了formData 对象
+                        processData: false, 	//必须false才会自动加上正确的Content-Type
+                        contentType: false,
+                        //这里我们先拿到jQuery产生的XMLHttpRequest对象，为其增加 progress 事件绑定，然后再返回交给ajax使用
+
+                        //上传成功后回调
+                        success: function (data) {
+
+                            if (data[data.length - 3] == "LH.xls" || data[data.length - 3] == "LH.xlsx") {
+                                setCookie("fileCSJB", data[data.length - 1] + data[data.length - 3], 1);
+                                if (data[data.length - 2] == "不合格") {
+                                    setCookie("AV_LH_qualified", "0", 1);
+                                    document.getElementById("av_LH_Re").value = "不合格";
+                                } else {
+                                    document.getElementById("av_LH_Re").value = "合格";
+                                    setCookie("AV_LH_qualified", "1", 1);
+                                }
+                            } else if (data[data.length - 3] == "LV.xls" || data[data.length - 3] == "LV.xlsx") {
+                                setCookie("file_LV", data[data.length - 1] + data[data.length - 3], 1);
+                                if (data[data.length - 2] == "不合格") {
+                                    setCookie("AV_LV_qualified", "0", 1);
+                                    document.getElementById("av_LV_Re").value = "不合格";
+                                } else {
+                                    setCookie("AV_LV_qualified", "1", 1);
+                                    document.getElementById("av_LV_Re").value = "合格";
+                                }
+                            } else if (data[data.length - 3] == "RH.xls" || data[data.length - 3] == "RH.xlsx") {
+                                setCookie("file_RH", data[data.length - 1] + data[data.length - 3], 1);
+                                if (data[data.length - 2] == "不合格") {
+                                    setCookie("AV_RH_qualified", "0", 1);
+                                    document.getElementById("av_RH_Re").value = "不合格";
+                                } else {
+                                    setCookie("AV_RH_qualified", "1", 1);
+                                    document.getElementById("av_RH_Re").value = "合格";
+                                }
+                            } else if (data[data.length - 3] == "RV.xls" || data[data.length - 3] == "RV.xlsx") {
+                                setCookie("file_RV", data[data.length - 1] + data[data.length - 3], 1);
+                                if (data[data.length - 2] == "不合格") {
+                                    setCookie("AV_RV_qualified", "0", 1);
+                                    document.getElementById("av_RV_Re").value = "不合格";
+                                } else {
+                                    setCookie("AV_RV_qualified", "1", 1);
+                                    document.getElementById("av_RV_Re").value = "合格";
+                                }
+                            }
+                            var i = selectAll();
+                            if (i == "合格") {
+                                document.getElementById("ResultID").value = "合格";
+                            }
+                            if (data[data.length - 2] == "不合格") {
+                                bool_qualified = false;
+                                document.getElementById("ResultID").value = "不合格";
+                            }
+                            document.getElementById("zhezhao").style.display = "none";
+                            //var id = "p_" + t;
+                            //document.getElementById(id).innerHTML = data[data.length - 2];
+
+                        },
+                        //上传失败后回调
+                        error: function () {
+                            alert("失败")
+
+                        }
+                    });
+                } else if (arr_j[1] == "wmf") {
+                    var request = $.ajax({
+                        type: "POST",
+                        url: "/Report/StationImport2_Continue",
+                        data: formData,			//这里上传的数据使用了formData 对象
+                        processData: false, 	//必须false才会自动加上正确的Content-Type
+                        contentType: false,
+                        //这里我们先拿到jQuery产生的XMLHttpRequest对象，为其增加 progress 事件绑定，然后再返回交给ajax使用
+
+                        //上传成功后回调
+                        success: function (data) {
+
+                            if (data.indexOf("LH") > -1) {
+                                setCookie("fileCSJB2", data, 1);
+                            } else if (data.indexOf("LV") > -1) {
+                                setCookie("file_LV2", data, 1);
+                            } else if (data.indexOf("RH") > -1) {
+                                setCookie("file_RH2", data, 1);
+                            } else if (data.indexOf("RV") > -1) {
+                                setCookie("file_RV2", data, 1);
+                            }
+                        },
+
+                        //上传失败后回调
+                        error: function () {
+                            alert("失败")
+
+                        }
+                    });
+                } else {
+                    alert("请选择正确的文件");
+                    return;
+                }
+
+            }
+
+            //  uploadEvent.uploadFileEvent(opt);
+        }
+        function testUpload2() {
+            document.getElementById("zhezhao").style.display = "block";
+            var opt = uploadTools.getOpt("fileUploadContent2");
+            var str_name_col = "";
+            for (var j = 0; j < opt.fileList.length; j++) {
+                var formData = new FormData();
+                var b = opt.fileList[j];
+                formData.append("files", b);
+                var arr_j = opt.fileList[j].name.split(".");
+                if (arr_j[1] == "xls" || arr_j[1] == "xlsx") {
+                    var request = $.ajax({
+                        type: "POST",
+                        url: "/Report/StationImport3_Continue",
+                        data: formData,			//这里上传的数据使用了formData 对象
+                        processData: false, 	//必须false才会自动加上正确的Content-Type
+                        contentType: false,
+                        //这里我们先拿到jQuery产生的XMLHttpRequest对象，为其增加 progress 事件绑定，然后再返回交给ajax使用
+
+                        //上传成功后回调
+                        success: function (data) {
+
+                            //str_name_col += "名字：" + data[data.length - 3] + "/合格否：" + data[data.length - 2] + "\n";
+                            //alert(str_name_col);
+                            if (data[data.length - 3] == "LH.xls" || data[data.length - 3] == "LH.xlsx") {
+                                setCookie("PK_file_LH", data[data.length - 1] + data[data.length - 3], 1);
+                                if (data[data.length - 2] == "不合格") {
+                                    setCookie("AK_LH_qualified", "0", 1);
+                                    document.getElementById("pk_LH_Re").value = "不合格";
+                                } else {
+                                    setCookie("AK_LH_qualified", "1", 1);
+                                    document.getElementById("pk_LH_Re").value = "合格";
+                                }
+
+                            } else if (data[data.length - 3] == "LV.xls" || data[data.length - 3] == "LV.xlsx") {
+                                setCookie("PK_file_LV", data[data.length - 1] + data[data.length - 3], 1);
+                                if (data[data.length - 2] == "不合格") {
+                                    setCookie("AK_LV_qualified", "0", 1);
+                                    document.getElementById("pk_LV_Re").value = "不合格";
+                                } else {
+                                    setCookie("AK_LV_qualified", "1", 1);
+                                    document.getElementById("pk_LV_Re").value = "合格";
+                                }
+
+                            } else if (data[data.length - 3] == "RH.xls" || data[data.length - 3] == "RH.xlsx") {
+                                setCookie("PK_file_RH", data[data.length - 1] + data[data.length - 3], 1);
+                                if (data[data.length - 2] == "不合格") {
+                                    setCookie("AK_RH_qualified", "0", 1);
+                                    document.getElementById("pk_RH_Re").value = "不合格";
+                                } else {
+                                    setCookie("AK_RH_qualified", "1", 1);
+                                    document.getElementById("pk_RH_Re").value = "合格";
+                                }
+                            } else if (data[data.length - 3] == "RV.xls" || data[data.length - 3] == "RV.xlsx") {
+                                setCookie("PK_file_RV", data[data.length - 1] + data[data.length - 3], 1);
+                                if (data[data.length - 2] == "不合格") {
+                                    setCookie("AK_RV_qualified", "0", 1);
+                                    document.getElementById("pk_RV_Re").value = "不合格";
+                                } else {
+                                    setCookie("AK_RV_qualified", "1", 1);
+                                    document.getElementById("pk_RV_Re").value = "合格";
+                                }
+                            }
+                            var i = selectAll();
+                            if (i == "合格") {
+                                document.getElementById("ResultID").value = "合格";
+                            }
+                            if (data[data.length - 2] == "不合格") {
+                                bool_qualified = false;
+                                document.getElementById("ResultID").value = "不合格";
+                            }
+                            document.getElementById("zhezhao").style.display = "none";
+                            //var id = "p_" + t;
+                            //document.getElementById(id).innerHTML = data[data.length - 2];
+                        },
+                        //上传失败后回调
+                        error: function () {
+                            alert("失败")
+
+                        }
+                    });
+                } else if (arr_j[1] == "wmf") {
+                    var request = $.ajax({
+                        type: "POST",
+                        url: "/Report/StationImport3_Continue2",
+                        data: formData,			//这里上传的数据使用了formData 对象
+                        processData: false, 	//必须false才会自动加上正确的Content-Type
+                        contentType: false,
+                        //这里我们先拿到jQuery产生的XMLHttpRequest对象，为其增加 progress 事件绑定，然后再返回交给ajax使用
+
+                        //上传成功后回调
+                        success: function (data) {
+
+                            if (data.indexOf("LH") > -1) {
+                                setCookie("PK_file_LH2", data, 1);
+
+                            } else if (data.indexOf("LV") > -1) {
+                                setCookie("PK_file_LV2", data, 1);
+
+                            } else if (data.indexOf("RH") > -1) {
+                                setCookie("PK_file_RH2", data, 1);
+                            } else if (data.indexOf("RV") > -1) {
+                                setCookie("PK_file_RV2", data, 1);
+                            }
+
+                        },
+
+                        //上传失败后回调
+                        error: function () {
+                            alert("失败")
+
+                        }
+                    });
+                } else {
+                    alert("请选择正确的文件");
+                    return;
+                }
+
+            }
+
+
+        }
+        function clearCookie() {
+            var keys = document.cookie.match(/[^ =;]+(?=\=)/g);
+            if (keys) {
+                for (var i = keys.length; i--;)
+                    document.cookie = keys[i] + '=0;expires=' + new Date(0).toUTCString()
+            }
+        }
+        $("#fileUploadContent").initUpload({
+
+            "progressUrl": "#",//获取进度信息地址，可选，注意需要返回的data格式如下（{bytesRead: 102516060, contentLength: 102516060, items: 1, percent: 100, startTime: 1489223136317, useTime: 2767}）
+            "selfUploadBtId": "selfUploadBt",//自定义文件上传按钮id
+            "isHiddenUploadBt": true,//是否隐藏上传按钮
+            "isHiddenCleanBt": false,//是否隐藏清除按钮
+            "isAutoClean": false,//是否上传完成后自动清除
+            "velocity": 10,//模拟进度上传数据
+            //"rememberUpload":true,//记住文件上传
+            // "showFileItemProgress":false,
+            //"showSummerProgress":false,//总进度条，默认限制
+            //"scheduleStandard":true,//模拟进度的方式，设置为true是按总进度，用于控制上传时间，如果设置为false,按照文件数据的总量,默认为false
+            //"size":350,//文件大小限制，单位kb,默认不限制
+            //"maxFileNumber":3,//文件个数限制，为整数
+            //"filelSavePath":"",//文件上传地址，后台设置的根目录
+            //"beforeUpload":beforeUploadFun,//在上传前执行的函数
+            "onUpload": onUploadFun,//在上传后执行的函数
+            //autoCommit:true,//文件是否自动上传
+            //"fileType":['png','jpg','docx','doc']，//文件类型限制，默认不限制，注意写的是文件后缀
+
+        });
+        $("#fileUploadContent2").initUpload({
+
+            "progressUrl": "#",//获取进度信息地址，可选，注意需要返回的data格式如下（{bytesRead: 102516060, contentLength: 102516060, items: 1, percent: 100, startTime: 1489223136317, useTime: 2767}）
+            "selfUploadBtId": "selfUploadBt",//自定义文件上传按钮id
+            "isHiddenUploadBt": true,//是否隐藏上传按钮
+            "isHiddenCleanBt": false,//是否隐藏清除按钮
+            "isAutoClean": false,//是否上传完成后自动清除
+            "velocity": 10,//模拟进度上传数据
+            //"rememberUpload":true,//记住文件上传
+            // "showFileItemProgress":false,
+            //"showSummerProgress":false,//总进度条，默认限制
+            //"scheduleStandard":true,//模拟进度的方式，设置为true是按总进度，用于控制上传时间，如果设置为false,按照文件数据的总量,默认为false
+            //"size":350,//文件大小限制，单位kb,默认不限制
+            //"maxFileNumber":3,//文件个数限制，为整数
+            //"filelSavePath":"",//文件上传地址，后台设置的根目录
+            //"beforeUpload":beforeUploadFun,//在上传前执行的函数
+            "onUpload": onUploadFun,//在上传后执行的函数
+            //autoCommit:true,//文件是否自动上传
+            //"fileType":['png','jpg','docx','doc']，//文件类型限制，默认不限制，注意写的是文件后缀
+
+        });
+        $("#fileUploadContent3").initUpload({
+
+            "progressUrl": "#",//获取进度信息地址，可选，注意需要返回的data格式如下（{bytesRead: 102516060, contentLength: 102516060, items: 1, percent: 100, startTime: 1489223136317, useTime: 2767}）
+            "selfUploadBtId": "selfUploadBt",//自定义文件上传按钮id
+            "isHiddenUploadBt": true,//是否隐藏上传按钮
+            "isHiddenCleanBt": false,//是否隐藏清除按钮
+            "isAutoClean": false,//是否上传完成后自动清除
+            "velocity": 10,//模拟进度上传数据
+            //"rememberUpload":true,//记住文件上传
+            // "showFileItemProgress":false,
+            //"showSummerProgress":false,//总进度条，默认限制
+            //"scheduleStandard":true,//模拟进度的方式，设置为true是按总进度，用于控制上传时间，如果设置为false,按照文件数据的总量,默认为false
+            //"size":350,//文件大小限制，单位kb,默认不限制
+            //"maxFileNumber":3,//文件个数限制，为整数
+            //"filelSavePath":"",//文件上传地址，后台设置的根目录
+            //"beforeUpload":beforeUploadFun,//在上传前执行的函数
+            "onUpload": onUploadFun,//在上传后执行的函数
+            //autoCommit:true,//文件是否自动上传
+            //"fileType":['png','jpg','docx','doc']，//文件类型限制，默认不限制，注意写的是文件后缀
+
+        });
+        $("#fileUploadContent4").initUpload({
+
+            "progressUrl": "#",//获取进度信息地址，可选，注意需要返回的data格式如下（{bytesRead: 102516060, contentLength: 102516060, items: 1, percent: 100, startTime: 1489223136317, useTime: 2767}）
+            "selfUploadBtId": "selfUploadBt",//自定义文件上传按钮id
+            "isHiddenUploadBt": true,//是否隐藏上传按钮
+            "isHiddenCleanBt": false,//是否隐藏清除按钮
+            "isAutoClean": false,//是否上传完成后自动清除
+            "velocity": 10,//模拟进度上传数据
+            //"rememberUpload":true,//记住文件上传
+            // "showFileItemProgress":false,
+            //"showSummerProgress":false,//总进度条，默认限制
+            //"scheduleStandard":true,//模拟进度的方式，设置为true是按总进度，用于控制上传时间，如果设置为false,按照文件数据的总量,默认为false
+            //"size":350,//文件大小限制，单位kb,默认不限制
+            //"maxFileNumber":3,//文件个数限制，为整数
+            //"filelSavePath":"",//文件上传地址，后台设置的根目录
+            //"beforeUpload":beforeUploadFun,//在上传前执行的函数
+            "onUpload": onUploadFun,//在上传后执行的函数
+            //autoCommit:true,//文件是否自动上传
+            //"fileType":['png','jpg','docx','doc']，//文件类型限制，默认不限制，注意写的是文件后缀
+
+        });
+        function beforeUploadFun(opt) {
+            opt.otherData = [{ "name": "你要上传的参数", "value": "你要上传的值" }];
+        }
+        function onUploadFun(opt, data) {
+            //alert(data);
+            uploadTools.uploadError(opt);//显示上传错误
+        }
+        var task_str = "";
+        var task_arr = [];
+        var task_arr2 = [];
+
+        var setting = {
+            check: {
+                enable: true
+            },
+            data: {
+                simpleData: {
+                    enable: true
+                }
+            },
+            callback: {
+
+                onCheck: onCheck
+            }
+        };
+        Array.prototype.remove = function (val) {
+            var index = this.indexOf(val);
+            if (index > -1) {
+                this.splice(index, 1);
+            }
+        };
+        //var boo_tree = false;
+        function onCheck(e, treeId, treeNode) {
+            if (task_arr.length > 0) {
+                if (treeNode.children) {
+                    for (var i = 0; i < treeNode.children.length; i++) {
+
+                        if (task_arr.indexOf(treeNode.children[i].id + "") > -1) {
+                            task_arr.remove(treeNode.children[i].id + "");
+                            task_arr.remove(treeNode.id + "");
+                        }
+                    }
+                    if (treeNode.checked == true) {
+
+                        for (var j = 0; j < treeNode.children.length; j++) {
+
+                                task_arr.push(treeNode.children[j].id + "");
+                                task_arr.push(treeNode.id + "");
+                        }
+                    }
+
+                } else {
+                    if (treeNode.checked == true) {
+                        task_arr.push(treeNode.pId + "");
+                        task_arr.push(treeNode.id + "");
+                    }
+                    else {
+                        task_arr.remove(treeNode.pId + "");
+                        task_arr.remove(treeNode.id + "");
+                    }
+                }
+
+            } else {
+                if (treeNode.children) {
+                    for (var p = 0; p < treeNode.children.length; p++) {
+
+                        task_arr.push(treeNode.children[p].id + "");
+                        task_arr.push(treeNode.id + "");
+                    }
+                } else {
+                    task_arr.push(treeNode.pId + "");
+                    task_arr.push(treeNode.id + "");
+                }
+
+            }
+        }
+        var code;
+        $('#demo-1').fdatepicker();
+        function back() {
+            window.history.go(-1);  //返回上一页
+        }
+        $(document).ready(function () {
+            clearCookie();//清空所有的缓存
+            $.getJSON("/Report/selectupdateReport", function (data) {
+                if (data[0].Difference == "14023")
+                {
+                    document.getElementById("car14023").style.display = "block";
+                    document.getElementById("car18387").style.display = "none";
+                } else if (data[0].Difference == "18387") {
+                    document.getElementById("car18387").style.display = "block";
+                    document.getElementById("car14023").style.display = "none";
+                }
+                document.getElementById("brand").value = data[0].brand;
+                document.getElementById("taskNumber").value = data[0].taskNumber;
+                document.getElementById("ResultID").value = data[0].ResultID;
+               // document.getElementById("span_id").innerText = data[0].taskAllName;
+                document.getElementById("ModelCarModel").value = data[0].ModelCarModel;
+                document.getElementById("VIN").value = data[0].VIN;
+                document.getElementById("demo-1").value = data[0].time;
+
+                document.getElementById("file_textsample").innerText = data[0].RegistrationName;
+            //    document.getElementById("file_textOriginal").innerText = data[0].OriginalRecordName;
+
+                document.getElementById("introduce").value = data[0].introduce;
+                document.getElementById("Remarks").value = data[0].Remarks;
+
+
+                task_arr = data[0].taskAllName.split(",");
+                task_arr.pop();
+                $.ajax({
+
+                    type: "post",
+
+                    url: "/Report/selectTree_update",
+                    data: { allId: data[0].taskAllName },
+                    cache: false,
+
+                    async: true,
+
+                    success: function (data) {
+                        var zNodes = data
+                        $.fn.zTree.init($("#treeDemo"), setting, zNodes);
+                    }
+                });
+
+                $("input[type=file]").change(function () { $(this).parents(".uploader").find(".filename").val($(this).val()); });
+                $("input[type=file]").each(function () {
+                    if ($(this).val() == "") {
+                        if (data[0].Difference == "14023") {
+                            if (this.id == "fileCSJB") {
+                                $(this).parents(".uploader").find(".filename").val(data[0].AV_LH);
+                            } else if (this.id == "fileCSJB2") {
+                                $(this).parents(".uploader").find(".filename").val(data[0].AV_LH_img);
+                            } else if (this.id == "file_LV") {
+                                $(this).parents(".uploader").find(".filename").val(data[0].AV_LV);
+                            } else if (this.id == "file_LV2") {
+                                $(this).parents(".uploader").find(".filename").val(data[0].AV_LV_img);
+                            } else if (this.id == "file_RH") {
+                                $(this).parents(".uploader").find(".filename").val(data[0].AV_RH);
+                            } else if (this.id == "file_RH2") {
+                                $(this).parents(".uploader").find(".filename").val(data[0].AV_RH_img);
+                            } else if (this.id == "file_RV") {
+                                $(this).parents(".uploader").find(".filename").val(data[0].AV_RV);
+                            } else if (this.id == "file_RV2") {
+                                $(this).parents(".uploader").find(".filename").val(data[0].AV_RV_img);
+                            }
+                            else if (this.id == "PK_file_LH") {
+                                $(this).parents(".uploader").find(".filename").val(data[0].AK_LH);
+                            }
+                            else if (this.id == "PK_file_LH2") {
+                                $(this).parents(".uploader").find(".filename").val(data[0].AK_LH_img);
+                            }
+                            else if (this.id == "PK_file_LV") {
+                                $(this).parents(".uploader").find(".filename").val(data[0].AK_LV);
+                            }
+                            else if (this.id == "PK_file_LV2") {
+                                $(this).parents(".uploader").find(".filename").val(data[0].AK_LV_img);
+                            }
+                            else if (this.id == "PK_file_RH") {
+                                $(this).parents(".uploader").find(".filename").val(data[0].AK_RH);
+                            }
+                            else if (this.id == "PK_file_RH2") {
+                                $(this).parents(".uploader").find(".filename").val(data[0].AK_RH_img);
+                            }
+                            else if (this.id == "PK_file_RV") {
+                                $(this).parents(".uploader").find(".filename").val(data[0].AK_RV);
+                            }
+                            else if (this.id == "PK_file_RV2") {
+                                $(this).parents(".uploader").find(".filename").val(data[0].AK_RV_img);
+                            }
+                            else {
+                                $(this).parents(".uploader").find(".filename").val("没有选择...");
+                            }
+
+                        } else if (data[0].Difference == "18387")
+                        {
+
+                            $("input[name='form-field-radio']").eq(Number(data[0].RODsurface)).attr("checked", "checked");
+                            $("input[name='form-field-radio2']").eq(Number(data[0].LOOPsurface)).attr("checked", "checked");
+                            if (this.id == "rod_16") {
+                                $(this).parents(".uploader").find(".filename").val(data[0].ROD16);
+                            } else if (this.id == "rod_16_img") {
+                                $(this).parents(".uploader").find(".filename").val(data[0].ROD16_img);
+                            } else if (this.id == "rod_70") {
+                                $(this).parents(".uploader").find(".filename").val(data[0].ROD70);
+                            } else if (this.id == "rod_70_img") {
+                                $(this).parents(".uploader").find(".filename").val(data[0].ROD70_img);
+                            } else if (this.id == "DUIBI") {
+                                $(this).parents(".uploader").find(".filename").val(data[0].ROD_DUI_img);
+                            } else if (this.id == "Magnetic_16x") {
+                                $(this).parents(".uploader").find(".filename").val(data[0].LOOP_16x);
+                            } else if (this.id == "Magnetic_16x_img") {
+                                $(this).parents(".uploader").find(".filename").val(data[0].LOOP_16x_img);
+                            } else if (this.id == "Magnetic_16y") {
+                                $(this).parents(".uploader").find(".filename").val(data[0].LOOP_16y);
+                            }
+                            else if (this.id == "Magnetic_16y_img") {
+                                $(this).parents(".uploader").find(".filename").val(data[0].LOOP_16y_img);
+                            }
+                            else if (this.id == "Magnetic_70x") {
+                                $(this).parents(".uploader").find(".filename").val(data[0].LOOP_70x);
+                            }
+                            else if (this.id == "Magnetic_70x_img") {
+                                $(this).parents(".uploader").find(".filename").val(data[0].LOOP_70x_img);
+                            }
+                            else if (this.id == "Magnetic_70y") {
+                                $(this).parents(".uploader").find(".filename").val(data[0].LOOP_70y);
+                            }
+                            else if (this.id == "Magnetic_70y_img") {
+                                $(this).parents(".uploader").find(".filename").val(data[0].LOOP_70y_img);
+                            }
+                            else if (this.id == "DUIBI-Magnetic") {
+                                $(this).parents(".uploader").find(".filename").val(data[0].LOOP_DUI_img);
+                            }
+                            else if (this.id == "surface_img") {
+                                $(this).parents(".uploader").find(".filename").val(data[0].RODsurface_img);
+                            } else if (this.id == "surface_img_Magnetic") {
+                                $(this).parents(".uploader").find(".filename").val(data[0].LOOPsurface_img);
+                            }
+                            else {
+                                $(this).parents(".uploader").find(".filename").val("没有选择...");
+                            }
+
+                        }
+
+                    }
+                });
+            })
+
+            $('.selectpicker').selectpicker({
+                'selectedText': 'cat'
+            });
+
+})
+function save() {
+    //alert("这只是个演示！(｡◕ฺˇε ˇ◕ฺ｡）")
+    var brand = document.getElementById("brand").value;
+
+
+    var taskAllNameall ="";
+    for (var u = 0; u < task_arr.length; u++)
+    {
+        taskAllNameall += task_arr[u] + ",";
+
+    }
+
+    //taskAllid += arr_str[0] + ",";
+    var ModelCarModel = document.getElementById("ModelCarModel").value;
+    var VIN = document.getElementById("VIN").value;
+    var ResultID = document.getElementById("ResultID").value;
+
+    var taskNumber = document.getElementById("taskNumber").value;
+
+    var RegistrationName = "";
+    var OriginalRecordName = "";
+
+    for (var it = 0; it < arr_Original.length; it++)
+    {
+        OriginalRecordName += arr_Original[it] + "#";
+    }
+    for (var ip = 0; ip < arr_sample.length; ip++) {
+        RegistrationName += arr_sample[ip] + "#";
+    }
+    var introduce = document.getElementById("introduce").value;
+    var Remarks = document.getElementById("Remarks").value;
+    $.ajax({
+
+        type: "post",
+
+        url: "/Report/UpdataReport",
+
+        cache: false,
+
+        async: true,
+
+        data: { brand: brand, taskAllName: taskAllNameall, ModelCarModel: ModelCarModel, VIN: VIN, ResultID: ResultID, RegistrationName: RegistrationName, OriginalRecordName: OriginalRecordName, introduce: introduce, Remarks: Remarks, taskNumber: taskNumber },
+
+        success: function (data) {
+            alert(data);
+            window.location.href = "/Report/Index";
+        }
+    });
+}
+
+function Thousands() {
+    var Price = document.getElementById("Price").value;
+
+    document.getElementById("Price").value = toThousands(Price);
+    var timeLong = document.getElementById("timeLong").value;
+    if (timeLong != "") {
+        document.getElementById("Total").value = toThousands(Number(timeLong) * Number(Price.replace(/,/g, '')).toString());
+    }
+}
+function timeThousands() {
+    var timeLong = document.getElementById("timeLong").value;
+
+    var Price = document.getElementById("Price").value;
+    if (Price != "") {
+        document.getElementById("Total").value = toThousands( Number(timeLong) * Number(Price.replace(/,/g, '')).toString());
+    }
+}
+function toThousands(num1) {
+
+    var num = (num1 || 0).toString(), result = '';
+    while (num.length > 3) {
+        result = ',' + num.slice(-3) + result;
+        num = num.slice(0, num.length - 3);
+    }
+    if (num) { result = num + result; }
+    return result;
+}
+var str_select = "";
+//var arr_select = [];
+var arr_select = new Array();
+function op(t) {
+    //alert(t.children[0].innerText)
+    if (t.children[0].innerText == "整车辐射发射测试")
+    {
+        str_select = "1、GB 14023-2011 车辆、船和内燃机  无线电骚扰特性  用于保护车外接收机的限值和测量方法 \n  2、 ECE R10 Rev.5 Uniform provisions concerning the approval of vehicles with regard to electromagnetic compatibility \n 3、CISPR 12 \n ";
+        var index = $.inArray(t.children[0].innerText, arr_select);
+        if (index >= 0) {
+            //arrayObject.splice(index,howmany,item1,.....,itemX)
+
+            //参数    描述
+            //index  必需。整数，规定添加/删除项目的位置，使用负数可从数组结尾处规定位置。
+            //howmany 必需。要删除的项目数量。如果设置为 0，则不会删除项目。
+            //item1, ..., itemX 可选。向数组添加的新项目。
+            arr_select.splice(index, 1);
+        } else {
+            arr_select.push("整车辐射发射测试");
+            alert(str_select);
+        }
+    }
+    if (t.children[0].innerText == "保护车载接收机测试") {
+
+        str_select = "1、GB 18655-2002 用于保护车载接收机的无线电骚扰特性的限值和测量方法 \n 2、GB/T 18655-2010 车辆、船和内燃机 无线电骚扰特性 用于保护车载接收机的限值和测量方法  \n ";
+        var index = $.inArray(t.children[0].innerText, arr_select);
+        if (index >= 0) {
+            //arrayObject.splice(index,howmany,item1,.....,itemX)
+
+            //参数    描述
+            //index  必需。整数，规定添加/删除项目的位置，使用负数可从数组结尾处规定位置。
+            //howmany 必需。要删除的项目数量。如果设置为 0，则不会删除项目。
+            //item1, ..., itemX 可选。向数组添加的新项目。
+            arr_select.splice(index, 1);
+        } else {
+            arr_select.push("保护车载接收机测试");
+            alert(str_select);
+        }
+    }
+    if (t.children[0].innerText == "整车大电流注入抗干扰") {
+
+        str_select = "1、ISO 11451-4 Bulk current injection(BCI) \n 2、 GMW 3091-2015 General Specification for Vehicles, Electromagnetic Compatibility \n ";
+        var index = $.inArray(t.children[0].innerText, arr_select);
+        if (index >= 0) {
+            //arrayObject.splice(index,howmany,item1,.....,itemX)
+
+            //参数    描述
+            //index  必需。整数，规定添加/删除项目的位置，使用负数可从数组结尾处规定位置。
+            //howmany 必需。要删除的项目数量。如果设置为 0，则不会删除项目。
+            //item1, ..., itemX 可选。向数组添加的新项目。
+            arr_select.splice(index, 1);
+        } else {
+            arr_select.push("整车大电流注入抗干扰");
+            alert(str_select);
+        }
+    }
+    if (t.children[0].innerText == "整车自由场抗扰测试") {
+
+        str_select = "1、ISO 11451-2 Off-vehicle radiation sources \n 2、 ECE R10 Rev.5 Uniform provisions concerning the approval of vehicles with regard to electromagnetic compatibility \n 3、 GMW 3091-2015 General Specification for Vehicles, Electromagnetic Compatibility \n ";
+        var index = $.inArray(t.children[0].innerText, arr_select);
+        if (index >= 0) {
+            //arrayObject.splice(index,howmany,item1,.....,itemX)
+
+            //参数    描述
+            //index  必需。整数，规定添加/删除项目的位置，使用负数可从数组结尾处规定位置。
+            //howmany 必需。要删除的项目数量。如果设置为 0，则不会删除项目。
+            //item1, ..., itemX 可选。向数组添加的新项目。
+            arr_select.splice(index, 1);
+        } else {
+            arr_select.push("整车自由场抗扰测试");
+            alert(str_select);
+        }
+    }
+    if (t.children[0].innerText == "车载模拟发射机抗扰测试") {
+
+        str_select = "1、ISO 11451-3 On-board transmitter simulation \n 2、 GMW 3091-2015 General Specification for Vehicles, Electromagnetic Compatibility \n ";
+        var index = $.inArray(t.children[0].innerText, arr_select);
+        if (index >= 0) {
+            //arrayObject.splice(index,howmany,item1,.....,itemX)
+
+            //参数    描述
+            //index  必需。整数，规定添加/删除项目的位置，使用负数可从数组结尾处规定位置。
+            //howmany 必需。要删除的项目数量。如果设置为 0，则不会删除项目。
+            //item1, ..., itemX 可选。向数组添加的新项目。
+            arr_select.splice(index, 1);
+        } else {
+            arr_select.push("车载模拟发射机抗扰测试");
+            alert(str_select);
+        }
+    }
+
+    if (t.children[0].innerText == "整车静电放电抗扰") {
+
+        str_select = "1、GB/T 19951-2005 道路车辆 静电放电产生的电骚扰试验方法 \n 2、 ISO 10605-2001 road vehicles test methods for electrical disturbances from electrostatic discharge  \n 3、 GMW 3091-2015 General Specification for Vehicles, Electromagnetic Compatibility \n ";
+        var index = $.inArray(t.children[0].innerText, arr_select);
+        if (index >= 0) {
+            //arrayObject.splice(index,howmany,item1,.....,itemX)
+
+            //参数    描述
+            //index  必需。整数，规定添加/删除项目的位置，使用负数可从数组结尾处规定位置。
+            //howmany 必需。要删除的项目数量。如果设置为 0，则不会删除项目。
+            //item1, ..., itemX 可选。向数组添加的新项目。
+            arr_select.splice(index, 1);
+        } else {
+            arr_select.push("整车静电放电抗扰");
+            alert(str_select);
+        }
+    }
+    if (t.children[0].innerText == "车外低频电磁场发射测试") {
+
+        str_select = "1、GB/T 18387-2008 电动车辆的电磁场发射强度的限值和测量方法,宽带,9kHz～30MHz \n 2、 SAE J551-5 2012 Performance Levels and Methods of Measurement of Magnetic and Electric Field Strength from Electric Vehicles,150kHz to 30MHz \n ";
+        var index = $.inArray(t.children[0].innerText, arr_select);
+        if (index >= 0) {
+            //arrayObject.splice(index,howmany,item1,.....,itemX)
+
+            //参数    描述
+            //index  必需。整数，规定添加/删除项目的位置，使用负数可从数组结尾处规定位置。
+            //howmany 必需。要删除的项目数量。如果设置为 0，则不会删除项目。
+            //item1, ..., itemX 可选。向数组添加的新项目。
+            arr_select.splice(index, 1);
+        } else {
+            arr_select.push("车外低频电磁场发射测试");
+            alert(str_select);
+        }
+    }
+    if (t.children[0].innerText == "整车传导发射测试") {
+
+        str_select = "1、ECE R10 Rev.5 Uniform provisions concerning the approval of vehicles with regard to electromagnetic compatibility \n 2、 SAE J551-5 2012 Performance Levels and Methods of Measurement of Magnetic and Electric Field Strength from Electric Vehicles,150kHz to 30MHz \n 3、 GB/T 18387-2008 电动车辆的电磁场发射强度的限值和测量方法,宽带,9kHz～30MHz \n ";
+        var index = $.inArray(t.children[0].innerText, arr_select);
+        if (index >= 0) {
+            //arrayObject.splice(index,howmany,item1,.....,itemX)
+
+            //参数    描述
+            //index  必需。整数，规定添加/删除项目的位置，使用负数可从数组结尾处规定位置。
+            //howmany 必需。要删除的项目数量。如果设置为 0，则不会删除项目。
+            //item1, ..., itemX 可选。向数组添加的新项目。
+            arr_select.splice(index, 1);
+        } else {
+            arr_select.push("整车传导发射测试");
+            alert(str_select);
+        }
+    }
+    if (t.children[0].innerText == "整车电快速瞬变脉冲群抗扰") {
+
+        str_select = "1、GB/T 17626.4-2008 电磁兼容 试验和测量技术 电快速瞬变脉冲群抗扰度试验 \n 2、 ECE R10 Rev.5 Uniform provisions concerning the approval of vehicles with regard to electromagnetic compatibility \n 3、 IEC 61000-4-4 Electromagnetic compatibility(EMC)-Part 4-4:Testing and measurement techniques – Electrical fast transient/burst immunity test \n ";
+        var index = $.inArray(t.children[0].innerText, arr_select);
+        if (index >= 0) {
+            //arrayObject.splice(index,howmany,item1,.....,itemX)
+
+            //参数    描述
+            //index  必需。整数，规定添加/删除项目的位置，使用负数可从数组结尾处规定位置。
+            //howmany 必需。要删除的项目数量。如果设置为 0，则不会删除项目。
+            //item1, ..., itemX 可选。向数组添加的新项目。
+            arr_select.splice(index, 1);
+        } else {
+            arr_select.push("整车传导发射测试");
+            alert(str_select);
+        }
+    }
+    if (t.children[0].innerText == "整车浪涌（冲击）抗扰") {
+
+        str_select = "1、GBT 17626.5-2008电磁兼容 实验和测量技术 浪涌(冲击)抗扰度试验 \n 2、 ECE R10 Rev.5 Uniform provisions concerning the approval of vehicles with regard to electromagnetic compatibility \n 3、 IEC 61000-4-5 Electromagnetic compatibility (EMC)-Part 4-5:Testing and measurement techniques – Surge immunity test \n ";
+        var index = $.inArray(t.children[0].innerText, arr_select);
+        if (index >= 0) {
+            //arrayObject.splice(index,howmany,item1,.....,itemX)
+
+            //参数    描述
+            //index  必需。整数，规定添加/删除项目的位置，使用负数可从数组结尾处规定位置。
+            //howmany 必需。要删除的项目数量。如果设置为 0，则不会删除项目。
+            //item1, ..., itemX 可选。向数组添加的新项目。
+            arr_select.splice(index, 1);
+        } else {
+            arr_select.push("整车浪涌（冲击）抗扰");
+            alert(str_select);
+        }
+    }
+    if (t.children[0].innerText == "整车谐波电流发射测试") {
+
+        str_select = "1、IEC 61000-3-2：Eletromagnetic compatibility(EMC) - Part 3-2：Limits - Limits for harmonic current emissions(equipment input current ≤ 16A per phase) \n 2、 GB 17625.1-2012 电磁兼容 限值 谐波电流发射限值(设备每相输入电流≤16A) \n 3、 IEC 61000-3-12：Eletromagnetic compatibility(EMC) - Part 3-12：Limits - Limits for harmonic current produced by equipment connected to public low-voltages systems with input current > 16A and ≤ 75A per phase \n 4、 GBZ 17625.6-2003 电磁兼容 限值 对额定电流大于16A的设备在低压供电系统中产生的谐波电流的限制 \n 5、 ECE R10 Rev.5 Uniform provisions concerning the approval of vehicles with regard to electromagnetic compatibility \n ";
+        var index = $.inArray(t.children[0].innerText, arr_select);
+        if (index >= 0) {
+            //arrayObject.splice(index,howmany,item1,.....,itemX)
+
+            //参数    描述
+            //index  必需。整数，规定添加/删除项目的位置，使用负数可从数组结尾处规定位置。
+            //howmany 必需。要删除的项目数量。如果设置为 0，则不会删除项目。
+            //item1, ..., itemX 可选。向数组添加的新项目。
+            arr_select.splice(index, 1);
+        } else {
+            arr_select.push("整车谐波电流发射测试");
+            alert(str_select);
+        }
+    }
+    if (t.children[0].innerText == "整车电压变化、波动和闪烁测试") {
+
+        str_select = "1、GB 17625.2-2007 电磁兼容 限值 对额定电流≤16A且无条件接入的设备在公用低压供电系统中产生的电压变化、波动和闪烁的限制 \n 2、 IEC 61000-3-3：Eletromagnetic compatibility(EMC) - Part 3-3：Limits - Limitation of voltage fluctuation and flicker in low-voltage supply systems for equipment with rated current ≤ 16A. \n 3、 GB-Z 17625.3-2000 电磁兼容 限值 对额定电流大于 16A 的设备在低压供电系统中产生的电压波动和闪烁的限制 \n 4、 IEC 61000-3-11：Eletromagnetic compatibility(EMC) - Part 3-11：Limits - Limits Limitation of voltage changes，voltage fluctuations and flicker in public low-voltage supply systems-Equipment with rated current  ≤ 75A  and subject to conditional connection.  \n 5、 ECE R10 Rev.5 Uniform provisions concerning the approval of vehicles with regard to electromagnetic compatibility \n ";
+        var index = $.inArray(t.children[0].innerText, arr_select);
+        if (index >= 0) {
+            //arrayObject.splice(index,howmany,item1,.....,itemX)
+
+            //参数    描述
+            //index  必需。整数，规定添加/删除项目的位置，使用负数可从数组结尾处规定位置。
+            //howmany 必需。要删除的项目数量。如果设置为 0，则不会删除项目。
+            //item1, ..., itemX 可选。向数组添加的新项目。
+            arr_select.splice(index, 1);
+        } else {
+            arr_select.push("整车电压变化、波动和闪烁测试");
+            alert(str_select);
+        }
+    }
+    if (t.children[0].innerText == "（充电状态）整车辐射发射测试") {
+
+        str_select = "1、ECE R10 Rev.5 Uniform provisions concerning the approval of vehicles with regard to electromagnetic compatibility \n ";
+        var index = $.inArray(t.children[0].innerText, arr_select);
+        if (index >= 0) {
+            //arrayObject.splice(index,howmany,item1,.....,itemX)
+
+            //参数    描述
+            //index  必需。整数，规定添加/删除项目的位置，使用负数可从数组结尾处规定位置。
+            //howmany 必需。要删除的项目数量。如果设置为 0，则不会删除项目。
+            //item1, ..., itemX 可选。向数组添加的新项目。
+            arr_select.splice(index, 1);
+        } else {
+            arr_select.push("（充电状态）整车辐射发射测试");
+            alert(str_select);
+        }
+    }
+    if (t.children[0].innerText == "（充电状态）整车自由场抗扰") {
+
+        str_select = "1、ECE R10 Rev.5 Uniform provisions concerning the approval of vehicles with regard to electromagnetic compatibility \n ";
+        var index = $.inArray(t.children[0].innerText, arr_select);
+        if (index >= 0) {
+            //arrayObject.splice(index,howmany,item1,.....,itemX)
+
+            //参数    描述
+            //index  必需。整数，规定添加/删除项目的位置，使用负数可从数组结尾处规定位置。
+            //howmany 必需。要删除的项目数量。如果设置为 0，则不会删除项目。
+            //item1, ..., itemX 可选。向数组添加的新项目。
+            arr_select.splice(index, 1);
+        } else {
+            arr_select.push("（充电状态）整车自由场抗扰");
+            alert(str_select);
+        }
+    }
+    if (t.children[0].innerText == "整车低频磁场抗扰") {
+
+        str_select = "1、SAE J551-17 2015: Vehicle Electromagnetic Immunity-Power Line Magnetic Fields \n 2、 GMW 3091-2015 General Specification for Vehicles, Electromagnetic Compatibility \n ";
+        var index = $.inArray(t.children[0].innerText, arr_select);
+        if (index >= 0) {
+            //arrayObject.splice(index,howmany,item1,.....,itemX)
+
+            //参数    描述
+            //index  必需。整数，规定添加/删除项目的位置，使用负数可从数组结尾处规定位置。
+            //howmany 必需。要删除的项目数量。如果设置为 0，则不会删除项目。
+            //item1, ..., itemX 可选。向数组添加的新项目。
+            arr_select.splice(index, 1);
+        } else {
+            arr_select.push("整车低频磁场抗扰");
+            alert(str_select);
+        }
+    }
+    if (t.children[0].innerText == "车内低频电磁场发射（人体防护测试）") {
+        str_select = "1、GB 8702-2014 电磁环境控制限值 \n ";
+        var index = $.inArray(t.children[0].innerText, arr_select);
+        if (index >= 0) {
+            //arrayObject.splice(index,howmany,item1,.....,itemX)
+
+            //参数    描述
+            //index  必需。整数，规定添加/删除项目的位置，使用负数可从数组结尾处规定位置。
+            //howmany 必需。要删除的项目数量。如果设置为 0，则不会删除项目。
+            //item1, ..., itemX 可选。向数组添加的新项目。
+            arr_select.splice(index, 1);
+        } else {
+            arr_select.push("车内低频电磁场发射（人体防护测试）");
+            alert(str_select);
+        }
+    }
+
+}
+
+        @*上传js代码*@
+        var flieList = [];								//数据，为一个复合数组
+        var sizeObj = [];
+
+        $(document).ready(function () {
+            //元素
+            var oFileBox = $(".fileBox");					//选择文件父级盒子
+            var oFileInput = $("#fileInput");				//选择文件按钮
+            var oFileSpan = $("#fileSpan");					//选择文件框
+
+            var oFileList_parent = $(".fileList_parent");	//表格
+            var oFileList = $(".fileList");					//表格tbody
+            var oFileBtn = $("#fileBtn");					//上传按钮//存放每个文件大小的数组，用来比较去重
+
+
+
+            //拖拽外部文件，进入目标元素触发
+            oFileSpan.on("dragenter", function () {
+                $(this).text("可以释放鼠标了！").css("background", "#ccc");
+            });
+
+            //拖拽外部文件，进入目标、离开目标之间，连续触发
+            oFileSpan.on("dragover", function () {
+                return false;
+            });
+
+            //拖拽外部文件，离开目标元素触发
+            oFileSpan.on("dragleave", function () {
+                $(this).text("或者将文件拖到此处").css("background", "none");
+            });
+
+            //拖拽外部文件，在目标元素上释放鼠标触发
+            oFileSpan.on("drop", function (ev) {
+                var fs = ev.originalEvent.dataTransfer.files;
+                analysisList(fs);		//解析列表函数
+                $(this).text("或者将文件拖到此处").css("background", "none");
+                return false;
+            });
+
+            //点击选择文件按钮选文件
+            oFileInput.on("change", function () {
+                analysisList(this.files);
+            })
+
+            //解析列表函数
+            function analysisList(obj) {
+                //如果没有文件
+                if (obj.length < 1) {
+                    return false;
+                }
+
+                for (var i = 0; i < obj.length; i++) {
+
+                    var fileObj = obj[i];		//单个文件
+                    var name = fileObj.name;	//文件名
+                    var size = fileObj.size;	//文件大小
+                    var type = fileType(name);	//文件类型，获取的是文件的后缀
+
+                    //文件大于30M，就不上传
+                    if (size > 1024 * 1024 * 1024 || size == 0) {
+                        alert('“' + name + '”超过了30M，不能上传');
+                        continue;
+                    }
+
+                    //文件类型不为这三种，就不上传
+                    /*if( ("pdf/txt/epub").indexOf(type) == -1 ){
+                        alert('“'+ name +'”文件类型不对，不能上传');
+                        continue;
+                    }*/
+
+                    //把文件大小放到一个数组中，然后再去比较，如果有比较上的，就认为重复了，不能上传
+                    if (sizeObj.indexOf(size) != -1) {
+                        alert('“' + name + '”已经选择，不能重复上传');
+                        continue;
+                    }
+
+                    //给json对象添加内容，得到选择的文件的数据
+                    var itemArr = [fileObj, name, size, type];	//文件，文件名，文件大小，文件类型
+                    flieList.push(itemArr);
+
+                    //把这个文件的大小放进数组中
+                    sizeObj.push(size);
+
+                }
+
+                //console.log(flieList)
+                //console.log(sizeObj)
+                createList()				//生成列表
+                oFileList_parent.show();	//表格显示
+                oFileBtn.show();			//上传按钮显示
+            };
+
+
+            //生成列表
+            function createList() {
+                oFileList.empty();					//先清空元素内容
+                for (var i = 0; i < flieList.length; i++) {
+
+                    var fileData = flieList[i];		//flieList数组中的某一个
+                    var objData = fileData[0];		//文件
+                    var name = fileData[1];			//文件名
+                    var size = fileData[2];			//文件大小
+                    var type = fileData[3];			//文件类型
+                    var volume = bytesToSize(size);	//文件大小格式化
+
+
+                    var oTr = $("<tr></tr>");
+                    var str = '<td ><cite title="' + name + '">' + name + '</cite></td>';
+                    str += '<td >' + type + '</td>';
+                    str += '<td >' + volume + '</td>';
+                    //str += '<td><input type="radio" /></td>';
+                    str += '<td >';
+                    str += '<div class="progressParent">';
+                    str += '<p class="progress"></p>';
+                    str += '<span class="progressNum">0%</span>';
+                    str += '</div>';
+                    str += '</td>';
+                    str += '<td ><a href="javascript:;" class="operation">删除</a></td>';
+
+                    oTr.html(str);
+                    oTr.appendTo(oFileList);
+                }
+            }
+
+            //删除表格行
+            oFileList.on("click", "a.operation", function () {
+                var oTr = $(this).parents("tr");
+                var index = oTr.index();
+                oTr.remove();		//删除这一行
+                flieList.splice(index, 1);	//删除数据
+                sizeObj.splice(index, 1);	//删除文件大小数组中的项
+            });
+            //上传
+            oFileBtn.on("click", function () {
+                document.getElementById("fileBtn").style.display = "none";
+                //oFileBtn.off();
+                var tr = oFileList.find("tr");		//获取所有tr列表
+                var successNum = 0;					//已上传成功的数目
+                oFileList.off();					//取消删除事件
+              //  oFileBox.slideUp();					//隐藏输入框
+                oFileList.find("a.operation").text("等待上传");
+
+                for (var i = 0; i < tr.length; i++) {
+                    uploadFn(tr.eq(i), i);		//参数为当前项，下标
+                }
+
+                function uploadFn(obj, i) {
+
+                    var formData = new FormData();
+                    var arrNow = flieList[i];						//获取数据数组的当前项
+
+                    // 从当前项中获取上传文件，放到 formData对象里面，formData参数以key name的方式
+                    var result = arrNow[0];							//数据
+                    formData.append("file", result);
+
+                    var name = arrNow[1];							//文件名
+                    if (bool == false) {
+                        arr_Original.push(name);
+                    }
+                    else {
+                        arr_sample.push(name);
+                    }
+
+
+
+
+                    formData.append("file", name);
+                    var progress = obj.find(".progress");			//上传进度背景元素
+                    var progressNum = obj.find(".progressNum");		//上传进度元素文字
+                    var oOperation = obj.find("a.operation");		//按钮
+
+                    oOperation.text("正在上传");							//改变操作按钮
+                    oOperation.off();
+
+                    var request = $.ajax({
+                        type: "POST",
+                        url: "/Report/UploadFile",//http://119.29.8.149:8060/php/upload/upload.php
+                        data: formData,			//这里上传的数据使用了formData 对象
+                        processData: false, 	//必须false才会自动加上正确的Content-Type
+                        contentType: false,
+                        //这里我们先拿到jQuery产生的XMLHttpRequest对象，为其增加 progress 事件绑定，然后再返回交给ajax使用
+                        xhr: function () {
+                            var xhr = $.ajaxSettings.xhr();
+                            if (onprogress && xhr.upload) {
+                                xhr.upload.addEventListener("progress", onprogress, false);
+                                return xhr;
+                            }
+                        },
+                        //上传成功后回调
+                        success: function (data) {
+                            oOperation.text("成功");
+                            successNum++;
+                            console.log(successNum);
+                            if (successNum == tr.length) {
+                                alert("成功")
+                                //open("http://www.baidu.com","_self");	//如果全部传成功了，跳转
+                            }
+                        },
+
+                        //上传失败后回调
+                        error: function () {
+                            oOperation.text("重传");
+                            oOperation.on("click", function () {
+                                request.abort();		//终止本次
+                                uploadFn(obj, i);
+                            });
+                        }
+                    });
+
+                    //侦查附件上传情况 ,这个方法大概0.05-0.1秒执行一次
+                    function onprogress(evt) {
+                        var loaded = evt.loaded;	//已经上传大小情况
+                        var tot = evt.total;		//附件总大小
+                        var per = Math.floor(100 * loaded / tot);  //已经上传的百分比
+                        progressNum.html(per + "%");
+                        progress.css("width", per + "%");
+                    }
+                }
+            });
+
+
+        })
+
+//字节大小转换，参数为b
+function bytesToSize(bytes) {
+    var sizes = ['Bytes', 'KB', 'MB'];
+    if (bytes == 0) return 'n/a';
+    var i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)));
+    return (bytes / Math.pow(1024, i)).toFixed(1) + ' ' + sizes[i];
+};
+
+//通过文件名，返回文件的后缀名
+function fileType(name) {
+    var nameArr = name.split(".");
+    return nameArr[nameArr.length - 1].toLowerCase();
+}
+var bool = false;
+var arr_Original = [];
+function Original() {
+    bool = false;
+    arr_Original = [];
+
+    document.getElementById("fileBtn").style.display = "none";
+    flieList = [];								//数据，为一个复合数组
+     sizeObj = [];
+    $(".fileList tr").remove();//清空当前查询的数据
+    document.getElementById("hide").click();
+}
+
+var arr_sample = [];
+function sample() {
+    bool = true;
+    arr_sample = [];
+    document.getElementById("fileBtn").style.display = "none";
+    flieList = [];								//数据，为一个复合数组
+    sizeObj = [];
+    $(".fileList tr").remove();//清空当前查询的数据
+    document.getElementById("hide_sample").click();
+}
+function saveall() {
+    if (bool == false) {
+        var str_sample = "";
+        for (var i = 0; i < arr_Original.length; i++)
+        {
+            str_sample += (i+1)+":"+arr_Original[i] + "  ";
+        }
+        document.getElementById("file_textOriginal").style.display = "block";
+        document.getElementById("file_textOriginal").innerText = str_sample;
+    }
+    else {
+        var str_sample = "";
+        for (var i = 0; i < arr_sample.length; i++) {
+            str_sample += (i + 1) + ":" + arr_sample[i] + "   ";
+        }
+        document.getElementById("file_textsample").style.display = "block";
+        document.getElementById("file_textsample").innerText = str_sample;
+    }
+
+}
+function Dow(t) {
+    var url = document.getElementById(t).value;
+    window.open("/file/" + url)
+}
+    </script>
+</body>
+</html>

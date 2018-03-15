@@ -51,7 +51,16 @@ namespace EMCManagementSystem.Controllers
                         }).Distinct().ToList();
             return base.Json(data, JsonRequestBehavior.AllowGet);
         }
-
+        public ActionResult selectCarQualification_18387()
+        {
+            var data = (from tbCT in this.dbEMCEntities.CarQualification_18387
+                        select new
+                        {
+                            name = tbCT.CarName.ToString().Trim(),
+                            y = tbCT.Qualification
+                        }).Distinct().ToList();
+            return base.Json(data, JsonRequestBehavior.AllowGet);
+        }
         // Token: 0x060000E0 RID: 224 RVA: 0x00003FD5 File Offset: 0x000021D5
         public ActionResult zhexian()
         {

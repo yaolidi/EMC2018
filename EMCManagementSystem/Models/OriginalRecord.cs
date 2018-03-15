@@ -27,5 +27,6 @@ namespace EMCManagementSystem.Models
         public Nullable<System.DateTime> time { get; set; }
         public string taskNumber { get; set; }
         public string category { get; set; }
+        public Nullable<bool> complete { get; set; }
     }
 }

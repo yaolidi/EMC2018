@@ -29,11 +29,124 @@
   
     <script src="~/Highcharts/js/exporting.js"></script>
     <script src="~/Highcharts/js/highcharts-zh_CN.js"></script>
-   
+    <select id="op" onchange="opchange()">
+        <option value="1">14023</option>
+        <option value="2">18387</option>
+    </select>
     <div id="container"></div>
 
     <script type="text/javascript">
+        function opchange() {
+            if ($('#op option:selected').val() == 1)
+            {
+                $.ajax({
 
+                    type: "post",
+
+                    url: "/Data/selectCarQualification",
+
+                    cache: false,
+
+                    async: false,
+
+                    success: function (data) {
+                        Highcharts.chart('container', {
+
+                            chart: {
+                                type: 'column'
+                            },
+                            title: {
+                                text: '车型合格率'
+                            },
+
+                            xAxis: {
+                                type: 'category'
+                            },
+                            yAxis: {
+                                title: {
+                                    text: '百分比'
+                                }
+                            },
+                            legend: {
+                                enabled: false
+                            },
+                            plotOptions: {
+                                series: {
+                                    borderWidth: 0,
+                                    dataLabels: {
+                                        enabled: true,
+                                        format: '{point.y:.1f}%'
+                                    }
+                                }
+                            },
+                            tooltip: {
+                                headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                                pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
+                            },
+                            series: [{
+                                name: '车型合格率',
+                                colorByPoint: true,
+                                data: data
+                            }],
+                        });
+                    }
+                });
+
+            } else if ($('#op option:selected').val() == 2) {
+                $.ajax({
+
+                    type: "post",
+
+                    url: "/Data/selectCarQualification_18387",
+
+                    cache: false,
+
+                    async: false,
+
+                    success: function (data) {
+                        Highcharts.chart('container', {
+
+                            chart: {
+                                type: 'column'
+                            },
+                            title: {
+                                text: '车型合格率'
+                            },
+
+                            xAxis: {
+                                type: 'category'
+                            },
+                            yAxis: {
+                                title: {
+                                    text: '百分比'
+                                }
+                            },
+                            legend: {
+                                enabled: false
+                            },
+                            plotOptions: {
+                                series: {
+                                    borderWidth: 0,
+                                    dataLabels: {
+                                        enabled: true,
+                                        format: '{point.y:.1f}%'
+                                    }
+                                }
+                            },
+                            tooltip: {
+                                headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                                pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
+                            },
+                            series: [{
+                                name: '车型合格率',
+                                colorByPoint: true,
+                                data: data
+                            }],
+                        });
+                    }
+                });
+            }
+        }
         $(function () {
             $.ajax({
 

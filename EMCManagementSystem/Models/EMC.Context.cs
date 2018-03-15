@@ -27,6 +27,7 @@ namespace EMCManagementSystem.Models
     
         public virtual DbSet<car> car { get; set; }
         public virtual DbSet<CarQualification> CarQualification { get; set; }
+        public virtual DbSet<CarQualification_18387> CarQualification_18387 { get; set; }
         public virtual DbSet<CarYearQualification> CarYearQualification { get; set; }
         public virtual DbSet<OriginalRecord> OriginalRecord { get; set; }
         public virtual DbSet<OriginalRecorddetails> OriginalRecorddetails { get; set; }
