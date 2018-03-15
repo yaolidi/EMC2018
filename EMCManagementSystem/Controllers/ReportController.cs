@@ -1088,11 +1088,7 @@ namespace EMCManagementSystem.Controllers
                 result = base.Json("Yes", JsonRequestBehavior.AllowGet);
               return result;
         }
-            
-          
-   
 
-        // Token: 0x06000119 RID: 281 RVA: 0x00006C38 File Offset: 0x00004E38
         public ActionResult UpdataReport(OriginalRecord tbOriginalRecord, string RegistrationName, string OriginalRecordName)
         {
             int id = (int)base.Session["OriginalRecordID"];
@@ -1162,7 +1158,326 @@ namespace EMCManagementSystem.Controllers
             }
             return base.Json("No", JsonRequestBehavior.AllowGet);
         }
+        /// <summary>
+        /// 未完成的试验记录保存
+        /// </summary>
+        /// <param name="tbOriginalRecord"></param>
+        /// <param name="RegistrationName"></param>
+        /// <param name="OriginalRecordName"></param>
+        /// <returns></returns>
+        public ActionResult UpdataReport_Continue(OriginalRecord tbOriginalRecord, string RegistrationName, string OriginalRecordName)
+        {
+            int id = (int)base.Session["OriginalRecordID"];
+            var tbOriginalRecord2 = (from tbReport in this.dbEMCEntities.OriginalRecord
+                      where tbReport.OriginalRecordID == id
+                      select tbReport).ToList<OriginalRecord>();
+            var qualified = false;
+           
+            if (tbOriginalRecord2.Count > 0)
+            {
+               
+                string CarName = tbOriginalRecord.brand.ToString().Trim();
+                if (tbOriginalRecord2[0].category == "14023") {
+                    var pathlist = (from tbpath in this.dbEMCEntities.path
+                                   where tbpath.OriginalRecordID== id
+                                   select tbpath).ToList();
+                   
+                    var list = (from tbCT in this.dbEMCEntities.CarQualification
+                                where tbCT.CarName == CarName
+                                select new
+                                {
+                                    tbCT.CarID,
+                                    tbCT.Qualification,
+                                    tbCT.qualificationNumber,
+                                    tbCT.UnqualifiedTimes
+                                }).Distinct().ToList();
 
+                        if (list.Count > 0)
+                        {
+
+                            ///车型合格率
+                            int id2 = list[0].CarID;
+                            if ((from tbReport in this.dbEMCEntities.CarQualification
+                                 where tbReport.CarID == id2
+                                 select tbReport).ToList<CarQualification>().Count > 0)
+                            {
+                                CarQualification carQualification = this.dbEMCEntities.CarQualification.Find(new object[]
+                                {
+                            id2
+                                });
+
+                                if (pathlist[0].AK_LH_qualified.ToString().Trim() == "合格" && pathlist[0].AK_LV_qualified.ToString().Trim() == "合格" && pathlist[0].AK_RH_qualified.ToString().Trim() == "合格" && pathlist[0].AK_RV_qualified.ToString().Trim() == "合格" && pathlist[0].AV_LH_qualified.ToString().Trim() == "合格" && pathlist[0].AV_LV_qualified.ToString().Trim() == "合格" && pathlist[0].AV_RH_qualified.ToString().Trim() == "合格" && pathlist[0].AV_RV_qualified.ToString().Trim() == "合格")
+                                {
+                                qualified = true;
+                                    carQualification.qualificationNumber = list[0].qualificationNumber + 1;
+                                    double num = Convert.ToDouble(list[0].qualificationNumber + 1);
+                                    double num2 = Convert.ToDouble(list[0].UnqualifiedTimes);
+                                    CarQualification arg_3EF_0 = carQualification;
+                                    double expr_3D5 = num;
+                                    arg_3EF_0.Qualification = new double?(Math.Round(expr_3D5 / (expr_3D5 + num2) * 100.0, 2));
+                                }
+                                else
+                                {
+                                if (pathlist[0].AK_LH_qualified.ToString().Trim() != "" && pathlist[0].AK_LV_qualified.ToString().Trim() != "" && pathlist[0].AK_RH_qualified.ToString().Trim() != "" && pathlist[0].AK_RV_qualified.ToString().Trim() != "" && pathlist[0].AV_LH_qualified.ToString().Trim() != "" && pathlist[0].AV_LV_qualified.ToString().Trim() != "" && pathlist[0].AV_RH_qualified.ToString().Trim() != "" && pathlist[0].AV_RV_qualified.ToString().Trim() != "")
+                                {
+                                    qualified = true;
+                                    carQualification.UnqualifiedTimes = list[0].UnqualifiedTimes + 1;
+                                    double num3 = Convert.ToDouble(list[0].qualificationNumber);
+                                    double num4 = Convert.ToDouble(list[0].UnqualifiedTimes + 1);
+                                    CarQualification arg_4AC_0 = carQualification;
+                                    double expr_492 = num3;
+                                    arg_4AC_0.Qualification = new double?(Math.Round(expr_492 / (expr_492 + num4) * 100.0, 2));
+                                }
+                                this.dbEMCEntities.SaveChanges();
+                            }
+                                   
+                            }
+                        }
+                        else
+                        {
+                            CarQualification carQualification2 = new CarQualification();
+                            carQualification2.CarName = CarName;
+                            if (pathlist[0].AK_LH_qualified.ToString().Trim() == "合格" && pathlist[0].AK_LV_qualified.ToString().Trim() == "合格" && pathlist[0].AK_RH_qualified.ToString().Trim() == "合格" && pathlist[0].AK_RV_qualified.ToString().Trim() == "合格" && pathlist[0].AV_LH_qualified.ToString().Trim() == "合格" && pathlist[0].AV_LV_qualified.ToString().Trim() == "合格" && pathlist[0].AV_RH_qualified.ToString().Trim() == "合格" && pathlist[0].AV_RV_qualified.ToString().Trim() == "合格")
+                            {
+                            qualified = true;
+                            carQualification2.qualificationNumber = new int?(1);
+                                carQualification2.UnqualifiedTimes = new int?(0);
+                                carQualification2.Qualification = new double?((double)100);
+                            }
+                            else
+                            {
+                            if (pathlist[0].AK_LH_qualified.ToString().Trim() != "" && pathlist[0].AK_LV_qualified.ToString().Trim() != "" && pathlist[0].AK_RH_qualified.ToString().Trim() != "" && pathlist[0].AK_RV_qualified.ToString().Trim() != "" && pathlist[0].AV_LH_qualified.ToString().Trim() != "" && pathlist[0].AV_LV_qualified.ToString().Trim() != "" && pathlist[0].AV_RH_qualified.ToString().Trim() != "" && pathlist[0].AV_RV_qualified.ToString().Trim() != "")
+                            {
+                                qualified = true;
+                                carQualification2.qualificationNumber = new int?(0);
+                                carQualification2.UnqualifiedTimes = new int?(1);
+                                carQualification2.Qualification = new double?(0.0);
+                            }
+                              
+                            }
+                            this.dbEMCEntities.CarQualification.Add(carQualification2);
+                            this.dbEMCEntities.SaveChanges();
+                        }
+                    
+
+                } else if (tbOriginalRecord2[0].category == "18387") {
+                    var pathlist = (from tbpath in this.dbEMCEntities.path_18387
+                                    where tbpath.OriginalRecordID == id
+                                    select tbpath).ToList();
+                  
+                    var list = (from tbCT in this.dbEMCEntities.CarQualification_18387
+                                where tbCT.CarName == CarName
+                                select new
+                                {
+                                    tbCT.CarID,
+                                    tbCT.Qualification,
+                                    tbCT.qualificationNumber,
+                                    tbCT.UnqualifiedTimes
+                                }).Distinct().ToList();
+
+                    if (list.Count > 0)
+                    {
+                        ///车型合格率
+                        int id2 = list[0].CarID;
+                        if ((from tbReport in this.dbEMCEntities.CarQualification_18387
+                             where tbReport.CarID == id2
+                             select tbReport).ToList<CarQualification_18387>().Count > 0)
+                        {
+                            CarQualification_18387 carQualification = this.dbEMCEntities.CarQualification_18387.Find(new object[]
+                            {
+                            id2
+                            });
+                            if (pathlist[0].LOOP_16x_qualified.ToString().Trim() == "合格" && pathlist[0].LOOP_16y_qualified.ToString().Trim() == "合格" && pathlist[0].LOOP_70x_qualified.ToString().Trim() == "合格" && pathlist[0].LOOP_70y_qualified.ToString().Trim() == "合格" && pathlist[0].ROD16_qualified.ToString().Trim() == "合格" && pathlist[0].ROD70_qualified.ToString().Trim() == "合格")
+                            {
+                                qualified = true;
+                                carQualification.qualificationNumber = list[0].qualificationNumber + 1;
+                                double num = Convert.ToDouble(list[0].qualificationNumber + 1);
+                                double num2 = Convert.ToDouble(list[0].UnqualifiedTimes);
+                                CarQualification_18387 arg_3EF_0 = carQualification;
+                                double expr_3D5 = num;
+                                arg_3EF_0.Qualification = new double?(Math.Round(expr_3D5 / (expr_3D5 + num2) * 100.0, 2));
+                            }
+                            else
+                            {
+                                if (pathlist[0].LOOP_16x_qualified.ToString().Trim() != "" && pathlist[0].LOOP_16y_qualified.ToString().Trim() != "" && pathlist[0].LOOP_70x_qualified.ToString().Trim() != "" && pathlist[0].LOOP_70y_qualified.ToString().Trim() != "" && pathlist[0].ROD16_qualified.ToString().Trim() != "" && pathlist[0].ROD70_qualified.ToString().Trim() != "")
+                                {
+                                    qualified = true;
+                                    carQualification.UnqualifiedTimes = list[0].UnqualifiedTimes + 1;
+                                    double num3 = Convert.ToDouble(list[0].qualificationNumber);
+                                    double num4 = Convert.ToDouble(list[0].UnqualifiedTimes + 1);
+                                    CarQualification_18387 arg_4AC_0 = carQualification;
+                                    double expr_492 = num3;
+                                    arg_4AC_0.Qualification = new double?(Math.Round(expr_492 / (expr_492 + num4) * 100.0, 2));
+                                }
+                             
+                            }
+                            this.dbEMCEntities.SaveChanges();
+                        }
+                    }
+                    else
+                    {
+                        CarQualification_18387 carQualification2 = new CarQualification_18387();
+                        carQualification2.CarName = CarName;
+
+
+                        if (pathlist[0].LOOP_16x_qualified.ToString().Trim() == "合格" && pathlist[0].LOOP_16y_qualified.ToString().Trim() == "合格" && pathlist[0].LOOP_70x_qualified.ToString().Trim() == "合格" && pathlist[0].LOOP_70y_qualified.ToString().Trim() == "合格" && pathlist[0].ROD16_qualified.ToString().Trim() == "合格" && pathlist[0].ROD70_qualified.ToString().Trim() == "合格")
+                        {
+                            qualified = true;
+                            carQualification2.qualificationNumber = new int?(1);
+                            carQualification2.UnqualifiedTimes = new int?(0);
+                            carQualification2.Qualification = new double?((double)100);
+                        }
+                        else
+                        {
+                            if (pathlist[0].LOOP_16x_qualified.ToString().Trim() != "" && pathlist[0].LOOP_16y_qualified.ToString().Trim() != "" && pathlist[0].LOOP_70x_qualified.ToString().Trim() != "" && pathlist[0].LOOP_70y_qualified.ToString().Trim() != "" && pathlist[0].ROD16_qualified.ToString().Trim() != "" && pathlist[0].ROD70_qualified.ToString().Trim() != "")
+                            {
+                                qualified = true;
+                                carQualification2.qualificationNumber = new int?(0);
+                                carQualification2.UnqualifiedTimes = new int?(1);
+                                carQualification2.Qualification = new double?(0.0);
+                            }
+                               
+                        }
+                        this.dbEMCEntities.CarQualification_18387.Add(carQualification2);
+                        this.dbEMCEntities.SaveChanges();
+                    }
+                }
+
+                //年合格率
+                int time2 = Convert.ToInt32(Convert.ToDateTime(tbOriginalRecord.time).Year.ToString());
+                var list2 = (from tbCT in this.dbEMCEntities.CarYearQualification
+                             where tbCT.carName == CarName && tbCT.year == time2
+                             select new
+                             {
+                                 tbCT.CarYearQualificationID,
+                                 tbCT.Qualification,
+                                 tbCT.qualificationNumber,
+                                 tbCT.UnqualifiedTimes,
+                                 tbCT.year
+                             }).Distinct().ToList();
+              
+                    if (list2.Count > 0)
+                    {
+                        int id2 = list2[0].CarYearQualificationID;
+
+                        if ((from tbReport in dbEMCEntities.CarYearQualification
+                             where tbReport.CarYearQualificationID == id2
+                             select tbReport).ToList<CarYearQualification>().Count > 0)
+                        {
+                            CarYearQualification carQualification = this.dbEMCEntities.CarYearQualification.Find(new object[]
+                            {
+                            id2
+                            });
+                            if (qualified == true)
+                            {
+                                carQualification.qualificationNumber = list2[0].qualificationNumber + 1;
+                                double num = Convert.ToDouble(list2[0].qualificationNumber + 1);
+                                double num2 = Convert.ToDouble(list2[0].UnqualifiedTimes);
+                                CarYearQualification arg_3EF_0 = carQualification;
+                                double expr_3D5 = num;
+                                arg_3EF_0.Qualification = new double?(Math.Round(expr_3D5 / (expr_3D5 + num2) * 100, 2));
+                            }
+                            else
+                            {
+                                carQualification.UnqualifiedTimes = list2[0].UnqualifiedTimes + 1;
+                                double num3 = Convert.ToDouble(list2[0].qualificationNumber);
+                                double num4 = Convert.ToDouble(list2[0].UnqualifiedTimes + 1);
+                                CarYearQualification arg_4AC_0 = carQualification;
+                                double expr_492 = num3;
+                                arg_4AC_0.Qualification = new double?(Math.Round(expr_492 / (expr_492 + num4) * 100, 2));
+                            }
+                            this.dbEMCEntities.SaveChanges();
+                        }
+                    }
+                    else
+                    {
+                        CarYearQualification carQualification2 = new CarYearQualification();
+                        carQualification2.carName = CarName;
+                        if (qualified == true)
+                        {
+                            int time = Convert.ToInt32(Convert.ToDateTime(tbOriginalRecord.time).Year.ToString());
+                            carQualification2.year = time;
+                            carQualification2.qualificationNumber = new int?(1);
+                            carQualification2.UnqualifiedTimes = new int?(0);
+                            carQualification2.Qualification = new double?((double)100);
+                        }
+                        else
+                        {
+                            int time = Convert.ToInt32(Convert.ToDateTime(tbOriginalRecord.time).Year.ToString());
+                            carQualification2.year = time;
+                            carQualification2.qualificationNumber = new int?(0);
+                            carQualification2.UnqualifiedTimes = new int?(1);
+                            carQualification2.Qualification = new double?(0.0);
+                        }
+                        this.dbEMCEntities.CarYearQualification.Add(carQualification2);
+                        this.dbEMCEntities.SaveChanges();
+                    }
+                OriginalRecord expr_C2 = this.dbEMCEntities.OriginalRecord.Find(new object[]
+                 {
+                    id
+                 });
+
+                expr_C2.taskNumber = tbOriginalRecord.taskNumber;
+                expr_C2.time = new DateTime?(DateTime.Now);
+                expr_C2.brand = tbOriginalRecord.brand;
+                expr_C2.introduce = tbOriginalRecord.introduce;
+                expr_C2.ModelCarModel = tbOriginalRecord.ModelCarModel;
+                expr_C2.Remarks = tbOriginalRecord.Remarks;
+                expr_C2.ResultID = tbOriginalRecord.ResultID;
+                expr_C2.taskAllName = tbOriginalRecord.taskAllName;
+                expr_C2.VIN = tbOriginalRecord.VIN;
+                if (qualified == true) {
+                    expr_C2.complete = true;
+                }
+                    this.dbEMCEntities.SaveChanges();
+                if (RegistrationName != "")
+                {
+                    foreach (RegistrationPath current in (from table1 in this.dbEMCEntities.RegistrationPath
+                                                          where table1.OriginalRecordID == (int?)id
+                                                          select table1).ToList<RegistrationPath>())
+                    {
+                        this.dbEMCEntities.Entry<RegistrationPath>(current).State = EntityState.Deleted;
+                    }
+                    string[] array = RegistrationName.Split(new char[]
+                    {
+                        '#'
+                    });
+                    for (int i = 0; i < array.Length - 1; i++)
+                    {
+                        RegistrationPath registrationPath = new RegistrationPath();
+                        registrationPath.OriginalRecordID = new int?(id);
+                        registrationPath.name = array[i].ToString().Trim();
+                        registrationPath.Route = "/File/" + array[i].ToString().Trim();
+                        this.dbEMCEntities.RegistrationPath.Add(registrationPath);
+                        this.dbEMCEntities.SaveChanges();
+                    }
+                }
+                if (OriginalRecordName != "")
+                {
+                    foreach (OriginalRecordPath current2 in (from table1 in this.dbEMCEntities.OriginalRecordPath
+                                                             where table1.OriginalRecordID == (int?)id
+                                                             select table1).ToList<OriginalRecordPath>())
+                    {
+                        this.dbEMCEntities.Entry<OriginalRecordPath>(current2).State = EntityState.Deleted;
+                    }
+                    string[] array2 = OriginalRecordName.Split(new char[]
+                    {
+                        '#'
+                    });
+                    for (int j = 0; j < array2.Length - 1; j++)
+                    {
+                        OriginalRecordPath originalRecordPath = new OriginalRecordPath();
+                        originalRecordPath.OriginalRecordID = new int?(id);
+                        originalRecordPath.name = array2[j].ToString().Trim();
+                        originalRecordPath.Route = "/File/" + array2[j].ToString().Trim();
+                        this.dbEMCEntities.OriginalRecordPath.Add(originalRecordPath);
+                        this.dbEMCEntities.SaveChanges();
+                    }
+                }
+                return base.Json("Yes", JsonRequestBehavior.AllowGet);
+            }
+            return base.Json("No", JsonRequestBehavior.AllowGet);
+        }
         // Token: 0x0600011A RID: 282 RVA: 0x0000707C File Offset: 0x0000527C
         [HttpPost]
         public ActionResult StationImport(HttpPostedFileBase filebase)
