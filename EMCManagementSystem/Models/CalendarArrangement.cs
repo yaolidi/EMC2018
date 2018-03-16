@@ -16,8 +16,8 @@ namespace EMCManagementSystem.Models
     {
         public int CalendarArrangement_id { get; set; }
         public string CalendarArrangement_title { get; set; }
-        public Nullable<System.DateTime> StartTime { get; set; }
-        public Nullable<System.DateTime> EndTime { get; set; }
+        public string StartTime { get; set; }
+        public string EndTime { get; set; }
         public string Colorclass { get; set; }
         public Nullable<System.DateTime> InsertTime { get; set; }
     }
