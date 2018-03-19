@@ -56,11 +56,11 @@ namespace EMCManagementSystem.Controllers
         public ActionResult SaveCalendar(string title,string start,string className)
         {
 
-            DateTime startStr = Convert.ToDateTime(start);
+            //DateTime startStr = Convert.ToDateTime(start);
             CalendarArrangement myCalendarArrangement = new CalendarArrangement();
             //sdfsdf.SexID = sexid;
             myCalendarArrangement.CalendarArrangement_title = title;
-           // myCalendarArrangement.StartTime = startStr;
+            myCalendarArrangement.StartTime = startStr;
           
             myCalendarArrangement.Colorclass = className;
             myCalendarArrangement.InsertTime = Convert.ToDateTime(DateTime.Now.TimeOfDay.ToString());
@@ -76,10 +76,10 @@ namespace EMCManagementSystem.Controllers
 
         public ActionResult UpdataSaveCalendarOne(int CalendarArrangement_id,string end)
         {
-            DateTime endStr = Convert.ToDateTime(end);
+            //DateTime endStr = Convert.ToDateTime(end);
             CalendarArrangement myCalendarArrangement = new CalendarArrangement();
             var AlarmNotice = myEMCEntities.CalendarArrangement.Find(CalendarArrangement_id);
-           // AlarmNotice.EndTime = endStr;
+            AlarmNotice.EndTime = endStr;
             AlarmNotice.InsertTime = Convert.ToDateTime(DateTime.Now.TimeOfDay.ToString()); ;
 
             int EMCFT = myEMCEntities.SaveChanges();
@@ -92,12 +92,12 @@ namespace EMCManagementSystem.Controllers
 
         public ActionResult UpdataSaveCalendarTow(int CalendarArrangement_id,string start, string end)
         {
-            DateTime startStr = Convert.ToDateTime(start);
-            DateTime endStr = Convert.ToDateTime(end);
+            //DateTime startStr = Convert.ToDateTime(start);
+            //DateTime endStr = Convert.ToDateTime(end);
             CalendarArrangement myCalendarArrangement = new CalendarArrangement();
             var AlarmNotice = myEMCEntities.CalendarArrangement.Find(CalendarArrangement_id);
-           // AlarmNotice.StartTime = startStr;
-          //  AlarmNotice.EndTime = endStr;
+            AlarmNotice.StartTime = startStr;
+            AlarmNotice.EndTime = endStr;
             AlarmNotice.InsertTime = Convert.ToDateTime(DateTime.Now.TimeOfDay.ToString()); ;
 
             int EMCFT = myEMCEntities.SaveChanges();
