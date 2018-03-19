@@ -121,10 +121,14 @@ namespace EMCManagementSystem.Controllers
                                  tbCT.year
 
                              }).Distinct().ToList();
-               
+                int year = 2014;
                 foreach (var one2 in data2.ToList())
                 {
-                    arraylist.Add(one2.Qualification);
+                    if (one2.year == year)
+                    {
+                        arraylist.Add(one2.Qualification);
+                    }
+                    year++;
                 }
                     
                 p.Add("data", arraylist);
@@ -258,6 +262,54 @@ namespace EMCManagementSystem.Controllers
                 qualifiedlist.Add(LOOP_70y_qualifiedcount);
             }
             return Json(qualifiedlist, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult selectYearCarQualification_18387()
+        {
+            int startYear = 2014;
+            int endtYear = 2018;
+            var data = (from tbCT in this.dbEMCEntities.CarYearQualification_18387
+                        select new
+                        {
+                            name = tbCT.carName,
+
+                        }).Distinct().ToList();
+            List<Dictionary<string, object>> list = new List<Dictionary<string, object>>();
+            foreach (var one in data.ToList())
+            {
+                Dictionary<string, object> p = new Dictionary<string, object>();
+                ArrayList arraylist = new ArrayList();
+                p.Add("name", one.name.ToString().Trim());
+                string name = one.name.ToString().Trim();
+                var data2 = (from tbCT in this.dbEMCEntities.CarYearQualification_18387
+                             orderby tbCT.year descending
+                             where tbCT.carName == name && tbCT.year>= startYear && tbCT.year<= endtYear
+                             select new
+                             {
+                                 tbCT.Qualification,
+                                 tbCT.year
+
+                             }).Distinct().ToList();
+                int opq = (endtYear - startYear) + 1;
+                for (int i = 0; i < opq ; i++)
+                {
+                    foreach (var one2 in data2.ToList())
+                    {
+                        if (one2.year == startYear)
+                        {
+                            arraylist.Add(one2.Qualification);
+                        }
+                        else {
+                            arraylist.Add(0);
+                        }
+                        startYear++;
+                    }
+                }
+                
+
+                p.Add("data", arraylist);
+                list.Add(p);
+            }
+            return Json(list, JsonRequestBehavior.AllowGet);
         }
         // Token: 0x04000072 RID: 114
         private EMCEntities dbEMCEntities = new EMCEntities();

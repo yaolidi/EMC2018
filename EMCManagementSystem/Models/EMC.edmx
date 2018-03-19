@@ -11,8 +11,8 @@
           </Key>
           <Property Name="CalendarArrangement_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CalendarArrangement_title" Type="nchar" MaxLength="100" />
-          <Property Name="StartTime" Type="date" />
-          <Property Name="EndTime" Type="datetime" />
+          <Property Name="StartTime" Type="nchar" MaxLength="30" />
+          <Property Name="EndTime" Type="nchar" MaxLength="30" />
           <Property Name="Colorclass" Type="nchar" MaxLength="30" />
           <Property Name="InsertTime" Type="datetime" />
         </EntityType>
@@ -44,6 +44,18 @@
           <Property Name="Qualification" Type="float" />
         </EntityType>
         <EntityType Name="CarYearQualification">
+          <Key>
+            <PropertyRef Name="CarYearQualificationID" />
+          </Key>
+          <Property Name="CarYearQualificationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="carName" Type="nchar" MaxLength="15" />
+          <Property Name="CarYearQualification" Type="nchar" MaxLength="10" />
+          <Property Name="year" Type="int" />
+          <Property Name="qualificationNumber" Type="int" />
+          <Property Name="UnqualifiedTimes" Type="int" />
+          <Property Name="Qualification" Type="float" />
+        </EntityType>
+        <EntityType Name="CarYearQualification_18387">
           <Key>
             <PropertyRef Name="CarYearQualificationID" />
           </Key>
@@ -206,6 +218,7 @@
           <EntitySet Name="CarQualification" EntityType="Self.CarQualification" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CarQualification_18387" EntityType="Self.CarQualification_18387" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CarYearQualification" EntityType="Self.CarYearQualification" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CarYearQualification_18387" EntityType="Self.CarYearQualification_18387" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OriginalRecord" EntityType="Self.OriginalRecord" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OriginalRecorddetails" EntityType="Self.OriginalRecorddetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OriginalRecordPath" EntityType="Self.OriginalRecordPath" Schema="dbo" store:Type="Tables" />
@@ -222,10 +235,12 @@
     <edmx:ConceptualModels>
       <Schema Namespace="EMCModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="EMCEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CalendarArrangement" EntityType="EMCModel.CalendarArrangement" />
           <EntitySet Name="car" EntityType="EMCModel.car" />
           <EntitySet Name="CarQualification" EntityType="EMCModel.CarQualification" />
           <EntitySet Name="CarQualification_18387" EntityType="EMCModel.CarQualification_18387" />
           <EntitySet Name="CarYearQualification" EntityType="EMCModel.CarYearQualification" />
+          <EntitySet Name="CarYearQualification_18387" EntityType="EMCModel.CarYearQualification_18387" />
           <EntitySet Name="OriginalRecord" EntityType="EMCModel.OriginalRecord" />
           <EntitySet Name="OriginalRecorddetails" EntityType="EMCModel.OriginalRecorddetails" />
           <EntitySet Name="OriginalRecordPath" EntityType="EMCModel.OriginalRecordPath" />
@@ -236,8 +251,18 @@
           <EntitySet Name="ReportFile" EntityType="EMCModel.ReportFile" />
           <EntitySet Name="task" EntityType="EMCModel.task" />
           <EntitySet Name="taskDetails" EntityType="EMCModel.taskDetails" />
-          <EntitySet Name="CalendarArrangement" EntityType="EMCModel.CalendarArrangement" />
         </EntityContainer>
+        <EntityType Name="CalendarArrangement">
+          <Key>
+            <PropertyRef Name="CalendarArrangement_id" />
+          </Key>
+          <Property Name="CalendarArrangement_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CalendarArrangement_title" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="StartTime" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+          <Property Name="EndTime" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+          <Property Name="Colorclass" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+          <Property Name="InsertTime" Type="DateTime" Precision="3" />
+        </EntityType>
         <EntityType Name="car">
           <Key>
             <PropertyRef Name="carID" />
@@ -272,6 +297,18 @@
           <Property Name="CarYearQualificationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="carName" Type="String" MaxLength="15" FixedLength="true" Unicode="true" />
           <Property Name="CarYearQualification1" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="year" Type="Int32" />
+          <Property Name="qualificationNumber" Type="Int32" />
+          <Property Name="UnqualifiedTimes" Type="Int32" />
+          <Property Name="Qualification" Type="Double" />
+        </EntityType>
+        <EntityType Name="CarYearQualification_18387">
+          <Key>
+            <PropertyRef Name="CarYearQualificationID" />
+          </Key>
+          <Property Name="CarYearQualificationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="carName" Type="String" MaxLength="15" FixedLength="true" Unicode="true" />
+          <Property Name="CarYearQualification" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="year" Type="Int32" />
           <Property Name="qualificationNumber" Type="Int32" />
           <Property Name="UnqualifiedTimes" Type="Int32" />
@@ -422,23 +459,24 @@
           <Property Name="taskDetailsName" Type="String" MaxLength="300" FixedLength="true" Unicode="true" />
           <Property Name="taskID" Type="Int32" />
         </EntityType>
-        <EntityType Name="CalendarArrangement">
-          <Key>
-            <PropertyRef Name="CalendarArrangement_id" />
-          </Key>
-          <Property Name="CalendarArrangement_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CalendarArrangement_title" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
-          <Property Name="StartTime" Type="DateTime" Precision="0" />
-          <Property Name="EndTime" Type="DateTime" Precision="3" />
-          <Property Name="Colorclass" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
-          <Property Name="InsertTime" Type="DateTime" Precision="3" />
-        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="EMCModelStoreContainer" CdmEntityContainer="EMCEntities">
+          <EntitySetMapping Name="CalendarArrangement">
+            <EntityTypeMapping TypeName="EMCModel.CalendarArrangement">
+              <MappingFragment StoreEntitySet="CalendarArrangement">
+                <ScalarProperty Name="InsertTime" ColumnName="InsertTime" />
+                <ScalarProperty Name="Colorclass" ColumnName="Colorclass" />
+                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="CalendarArrangement_title" ColumnName="CalendarArrangement_title" />
+                <ScalarProperty Name="CalendarArrangement_id" ColumnName="CalendarArrangement_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="car">
             <EntityTypeMapping TypeName="EMCModel.car">
               <MappingFragment StoreEntitySet="car">
@@ -477,6 +515,19 @@
                 <ScalarProperty Name="qualificationNumber" ColumnName="qualificationNumber" />
                 <ScalarProperty Name="year" ColumnName="year" />
                 <ScalarProperty Name="CarYearQualification1" ColumnName="CarYearQualification" />
+                <ScalarProperty Name="carName" ColumnName="carName" />
+                <ScalarProperty Name="CarYearQualificationID" ColumnName="CarYearQualificationID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CarYearQualification_18387">
+            <EntityTypeMapping TypeName="EMCModel.CarYearQualification_18387">
+              <MappingFragment StoreEntitySet="CarYearQualification_18387">
+                <ScalarProperty Name="Qualification" ColumnName="Qualification" />
+                <ScalarProperty Name="UnqualifiedTimes" ColumnName="UnqualifiedTimes" />
+                <ScalarProperty Name="qualificationNumber" ColumnName="qualificationNumber" />
+                <ScalarProperty Name="year" ColumnName="year" />
+                <ScalarProperty Name="CarYearQualification" ColumnName="CarYearQualification" />
                 <ScalarProperty Name="carName" ColumnName="carName" />
                 <ScalarProperty Name="CarYearQualificationID" ColumnName="CarYearQualificationID" />
               </MappingFragment>
@@ -634,18 +685,6 @@
                 <ScalarProperty Name="taskID" ColumnName="taskID" />
                 <ScalarProperty Name="taskDetailsName" ColumnName="taskDetailsName" />
                 <ScalarProperty Name="taskDetailsID" ColumnName="taskDetailsID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="CalendarArrangement">
-            <EntityTypeMapping TypeName="EMCModel.CalendarArrangement">
-              <MappingFragment StoreEntitySet="CalendarArrangement">
-                <ScalarProperty Name="InsertTime" ColumnName="InsertTime" />
-                <ScalarProperty Name="Colorclass" ColumnName="Colorclass" />
-                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
-                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
-                <ScalarProperty Name="CalendarArrangement_title" ColumnName="CalendarArrangement_title" />
-                <ScalarProperty Name="CalendarArrangement_id" ColumnName="CalendarArrangement_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

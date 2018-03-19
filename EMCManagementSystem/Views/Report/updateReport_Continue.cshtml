@@ -1404,7 +1404,7 @@
                 if (arr_j[1] == "xls" || arr_j[1] == "xlsx") {
                     var request = $.ajax({
                         type: "POST",
-                        url: "/Report/StationImport_18387Magnetic",
+                        url: "/Report/update_StationImport_18387Magnetic",
                         data: formData,			//这里上传的数据使用了formData 对象
                         processData: false, 	//必须false才会自动加上正确的Content-Type
                         contentType: false,
@@ -1473,7 +1473,7 @@
                 else if (arr_j[1].toLowerCase() == "wmf" || arr_j[1].toLowerCase() == "gif" || arr_j[1].toLowerCase() == "png" || arr_j[1].toLowerCase() == "bmp" || arr_j[1].toLowerCase() == "jpeg" || arr_j[1].toLowerCase() == "jpg") {
                     var request = $.ajax({
                         type: "POST",
-                        url: "/Report/StationImport2",
+                        url: "/Report/update_StationImport2",
                         data: formData,			//这里上传的数据使用了formData 对象
                         processData: false, 	//必须false才会自动加上正确的Content-Type
                         contentType: false,
@@ -1537,7 +1537,7 @@
                 if (arr_j[1] == "xls" || arr_j[1] == "xlsx") {
                     var request = $.ajax({
                         type: "POST",
-                        url: "/Report/StationImport_18387Electrical",
+                        url: "/Report/update_StationImport_18387Electrical",
                         data: formData,			//这里上传的数据使用了formData 对象
                         processData: false, 	//必须false才会自动加上正确的Content-Type
                         contentType: false,
@@ -1590,7 +1590,7 @@
                 } else if (arr_j[1].toLowerCase() == "wmf" || arr_j[1].toLowerCase() == "gif" || arr_j[1].toLowerCase() == "png" || arr_j[1].toLowerCase() == "bmp" || arr_j[1].toLowerCase() == "jpeg" || arr_j[1].toLowerCase() == "jpg") {
                     var request = $.ajax({
                         type: "POST",
-                        url: "/Report/StationImport2",
+                        url: "/Report/update_StationImport2_Continue",
                         data: formData,			//这里上传的数据使用了formData 对象
                         processData: false, 	//必须false才会自动加上正确的Content-Type
                         contentType: false,
@@ -1843,7 +1843,7 @@
                         async: true,    //或false,是否异步
                         //上传成功后回调
                         success: function (data) {
-                            ready();s
+                            ready();
                             document.getElementById("zhezhao").style.display = "none";
                             if (data.indexOf("LH") > -1) {
                                 setCookie("PK_file_LH2", data, 1);
@@ -2334,6 +2334,7 @@ function save() {
     }
     var introduce = document.getElementById("introduce").value;
     var Remarks = document.getElementById("Remarks").value;
+    var time = document.getElementById("demo-1").value;
     $.ajax({
 
         type: "post",
@@ -2344,7 +2345,7 @@ function save() {
 
         async: true,
 
-        data: { brand: brand, taskAllName: taskAllNameall, ModelCarModel: ModelCarModel, VIN: VIN, ResultID: ResultID, RegistrationName: RegistrationName, OriginalRecordName: OriginalRecordName, introduce: introduce, Remarks: Remarks, taskNumber: taskNumber },
+        data: { brand: brand, taskAllName: taskAllNameall, ModelCarModel: ModelCarModel, VIN: VIN, ResultID: ResultID, RegistrationName: RegistrationName, OriginalRecordName: OriginalRecordName, introduce: introduce, Remarks: Remarks, taskNumber: taskNumber, time: time },
 
         success: function (data) {
             alert(data);

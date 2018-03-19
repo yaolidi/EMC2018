@@ -22,76 +22,147 @@
     <script src="~/Highcharts/js/exporting.js"></script>
     <script src="~/Highcharts/js/highcharts-zh_CN.js"></script>
     <script src="~/Content/js/jquery.min.js"></script>
+    <select id="op" onchange="opchange()">
+        <option value="1">14023</option>
+        <option value="2">18387</option>
+    </select>
     <div id="container" ></div>
 
     <script type="text/javascript">
-        
-        $(function () {
-            $.ajax({
+        function opchange() {
+            var judgenum = $('#op option:selected').val();
+            if (judgenum == 1) {//14023
+                $.ajax({
 
-                type: "post",
+                    type: "post",
 
-                url: "/Data/selectYearCarQualification",
+                    url: "/Data/selectYearCarQualification",
 
-                cache: false,
+                    cache: false,
 
-                async: true,
+                    async: true,
 
-                success: function (data) {
-                   
-                    var data1 = data;
-                    Highcharts.chart('container', {
-                        chart: {
+                    success: function (data) {
 
-                            zoomType: 'x'
-                        },
-                        title: {
-                            text: '汽车品牌合格率, 2014-2018'
-                        },
+                        var data1 = data;
+                        Highcharts.chart('container', {
+                            chart: {
 
-                        subtitle: {
-                            text: '详情如下图'
-                        },
-
-                        yAxis: {
+                                zoomType: 'x'
+                            },
                             title: {
-                                text: '百分比'
-                            }
-                        },
-                        legend: {
-                            layout: 'vertical',
-                            align: 'right',
-                            verticalAlign: 'middle'
-                        },
-                        plotOptions: {
-                            series: {
-                                label: {
-                                    connectorAllowed: false
-                                },
-                                pointStart: 2014
-                            }
-                        },
-                        series: data1,
-                        responsive: {
-                            rules: [{
-                                condition: {
-                                    maxWidth: 500
-                                },
-                                chartOptions: {
-                                    legend: {
-                                        layout: 'horizontal',
-                                        align: 'center',
-                                        verticalAlign: 'bottom'
-                                    }
-                                }
-                            }]
-                        }
+                                text: '汽车品牌合格率, 2014-2018'
+                            },
 
-                    });
-                }
-            });
-          
-           
+                            subtitle: {
+                                text: '详情如下图'
+                            },
+
+                            yAxis: {
+                                title: {
+                                    text: '百分比'
+                                }
+                            },
+                            legend: {
+                                layout: 'vertical',
+                                align: 'right',
+                                verticalAlign: 'middle'
+                            },
+                            plotOptions: {
+                                series: {
+                                    label: {
+                                        connectorAllowed: false
+                                    },
+                                    pointStart: 2014
+                                }
+                            },
+                            series: data1,
+                            responsive: {
+                                rules: [{
+                                    condition: {
+                                        maxWidth: 500
+                                    },
+                                    chartOptions: {
+                                        legend: {
+                                            layout: 'horizontal',
+                                            align: 'center',
+                                            verticalAlign: 'bottom'
+                                        }
+                                    }
+                                }]
+                            }
+
+                        });
+                    }
+                });
+            } else if (judgenum == 2) {
+                $.ajax({
+
+                    type: "post",
+
+                    url: "/Data/selectYearCarQualification_18387",
+
+                    cache: false,
+
+                    async: true,
+
+                    success: function (data) {
+
+                        var data1 = data;
+                        Highcharts.chart('container', {
+                            chart: {
+
+                                zoomType: 'x'
+                            },
+                            title: {
+                                text: '汽车品牌合格率, 2014-2018'
+                            },
+
+                            subtitle: {
+                                text: '详情如下图'
+                            },
+
+                            yAxis: {
+                                title: {
+                                    text: '百分比'
+                                }
+                            },
+                            legend: {
+                                layout: 'vertical',
+                                align: 'right',
+                                verticalAlign: 'middle'
+                            },
+                            plotOptions: {
+                                series: {
+                                    label: {
+                                        connectorAllowed: false
+                                    },
+                                    pointStart: 2014
+                                }
+                            },
+                            series: data1,
+                            responsive: {
+                                rules: [{
+                                    condition: {
+                                        maxWidth: 500
+                                    },
+                                    chartOptions: {
+                                        legend: {
+                                            layout: 'horizontal',
+                                            align: 'center',
+                                            verticalAlign: 'bottom'
+                                        }
+                                    }
+                                }]
+                            }
+
+                        });
+                    }
+                });
+            }
+        }
+        $(function () {
+            opchange();  
         })
       
     </script>

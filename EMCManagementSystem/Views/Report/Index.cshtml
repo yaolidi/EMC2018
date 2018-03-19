@@ -97,13 +97,13 @@
                                 <li class="active">
                                     <a href="#home-3" data-toggle="tab">
                                         <span class="visible-xs"><i class="fa-home"></i></span>
-                                        <span class="hidden-xs">以完成</span>
+                                        <span class="hidden-xs">信息录入已完成</span>
                                     </a>
                                 </li>
                                 <li class="">
                                     <a href="#profile-3" data-toggle="tab">
                                         <span class="visible-xs"><i class="fa-user"></i></span>
-                                        <span class="hidden-xs">未完成</span>
+                                        <span class="hidden-xs" style="color:red">信息录入未完成</span>
                                     </a>
                                 </li>
                             </ul>
@@ -136,7 +136,10 @@
                                                                     <option>18387</option>
                                                                 </select>
                                                             </td>
-
+                                                            <td width="10%" class="left">任务号：</td>
+                                                            <td width="20%" class="right">
+                                                                <input id="taskNumber" type="text" size="16" style="width:100%" />
+                                                            </td>
                                                             <td class="right" colspan="2">
                                                                 <a href="/Report/InsertReport" class="btn btn-primary pull-left col-sm-12 tbl-search"><span>添加数据信息记录</span></a>
 
@@ -150,6 +153,10 @@
                                                             <td width="10%" class="left">终止时间：</td>
                                                             <td width="20%" class="right">
                                                                 <input id="TestTime2" type="text" size="16" style="width:100%" />
+                                                            </td>
+                                                            <td width="10%" class="left">VIN：</td>
+                                                            <td width="20%" class="right">
+                                                                <input id="VIN" type="text" size="16" style="width:100%" />
                                                             </td>
                                                             <td class="right" colspan="2">
                                                                 <button class="btn btn-primary pull-left col-sm-12 tbl-search" data-dismiss="modal" onclick="search()">
@@ -169,6 +176,7 @@
                                                                 <th width="10%" data-field="time">创建时间</th>
                                                                 <th width="10%" data-field="brand">汽车品牌</th>
                                                                 <th width="10%" data-field="taskNumber">任务号</th>
+                                                                <th width="10%" data-field="VIN">VIN</th>
                                                                 <th width="10%" data-field="ResultID">检验结果</th>
                                                                 <th width="15%" data-field="operation">操作</th>
                                                             </tr>
@@ -215,7 +223,10 @@
                                                                     <option>18387</option>
                                                                 </select>
                                                             </td>
-
+                                                            <td width="10%" class="left">任务号：</td>
+                                                            <td width="20%" class="right">
+                                                                <input id="taskNumber" type="text" size="16" style="width:100%" />
+                                                            </td>
                                                             <td class="right" colspan="2">
                                                                 <a href="/Report/InsertReport" class="btn btn-primary pull-left col-sm-12 tbl-search"><span>添加数据信息记录</span></a>
 
@@ -229,6 +240,10 @@
                                                             <td width="10%" class="left">终止时间：</td>
                                                             <td width="20%" class="right">
                                                                 <input id="TestTime2" type="text" size="16" style="width:100%" />
+                                                            </td>
+                                                            <td width="10%" class="left">VIN：</td>
+                                                            <td width="20%" class="right">
+                                                                <input id="VIN" type="text" size="16" style="width:100%" />
                                                             </td>
                                                             <td class="right" colspan="2">
                                                                 <button class="btn btn-primary pull-left col-sm-12 tbl-search" data-dismiss="modal" onclick="search()">
@@ -248,6 +263,7 @@
                                                                 <th width="10%" data-field="time">创建时间</th>
                                                                 <th width="10%" data-field="brand">汽车品牌</th>
                                                                 <th width="10%" data-field="taskNumber">任务号</th>
+                                                                <th width="10%" data-field="VIN">VIN</th>
                                                                 <th width="10%" data-field="ResultID">检验结果</th>
                                                                 <th width="15%" data-field="operation">操作</th>
                                                             </tr>
@@ -375,6 +391,8 @@
             var test = document.getElementById("test").value;
             var TestTime = document.getElementById("TestTime").value;
             var TestTime2 = document.getElementById("TestTime2").value;
+            var taskNumber = document.getElementById("taskNumber").value;
+            var VIN = document.getElementById("VIN").value;
             $.ajax({
 
                 type: "post",
@@ -384,7 +402,7 @@
                 cache: false,
 
                 async: true,
-                data: { brand: brand, test: test, TestTime: TestTime, TestTime2: TestTime2 },
+                data: { brand: brand, test: test, TestTime: TestTime, TestTime2: TestTime2, taskNumber: taskNumber, VIN: VIN },
                 success: function (data) {
           
                     for (i = 0; i < data.length ; i++) {

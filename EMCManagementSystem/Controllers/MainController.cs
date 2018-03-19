@@ -60,7 +60,7 @@ namespace EMCManagementSystem.Controllers
             CalendarArrangement myCalendarArrangement = new CalendarArrangement();
             //sdfsdf.SexID = sexid;
             myCalendarArrangement.CalendarArrangement_title = title;
-            myCalendarArrangement.StartTime = startStr;
+           // myCalendarArrangement.StartTime = startStr;
           
             myCalendarArrangement.Colorclass = className;
             myCalendarArrangement.InsertTime = Convert.ToDateTime(DateTime.Now.TimeOfDay.ToString());
@@ -79,7 +79,7 @@ namespace EMCManagementSystem.Controllers
             DateTime endStr = Convert.ToDateTime(end);
             CalendarArrangement myCalendarArrangement = new CalendarArrangement();
             var AlarmNotice = myEMCEntities.CalendarArrangement.Find(CalendarArrangement_id);
-            AlarmNotice.EndTime = endStr;
+           // AlarmNotice.EndTime = endStr;
             AlarmNotice.InsertTime = Convert.ToDateTime(DateTime.Now.TimeOfDay.ToString()); ;
 
             int EMCFT = myEMCEntities.SaveChanges();
@@ -96,8 +96,8 @@ namespace EMCManagementSystem.Controllers
             DateTime endStr = Convert.ToDateTime(end);
             CalendarArrangement myCalendarArrangement = new CalendarArrangement();
             var AlarmNotice = myEMCEntities.CalendarArrangement.Find(CalendarArrangement_id);
-            AlarmNotice.StartTime = startStr;
-            AlarmNotice.EndTime = endStr;
+           // AlarmNotice.StartTime = startStr;
+          //  AlarmNotice.EndTime = endStr;
             AlarmNotice.InsertTime = Convert.ToDateTime(DateTime.Now.TimeOfDay.ToString()); ;
 
             int EMCFT = myEMCEntities.SaveChanges();

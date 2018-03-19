@@ -12,13 +12,14 @@ namespace EMCManagementSystem.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class CalendarArrangement
+    public partial class CarYearQualification_18387
     {
-        public int CalendarArrangement_id { get; set; }
-        public string CalendarArrangement_title { get; set; }
-        public string StartTime { get; set; }
-        public string EndTime { get; set; }
-        public string Colorclass { get; set; }
-        public Nullable<System.DateTime> InsertTime { get; set; }
+        public int CarYearQualificationID { get; set; }
+        public string carName { get; set; }
+        public string CarYearQualification { get; set; }
+        public Nullable<int> year { get; set; }
+        public Nullable<int> qualificationNumber { get; set; }
+        public Nullable<int> UnqualifiedTimes { get; set; }
+        public Nullable<double> Qualification { get; set; }
     }
 }

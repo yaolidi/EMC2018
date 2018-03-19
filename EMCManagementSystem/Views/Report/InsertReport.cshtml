@@ -400,7 +400,9 @@
                            
                         </div>
                         <div class="tab-content">
-                            <ul id="treeDemo" style="width:100%" class="ztree"></ul>
+                            <input onclick="jQuery('#modal-4').modal('show', {backdrop: 'fade'});" style="border-radius:8px;" type="button" class="btn btn-success" value="选择任务" />
+                            <textarea class="form-control autogrow" name="about" id="taskList" data-validate="minlength[10]" rows="5" placeholder="请输入简介信息" style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 104px;display:none"></textarea>
+                            @*<ul id="treeDemo" style="width:100%" class="ztree"></ul>*@
                         </div>
                     </div>
                 </div>
@@ -1152,6 +1154,26 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="modal-4">
+        <div class="modal-dialog" style="width:80%">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">选择任务</h4>
+                </div>
+
+                <div class="modal-body">
+                    <ul id="treeDemo" style="width:100%" class="ztree"></ul>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-white" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-info" data-dismiss="modal" onclick="Determine()">确定</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="zhezhao" id="zhezhao">
 
         <div id="loader-container">
@@ -1769,6 +1791,7 @@
         var task_str = "";
         var task_arr = [];
         var task_arr2 = [];
+        var task_name = [];
     var setting = {
         check: {
             enable: true
@@ -1811,12 +1834,13 @@
                     if (task_arr.indexOf(treeNode.children[i].id + "") > -1) {
                         task_arr.remove(treeNode.children[i].id + "");
                         task_arr.remove(treeNode.id + "");
+                        task_name.remove(treeNode.children[i].name + "");
                     }
                 }
                 if (treeNode.checked == true) {
 
                     for (var j = 0; j < treeNode.children.length; j++) {
-
+                        task_name.push(treeNode.children[j].name + "");
                         task_arr.push(treeNode.children[j].id + "");
                         task_arr.push(treeNode.id + "");
                     }
@@ -1826,10 +1850,12 @@
                 if (treeNode.checked == true) {
                     task_arr.push(treeNode.pId + "");
                     task_arr.push(treeNode.id + "");
+                    task_name.push(treeNode.name + "");
                 }
                 else {
                     task_arr.remove(treeNode.pId + "");
                     task_arr.remove(treeNode.id + "");
+                    task_name.remove(treeNode.name + "");
                 }
             }
 
@@ -1839,10 +1865,13 @@
 
                     task_arr.push(treeNode.children[p].id + "");
                     task_arr.push(treeNode.id + "");
+                    task_name.push(treeNode.children[p].name + "");
+                   
                 }
             } else {
                 task_arr.push(treeNode.pId + "");
                 task_arr.push(treeNode.id + "");
+                task_name.push(treeNode.name + "");
             }
 
         }
@@ -2208,7 +2237,16 @@
             $('.selectpicker').selectpicker({
                 'selectedText': 'cat'
             });
-})
+        })
+        function Determine() {
+            var task_name_str = "";
+            for (var i = 0;  i< task_name.length; i++) {
+                task_name_str += (i+1)+"、"+task_name[i] + "\n";
+            }
+            document.getElementById("taskList").value = task_name_str;
+            document.getElementById("taskList").style.display = "block";
+            
+        }
         function save() {
      
    // document.getElementById("save_a").disabled = "disabled";
